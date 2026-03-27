@@ -31,20 +31,20 @@
             text-align:center; margin-bottom:2rem;
         }
         .logo-text {
-            font-size:2rem; font-weight:900; letter-spacing:-1px;
-            background:linear-gradient(135deg,#2d6a4f,#0d9488);
+            font-size:1.5rem; font-weight:900; letter-spacing:0.5px; line-height:1.3;
+            background:linear-gradient(135deg,#2d6a4f 0%,#0d9488 50%,#b5883e 100%);
             -webkit-background-clip:text; -webkit-text-fill-color:transparent;
         }
-        .logo-sub { font-size:0.8rem; color:var(--faint); font-weight:600; margin-top:4px; text-transform:uppercase; letter-spacing:3px; }
-        h2 { font-size:1.3rem; font-weight:800; color:var(--text); margin-bottom:0.35rem; }
-        .subtitle { font-size:0.88rem; color:var(--faint); margin-bottom:2rem; }
+        .logo-sub { font-size:0.82rem; color:var(--faint); font-weight:700; margin-top:6px; text-transform:uppercase; letter-spacing:4px; }
+        h2 { font-size:1.4rem; font-weight:800; color:var(--text); margin-bottom:0.35rem; }
+        .subtitle { font-size:0.92rem; color:var(--faint); margin-bottom:2rem; }
         .form-group { margin-bottom:1.25rem; }
-        label { display:block; font-size:0.82rem; font-weight:700; color:var(--muted); margin-bottom:0.4rem; }
+        label { display:block; font-size:0.88rem; font-weight:700; color:var(--muted); margin-bottom:0.4rem; }
         .form-control {
-            width:100%; padding:0.8rem 1rem; border-radius:10px;
+            width:100%; padding:0.85rem 1.1rem; border-radius:12px;
             border:1.5px solid var(--border); background:var(--surface);
-            font-size:0.92rem; color:var(--text); font-family:inherit;
-            transition:border-color 0.2s, box-shadow 0.2s; outline:none;
+            font-size:0.95rem; color:var(--text); font-family:inherit;
+            transition:border-color 0.25s, box-shadow 0.25s; outline:none;
         }
         .form-control:focus { border-color:var(--primary2); box-shadow:0 0 0 3px rgba(45,106,79,0.1); }
         .form-control.is-invalid { border-color:#dc2626; }
@@ -53,11 +53,11 @@
         .form-check input { accent-color:var(--primary); width:16px; height:16px; cursor:pointer; }
         .form-check label { font-size:0.84rem; color:var(--muted); margin:0; cursor:pointer; }
         .btn-login {
-            width:100%; padding:0.85rem;
+            width:100%; padding:0.9rem;
             background:linear-gradient(135deg,var(--primary),var(--primary2));
-            color:#fff; border:none; border-radius:10px;
-            font-size:0.95rem; font-weight:700; cursor:pointer;
-            font-family:inherit; transition:all 0.25s;
+            color:#fff; border:none; border-radius:12px;
+            font-size:1rem; font-weight:700; cursor:pointer;
+            font-family:inherit; transition:all 0.3s;
             box-shadow:0 6px 20px rgba(45,106,79,0.3);
         }
         .btn-login:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(45,106,79,0.4); }
@@ -75,7 +75,7 @@
     <div class="login-wrap">
         <div class="login-card">
             <div class="login-logo">
-                <div class="logo-text">AG.</div>
+                <div class="logo-text">ANUGRAH TEJO MALIKI</div>
                 <div class="logo-sub">Admin Panel</div>
             </div>
             <h2>Selamat Datang 👋</h2>

@@ -32,8 +32,8 @@ class ProfilController extends Controller
     {
         $data = $request->validate([
             'nama'                 => 'required|string|max:100',
-            'bio1'                 => 'nullable|string',
-            'bio2'                 => 'nullable|string',
+            'bio1'                 => 'nullable|string|max:5000',
+            'bio2'                 => 'nullable|string|max:5000',
             'status'               => 'nullable|string|max:100',
             'lokasi'               => 'nullable|string|max:100',
             'bahasa'               => 'nullable|string|max:100',
@@ -41,6 +41,7 @@ class ProfilController extends Controller
             'foto'                 => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'kata_penyemangat_raw' => 'nullable|string',
             'no_whatsapp'          => 'nullable|string|max:20',
+            'cv_file'              => 'nullable|file|mimes:pdf,doc,docx|max:5120',
         ]);
 
         $profil = $this->getOrCreate();
@@ -71,6 +72,22 @@ class ProfilController extends Controller
                 Storage::disk('public')->delete($profil->foto);
             }
             $updateData['foto'] = null;
+        }
+
+        // Handle CV upload
+        if ($request->hasFile('cv_file')) {
+            if ($profil->cv_file) {
+                Storage::disk('public')->delete($profil->cv_file);
+            }
+            $updateData['cv_file'] = $request->file('cv_file')->store('cv', 'public');
+        }
+
+        // Handle CV removal
+        if ($request->boolean('hapus_cv')) {
+            if ($profil->cv_file) {
+                Storage::disk('public')->delete($profil->cv_file);
+            }
+            $updateData['cv_file'] = null;
         }
 
         $profil->update($updateData);

@@ -9,9 +9,11 @@ use App\Http\Controllers\Admin\ProjekController as AdminProjek;
 use App\Http\Controllers\Admin\JurnalController as AdminJurnal;
 use App\Http\Controllers\Admin\ProfilController as AdminProfil;
 use App\Http\Controllers\Admin\SosmedController as AdminSosmed;
+use App\Http\Controllers\Admin\PengalamanController as AdminPengalaman;
 
 // ── Public ──
 Route::get('/', [PublicController::class, 'index']);
+Route::get('/cv', [PublicController::class, 'downloadCv'])->name('cv.download');
 
 // ── Admin ──
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -29,6 +31,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('projek', AdminProjek::class)->except(['show']);
         Route::resource('jurnal', AdminJurnal::class)->except(['show']);
         Route::resource('sosmed', AdminSosmed::class)->except(['show']);
+        Route::resource('pengalaman', AdminPengalaman::class)->except(['show']);
         Route::get('profil', [AdminProfil::class, 'edit'])->name('profil.edit');
         Route::put('profil', [AdminProfil::class, 'update'])->name('profil.update');
     });

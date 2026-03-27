@@ -7,6 +7,8 @@ use App\Models\Projek;
 use App\Models\Jurnal;
 use App\Models\Profil;
 use App\Models\Sosmed;
+use App\Models\Pengalaman;
+use Illuminate\Support\Facades\Storage;
 
 class PublicController extends Controller
 {
@@ -18,6 +20,7 @@ class PublicController extends Controller
         $jurnal              = Jurnal::orderBy('urutan')->orderBy('year', 'desc')->get();
         $profil              = Profil::first();
         $sosmed              = Sosmed::orderBy('urutan')->get();
+        $pengalaman          = Pengalaman::orderBy('urutan')->orderByDesc('tahun_mulai')->get();
 
         $totalProjek   = Projek::count();
         $totalJurnal   = Jurnal::count();
@@ -25,8 +28,20 @@ class PublicController extends Controller
 
         return view('welcome', compact(
             'prestasiAkademik', 'prestasiNonAkademik', 'projek', 'jurnal',
-            'profil', 'sosmed', 'totalProjek', 'totalJurnal', 'totalPrestasi'
+            'profil', 'sosmed', 'pengalaman',
+            'totalProjek', 'totalJurnal', 'totalPrestasi'
         ));
+    }
+
+    public function downloadCv()
+    {
+        $profil = Profil::first();
+        if (!$profil || !$profil->cv_file || !Storage::disk('public')->exists($profil->cv_file)) {
+            abort(404, 'CV tidak tersedia.');
+        }
+        $safeName = preg_replace('/[^a-zA-Z0-9_\- ]/', '', $profil->nama ?? 'Portfolio');
+        $extension = pathinfo($profil->cv_file, PATHINFO_EXTENSION) ?: 'pdf';
+        return Storage::disk('public')->download($profil->cv_file, 'CV-' . $safeName . '.' . $extension);
     }
 }
 

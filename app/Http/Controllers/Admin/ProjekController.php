@@ -24,7 +24,7 @@ class ProjekController extends Controller
     {
         $data = $request->validate([
             'title'       => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'required|string|max:5000',
             'tags_raw'    => 'nullable|string',
             'thumb_color' => 'required|integer|in:1,2,3',
             'gambar'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
@@ -61,7 +61,7 @@ class ProjekController extends Controller
     {
         $data = $request->validate([
             'title'       => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'required|string|max:5000',
             'tags_raw'    => 'nullable|string',
             'thumb_color' => 'required|integer|in:1,2,3',
             'gambar'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',

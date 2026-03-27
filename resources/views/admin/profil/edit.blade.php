@@ -88,6 +88,28 @@
                                placeholder="6281234567890">
                         <span class="form-hint">Gunakan format internasional tanpa + (contoh: 6281234567890). Akan tampil sebagai tombol WhatsApp di Home.</span>
                     </div>
+
+                    {{-- Upload CV --}}
+                    <div class="form-group full">
+                        <label for="cv_file">File CV <span style="font-weight:400;color:var(--faint)">(PDF/DOC/DOCX, maks 5MB)</span></label>
+                        @if($profil->cv_file)
+                        <div style="margin-bottom:0.75rem;padding:0.75rem 1rem;background:rgba(45,106,79,0.08);border-radius:10px;border:1.5px solid rgba(45,106,79,0.2);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+                            <span style="font-size:0.9rem;color:var(--text);font-weight:600;">
+                                📄 {{ basename($profil->cv_file) }}
+                            </span>
+                            <div style="display:flex;gap:0.75rem;align-items:center;">
+                                <a href="{{ Storage::url($profil->cv_file) }}" target="_blank"
+                                   style="font-size:0.85rem;color:var(--accent);font-weight:700;text-decoration:none;">&#128279; Lihat File</a>
+                                <label style="font-size:0.85rem;color:#dc2626;cursor:pointer;font-weight:600;">
+                                    <input type="checkbox" name="hapus_cv" value="1"> Hapus CV
+                                </label>
+                            </div>
+                        </div>
+                        @endif
+                        <input type="file" id="cv_file" name="cv_file" class="form-control" accept=".pdf,.doc,.docx">
+                        @error('cv_file') <div class="invalid-feedback" style="display:block">{{ $message }}</div> @enderror
+                        <span class="form-hint">CV yang diupload akan bisa didownload oleh pengunjung dari halaman Tentang Saya.</span>
+                    </div>
                 </div>
 
                 <div class="form-actions">

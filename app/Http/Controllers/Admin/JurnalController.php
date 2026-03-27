@@ -29,7 +29,7 @@ class JurnalController extends Controller
             'year'         => 'required|string|size:4',
             'indexed_by'   => 'required|string|max:100',
             'url'          => 'nullable|url|max:500',
-            'description'  => 'nullable|string',
+            'description'  => 'nullable|string|max:5000',
             'urutan'       => 'nullable|integer',
         ]);
 
@@ -54,7 +54,7 @@ class JurnalController extends Controller
             'year'         => 'required|string|size:4',
             'indexed_by'   => 'required|string|max:100',
             'url'          => 'nullable|url|max:500',
-            'description'  => 'nullable|string',
+            'description'  => 'nullable|string|max:5000',
             'urutan'       => 'nullable|integer',
         ]);
 

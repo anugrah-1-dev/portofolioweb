@@ -26,7 +26,7 @@ class PrestasiController extends Controller
             'icon'        => 'required|string|max:20',
             'year'        => 'required|string|size:4',
             'title'       => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'required|string|max:5000',
             'badge'       => 'required|string|max:100',
             'kategori'    => 'required|in:akademik,non_akademik',
             'foto'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
@@ -55,7 +55,7 @@ class PrestasiController extends Controller
             'icon'        => 'required|string|max:20',
             'year'        => 'required|string|size:4',
             'title'       => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'required|string|max:5000',
             'badge'       => 'required|string|max:100',
             'kategori'    => 'required|in:akademik,non_akademik',
             'foto'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
@@ -73,6 +73,7 @@ class PrestasiController extends Controller
             unset($data['foto']);
         }
 
+        unset($data['hapus_foto']);
         $data['urutan'] = $data['urutan'] ?? 0;
         $prestasi->update($data);
 
