@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\Admin\AuthController as AdminAuth;
 use App\Http\Controllers\Admin\DashboardController;
@@ -14,6 +15,14 @@ use App\Http\Controllers\Admin\PengalamanController as AdminPengalaman;
 // ── Public ──
 Route::get('/', [PublicController::class, 'index']);
 Route::get('/cv', [PublicController::class, 'downloadCv'])->name('cv.download');
+
+// ── Storage fallback (works on shared hosting where symlinks are disabled) ──
+Route::get('/storage/{path}', function (string $path) {
+    if (! Storage::disk('public')->exists($path)) {
+        abort(404);
+    }
+    return Storage::disk('public')->response($path);
+})->where('path', '.*');
 
 // ── Admin ──
 Route::prefix('admin')->name('admin.')->group(function () {
