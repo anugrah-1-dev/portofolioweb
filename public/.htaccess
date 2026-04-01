@@ -18,10 +18,9 @@
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Force /storage/* through Laravel when file doesn't physically exist
-    # (handles broken/missing symlinks on shared hosting)
+    # ALWAYS route /storage/* through Laravel — no conditions
+    # Fixes shared hosting where public/storage is a broken symlink or empty directory
     RewriteCond %{REQUEST_URI} ^/storage/
-    RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 
     # Send Requests To Front Controller...
