@@ -970,7 +970,7 @@
         .wa-float {
             position: fixed;
             bottom: 1.75rem;
-            left: 1.75rem;
+            right: 1.75rem;
             z-index: 9999;
             display: flex;
             align-items: center;
@@ -998,7 +998,7 @@
         }
         .wa-float .wa-tooltip {
             position: absolute;
-            left: 68px;
+            right: 68px;
             background: #fff;
             color: #1a2e20;
             font-size: 0.82rem;
@@ -1009,19 +1009,19 @@
             box-shadow: 0 4px 16px rgba(0,0,0,0.12);
             pointer-events: none;
             opacity: 0;
-            transform: translateX(-6px);
+            transform: translateX(6px);
             transition: opacity 0.25s, transform 0.25s;
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
         .wa-float .wa-tooltip::before {
             content: '';
             position: absolute;
-            left: -6px;
+            right: -6px;
             top: 50%;
             transform: translateY(-50%);
             border: 6px solid transparent;
-            border-right-color: #fff;
-            border-left: none;
+            border-left-color: #fff;
+            border-right: none;
         }
         .wa-float a:hover + .wa-tooltip,
         .wa-float:hover .wa-tooltip {
@@ -1033,7 +1033,7 @@
             50%       { filter: drop-shadow(0 4px 28px rgba(37,211,102,0.75)); }
         }
         @media (max-width: 480px) {
-            .wa-float { bottom: 1.25rem; left: 1.25rem; }
+            .wa-float { bottom: 1.25rem; right: 1.25rem; }
             .wa-float a { width: 52px; height: 52px; font-size: 1.55rem; }
             .wa-float .wa-tooltip { display: none; }
         }
