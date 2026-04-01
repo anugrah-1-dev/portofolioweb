@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\Admin\AuthController as AdminAuth;
 use App\Http\Controllers\Admin\DashboardController;
@@ -18,10 +17,13 @@ Route::get('/cv', [PublicController::class, 'downloadCv'])->name('cv.download');
 
 // ── Storage fallback (works on shared hosting where symlinks are disabled) ──
 Route::get('/storage/{path}', function (string $path) {
-    if (! Storage::disk('public')->exists($path)) {
+    $fullPath = storage_path('app/public/' . $path);
+
+    if (! file_exists($fullPath) || ! is_file($fullPath)) {
         abort(404);
     }
-    return Storage::disk('public')->response($path);
+
+    return response()->file($fullPath);
 })->where('path', '.*');
 
 // ── Admin ──
