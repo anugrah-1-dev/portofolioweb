@@ -963,5 +963,88 @@
             });
         });
     </script>
+
+    @if($profil?->no_whatsapp)
+    <!-- ═══ FLOATING WHATSAPP BUTTON ═══ -->
+    <style>
+        .wa-float {
+            position: fixed;
+            bottom: 1.75rem;
+            left: 1.75rem;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            filter: drop-shadow(0 4px 16px rgba(37,211,102,0.45));
+            animation: waPulse 2.5s ease-in-out infinite;
+        }
+        .wa-float a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: #fff;
+            font-size: 1.75rem;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+        }
+        .wa-float a:hover {
+            transform: scale(1.12);
+            box-shadow: 0 10px 32px rgba(37,211,102,0.60);
+        }
+        .wa-float .wa-tooltip {
+            position: absolute;
+            left: 68px;
+            background: #fff;
+            color: #1a2e20;
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 0.45rem 0.9rem;
+            border-radius: 8px;
+            white-space: nowrap;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            pointer-events: none;
+            opacity: 0;
+            transform: translateX(-6px);
+            transition: opacity 0.25s, transform 0.25s;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .wa-float .wa-tooltip::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 6px solid transparent;
+            border-right-color: #fff;
+            border-left: none;
+        }
+        .wa-float a:hover + .wa-tooltip,
+        .wa-float:hover .wa-tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        @keyframes waPulse {
+            0%, 100% { filter: drop-shadow(0 4px 16px rgba(37,211,102,0.45)); }
+            50%       { filter: drop-shadow(0 4px 28px rgba(37,211,102,0.75)); }
+        }
+        @media (max-width: 480px) {
+            .wa-float { bottom: 1.25rem; left: 1.25rem; }
+            .wa-float a { width: 52px; height: 52px; font-size: 1.55rem; }
+            .wa-float .wa-tooltip { display: none; }
+        }
+    </style>
+    <div class="wa-float">
+        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $profil->no_whatsapp) }}?text={{ urlencode('Halo, saya dari web https://anugrahtejomaliki.my.id/ tertarik untuk berdiskusi lebih lanjut.') }}"
+           target="_blank" rel="noopener noreferrer" aria-label="Chat WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <span class="wa-tooltip">Chat via WhatsApp</span>
+    </div>
+    @endif
 </body>
 </html>
