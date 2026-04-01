@@ -252,21 +252,54 @@
             will-change:transform;
         }
 
+        /* ── SIDEBAR OVERLAY ── */
+        .sidebar-overlay {
+            display:none; position:fixed; inset:0; z-index:99;
+            background:rgba(0,0,0,0.55); backdrop-filter:blur(2px);
+        }
+        .sidebar-overlay.open { display:block; }
+
+        /* ── MOBILE TOGGLE ── */
+        .sidebar-toggle {
+            display:none; align-items:center; justify-content:center;
+            width:40px; height:40px; border-radius:10px; border:1.5px solid var(--border);
+            background:var(--surface); cursor:pointer; flex-shrink:0;
+            transition:all 0.25s; margin-right:0.75rem;
+        }
+        .sidebar-toggle:hover { border-color:var(--primary); background:rgba(45,106,79,0.06); }
+        .sidebar-toggle span { display:block; width:18px; height:2px; background:var(--text); border-radius:2px; transition:all 0.3s; }
+        .sidebar-toggle-inner { display:flex; flex-direction:column; gap:4px; }
+
         @media (max-width:900px) {
-            .sidebar { transform:translateX(-100%); transition:transform 0.3s; }
+            .sidebar { transform:translateX(-100%); transition:transform 0.3s cubic-bezier(.4,0,.2,1); }
             .sidebar.open { transform:translateX(0); }
             .main { margin-left:0; }
             .form-grid { grid-template-columns:1fr; }
-            .content { padding:1.5rem; }
-            .topbar { padding:1rem 1.5rem; }
+            .content { padding:1.25rem; }
+            .topbar { padding:0.85rem 1.25rem; }
+            .sidebar-toggle { display:flex; }
+            table { font-size:0.85rem; }
+            thead th, tbody td { padding:0.75rem 0.85rem; }
+        }
+        @media (max-width:600px) {
+            .content { padding:1rem; }
+            .topbar { padding:0.75rem 1rem; }
+            .topbar-title { font-size:1.05rem; }
+            .card-header { padding:1rem 1.25rem; flex-wrap:wrap; gap:0.6rem; }
+            .card-body { padding:1.25rem; }
+            .td-actions { gap:0.4rem; }
+            .btn-sm { padding:0.35rem 0.7rem; font-size:0.78rem; }
         }
     </style>
     @stack('styles')
 </head>
 <body>
 
+    <!-- SIDEBAR OVERLAY (mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
     <!-- SIDEBAR -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
         <div class="sidebar-brand">
             <div class="brand-logo">ANUGRAH TEJO MALIKI</div>
             <div class="brand-sub">Admin Panel</div>
@@ -324,9 +357,16 @@
     <!-- MAIN CONTENT -->
     <div class="main">
         <div class="topbar">
-            <div>
-                <div class="topbar-title">@yield('title', 'Dashboard')</div>
-                <div class="topbar-breadcrumb">Admin Panel &rsaquo; @yield('title', 'Dashboard')</div>
+            <div style="display:flex;align-items:center;flex:1;min-width:0;">
+                <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" aria-label="Toggle menu">
+                    <div class="sidebar-toggle-inner">
+                        <span></span><span></span><span></span>
+                    </div>
+                </button>
+                <div style="min-width:0;">
+                    <div class="topbar-title">@yield('title', 'Dashboard')</div>
+                    <div class="topbar-breadcrumb">Admin Panel &rsaquo; @yield('title', 'Dashboard')</div>
+                </div>
             </div>
             <div class="topbar-right">
                 <a href="{{ url('/') }}" target="_blank" rel="noopener noreferrer" class="view-site-btn">🌿 Lihat Site</a>
@@ -346,5 +386,21 @@
     </div>
 
     @stack('scripts')
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebarOverlay').classList.toggle('open');
+        }
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('open');
+        }
+        // Close sidebar when a nav link is clicked on mobile
+        document.querySelectorAll('.sidebar-nav a').forEach(function(a) {
+            a.addEventListener('click', function() {
+                if (window.innerWidth <= 900) closeSidebar();
+            });
+        });
+    </script>
 </body>
 </html>
