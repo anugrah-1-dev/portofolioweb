@@ -75,7 +75,7 @@
                                 <div style="font-size:0.88rem;color:var(--muted);font-weight:600;">Klik atau drag & drop gambar di sini</div>
                                 <div style="font-size:0.78rem;color:var(--faint);margin-top:0.3rem;">JPG, PNG, WebP • Maks 2MB</div>
                             </div>
-                            <img id="gambar-preview" src="#" alt="Preview"
+                            <img id="gambar-preview" alt="Preview"
                                  style="display:none;max-width:100%;max-height:200px;border-radius:10px;object-fit:contain;">
                         </div>
                         <input type="file" id="gambar" name="gambar" accept="image/jpeg,image/png,image/webp"
