@@ -261,6 +261,7 @@
             .topbar { padding:1rem 1.5rem; }
         }
     </style>
+    @stack('styles')
 </head>
 <body>
 
@@ -344,5 +345,6 @@
         </div>
     </div>
 
+    @stack('scripts')
 </body>
 </html>

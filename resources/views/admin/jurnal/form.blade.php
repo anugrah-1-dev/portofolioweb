@@ -1,8 +1,15 @@
 @extends('admin.layouts.app')
 @section('title', $item ? 'Edit Jurnal' : 'Tambah Jurnal')
 
+@push('styles')
+<style>
+    .jurnal-form-wrap { max-width: 720px; }
+    .jurnal-form-wrap .form-label-optional { font-weight: 400; color: var(--faint); }
+</style>
+@endpush
+
 @section('content')
-<div style="max-width:720px;">
+<div class="jurnal-form-wrap">
     <div class="card">
         <div class="card-header">
             <h2>{{ $item ? '✏️ Edit Jurnal' : '➕ Tambah Jurnal' }}</h2>
@@ -55,7 +62,7 @@
                         @error('url') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="form-group full">
-                        <label for="description">Abstrak / Deskripsi Singkat <span style="font-weight:400;color:var(--faint)">(opsional)</span></label>
+                        <label for="description">Abstrak / Deskripsi Singkat <span class="form-label-optional">(opsional)</span></label>
                         <textarea id="description" name="description" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
                                   placeholder="Tuliskan abstrak atau ringkasan singkat...">{{ old('description', $item?->description) }}</textarea>
                         @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
