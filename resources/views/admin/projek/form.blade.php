@@ -110,7 +110,7 @@
                                 <input type="radio" name="tipe_akses" value="berbayar"
                                        onchange="toggleHarga(this)"
                                        {{ old('tipe_akses', $item?->tipe_akses) === 'berbayar' ? 'checked' : '' }}>
-                                💳 Berbayar (via Xendit)
+                                💳 Berbayar (via Midtrans)
                             </label>
                         </div>
                         <span class="form-hint">Jika berbayar, pengunjung harus membayar untuk mendapatkan link GitHub.</span>
