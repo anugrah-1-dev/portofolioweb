@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace App\Http\Controllers;
 
@@ -46,7 +46,6 @@ class PaymentController extends Controller
 
         $serverKey = config('services.midtrans.server_key');
 
-        // Mode demo jika belum ada API key
         if (empty($serverKey)) {
             $order->update(['invoice_url' => route('projek.sukses', $token)]);
             return redirect()->route('projek.sukses', $token);
@@ -111,7 +110,6 @@ class PaymentController extends Controller
         $fraudStatus       = $data['fraud_status']       ?? '';
         $signatureKey      = $data['signature_key']      ?? '';
 
-        // Verifikasi signature Midtrans
         $serverKey = config('services.midtrans.server_key');
         $expected  = hash('sha512', $orderId . $statusCode . $grossAmount . $serverKey);
 
@@ -135,149 +133,6 @@ class PaymentController extends Controller
             ]);
         } elseif (in_array($transactionStatus, ['cancel', 'deny', 'expire']) && $order->status === 'pending') {
             $order->update(['status' => 'expired']);
-        }
-
-        return response()->json(['status' => 'ok']);
-    }
-}
-
-
-class PaymentController extends Controller
-{
-    public function beli(Request $request, $id)
-    {
-        $projek = Projek::findOrFail($id);
-
-        if (!$projek->isBerbayar()) {
-            return redirect()->back()->with('error', 'Projek ini gratis, tidak perlu pembayaran.');
-        }
-
-        $request->validate([
-            'nama'  => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-        ]);
-
-        $token = Str::random(48);
-
-        $order = ProjekOrder::create([
-            'projek_id' => $projek->id,
-            'nama'      => $request->nama,
-            'email'     => $request->email,
-            'harga'     => $projek->harga,
-            'token'     => $token,
-            'status'    => 'pending',
-        ]);
-
-        $secretKey = config('services.xendit.secret_key');
-
-        // Jika belum ada API key, tampilkan halaman simulasi
-        if (empty($secretKey) || $secretKey === 'YOUR_XENDIT_SECRET_KEY') {
-            // Mode demo tanpa Xendit
-            $order->update([
-                'xendit_invoice_id'  => 'DEMO-' . $order->id,
-                'xendit_invoice_url' => route('projek.sukses', $token),
-            ]);
-            return redirect()->route('projek.sukses', $token);
-        }
-
-        $successUrl = route('projek.sukses', $token);
-        $failureUrl = url('/') . '#projek';
-
-        $response = Http::withBasicAuth($secretKey, '')
-            ->timeout(15)
-            ->post('https://api.xendit.co/v2/invoices', [
-                'external_id'         => 'projek-' . $order->id . '-' . $token,
-                'amount'              => $projek->harga,
-                'description'         => 'Akses Source Code: ' . $projek->title,
-                'invoice_duration'    => 86400,
-                'customer'            => [
-                    'given_names' => $request->nama,
-                    'email'       => $request->email,
-                ],
-                'customer_notification_preference' => [
-                    'invoice_created' => ['email'],
-                    'invoice_paid'    => ['email'],
-                ],
-                'success_redirect_url' => $successUrl,
-                'failure_redirect_url' => $failureUrl,
-                'currency'             => 'IDR',
-            ]);
-
-        if ($response->failed()) {
-            $order->delete();
-            return redirect()->back()->with('error', 'Gagal membuat invoice pembayaran. Coba lagi.');
-        }
-
-        $data = $response->json();
-
-        $order->update([
-            'xendit_invoice_id'  => $data['id'] ?? null,
-            'xendit_invoice_url' => $data['invoice_url'] ?? null,
-        ]);
-
-        return redirect($data['invoice_url']);
-    }
-
-    public function sukses($token)
-    {
-        $order = ProjekOrder::where('token', $token)->firstOrFail();
-        $projek = $order->projek;
-
-        // Cek status terbaru dari Xendit jika masih pending
-        if ($order->status === 'pending' && $order->xendit_invoice_id && !str_starts_with($order->xendit_invoice_id, 'DEMO')) {
-            $secretKey = config('services.xendit.secret_key');
-            if (!empty($secretKey) && $secretKey !== 'YOUR_XENDIT_SECRET_KEY') {
-                $res = Http::withBasicAuth($secretKey, '')
-                    ->get('https://api.xendit.co/v2/invoices/' . $order->xendit_invoice_id);
-
-                if ($res->ok()) {
-                    $inv = $res->json();
-                    if (($inv['status'] ?? '') === 'PAID') {
-                        $order->update([
-                            'status'  => 'paid',
-                            'paid_at' => now(),
-                        ]);
-                        $order->refresh();
-                    } elseif (($inv['status'] ?? '') === 'EXPIRED') {
-                        $order->update(['status' => 'expired']);
-                        $order->refresh();
-                    }
-                }
-            }
-        }
-
-        return view('payment.sukses', compact('order', 'projek'));
-    }
-
-    public function webhook(Request $request)
-    {
-        $callbackToken = $request->header('x-callback-token');
-        $expectedToken = config('services.xendit.callback_token');
-
-        if (!empty($expectedToken) && $callbackToken !== $expectedToken) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-
-        $data = $request->all();
-        $status = $data['status'] ?? '';
-        $externalId = $data['external_id'] ?? '';
-
-        // external_id format: projek-{orderId}-{token}
-        $parts = explode('-', $externalId);
-        if (count($parts) >= 3) {
-            $orderId = $parts[1];
-            $order = ProjekOrder::find($orderId);
-
-            if ($order) {
-                if ($status === 'PAID' && $order->status !== 'paid') {
-                    $order->update([
-                        'status'  => 'paid',
-                        'paid_at' => now(),
-                    ]);
-                } elseif ($status === 'EXPIRED' && $order->status === 'pending') {
-                    $order->update(['status' => 'expired']);
-                }
-            }
         }
 
         return response()->json(['status' => 'ok']);
