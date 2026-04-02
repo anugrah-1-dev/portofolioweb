@@ -542,6 +542,20 @@
 </head>
 <body>
 
+    @if(session('info'))
+    <div id="flash-info" style="position:fixed;top:1rem;left:50%;transform:translateX(-50%);z-index:9999;background:var(--accent);color:#fff;padding:0.75rem 1.5rem;border-radius:8px;font-size:0.95rem;box-shadow:0 4px 20px rgba(0,0,0,0.4);">
+        {{ session('info') }}
+    </div>
+    <script>setTimeout(()=>document.getElementById('flash-info').remove(),4000)</script>
+    @endif
+
+    @if(session('error'))
+    <div id="flash-error" style="position:fixed;top:1rem;left:50%;transform:translateX(-50%);z-index:9999;background:#dc2626;color:#fff;padding:0.75rem 1.5rem;border-radius:8px;font-size:0.95rem;box-shadow:0 4px 20px rgba(0,0,0,0.4);">
+        {{ session('error') }}
+    </div>
+    <script>setTimeout(()=>document.getElementById('flash-error').remove(),4000)</script>
+    @endif
+
     <!-- ═══ NAVBAR ═══ -->
     <nav id="navbar">
         <div class="nav-corak"></div>

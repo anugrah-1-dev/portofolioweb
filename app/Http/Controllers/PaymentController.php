@@ -99,6 +99,20 @@ class PaymentController extends Controller
         return view('payment.sukses', compact('order', 'projek'));
     }
 
+    public function batal(Request $request, $token)
+    {
+        $order = ProjekOrder::where('token', $token)->firstOrFail();
+
+        if ($order->status !== 'pending') {
+            return redirect()->route('projek.sukses', $token)
+                ->with('error', 'Pembayaran tidak bisa dibatalkan.');
+        }
+
+        $order->update(['status' => 'cancelled']);
+
+        return redirect('/')->with('info', 'Pembayaran berhasil dibatalkan.');
+    }
+
     public function webhook(Request $request)
     {
         $data = $request->all();

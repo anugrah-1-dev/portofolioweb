@@ -190,6 +190,14 @@
     <a href="{{ route('projek.sukses', $order->token) }}" class="btn btn-ghost" style="display:inline-flex;margin-top:0.75rem;">
         🔄 Cek Status Pembayaran
     </a>
+    <br>
+    <form method="POST" action="{{ route('projek.batal', $order->token) }}"
+          onsubmit="return confirm('Yakin ingin membatalkan pembayaran ini?')">
+        @csrf
+        <button type="submit" class="btn btn-ghost" style="margin-top:0.75rem;color:var(--danger);border-color:var(--danger);">
+            ✕ Batalkan Pembayaran
+        </button>
+    </form>
     <p class="refresh-note">Halaman ini akan menampilkan link GitHub setelah pembayaran dikonfirmasi.</p>
 
     @else
