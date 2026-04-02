@@ -102,11 +102,15 @@
                             <div class="galeri-item" style="position:relative;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:var(--bg);border:2px solid var(--border);">
                                 <img src="{{ Storage::url($gPath) }}" alt="Gallery"
                                      style="width:100%;height:100%;object-fit:cover;display:block;">
-                                <label style="position:absolute;top:5px;right:5px;background:rgba(220,38,38,0.85);color:#fff;border-radius:8px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.75rem;" title="Hapus gambar ini">
-                                    <input type="checkbox" name="hapus_galeri[]" value="{{ $gPath }}" style="display:none;" onchange="this.parentElement.style.background=this.checked?'rgba(220,38,38,1)':'rgba(220,38,38,0.85)'">
+                                <input type="checkbox" name="hapus_galeri[]" value="{{ $gPath }}" class="hapus-galeri-cb" style="display:none;">
+                                <div class="hapus-overlay" style="display:none;position:absolute;inset:0;background:rgba(220,38,38,0.8);align-items:center;justify-content:center;flex-direction:column;color:#fff;gap:5px;pointer-events:none;">
+                                    <i class="fa-solid fa-trash" style="font-size:1.8rem;"></i>
+                                    <span style="font-size:0.78rem;font-weight:700;">Akan Dihapus</span>
+                                    <span style="font-size:0.63rem;opacity:0.85;">Klik tombol merah untuk batal</span>
+                                </div>
+                                <button type="button" onclick="toggleHapusGaleri(this)" style="position:absolute;top:5px;right:5px;background:rgba(220,38,38,0.85);color:#fff;border:none;border-radius:8px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.78rem;z-index:2;" title="Tandai untuk dihapus">
                                     <i class="fa-solid fa-trash"></i>
-                                </label>
-                                <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.55);color:rgba(255,255,255,0.7);font-size:0.62rem;text-align:center;padding:2px 4px;">Centang untuk hapus</div>
+                                </button>
                             </div>
                             @endforeach
                         </div>
@@ -250,6 +254,16 @@ function handleGaleriDrop(event) {
     Array.from(event.dataTransfer.files).filter(f => f.type.startsWith('image/')).forEach(f => dt.items.add(f));
     document.getElementById('galeri_baru').files = dt.files;
     previewGaleri({ files: event.dataTransfer.files });
+}
+function toggleHapusGaleri(btn) {
+    const item = btn.closest('.galeri-item');
+    const cb = item.querySelector('.hapus-galeri-cb');
+    cb.checked = !cb.checked;
+    const overlay = item.querySelector('.hapus-overlay');
+    overlay.style.display = cb.checked ? 'flex' : 'none';
+    item.style.border = cb.checked ? '2px solid rgba(220,38,38,0.9)' : '2px solid var(--border)';
+    btn.style.background = cb.checked ? 'rgba(220,38,38,1)' : 'rgba(220,38,38,0.85)';
+    btn.title = cb.checked ? 'Batal hapus' : 'Tandai untuk dihapus';
 }
 </script>
 @endsection
