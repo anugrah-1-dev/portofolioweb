@@ -254,7 +254,7 @@
         }
         .peng-card { background:var(--surface); border:1.5px solid var(--border); border-radius:18px; padding:1.5rem 1.75rem; transition:all 0.35s; position:relative; overflow:hidden; }
         .peng-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px;
-            background:repeating-linear-gradient(90deg,var(--primary) 0,var(--primary) 14px,var(--batik1) 14px,var(--batik1) 22px,var(--accent) 22px,var(--accent) 36px,var(--batik3) 36px,var(--batik3) 44px);
+            background:var(--primary);
             opacity:0; transition:opacity 0.35s; }
         .peng-card:hover::before { opacity:1; }
         .peng-card:hover { border-color:var(--primary2); box-shadow:0 16px 48px rgba(45,106,79,0.14); transform:translateX(6px); }
