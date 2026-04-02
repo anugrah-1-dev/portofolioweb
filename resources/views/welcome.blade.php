@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Portofolio Web Developer</title>
+    <title>{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Portofolio Diri</title>
     <meta name="description" content="Portofolio {{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Mahasiswa Teknologi Informasi yang berfokus pada pengembangan web dan aplikasi modern. Lihat projek, pengalaman, dan prestasi.">
     <meta name="keywords" content="{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }}, portofolio, web developer, laravel, programmer, teknologi informasi, Jawa Timur">
     <meta name="author" content="{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }}">
