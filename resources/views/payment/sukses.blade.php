@@ -6,6 +6,7 @@
     <title>{{ $order->status === 'paid' ? 'Pembayaran Berhasil' : 'Status Pembayaran' }} – {{ $projek->title }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
@@ -41,18 +42,20 @@
             text-align: center;
         }
         .icon-wrap {
-            width: 90px;
-            height: 90px;
+            width: 88px;
+            height: 88px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin: 0 auto 1.5rem;
+            position: relative;
         }
-        .icon-paid    { background: rgba(34,197,94,0.15); }
-        .icon-pending { background: rgba(245,158,11,0.15); }
-        .icon-expired { background: rgba(239,68,68,0.15); }
+        .icon-paid    { background: rgba(34,197,94,0.12); color: var(--success); box-shadow: 0 0 0 10px rgba(34,197,94,0.06); }
+        .icon-pending { background: rgba(245,158,11,0.12); color: var(--warning); box-shadow: 0 0 0 10px rgba(245,158,11,0.06); }
+        .icon-expired { background: rgba(239,68,68,0.12);  color: var(--danger);  box-shadow: 0 0 0 10px rgba(239,68,68,0.06); }
+        .icon-cancelled { background: rgba(100,116,139,0.12); color: #94a3b8; box-shadow: 0 0 0 10px rgba(100,116,139,0.06); }
 
         h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
         .subtitle { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.75rem; line-height: 1.6; }
@@ -73,47 +76,57 @@
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             padding: 0.85rem 1.75rem;
             border-radius: 12px;
-            font-size: 0.95rem;
+            font-size: 0.93rem;
             font-weight: 700;
             font-family: inherit;
             text-decoration: none;
             border: none;
             cursor: pointer;
             transition: all 0.25s;
+            width: 100%;
         }
-        .btn-primary { background: var(--primary); color: #fff; }
-        .btn-primary:hover { background: var(--accent); }
-        .btn-ghost { background: transparent; border: 1.5px solid var(--border); color: var(--muted); margin-top: 0.75rem; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff; box-shadow: 0 4px 18px rgba(45,106,79,0.35); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(45,106,79,0.5); }
+        .btn-ghost { background: transparent; border: 1.5px solid var(--border); color: var(--muted); }
         .btn-ghost:hover { border-color: var(--primary); color: var(--fg); }
+        .btn-danger { background: transparent; border: 1.5px solid rgba(239,68,68,0.35); color: #fca5a5; }
+        .btn-danger:hover { background: rgba(239,68,68,0.1); border-color: var(--danger); }
+        .btn-stack { display: flex; flex-direction: column; gap: 0.6rem; }
 
         .github-box {
-            background: rgba(45,106,79,0.15);
-            border: 2px solid var(--primary);
+            background: rgba(45,106,79,0.1);
+            border: 1.5px solid rgba(45,106,79,0.3);
             border-radius: 14px;
             padding: 1.25rem 1.5rem;
             margin-bottom: 1.5rem;
         }
-        .github-box p { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.75rem; }
+        .github-box p { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
         .github-link {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             background: var(--primary);
             color: #fff;
             padding: 0.75rem 1.25rem;
             border-radius: 10px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.92rem;
+            font-size: 0.88rem;
             transition: background 0.25s;
             word-break: break-all;
         }
         .github-link:hover { background: var(--accent); }
+        .status-badge { display:inline-flex;align-items:center;gap:0.4rem;padding:0.25rem 0.8rem;border-radius:20px;font-size:0.72rem;font-weight:700;margin-bottom:0.65rem; }
+        .status-paid    { background:rgba(34,197,94,0.12);color:var(--success);border:1px solid rgba(34,197,94,0.25); }
+        .status-pending { background:rgba(245,158,11,0.12);color:var(--warning);border:1px solid rgba(245,158,11,0.25); }
+        .status-expired { background:rgba(239,68,68,0.12);color:var(--danger);border:1px solid rgba(239,68,68,0.25); }
+        .status-cancelled { background:rgba(100,116,139,0.12);color:#94a3b8;border:1px solid rgba(100,116,139,0.25); }
 
-        .refresh-note { font-size: 0.78rem; color: var(--faint); margin-top: 1rem; }
+        .refresh-note { font-size: 0.76rem; color: var(--faint); margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem; }
     </style>
 </head>
 <body>
@@ -121,7 +134,8 @@
 
     @if($order->status === 'paid')
     {{-- ── PAID ── --}}
-    <div class="icon-wrap icon-paid">✅</div>
+    <div class="icon-wrap icon-paid"><i class="fa-solid fa-circle-check"></i></div>
+    <div class="status-badge status-paid"><i class="fa-solid fa-check"></i> Lunas</div>
     <h1 style="color: var(--success);">Pembayaran Berhasil!</h1>
     <p class="subtitle">Terima kasih, <strong>{{ $order->nama }}</strong>. Berikut adalah link source code projek yang kamu beli.</p>
 
@@ -146,21 +160,24 @@
 
     @if($projek->github_url)
     <div class="github-box">
-        <p>🔗 Simpan link ini — halaman ini tidak bisa diakses ulang setelah dibayar.</p>
+        <p><i class="fa-solid fa-triangle-exclamation" style="color:var(--warning);"></i> Simpan link ini — halaman ini tidak bisa diakses ulang.</p>
         <a href="{{ $projek->github_url }}" target="_blank" rel="noopener noreferrer" class="github-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+            <i class="fa-brands fa-github" style="font-size:1.1rem;flex-shrink:0;"></i>
             {{ $projek->github_url }}
         </a>
     </div>
     @endif
 
-    <a href="/" class="btn btn-ghost" style="display:inline-flex;">← Kembali ke Portofolio</a>
+    <div class="btn-stack">
+        <a href="/" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Kembali ke Portofolio</a>
+    </div>
 
     @elseif($order->status === 'pending')
     {{-- ── PENDING ── --}}
-    <div class="icon-wrap icon-pending">⏳</div>
+    <div class="icon-wrap icon-pending"><i class="fa-solid fa-clock"></i></div>
+    <div class="status-badge status-pending"><i class="fa-solid fa-hourglass-half"></i> Menunggu</div>
     <h1 style="color: var(--warning);">Menunggu Pembayaran</h1>
-    <p class="subtitle">Pembayaran untuk <strong>{{ $projek->title }}</strong> belum kami terima. Selesaikan pembayaran via Midtrans, lalu refresh halaman ini.</p>
+    <p class="subtitle">Pembayaran untuk <strong>{{ $projek->title }}</strong> belum kami terima. Selesaikan pembayaran via Midtrans, lalu cek status di bawah.</p>
 
     <div class="info-block">
         <div class="info-row">
@@ -169,7 +186,7 @@
         </div>
         <div class="info-row">
             <span class="info-label">Harga</span>
-            <span class="info-value">{{ $projek->hargaFormatted() }}</span>
+            <span class="info-value" style="color:var(--accent);">{{ $projek->hargaFormatted() }}</span>
         </div>
         <div class="info-row">
             <span class="info-label">Nama</span>
@@ -181,34 +198,46 @@
         </div>
     </div>
 
-    @if($order->invoice_url && !str_starts_with($order->invoice_url, '/'))
-    <a href="{{ $order->invoice_url }}" class="btn btn-primary">
-        💳 Lanjutkan Pembayaran
-    </a>
-    @endif
-    <br>
-    <a href="{{ route('projek.sukses', $order->token) }}" class="btn btn-ghost" style="display:inline-flex;margin-top:0.75rem;">
-        🔄 Cek Status Pembayaran
-    </a>
-    <br>
-    <form method="POST" action="{{ route('projek.batal', $order->token) }}"
-          onsubmit="return confirm('Yakin ingin membatalkan pembayaran ini?')">
-        @csrf
-        <button type="submit" class="btn btn-ghost" style="margin-top:0.75rem;color:var(--danger);border-color:var(--danger);">
-            ✕ Batalkan Pembayaran
-        </button>
-    </form>
-    <p class="refresh-note">Halaman ini akan menampilkan link GitHub setelah pembayaran dikonfirmasi.</p>
+    <div class="btn-stack">
+        @if($order->invoice_url && !str_starts_with($order->invoice_url, '/'))
+        <a href="{{ $order->invoice_url }}" class="btn btn-primary">
+            <i class="fa-solid fa-credit-card"></i> Lanjutkan Pembayaran
+        </a>
+        @endif
+        <a href="{{ route('projek.sukses', $order->token) }}" class="btn btn-ghost">
+            <i class="fa-solid fa-rotate-right"></i> Cek Status Pembayaran
+        </a>
+        <form method="POST" action="{{ route('projek.batal', $order->token) }}"
+              onsubmit="return confirm('Yakin ingin membatalkan pembayaran ini?')">
+            @csrf
+            <button type="submit" class="btn btn-danger">
+                <i class="fa-solid fa-xmark"></i> Batalkan Pembayaran
+            </button>
+        </form>
+    </div>
+    <p class="refresh-note"><i class="fa-solid fa-circle-info"></i> Link GitHub tersedia otomatis setelah pembayaran dikonfirmasi.</p>
+
+    @elseif($order->status === 'cancelled')
+    {{-- ── CANCELLED ── --}}
+    <div class="icon-wrap icon-cancelled"><i class="fa-solid fa-ban"></i></div>
+    <div class="status-badge status-cancelled"><i class="fa-solid fa-xmark"></i> Dibatalkan</div>
+    <h1 style="color: #94a3b8;">Pembayaran Dibatalkan</h1>
+    <p class="subtitle">Pembayaran untuk <strong>{{ $projek->title }}</strong> telah dibatalkan. Kamu bisa membeli ulang kapan saja.</p>
+    <div class="btn-stack">
+        <a href="/#projek" class="btn btn-primary"><i class="fa-solid fa-cart-shopping"></i> Beli Ulang</a>
+        <a href="/" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Kembali ke Portofolio</a>
+    </div>
 
     @else
     {{-- ── EXPIRED ── --}}
-    <div class="icon-wrap icon-expired">❌</div>
+    <div class="icon-wrap icon-expired"><i class="fa-solid fa-circle-xmark"></i></div>
+    <div class="status-badge status-expired"><i class="fa-solid fa-clock-rotate-left"></i> Kedaluwarsa</div>
     <h1 style="color: var(--danger);">Pembayaran Kedaluwarsa</h1>
     <p class="subtitle">Sesi pembayaran untuk <strong>{{ $projek->title }}</strong> telah kedaluwarsa. Silakan ulangi proses pembelian.</p>
-
-    <a href="/#projek" class="btn btn-primary">Beli Ulang</a>
-    <br>
-    <a href="/" class="btn btn-ghost" style="display:inline-flex;margin-top:0.75rem;">← Kembali ke Portofolio</a>
+    <div class="btn-stack">
+        <a href="/#projek" class="btn btn-primary"><i class="fa-solid fa-cart-shopping"></i> Beli Ulang</a>
+        <a href="/" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Kembali ke Portofolio</a>
+    </div>
     @endif
 
 </div>

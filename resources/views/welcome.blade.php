@@ -552,6 +552,19 @@
         .detail-link-primary:hover { transform:translateY(-2px);box-shadow:0 8px 20px rgba(45,106,79,0.35); }
         .detail-link-secondary { background:var(--bg2);color:var(--muted);border:1.5px solid var(--border); }
         .detail-link-secondary:hover { border-color:var(--primary);color:var(--primary);transform:translateY(-1px); }
+        .detail-link-buy { background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff!important;box-shadow:0 4px 18px rgba(45,106,79,0.35);flex:1;justify-content:center;font-size:0.92rem;border:none; }
+        .detail-link-buy:hover { transform:translateY(-2px);box-shadow:0 8px 28px rgba(45,106,79,0.55); }
+        .detail-price-tag { display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.9rem;border-radius:20px;background:rgba(13,148,136,0.12);border:1.5px solid rgba(13,148,136,0.28);color:var(--accent);font-size:0.9rem;font-weight:800;margin-top:0.55rem; }
+        /* Payment form modal */
+        .beli-field-label { font-size:0.77rem;font-weight:700;color:var(--muted);display:block;margin-bottom:0.4rem;letter-spacing:0.3px;text-transform:uppercase; }
+        .beli-field-wrap { position:relative;margin-bottom:1rem; }
+        .beli-field-icon { position:absolute;left:0.9rem;top:50%;transform:translateY(-50%);color:var(--faint);font-size:0.85rem;pointer-events:none; }
+        .beli-field-wrap input { width:100%;padding:0.75rem 1rem 0.75rem 2.5rem;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);color:var(--fg);font-size:0.9rem;font-family:inherit;box-sizing:border-box;outline:none;transition:border-color 0.25s; }
+        .beli-field-wrap input:focus { border-color:var(--primary); }
+        .beli-submit-btn { width:100%;padding:0.95rem;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:0.5rem; }
+        .beli-submit-btn:hover { transform:translateY(-2px);box-shadow:0 8px 28px rgba(45,106,79,0.45); }
+        .beli-pm-row { display:flex;align-items:center;justify-content:center;gap:0.45rem;margin-top:0.85rem;flex-wrap:wrap; }
+        .beli-pm-badge { font-size:0.67rem;font-weight:700;padding:0.18rem 0.55rem;border-radius:6px;background:rgba(255,255,255,0.05);color:var(--faint);border:1px solid rgba(255,255,255,0.1);letter-spacing:0.2px; }
         .peng-card,.p-card,.j-card,.proj-card { cursor:pointer; }
         @media (max-width:600px) {
             .detail-header { padding:1.5rem 1.5rem 1rem; }
@@ -1156,17 +1169,18 @@
             } else if (type === 'projek') {
                 var tags = [];
                 try { tags = JSON.parse(el.dataset.tags || '[]'); } catch(e) {}
-                hHtml = '<div class="detail-type-badge">💻 Projek</div>'
+                var hasBerbayar = el.dataset.berbayar === '1';
+                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-laptop-code"></i> Projek</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
+                if (hasBerbayar) hHtml += '<div class="detail-price-tag"><i class="fa-solid fa-tag"></i> ' + escHtml(el.dataset.harga) + '</div>';
                 if (el.dataset.gambar) bHtml += '<img class="detail-foto detail-foto-cover" src="' + el.dataset.gambar + '" alt="Gambar Projek">';
                 if (tags.length) bHtml += '<div class="detail-tags">' + tags.map(function(t){ return '<span class="detail-tag">' + escHtml(t) + '</span>'; }).join('') + '</div>';
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
-                var hasBerbayar = el.dataset.berbayar === '1';
                 if (hasBerbayar || el.dataset.demo || el.dataset.github) {
                     bHtml += '<div class="detail-links">';
-                    if (el.dataset.demo) bHtml += '<a href="' + el.dataset.demo + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary">&#8594; Live Demo</a>';
+                    if (el.dataset.demo) bHtml += '<a href="' + el.dataset.demo + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>';
                     if (hasBerbayar) {
-                        bHtml += '<button type="button" id="btnBeliAkses" class="detail-link-btn detail-link-secondary" style="cursor:pointer;border:none;">🔒 Beli Akses &ndash; ' + escHtml(el.dataset.harga) + '</button>';
+                        bHtml += '<button type="button" id="btnBeliAkses" class="detail-link-btn detail-link-buy" style="cursor:pointer;"><i class="fa-solid fa-cart-shopping"></i> Beli Akses Source Code</button>';
                         _beliPending = { id: el.dataset.projekId, title: el.dataset.title, harga: el.dataset.harga };
                     } else if (el.dataset.github) {
                         bHtml += '<a href="' + el.dataset.github + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-secondary"><i class="fa-brands fa-github"></i> GitHub</a>';
@@ -1236,38 +1250,49 @@
     <div class="detail-overlay" id="beliOverlay" onclick="closeBeliModal(event)">
         <div class="detail-modal" id="beliModal" style="max-width:460px;">
             <button class="detail-close" onclick="closeBeliModalBtn()">✕</button>
-            <div class="detail-header">
-                <div class="detail-type-badge">🔒 Beli Akses Source Code</div>
-                <div class="detail-title" id="beliProjekTitle"></div>
-                <div style="font-size:1.3rem;font-weight:800;color:var(--primary);margin-top:0.4rem;" id="beliHarga"></div>
+            <div class="detail-header" style="background:linear-gradient(135deg,rgba(10,25,16,0.95),rgba(14,34,22,0.95));">
+                <div style="display:flex;align-items:center;gap:0.85rem;margin-bottom:1rem;">
+                    <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 16px rgba(45,106,79,0.4);">
+                        <i class="fa-solid fa-cart-shopping" style="color:#fff;font-size:1.1rem;"></i>
+                    </div>
+                    <div>
+                        <div style="font-size:0.68rem;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:1.8px;margin-bottom:0.2rem;">Beli Source Code</div>
+                        <div class="detail-title" id="beliProjekTitle" style="font-size:1rem;line-height:1.3;"></div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(13,148,136,0.1);border:1px solid rgba(13,148,136,0.25);border-radius:10px;padding:0.7rem 1.1rem;">
+                    <span style="font-size:0.78rem;color:var(--muted);font-weight:600;"><i class="fa-solid fa-receipt" style="margin-right:0.35rem;"></i>Total Pembayaran</span>
+                    <span style="font-size:1.15rem;font-weight:800;color:var(--accent);" id="beliHarga"></span>
+                </div>
             </div>
-            <div class="detail-body" style="padding-top:0.5rem;">
-                <p style="font-size:0.86rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.5;">
-                    Isi data di bawah untuk melanjutkan pembayaran. Link GitHub akan tersedia setelah pembayaran berhasil.
+            <div class="detail-body" style="padding-top:1.25rem;">
+                <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.55;">
+                    Isi data di bawah untuk melanjutkan. Link GitHub tersedia otomatis setelah pembayaran dikonfirmasi.
                 </p>
                 <form id="beliForm" method="POST" action="">
                     @csrf
-                    <div style="margin-bottom:1rem;">
-                        <label style="font-size:0.82rem;font-weight:700;color:var(--fg);display:block;margin-bottom:0.4rem;">Nama Lengkap</label>
-                        <input type="text" name="nama" id="beliNama" required placeholder="Masukkan nama lengkap..."
-                               style="width:100%;padding:0.7rem 1rem;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);color:var(--fg);font-size:0.9rem;font-family:inherit;box-sizing:border-box;outline:none;transition:border-color 0.2s;"
-                               onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+                    <label class="beli-field-label">Nama Lengkap</label>
+                    <div class="beli-field-wrap">
+                        <i class="fa-solid fa-user beli-field-icon"></i>
+                        <input type="text" name="nama" id="beliNama" required placeholder="Masukkan nama lengkap...">
                     </div>
-                    <div style="margin-bottom:1.5rem;">
-                        <label style="font-size:0.82rem;font-weight:700;color:var(--fg);display:block;margin-bottom:0.4rem;">Email Aktif</label>
-                        <input type="email" name="email" id="beliEmail" required placeholder="email@contoh.com"
-                               style="width:100%;padding:0.7rem 1rem;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);color:var(--fg);font-size:0.9rem;font-family:inherit;box-sizing:border-box;outline:none;transition:border-color 0.2s;"
-                               onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+                    <label class="beli-field-label">Email Aktif</label>
+                    <div class="beli-field-wrap" style="margin-bottom:1.5rem;">
+                        <i class="fa-solid fa-envelope beli-field-icon"></i>
+                        <input type="email" name="email" id="beliEmail" required placeholder="email@contoh.com">
                     </div>
-                    <button type="submit"
-                            style="width:100%;padding:0.9rem;background:var(--primary);color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.3s;"
-                            onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--primary)'">
-                        💳 Lanjutkan Pembayaran
+                    <button type="submit" class="beli-submit-btn">
+                        <i class="fa-solid fa-credit-card"></i> Lanjutkan Pembayaran
                     </button>
                 </form>
-                <p style="font-size:0.75rem;color:var(--faint);text-align:center;margin-top:0.85rem;">
-                    Pembayaran aman via <strong>Midtrans</strong> &mdash; QRIS, Transfer VA, GoPay, OVO, Dana, Kartu Kredit
-                </p>
+                <div class="beli-pm-row">
+                    <span style="font-size:0.68rem;color:var(--faint);"><i class="fa-solid fa-shield-halved"></i> Aman via Midtrans</span>
+                    <span class="beli-pm-badge">QRIS</span>
+                    <span class="beli-pm-badge">GoPay</span>
+                    <span class="beli-pm-badge">VA Bank</span>
+                    <span class="beli-pm-badge">OVO</span>
+                    <span class="beli-pm-badge">Kartu Kredit</span>
+                </div>
             </div>
         </div>
     </div>
