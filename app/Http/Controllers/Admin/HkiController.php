@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Hki;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HkiController extends Controller
 {
@@ -27,10 +28,17 @@ class HkiController extends Controller
             'authors'          => 'required|string|max:255',
             'jenis_hki'        => 'required|string|max:100',
             'year'             => 'required|digits:4|integer',
-            'url'              => 'nullable|url|max:500',
+            'sertifikat_file'  => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:5120',
             'description'      => 'nullable|string',
             'urutan'           => 'nullable|integer',
         ]);
+
+        if ($request->hasFile('sertifikat_file')) {
+            $data['sertifikat_file'] = $request->file('sertifikat_file')
+                ->store('hki-sertifikat', 'public');
+        } else {
+            unset($data['sertifikat_file']);
+        }
 
         Hki::create($data);
 
@@ -51,10 +59,29 @@ class HkiController extends Controller
             'authors'          => 'required|string|max:255',
             'jenis_hki'        => 'required|string|max:100',
             'year'             => 'required|digits:4|integer',
-            'url'              => 'nullable|url|max:500',
+            'sertifikat_file'  => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:5120',
             'description'      => 'nullable|string',
             'urutan'           => 'nullable|integer',
         ]);
+
+        // Upload file baru
+        if ($request->hasFile('sertifikat_file')) {
+            if ($hki->sertifikat_file) {
+                Storage::disk('public')->delete($hki->sertifikat_file);
+            }
+            $data['sertifikat_file'] = $request->file('sertifikat_file')
+                ->store('hki-sertifikat', 'public');
+        } else {
+            unset($data['sertifikat_file']);
+        }
+
+        // Hapus file
+        if ($request->boolean('hapus_sertifikat')) {
+            if ($hki->sertifikat_file) {
+                Storage::disk('public')->delete($hki->sertifikat_file);
+            }
+            $data['sertifikat_file'] = null;
+        }
 
         $hki->update($data);
 
@@ -64,6 +91,9 @@ class HkiController extends Controller
 
     public function destroy(Hki $hki)
     {
+        if ($hki->sertifikat_file) {
+            Storage::disk('public')->delete($hki->sertifikat_file);
+        }
         $hki->delete();
 
         return redirect()->route('admin.hki.index')

@@ -14,7 +14,7 @@ class Hki extends Model
         'authors',
         'jenis_hki',
         'year',
-        'url',
+        'sertifikat_file',
         'description',
         'urutan',
     ];

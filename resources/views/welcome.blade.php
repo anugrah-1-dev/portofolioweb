@@ -1041,7 +1041,7 @@
                      data-nomor="{{ $item->nomor_pencatatan ?? '' }}"
                      data-year="{{ $item->year }}"
                      data-description="{{ $item->description ?? '' }}"
-                     data-url="{{ $item->url ?? '' }}">
+                     data-url="{{ $item->sertifikat_file ? Storage::url($item->sertifikat_file) : '' }}">
                     <div class="j-body">
                         <div class="hki-title">{{ $item->title }}</div>
                         <div class="hki-meta">{{ $item->authors }}</div>
@@ -1051,8 +1051,8 @@
                         @if($item->description)
                         <div class="hki-desc">{{ Str::limit($item->description, 150) }}</div>
                         @endif
-                        @if($item->url)
-                        <a href="{{ $item->url }}" target="_blank" rel="noopener noreferrer" class="hki-link-btn" onclick="event.stopPropagation()">&#128279; Lihat Sertifikat</a>
+                        @if($item->sertifikat_file)
+                        <a href="{{ Storage::url($item->sertifikat_file) }}" target="_blank" rel="noopener noreferrer" class="hki-link-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-file-arrow-down"></i> Lihat Sertifikat</a>
                         @endif
                     </div>
                     <div class="hki-right">
@@ -1300,7 +1300,7 @@
                       + '<div class="detail-row"><span class="detail-label">Tahun</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
                 if (el.dataset.nomor) bHtml += '<div class="detail-row"><span class="detail-label">No. Pencatatan</span><span class="detail-value" style="font-family:monospace;">' + escHtml(el.dataset.nomor) + '</span></div>';
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
-                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary">🔗 Lihat Sertifikat</a></div>';
+                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary">� Lihat Sertifikat</a></div>';
 
             } else if (type === 'projek') {
                 var tags = [];
