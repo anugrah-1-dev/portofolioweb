@@ -3,7 +3,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Portofolio - {{ $profil?->nama ?? 'Anugrah' }}</title>
+    <title>{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Portofolio Web Developer</title>
+    <meta name="description" content="Portofolio {{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Mahasiswa Teknologi Informasi yang berfokus pada pengembangan web dan aplikasi modern. Lihat projek, pengalaman, dan prestasi.">
+    <meta name="keywords" content="{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }}, portofolio, web developer, laravel, programmer, teknologi informasi, Jawa Timur">
+    <meta name="author" content="{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://anugrahtejomaliki.my.id/public/">
+    <meta name="google-site-verification" content="YkMylM-AikW2Z7-lam_Mi7fOEBaGptnr2O3xcRaaSHY">
+    {{-- Open Graph --}}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://anugrahtejomaliki.my.id/public/">
+    <meta property="og:title" content="{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Portofolio Web Developer">
+    <meta property="og:description" content="Portofolio {{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Mahasiswa Teknologi Informasi yang berfokus pada pengembangan web dan aplikasi modern.">
+    @if($profil?->foto)<meta property="og:image" content="{{ Storage::url($profil->foto) }}">@endif
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
