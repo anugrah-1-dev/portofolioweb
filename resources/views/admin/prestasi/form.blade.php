@@ -15,6 +15,12 @@
 
                 <div class="form-grid">
                     <div class="form-group">
+                        <label for="icon">Icon (Emoji) <span style="font-weight:400;color:var(--faint)">(opsional, misal: 🏆)</span></label>
+                        <input type="text" id="icon" name="icon" class="form-control {{ $errors->has('icon') ? 'is-invalid' : '' }}"
+                               value="{{ old('icon', $item?->icon ?? '🏆') }}" placeholder="🏆" maxlength="20">
+                        @error('icon') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="year">Tahun</label>
                         <input type="text" id="year" name="year" class="form-control {{ $errors->has('year') ? 'is-invalid' : '' }}"
                                value="{{ old('year', $item?->year) }}" placeholder="2024" maxlength="4">

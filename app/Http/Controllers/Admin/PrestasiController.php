@@ -23,7 +23,7 @@ class PrestasiController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'icon'        => 'required|string|max:20',
+            'icon'        => 'nullable|string|max:20',
             'year'        => 'required|string|size:4',
             'title'       => 'required|string|max:255',
             'description' => 'required|string|max:5000',
@@ -33,11 +33,12 @@ class PrestasiController extends Controller
             'urutan'      => 'nullable|integer',
         ]);
 
+        $data['icon']   = $data['icon'] ?? '🏆';
+        $data['urutan'] = $data['urutan'] ?? 0;
+
         if ($request->hasFile('foto')) {
             $data['foto'] = $request->file('foto')->store('prestasi', 'public');
         }
-
-        $data['urutan'] = $data['urutan'] ?? 0;
 
         Prestasi::create($data);
 
@@ -52,7 +53,7 @@ class PrestasiController extends Controller
     public function update(Request $request, Prestasi $prestasi)
     {
         $data = $request->validate([
-            'icon'        => 'required|string|max:20',
+            'icon'        => 'nullable|string|max:20',
             'year'        => 'required|string|size:4',
             'title'       => 'required|string|max:255',
             'description' => 'required|string|max:5000',
@@ -62,6 +63,8 @@ class PrestasiController extends Controller
             'hapus_foto'  => 'nullable|boolean',
             'urutan'      => 'nullable|integer',
         ]);
+
+        $data['icon'] = $data['icon'] ?? '🏆';
 
         if ($request->hasFile('foto')) {
             if ($prestasi->foto) Storage::disk('public')->delete($prestasi->foto);
