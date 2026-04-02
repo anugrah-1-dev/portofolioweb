@@ -1,6 +1,8 @@
 @extends('admin.layouts.app')
 @section('title', $item ? 'Edit Pengalaman' : 'Tambah Pengalaman')
 
+@php use Illuminate\Support\Facades\Storage; @endphp
+
 @section('content')
 <div style="max-width:680px;">
     <div class="card">
@@ -9,7 +11,7 @@
             <a href="{{ route('admin.pengalaman.index') }}" class="btn btn-secondary">← Kembali</a>
         </div>
         <div class="card-body">
-            <form method="POST"
+            <form method="POST" enctype="multipart/form-data"
                   action="{{ $item ? route('admin.pengalaman.update', $item) : route('admin.pengalaman.store') }}">
                 @csrf
                 @if($item) @method('PUT') @endif
@@ -69,6 +71,31 @@
                         <textarea id="deskripsi" name="deskripsi" class="form-control"
                                   rows="3" placeholder="Deskripsikan kegiatan, tanggung jawab, atau pencapaian...">{{ old('deskripsi', $item?->deskripsi) }}</textarea>
                     </div>
+
+                    <div class="form-group full">
+                        <label for="foto_sertifikat">Foto Sertifikat <span style="font-weight:400;color:var(--faint)">(opsional, jpg/png/webp, maks 2MB)</span></label>
+
+                        @if($item?->foto_sertifikat)
+                        <div style="margin-bottom:0.85rem;">
+                            <img src="{{ Storage::url($item->foto_sertifikat) }}" alt="Sertifikat"
+                                 style="max-height:160px;max-width:100%;border-radius:10px;border:1.5px solid var(--border);object-fit:contain;background:#f9f9f9;padding:6px;">
+                            <div style="margin-top:0.6rem;display:flex;align-items:center;gap:0.5rem;">
+                                <input type="checkbox" id="hapus_sertifikat" name="hapus_sertifikat" value="1">
+                                <label for="hapus_sertifikat" style="font-size:0.82rem;color:var(--danger);cursor:pointer;font-weight:600;">Hapus gambar sertifikat ini</label>
+                            </div>
+                        </div>
+                        @endif
+
+                        <input type="file" id="foto_sertifikat" name="foto_sertifikat"
+                               class="form-control {{ $errors->has('foto_sertifikat') ? 'is-invalid' : '' }}"
+                               accept="image/jpeg,image/png,image/webp"
+                               onchange="previewSertifikat(this)">
+                        @error('foto_sertifikat') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        <div id="sertifikat-preview" style="margin-top:0.75rem;display:none;">
+                            <img id="sertifikat-preview-img" src="" alt="Preview"
+                                 style="max-height:160px;max-width:100%;border-radius:10px;border:1.5px solid var(--border);object-fit:contain;background:#f9f9f9;padding:6px;">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-actions">
@@ -79,4 +106,23 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+function previewSertifikat(input) {
+    const preview = document.getElementById('sertifikat-preview');
+    const img = document.getElementById('sertifikat-preview-img');
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            img.src = e.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        preview.style.display = 'none';
+    }
+}
+</script>
+@endpush
 @endsection

@@ -1,6 +1,8 @@
 @extends('admin.layouts.app')
 @section('title', 'Manajemen Pengalaman')
 
+@php use Illuminate\Support\Facades\Storage; @endphp
+
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -14,8 +16,7 @@
                     <th>Organisasi / Kegiatan</th>
                     <th style="width:160px;">Peran</th>
                     <th style="width:120px;">Jenis</th>
-                    <th style="width:160px;">Periode</th>
-                    <th style="width:70px;">Urutan</th>
+                    <th style="width:160px;">Periode</th>                    <th style="width:100px;">Sertifikat</th>                    <th style="width:70px;">Urutan</th>
                     <th style="width:130px;">Aksi</th>
                 </tr>
             </thead>
@@ -45,6 +46,16 @@
                         </span>
                     </td>
                     <td><span style="font-size:0.88rem;font-weight:700;color:var(--muted);">{{ $item->tahun_mulai }} – {{ $item->tahun_selesai ?? 'Sekarang' }}</span></td>
+                    <td>
+                        @if($item->foto_sertifikat)
+                        <a href="{{ Storage::url($item->foto_sertifikat) }}" target="_blank" rel="noopener noreferrer">
+                            <img src="{{ Storage::url($item->foto_sertifikat) }}" alt="Sertifikat"
+                                 style="width:64px;height:48px;object-fit:cover;border-radius:8px;border:1.5px solid var(--border);display:block;">
+                        </a>
+                        @else
+                        <span style="font-size:0.78rem;color:var(--faint);">—</span>
+                        @endif
+                    </td>
                     <td><span style="font-size:0.88rem;color:var(--faint);">{{ $item->urutan }}</span></td>
                     <td>
                         <div class="td-actions">
@@ -59,7 +70,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6">
+                    <td colspan="7">
                         <div class="empty-state">
                             <div class="empty-icon">🏢</div>
                             <p>Belum ada data pengalaman. <a href="{{ route('admin.pengalaman.create') }}" style="color:var(--primary);font-weight:700;">Tambah sekarang</a></p>

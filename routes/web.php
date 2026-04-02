@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\JurnalController as AdminJurnal;
 use App\Http\Controllers\Admin\ProfilController as AdminProfil;
 use App\Http\Controllers\Admin\SosmedController as AdminSosmed;
 use App\Http\Controllers\Admin\PengalamanController as AdminPengalaman;
+use App\Http\Controllers\Admin\UserController as AdminUser;
 
 // ── Public ──
 Route::get('/', [PublicController::class, 'index']);
@@ -38,6 +39,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('jurnal', AdminJurnal::class)->except(['show']);
         Route::resource('sosmed', AdminSosmed::class)->except(['show']);
         Route::resource('pengalaman', AdminPengalaman::class)->except(['show']);
+        Route::resource('users', AdminUser::class)->except(['show']);
         Route::get('profil', [AdminProfil::class, 'edit'])->name('profil.edit');
         Route::put('profil', [AdminProfil::class, 'update'])->name('profil.update');
     });

@@ -240,13 +240,7 @@
         .peng-timeline { position:relative; padding-left:2.5rem; }
         .peng-timeline::before {
             content:''; position:absolute; left:0.6rem; top:0; bottom:0; width:4px;
-            background:repeating-linear-gradient(180deg,
-                var(--primary) 0px,var(--primary) 16px,
-                var(--batik1) 16px,var(--batik1) 24px,
-                var(--accent) 24px,var(--accent) 40px,
-                var(--batik3) 40px,var(--batik3) 48px,
-                var(--primary2) 48px,var(--primary2) 64px
-            );
+            background:var(--primary);
             border-radius:2px;
         }
         .peng-item { position:relative; margin-bottom:2rem; }
@@ -532,20 +526,6 @@
                         @if($profil?->no_whatsapp)
                         <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $profil->no_whatsapp) }}?text={{ urlencode('Halo, saya tertarik untuk berdiskusi lebih lanjut.') }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Hubungi Saya</a>
                         @endif
-                    </div>
-                    <div class="hero-stats fade-up d5">
-                        <div class="stat-item">
-                            <div class="stat-num">{{ $totalProjek }}+</div>
-                            <div class="stat-label">Projek Selesai</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-num">{{ $totalJurnal }}+</div>
-                            <div class="stat-label">Jurnal & Artikel</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-num">{{ $totalPrestasi }}+</div>
-                            <div class="stat-label">Prestasi</div>
-                        </div>
                     </div>
                 </div>
                 <div class="hero-visual fade-up d3">

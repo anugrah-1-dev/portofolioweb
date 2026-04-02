@@ -337,6 +337,10 @@
                 <span class="nav-icon">💻</span> Projek
             </a>
             <div class="nav-section" style="margin-top:1rem">Lainnya</div>
+            <a href="{{ route('admin.users.index') }}"
+               class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                <span class="nav-icon">👥</span> Manajemen User
+            </a>
             <a href="{{ url('/') }}" target="_blank" rel="noopener noreferrer">
                 <span class="nav-icon">🌿</span> Lihat Portfolio
             </a>

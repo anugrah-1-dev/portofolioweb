@@ -10,6 +10,7 @@ class Pengalaman extends Model
 
     protected $fillable = [
         'nama_organisasi', 'peran', 'deskripsi',
+        'foto_sertifikat',
         'tahun_mulai', 'tahun_selesai', 'jenis', 'urutan',
     ];
 }
