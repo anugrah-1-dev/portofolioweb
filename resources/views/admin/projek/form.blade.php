@@ -52,9 +52,9 @@
                         <span class="form-hint">Pisahkan dengan koma.</span>
                     </div>
 
-                    {{-- GAMBAR UPLOAD --}}
+                    {{-- GAMBAR COVER --}}
                     <div class="form-group full">
-                        <label>Gambar Projek <span style="font-weight:400;color:var(--faint)">(opsional, JPG/PNG/WebP, maks 2MB)</span></label>
+                        <label>Gambar Utama / Cover <span style="font-weight:400;color:var(--faint)">(opsional, JPG/PNG/WebP, maks 2MB)</span></label>
 
                         @if($item?->gambar)
                         <div id="current-gambar" style="margin-bottom:0.75rem;">
@@ -85,6 +85,51 @@
                         <input type="file" id="gambar" name="gambar" accept="image/jpeg,image/png,image/webp"
                                style="display:none;" onchange="previewGambar(this)">
                         @error('gambar') <div class="invalid-feedback" style="display:block">{{ $message }}</div> @enderror
+                    </div>
+
+                    {{-- GALERI / SCREENSHOT TAMBAHAN --}}
+                    <div class="form-group full">
+                        <label style="display:flex;align-items:center;gap:0.5rem;">
+                            <i class="fa-solid fa-images" style="color:var(--accent);"></i>
+                            Galeri / Screenshot Tambahan
+                            <span style="font-weight:400;color:var(--faint);font-size:0.8rem;">(bisa banyak, maks 10 gambar, tiap maks 2MB)</span>
+                        </label>
+
+                        {{-- Existing gallery --}}
+                        @if($item?->galeri && count($item->galeri) > 0)
+                        <div class="galeri-grid" id="galeri-existing" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.75rem;margin-bottom:0.85rem;">
+                            @foreach($item->galeri as $gPath)
+                            <div class="galeri-item" style="position:relative;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:var(--bg);border:2px solid var(--border);">
+                                <img src="{{ Storage::url($gPath) }}" alt="Gallery"
+                                     style="width:100%;height:100%;object-fit:cover;display:block;">
+                                <label style="position:absolute;top:5px;right:5px;background:rgba(220,38,38,0.85);color:#fff;border-radius:8px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.75rem;" title="Hapus gambar ini">
+                                    <input type="checkbox" name="hapus_galeri[]" value="{{ $gPath }}" style="display:none;" onchange="this.parentElement.style.background=this.checked?'rgba(220,38,38,1)':'rgba(220,38,38,0.85)'">
+                                    <i class="fa-solid fa-trash"></i>
+                                </label>
+                                <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.55);color:rgba(255,255,255,0.7);font-size:0.62rem;text-align:center;padding:2px 4px;">Centang untuk hapus</div>
+                            </div>
+                            @endforeach
+                        </div>
+                        @endif
+
+                        {{-- Preview baru --}}
+                        <div id="galeri-preview-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.75rem;margin-bottom:0.75rem;"></div>
+
+                        {{-- Upload area --}}
+                        <div id="galeri-upload-area"
+                             onclick="document.getElementById('galeri_baru').click()"
+                             ondragover="event.preventDefault();this.style.borderColor='var(--primary)'"
+                             ondragleave="this.style.borderColor='var(--border)'"
+                             ondrop="handleGaleriDrop(event)"
+                             style="border:2px dashed var(--border);border-radius:12px;padding:1.25rem;text-align:center;cursor:pointer;transition:border-color 0.3s;background:var(--bg);">
+                            <div style="font-size:1.6rem;margin-bottom:0.4rem;color:var(--faint);"><i class="fa-solid fa-images"></i></div>
+                            <div style="font-size:0.85rem;color:var(--muted);font-weight:600;">Klik atau drag & drop untuk tambah screenshot</div>
+                            <div style="font-size:0.75rem;color:var(--faint);margin-top:0.25rem;">Bisa pilih banyak sekaligus • JPG, PNG, WebP • Maks 2MB/file</div>
+                        </div>
+                        <input type="file" id="galeri_baru" name="galeri_baru[]" multiple
+                               accept="image/jpeg,image/png,image/webp" style="display:none;"
+                               onchange="previewGaleri(this)">
+                        @error('galeri_baru.*') <div class="invalid-feedback" style="display:block">{{ $message }}</div> @enderror
                     </div>
 
                     <div class="form-group">
@@ -173,6 +218,38 @@ function handleDrop(event) {
 function toggleHarga(radio) {
     document.getElementById('harga-group').style.display =
         radio.value === 'berbayar' ? '' : 'none';
+}
+function previewGaleri(input) {
+    const grid = document.getElementById('galeri-preview-grid');
+    const files = Array.from(input.files);
+    files.forEach(function(file) {
+        if (!file.type.startsWith('image/')) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const wrap = document.createElement('div');
+            wrap.style.cssText = 'position:relative;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:var(--bg);border:2px solid var(--accent);';
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+            const badge = document.createElement('div');
+            badge.style.cssText = 'position:absolute;bottom:0;left:0;right:0;background:rgba(13,148,136,0.75);color:#fff;font-size:0.62rem;text-align:center;padding:3px;';
+            badge.textContent = 'Akan diupload';
+            wrap.appendChild(img);
+            wrap.appendChild(badge);
+            grid.appendChild(wrap);
+        };
+        reader.readAsDataURL(file);
+    });
+}
+function handleGaleriDrop(event) {
+    event.preventDefault();
+    document.getElementById('galeri-upload-area').style.borderColor = 'var(--border)';
+    const dt = new DataTransfer();
+    const existing = document.getElementById('galeri_baru').files;
+    Array.from(existing).forEach(f => dt.items.add(f));
+    Array.from(event.dataTransfer.files).filter(f => f.type.startsWith('image/')).forEach(f => dt.items.add(f));
+    document.getElementById('galeri_baru').files = dt.files;
+    previewGaleri({ files: event.dataTransfer.files });
 }
 </script>
 @endsection

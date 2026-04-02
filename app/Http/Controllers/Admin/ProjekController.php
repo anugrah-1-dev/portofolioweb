@@ -23,21 +23,30 @@ class ProjekController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title'       => 'required|string|max:255',
-            'description' => 'required|string|max:5000',
-            'tags_raw'    => 'nullable|string',
-            'thumb_color' => 'required|integer|in:1,2,3',
-            'gambar'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'demo_url'    => 'nullable|url|max:255',
-            'github_url'  => 'nullable|url|max:255',
-            'tipe_akses'  => 'required|in:gratis,berbayar',
-            'harga'       => 'nullable|integer|min:1000',
-            'urutan'      => 'nullable|integer',
+            'title'         => 'required|string|max:255',
+            'description'   => 'required|string|max:5000',
+            'tags_raw'      => 'nullable|string',
+            'thumb_color'   => 'required|integer|in:1,2,3',
+            'gambar'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'galeri_baru'   => 'nullable|array|max:10',
+            'galeri_baru.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
+            'demo_url'      => 'nullable|url|max:255',
+            'github_url'    => 'nullable|url|max:255',
+            'tipe_akses'    => 'required|in:gratis,berbayar',
+            'harga'         => 'nullable|integer|min:1000',
+            'urutan'        => 'nullable|integer',
         ]);
 
         $gambar = null;
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar')->store('projek', 'public');
+        }
+
+        $galeri = [];
+        if ($request->hasFile('galeri_baru')) {
+            foreach ($request->file('galeri_baru') as $file) {
+                $galeri[] = $file->store('projek', 'public');
+            }
         }
 
         Projek::create([
@@ -46,6 +55,7 @@ class ProjekController extends Controller
             'tags'        => array_values(array_filter(array_map('trim', explode(',', $data['tags_raw'] ?? '')))),
             'thumb_color' => $data['thumb_color'],
             'gambar'      => $gambar,
+            'galeri'      => count($galeri) ? $galeri : null,
             'demo_url'    => $data['demo_url'] ?? null,
             'github_url'  => $data['github_url'] ?? null,
             'tipe_akses'  => $data['tipe_akses'],
@@ -64,20 +74,23 @@ class ProjekController extends Controller
     public function update(Request $request, Projek $projek)
     {
         $data = $request->validate([
-            'title'       => 'required|string|max:255',
-            'description' => 'required|string|max:5000',
-            'tags_raw'    => 'nullable|string',
-            'thumb_color' => 'required|integer|in:1,2,3',
-            'gambar'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'demo_url'    => 'nullable|url|max:255',
-            'github_url'  => 'nullable|url|max:255',
-            'tipe_akses'  => 'required|in:gratis,berbayar',
-            'harga'       => 'nullable|integer|min:1000',
-            'urutan'      => 'nullable|integer',
+            'title'         => 'required|string|max:255',
+            'description'   => 'required|string|max:5000',
+            'tags_raw'      => 'nullable|string',
+            'thumb_color'   => 'required|integer|in:1,2,3',
+            'gambar'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'galeri_baru'   => 'nullable|array|max:10',
+            'galeri_baru.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
+            'hapus_galeri'  => 'nullable|array',
+            'demo_url'      => 'nullable|url|max:255',
+            'github_url'    => 'nullable|url|max:255',
+            'tipe_akses'    => 'required|in:gratis,berbayar',
+            'harga'         => 'nullable|integer|min:1000',
+            'urutan'        => 'nullable|integer',
         ]);
 
+        // Handle cover image
         $gambarPath = $projek->gambar;
-
         if ($request->hasFile('gambar')) {
             if ($projek->gambar) Storage::disk('public')->delete($projek->gambar);
             $gambarPath = $request->file('gambar')->store('projek', 'public');
@@ -86,12 +99,27 @@ class ProjekController extends Controller
             $gambarPath = null;
         }
 
+        // Handle gallery deletions
+        $currentGaleri = $projek->galeri ?? [];
+        foreach ($request->input('hapus_galeri', []) as $path) {
+            Storage::disk('public')->delete($path);
+            $currentGaleri = array_values(array_filter($currentGaleri, fn($g) => $g !== $path));
+        }
+
+        // Handle new gallery uploads
+        if ($request->hasFile('galeri_baru')) {
+            foreach ($request->file('galeri_baru') as $file) {
+                $currentGaleri[] = $file->store('projek', 'public');
+            }
+        }
+
         $projek->update([
             'title'       => $data['title'],
             'description' => $data['description'],
             'tags'        => array_values(array_filter(array_map('trim', explode(',', $data['tags_raw'] ?? '')))),
             'thumb_color' => $data['thumb_color'],
             'gambar'      => $gambarPath,
+            'galeri'      => count($currentGaleri) ? array_values($currentGaleri) : null,
             'demo_url'    => $data['demo_url'] ?? null,
             'github_url'  => $data['github_url'] ?? null,
             'tipe_akses'  => $data['tipe_akses'],
@@ -105,6 +133,9 @@ class ProjekController extends Controller
     public function destroy(Projek $projek)
     {
         if ($projek->gambar) Storage::disk('public')->delete($projek->gambar);
+        foreach ($projek->galeri ?? [] as $g) {
+            Storage::disk('public')->delete($g);
+        }
         $projek->delete();
         return redirect()->route('admin.projek.index')->with('success', 'Projek berhasil dihapus!');
     }

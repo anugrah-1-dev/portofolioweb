@@ -333,6 +333,31 @@
         .proj-thumb { height:205px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
         .proj-thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.55s ease; }
         .proj-card:hover .proj-thumb img { transform:scale(1.07); }
+        /* Slider */
+        .proj-slider { position:relative; width:100%; height:100%; }
+        .proj-slide { position:absolute; inset:0; opacity:0; transition:opacity 0.5s ease; z-index:0; }
+        .proj-slide.active { opacity:1; z-index:1; }
+        .proj-slide img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.55s ease; }
+        .proj-card:hover .proj-slide.active img { transform:scale(1.07); }
+        .proj-slide-btn { position:absolute; top:50%; transform:translateY(-50%); z-index:8; background:rgba(0,0,0,0.48); border:none; color:#fff; width:28px; height:28px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:0.65rem; opacity:0; transition:opacity 0.25s; padding:0; line-height:1; }
+        .proj-thumb:hover .proj-slide-btn { opacity:1; }
+        .proj-slide-prev { left:8px; }
+        .proj-slide-next { right:8px; }
+        .proj-slide-dots { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); display:flex; gap:5px; z-index:8; pointer-events:none; }
+        .proj-slide-dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.45); transition:all 0.3s; }
+        .proj-slide-dot.active { background:#fff; width:16px; border-radius:3px; }
+        /* Detail modal slider */
+        .detail-slider { position:relative; width:100%; border-radius:14px; overflow:hidden; margin-bottom:1.1rem; background:#0a0f0a; }
+        .detail-slide { display:none; }
+        .detail-slide.active { display:block; }
+        .detail-slide img { width:100%; max-height:300px; object-fit:cover; display:block; }
+        .detail-slide-prev,.detail-slide-next { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.55); border:none; color:#fff; width:36px; height:36px; border-radius:50%; cursor:pointer; z-index:10; display:flex; align-items:center; justify-content:center; font-size:0.85rem; padding:0; transition:background 0.2s; }
+        .detail-slide-prev:hover,.detail-slide-next:hover { background:rgba(0,0,0,0.78); }
+        .detail-slide-prev { left:10px; }
+        .detail-slide-next { right:10px; }
+        .detail-slide-dots-wrap { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:6px; z-index:10; }
+        .detail-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.45); cursor:pointer; transition:all 0.3s; }
+        .detail-dot.active { background:#fff; width:18px; border-radius:4px; }
         .proj-thumb-1 { background:linear-gradient(135deg,#0e2d1d 0%,#1a4a30 50%,#2d6a4f 100%); }
         .proj-thumb-2 { background:linear-gradient(135deg,#0a2830 0%,#0d4d5a 50%,#0d9488 100%); }
         .proj-thumb-3 { background:linear-gradient(135deg,#121e2e 0%,#1a3a52 50%,#1a5276 100%); }
@@ -976,7 +1001,7 @@
                      data-title="{{ $item->title }}"
                      data-description="{{ $item->description ?? '' }}"
                      data-tags="{{ json_encode($item->tags ?? []) }}"
-                     data-gambar="{{ $item->gambar ? Storage::url($item->gambar) : '' }}"
+                     data-galeri="{{ json_encode($item->allImages()) }}"
                      data-demo="{{ $item->demo_url ?? '' }}"
                      @if($item->isBerbayar())
                      data-github=""
@@ -986,10 +1011,26 @@
                      @else
                      data-github="{{ $item->github_url ?? '' }}"
                      @endif>
+                    @php $allImgs = $item->allImages(); @endphp
                     <div class="proj-thumb proj-thumb-{{ $item->thumb_color }}">
                         <div class="proj-thumb-pattern"></div>
-                        @if($item->gambar)
-                        <img src="{{ Storage::url($item->gambar) }}" alt="{{ $item->title }}">
+                        @if(count($allImgs) > 0)
+                        <div class="proj-slider" data-index="0" data-count="{{ count($allImgs) }}">
+                            @foreach($allImgs as $imgUrl)
+                            <div class="proj-slide{{ $loop->first ? ' active' : '' }}">
+                                <img src="{{ $imgUrl }}" alt="{{ $item->title }}" loading="lazy">
+                            </div>
+                            @endforeach
+                            @if(count($allImgs) > 1)
+                            <button class="proj-slide-btn proj-slide-prev" onclick="slideCard(this,-1);event.stopPropagation();"><i class="fa-solid fa-chevron-left"></i></button>
+                            <button class="proj-slide-btn proj-slide-next" onclick="slideCard(this,1);event.stopPropagation();"><i class="fa-solid fa-chevron-right"></i></button>
+                            <div class="proj-slide-dots">
+                                @foreach($allImgs as $imgUrl)
+                                <span class="proj-slide-dot{{ $loop->first ? ' active' : '' }}"></span>
+                                @endforeach
+                            </div>
+                            @endif
+                        </div>
                         @else
                         <div class="proj-icon-wrap">
                             @if($item->thumb_color == 2)
@@ -1169,11 +1210,29 @@
             } else if (type === 'projek') {
                 var tags = [];
                 try { tags = JSON.parse(el.dataset.tags || '[]'); } catch(e) {}
+                var imgs = [];
+                try { imgs = JSON.parse(el.dataset.galeri || '[]'); } catch(e) {}
                 var hasBerbayar = el.dataset.berbayar === '1';
                 hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-laptop-code"></i> Projek</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
                 if (hasBerbayar) hHtml += '<div class="detail-price-tag"><i class="fa-solid fa-tag"></i> ' + escHtml(el.dataset.harga) + '</div>';
-                if (el.dataset.gambar) bHtml += '<img class="detail-foto detail-foto-cover" src="' + el.dataset.gambar + '" alt="Gambar Projek">';
+                // Image slider
+                if (imgs.length > 0) {
+                    bHtml += '<div class="detail-slider" id="detailSlider" data-index="0">';
+                    imgs.forEach(function(src, i) {
+                        bHtml += '<div class="detail-slide' + (i===0?' active':'') + '"><img src="' + src + '" alt="Gambar Projek" loading="lazy"></div>';
+                    });
+                    if (imgs.length > 1) {
+                        bHtml += '<button class="detail-slide-prev" onclick="detailSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>';
+                        bHtml += '<button class="detail-slide-next" onclick="detailSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>';
+                        bHtml += '<div class="detail-slide-dots-wrap">';
+                        imgs.forEach(function(_, i) {
+                            bHtml += '<span class="detail-dot' + (i===0?' active':'') + '"></span>';
+                        });
+                        bHtml += '</div>';
+                    }
+                    bHtml += '</div>';
+                }
                 if (tags.length) bHtml += '<div class="detail-tags">' + tags.map(function(t){ return '<span class="detail-tag">' + escHtml(t) + '</span>'; }).join('') + '</div>';
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
                 if (hasBerbayar || el.dataset.demo || el.dataset.github) {
@@ -1198,6 +1257,12 @@
                     openBeliModal(_beliPending.id, _beliPending.title, _beliPending.harga);
                 });
             }
+            // Start detail slider auto-advance
+            clearInterval(_detailTimer);
+            var ds = document.getElementById('detailSlider');
+            if (ds && ds.querySelectorAll('.detail-slide').length > 1) {
+                _detailTimer = setInterval(function() { detailSlide(1); }, 4500);
+            }
             document.getElementById('detailOverlay').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
@@ -1205,6 +1270,7 @@
             if (e.target === document.getElementById('detailOverlay')) closeDetailModalBtn();
         }
         function closeDetailModalBtn() {
+            clearInterval(_detailTimer);
             document.getElementById('detailOverlay').classList.remove('open');
             document.body.style.overflow = '';
         }
@@ -1212,6 +1278,40 @@
             if (!str) return '';
             return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
         }
+        /* ── SLIDER FUNCTIONS ── */
+        var _detailTimer = null;
+        function advanceSlider(slider, dir) {
+            var slides = slider.querySelectorAll('.proj-slide,.detail-slide');
+            var dots   = slider.querySelectorAll('.proj-slide-dot,.detail-dot');
+            var idx    = parseInt(slider.dataset.index) || 0;
+            var total  = slides.length;
+            slides[idx].classList.remove('active');
+            if (dots[idx]) dots[idx].classList.remove('active');
+            idx = (idx + dir + total) % total;
+            slides[idx].classList.add('active');
+            if (dots[idx]) dots[idx].classList.add('active');
+            slider.dataset.index = idx;
+        }
+        function slideCard(btn, dir) {
+            advanceSlider(btn.closest('.proj-slider'), dir);
+        }
+        function detailSlide(dir) {
+            var ds = document.getElementById('detailSlider');
+            if (ds) advanceSlider(ds, dir);
+        }
+        function initSliders() {
+            document.querySelectorAll('.proj-slider').forEach(function(slider) {
+                var count = parseInt(slider.dataset.count || 1);
+                if (count < 2) return;
+                function startTimer() {
+                    slider._timer = setInterval(function() { advanceSlider(slider, 1); }, 4000);
+                }
+                startTimer();
+                slider.addEventListener('mouseenter', function() { clearInterval(slider._timer); });
+                slider.addEventListener('mouseleave', startTimer);
+            });
+        }
+        window.addEventListener('load', initSliders);
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') { closeDetailModalBtn(); closeBeliModalBtn(); }
         });
