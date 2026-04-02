@@ -949,7 +949,7 @@
                             <a href="{{ $item->demo_url }}" target="_blank" rel="noopener noreferrer" class="proj-link">&#8594; Live Demo</a>
                             @endif
                             @if($item->github_url)
-                            <a href="{{ $item->github_url }}" target="_blank" rel="noopener noreferrer" class="proj-link">&#9961; GitHub</a>
+                            <a href="{{ $item->github_url }}" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i> GitHub</a>
                             @endif
                         </div>
                     </div>
@@ -1094,7 +1094,7 @@
                 if (el.dataset.demo || el.dataset.github) {
                     bHtml += '<div class="detail-links">';
                     if (el.dataset.demo)   bHtml += '<a href="' + el.dataset.demo   + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary">&#8594; Live Demo</a>';
-                    if (el.dataset.github) bHtml += '<a href="' + el.dataset.github + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-secondary">&#9961; GitHub</a>';
+                    if (el.dataset.github) bHtml += '<a href="' + el.dataset.github + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-secondary"><i class="fa-brands fa-github"></i> GitHub</a>';
                     bHtml += '</div>';
                 }
             }
