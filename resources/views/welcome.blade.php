@@ -930,7 +930,14 @@
                      data-tags="{{ json_encode($item->tags ?? []) }}"
                      data-gambar="{{ $item->gambar ? Storage::url($item->gambar) : '' }}"
                      data-demo="{{ $item->demo_url ?? '' }}"
-                     data-github="{{ $item->github_url ?? '' }}">
+                     @if($item->isBerbayar())
+                     data-github=""
+                     data-berbayar="1"
+                     data-harga="{{ $item->hargaFormatted() }}"
+                     data-projek-id="{{ $item->id }}"
+                     @else
+                     data-github="{{ $item->github_url ?? '' }}"
+                     @endif>
                     <div class="proj-thumb proj-thumb-{{ $item->thumb_color }}">
                         @if($item->gambar)
                         <img src="{{ Storage::url($item->gambar) }}" alt="{{ $item->title }}">
@@ -948,7 +955,9 @@
                             @if($item->demo_url)
                             <a href="{{ $item->demo_url }}" target="_blank" rel="noopener noreferrer" class="proj-link">&#8594; Live Demo</a>
                             @endif
-                            @if($item->github_url)
+                            @if($item->isBerbayar())
+                            <span class="proj-link" style="background:rgba(16,110,73,0.12);color:var(--primary);cursor:default;pointer-events:none;">🔒 Berbayar – {{ $item->hargaFormatted() }}</span>
+                            @elseif($item->github_url)
                             <a href="{{ $item->github_url }}" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i> GitHub</a>
                             @endif
                         </div>
@@ -1050,6 +1059,7 @@
         });
 
         /* ── DETAIL MODAL ── */
+        var _beliPending = {};
         function openDetailModal(el) {
             const type = el.dataset.type;
             const header = document.getElementById('detailHeader');
@@ -1091,16 +1101,29 @@
                 if (el.dataset.gambar) bHtml += '<img class="detail-foto detail-foto-cover" src="' + el.dataset.gambar + '" alt="Gambar Projek">';
                 if (tags.length) bHtml += '<div class="detail-tags">' + tags.map(function(t){ return '<span class="detail-tag">' + escHtml(t) + '</span>'; }).join('') + '</div>';
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
-                if (el.dataset.demo || el.dataset.github) {
+                var hasBerbayar = el.dataset.berbayar === '1';
+                if (hasBerbayar || el.dataset.demo || el.dataset.github) {
                     bHtml += '<div class="detail-links">';
-                    if (el.dataset.demo)   bHtml += '<a href="' + el.dataset.demo   + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary">&#8594; Live Demo</a>';
-                    if (el.dataset.github) bHtml += '<a href="' + el.dataset.github + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-secondary"><i class="fa-brands fa-github"></i> GitHub</a>';
+                    if (el.dataset.demo) bHtml += '<a href="' + el.dataset.demo + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary">&#8594; Live Demo</a>';
+                    if (hasBerbayar) {
+                        bHtml += '<button type="button" id="btnBeliAkses" class="detail-link-btn detail-link-secondary" style="cursor:pointer;border:none;">🔒 Beli Akses &ndash; ' + escHtml(el.dataset.harga) + '</button>';
+                        _beliPending = { id: el.dataset.projekId, title: el.dataset.title, harga: el.dataset.harga };
+                    } else if (el.dataset.github) {
+                        bHtml += '<a href="' + el.dataset.github + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-secondary"><i class="fa-brands fa-github"></i> GitHub</a>';
+                    }
                     bHtml += '</div>';
                 }
             }
 
             header.innerHTML = hHtml;
             body.innerHTML   = bHtml;
+            // Wire up "Beli Akses" button if rendered
+            var btnBeli = document.getElementById('btnBeliAkses');
+            if (btnBeli) {
+                btnBeli.addEventListener('click', function() {
+                    openBeliModal(_beliPending.id, _beliPending.title, _beliPending.harga);
+                });
+            }
             document.getElementById('detailOverlay').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
@@ -1116,8 +1139,28 @@
             return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
         }
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeDetailModalBtn();
+            if (e.key === 'Escape') { closeDetailModalBtn(); closeBeliModalBtn(); }
         });
+
+        /* ── PAYMENT MODAL ── */
+        function openBeliModal(projekId, title, harga) {
+            closeDetailModalBtn();
+            document.getElementById('beliProjekTitle').textContent = title;
+            document.getElementById('beliHarga').textContent = harga;
+            document.getElementById('beliForm').action = '/projek/' + projekId + '/beli';
+            document.getElementById('beliNama').value = '';
+            document.getElementById('beliEmail').value = '';
+            document.getElementById('beliOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            setTimeout(function(){ document.getElementById('beliNama').focus(); }, 200);
+        }
+        function closeBeliModal(e) {
+            if (e.target === document.getElementById('beliOverlay')) closeBeliModalBtn();
+        }
+        function closeBeliModalBtn() {
+            document.getElementById('beliOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
     </script>
 
     <!-- ═══ DETAIL MODAL ═══ -->
@@ -1126,6 +1169,46 @@
             <button class="detail-close" onclick="closeDetailModalBtn()">✕</button>
             <div class="detail-header" id="detailHeader"></div>
             <div class="detail-body" id="detailBody"></div>
+        </div>
+    </div>
+
+    <!-- ═══ PAYMENT MODAL ═══ -->
+    <div class="detail-overlay" id="beliOverlay" onclick="closeBeliModal(event)">
+        <div class="detail-modal" id="beliModal" style="max-width:460px;">
+            <button class="detail-close" onclick="closeBeliModalBtn()">✕</button>
+            <div class="detail-header">
+                <div class="detail-type-badge">🔒 Beli Akses Source Code</div>
+                <div class="detail-title" id="beliProjekTitle"></div>
+                <div style="font-size:1.3rem;font-weight:800;color:var(--primary);margin-top:0.4rem;" id="beliHarga"></div>
+            </div>
+            <div class="detail-body" style="padding-top:0.5rem;">
+                <p style="font-size:0.86rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.5;">
+                    Isi data di bawah untuk melanjutkan pembayaran. Link GitHub akan tersedia setelah pembayaran berhasil.
+                </p>
+                <form id="beliForm" method="POST" action="">
+                    @csrf
+                    <div style="margin-bottom:1rem;">
+                        <label style="font-size:0.82rem;font-weight:700;color:var(--fg);display:block;margin-bottom:0.4rem;">Nama Lengkap</label>
+                        <input type="text" name="nama" id="beliNama" required placeholder="Masukkan nama lengkap..."
+                               style="width:100%;padding:0.7rem 1rem;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);color:var(--fg);font-size:0.9rem;font-family:inherit;box-sizing:border-box;outline:none;transition:border-color 0.2s;"
+                               onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+                    </div>
+                    <div style="margin-bottom:1.5rem;">
+                        <label style="font-size:0.82rem;font-weight:700;color:var(--fg);display:block;margin-bottom:0.4rem;">Email Aktif</label>
+                        <input type="email" name="email" id="beliEmail" required placeholder="email@contoh.com"
+                               style="width:100%;padding:0.7rem 1rem;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);color:var(--fg);font-size:0.9rem;font-family:inherit;box-sizing:border-box;outline:none;transition:border-color 0.2s;"
+                               onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+                    </div>
+                    <button type="submit"
+                            style="width:100%;padding:0.9rem;background:var(--primary);color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.3s;"
+                            onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--primary)'">
+                        💳 Lanjutkan Pembayaran
+                    </button>
+                </form>
+                <p style="font-size:0.75rem;color:var(--faint);text-align:center;margin-top:0.85rem;">
+                    Pembayaran aman via <strong>Midtrans</strong> &mdash; QRIS, Transfer VA, GoPay, OVO, Dana, Kartu Kredit
+                </p>
+            </div>
         </div>
     </div>
 

@@ -14,6 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->redirectGuestsTo('/admin/login');
         $middleware->append(SecurityHeaders::class);
+        $middleware->validateCsrfTokens(except: [
+            'webhook/midtrans',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

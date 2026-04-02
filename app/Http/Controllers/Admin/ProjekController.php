@@ -30,6 +30,8 @@ class ProjekController extends Controller
             'gambar'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'demo_url'    => 'nullable|url|max:255',
             'github_url'  => 'nullable|url|max:255',
+            'tipe_akses'  => 'required|in:gratis,berbayar',
+            'harga'       => 'nullable|integer|min:1000',
             'urutan'      => 'nullable|integer',
         ]);
 
@@ -46,6 +48,8 @@ class ProjekController extends Controller
             'gambar'      => $gambar,
             'demo_url'    => $data['demo_url'] ?? null,
             'github_url'  => $data['github_url'] ?? null,
+            'tipe_akses'  => $data['tipe_akses'],
+            'harga'       => $data['tipe_akses'] === 'berbayar' ? ($data['harga'] ?? null) : null,
             'urutan'      => $data['urutan'] ?? 0,
         ]);
 
@@ -67,6 +71,8 @@ class ProjekController extends Controller
             'gambar'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'demo_url'    => 'nullable|url|max:255',
             'github_url'  => 'nullable|url|max:255',
+            'tipe_akses'  => 'required|in:gratis,berbayar',
+            'harga'       => 'nullable|integer|min:1000',
             'urutan'      => 'nullable|integer',
         ]);
 
@@ -88,6 +94,8 @@ class ProjekController extends Controller
             'gambar'      => $gambarPath,
             'demo_url'    => $data['demo_url'] ?? null,
             'github_url'  => $data['github_url'] ?? null,
+            'tipe_akses'  => $data['tipe_akses'],
+            'harga'       => $data['tipe_akses'] === 'berbayar' ? ($data['harga'] ?? null) : null,
             'urutan'      => $data['urutan'] ?? 0,
         ]);
 

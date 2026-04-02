@@ -95,6 +95,38 @@
                                value="{{ old('github_url', $item?->github_url) }}" placeholder="https://github.com/...">
                         @error('github_url') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
+
+                    {{-- AKSES & HARGA --}}
+                    <div class="form-group full">
+                        <label>Tipe Akses Source Code</label>
+                        <div style="display:flex;gap:1.5rem;margin-top:0.5rem;flex-wrap:wrap;">
+                            <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-weight:600;">
+                                <input type="radio" name="tipe_akses" value="gratis"
+                                       onchange="toggleHarga(this)"
+                                       {{ old('tipe_akses', $item?->tipe_akses ?? 'gratis') === 'gratis' ? 'checked' : '' }}>
+                                🆓 Gratis
+                            </label>
+                            <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-weight:600;">
+                                <input type="radio" name="tipe_akses" value="berbayar"
+                                       onchange="toggleHarga(this)"
+                                       {{ old('tipe_akses', $item?->tipe_akses) === 'berbayar' ? 'checked' : '' }}>
+                                💳 Berbayar (via Xendit)
+                            </label>
+                        </div>
+                        <span class="form-hint">Jika berbayar, pengunjung harus membayar untuk mendapatkan link GitHub.</span>
+                    </div>
+                    <div class="form-group full" id="harga-group"
+                         style="{{ (old('tipe_akses', $item?->tipe_akses ?? 'gratis') === 'berbayar') ? '' : 'display:none;' }}">
+                        <label for="harga">Harga (IDR)</label>
+                        <div style="position:relative;">
+                            <span style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-weight:700;color:var(--muted);pointer-events:none;">Rp</span>
+                            <input type="number" id="harga" name="harga" class="form-control {{ $errors->has('harga') ? 'is-invalid' : '' }}"
+                                   style="padding-left:3rem;"
+                                   value="{{ old('harga', $item?->harga) }}" placeholder="50000" min="1000" step="1000">
+                        </div>
+                        <span class="form-hint">Minimum Rp 1.000. Contoh: 50000 = Rp 50.000</span>
+                        @error('harga') <div class="invalid-feedback" style="display:block">{{ $message }}</div> @enderror
+                    </div>
                 </div>
 
                 <div class="form-actions">
@@ -133,6 +165,10 @@ function handleDrop(event) {
         input.files = dt.files;
         previewGambar(input);
     }
+}
+function toggleHarga(radio) {
+    document.getElementById('harga-group').style.display =
+        radio.value === 'berbayar' ? '' : 'none';
 }
 </script>
 @endsection
