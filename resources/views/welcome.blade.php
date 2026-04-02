@@ -988,7 +988,6 @@
         <div class="corak-border corak-border-top"></div>
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-icon"><i class="fa-solid fa-laptop-code"></i></div>
                 <span class="section-label">Karya Saya</span>
                 <h2 class="section-title">Projek <span>Terbaru</span></h2>
                 <div class="section-divider"></div>
