@@ -327,27 +327,47 @@
         /* ─── PROJEK ─── */
         #projek { background:linear-gradient(160deg,var(--bg2) 0%,var(--bg) 100%); }
         .proj-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:2rem; }
-        .proj-card { background:var(--surface); border:1.5px solid var(--border); border-radius:20px; overflow:hidden; transition:all 0.4s; }
-        .proj-card:hover { transform:translateY(-10px); border-color:var(--primary2); box-shadow:0 25px 60px rgba(45,106,79,0.18); }
-        .proj-thumb { height:195px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
-        .proj-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
-        .proj-thumb-1 { background:linear-gradient(135deg,#cce8d8 0%,#a8d5b5 100%); }
-        .proj-thumb-2 { background:linear-gradient(135deg,#b8e0d2 0%,#8ccfb8 100%); }
-        .proj-thumb-3 { background:linear-gradient(135deg,#c5dfe4 0%,#96c8d2 100%); }
-        /* Overlay strip on thumb */
-        .proj-thumb::before { content:''; position:absolute; bottom:0; left:0; right:0; height:4px; z-index:2;
-            background:var(--primary);
-        }
+        .proj-card { background:var(--surface); border:1.5px solid var(--border); border-radius:20px; overflow:hidden; transition:all 0.4s; cursor:pointer; position:relative; }
+        .proj-card:hover { transform:translateY(-8px); border-color:var(--primary2); box-shadow:0 28px 60px rgba(45,106,79,0.28); }
+        /* Thumb */
+        .proj-thumb { height:205px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+        .proj-thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.55s ease; }
+        .proj-card:hover .proj-thumb img { transform:scale(1.07); }
+        .proj-thumb-1 { background:linear-gradient(135deg,#0e2d1d 0%,#1a4a30 50%,#2d6a4f 100%); }
+        .proj-thumb-2 { background:linear-gradient(135deg,#0a2830 0%,#0d4d5a 50%,#0d9488 100%); }
+        .proj-thumb-3 { background:linear-gradient(135deg,#121e2e 0%,#1a3a52 50%,#1a5276 100%); }
+        /* Gradient accent bottom */
+        .proj-thumb::before { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; z-index:3; background:linear-gradient(90deg,var(--primary),var(--accent)); }
+        /* Hover overlay */
+        .proj-thumb::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,transparent 30%,rgba(0,0,0,0.6) 100%); opacity:0; transition:opacity 0.4s; z-index:1; }
         .proj-card:hover .proj-thumb::after { opacity:1; }
-        .proj-thumb::after { content:''; position:absolute; inset:0; background:rgba(45,106,79,0.12); opacity:0; transition:opacity 0.4s; z-index:1; }
-        .proj-body { padding:1.5rem; }
-        .proj-tags { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.9rem; }
-        .tag { padding:0.28rem 0.78rem; font-size:0.8rem; font-weight:700; border-radius:20px; background:rgba(13,148,136,0.10); color:var(--accent); border:1px solid rgba(13,148,136,0.22); }
-        .proj-title { font-size:1.3rem; font-weight:800; color:var(--text); margin-bottom:0.7rem; }
-        .proj-desc { font-size:1rem; color:var(--muted); line-height:1.75; margin-bottom:1.4rem; }
-        .proj-links { display:flex; gap:1.25rem; }
-        .proj-link { font-size:0.83rem; font-weight:700; color:var(--primary); text-decoration:none; transition:all 0.3s; display:flex; align-items:center; gap:0.35rem; }
-        .proj-link:hover { color:var(--accent); transform:translateX(2px); }
+        /* No-image icon */
+        .proj-icon-wrap { display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%; gap:0.6rem; z-index:2; position:relative; }
+        .proj-icon { font-size:3.4rem; color:rgba(255,255,255,0.2); transition:all 0.4s; filter:drop-shadow(0 0 20px rgba(94,234,212,0.18)); }
+        .proj-card:hover .proj-icon { color:rgba(255,255,255,0.38); filter:drop-shadow(0 0 32px rgba(94,234,212,0.35)); transform:scale(1.12); }
+        /* Geo pattern overlay on thumb */
+        .proj-thumb-pattern { position:absolute; inset:0; z-index:0; opacity:0.06; background-image:radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px); background-size:24px 24px; }
+        /* Badge paid */
+        .proj-paid-badge { position:absolute; top:0.85rem; right:0.85rem; z-index:4; background:rgba(10,18,12,0.78); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(239,68,68,0.38); color:#fca5a5; font-size:0.7rem; font-weight:700; padding:0.28rem 0.65rem; border-radius:20px; display:flex; align-items:center; gap:0.3rem; letter-spacing:0.3px; }
+        /* Body */
+        .proj-body { padding:1.35rem 1.5rem 1.25rem; }
+        .proj-tags { display:flex; gap:0.4rem; flex-wrap:wrap; margin-bottom:0.75rem; }
+        .tag { padding:0.2rem 0.6rem; font-size:0.72rem; font-weight:700; border-radius:20px; background:rgba(13,148,136,0.1); color:var(--accent); border:1px solid rgba(13,148,136,0.22); letter-spacing:0.2px; }
+        .proj-title { font-size:1.15rem; font-weight:800; color:var(--text); margin-bottom:0.5rem; line-height:1.4; }
+        .proj-desc { font-size:0.87rem; color:var(--muted); line-height:1.7; margin-bottom:1rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+        /* Footer row */
+        .proj-footer { display:flex; align-items:center; justify-content:space-between; gap:0.5rem; border-top:1px solid var(--border); padding-top:0.9rem; flex-wrap:wrap; }
+        .proj-price { font-size:0.78rem; font-weight:800; color:var(--accent); display:inline-flex; align-items:center; gap:0.28rem; }
+        .proj-links { display:flex; gap:0.45rem; margin-left:auto; }
+        .proj-link { font-size:0.74rem; font-weight:700; text-decoration:none; transition:all 0.25s; display:inline-flex; align-items:center; gap:0.3rem; padding:0.3rem 0.8rem; border-radius:20px; white-space:nowrap; }
+        .proj-link-demo { background:rgba(13,148,136,0.12); color:var(--accent); border:1px solid rgba(13,148,136,0.28); }
+        .proj-link-demo:hover { background:var(--accent); color:#fff; transform:translateY(-1px); }
+        .proj-link-git { background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.65); border:1px solid rgba(255,255,255,0.12); }
+        .proj-link-git:hover { background:rgba(255,255,255,0.15); color:#fff; transform:translateY(-1px); }
+        .proj-link-buy { background:rgba(45,106,79,0.15); color:#6ee7a0; border:1px solid rgba(45,106,79,0.32); cursor:pointer; }
+        .proj-link-buy:hover { background:var(--primary); color:#fff; transform:translateY(-1px); }
+        /* Section icon */
+        .section-icon { width:54px; height:54px; border-radius:16px; background:linear-gradient(135deg,var(--primary),var(--accent)); display:flex; align-items:center; justify-content:center; font-size:1.4rem; color:#fff; margin:0 auto 1rem; box-shadow:0 8px 28px rgba(13,148,136,0.28); }
 
         /* ─── FOOTER ─── */
         .footer { background:linear-gradient(160deg,#1a2e20 0%,#0f1f15 100%); color:rgba(255,255,255,0.7); position:relative; overflow:hidden; }
@@ -930,6 +950,7 @@
         <div class="corak-border corak-border-top"></div>
         <div class="container">
             <div class="section-header reveal">
+                <div class="section-icon"><i class="fa-solid fa-laptop-code"></i></div>
                 <span class="section-label">Karya Saya</span>
                 <h2 class="section-title">Projek <span>Terbaru</span></h2>
                 <div class="section-divider"></div>
@@ -953,8 +974,22 @@
                      data-github="{{ $item->github_url ?? '' }}"
                      @endif>
                     <div class="proj-thumb proj-thumb-{{ $item->thumb_color }}">
+                        <div class="proj-thumb-pattern"></div>
                         @if($item->gambar)
                         <img src="{{ Storage::url($item->gambar) }}" alt="{{ $item->title }}">
+                        @else
+                        <div class="proj-icon-wrap">
+                            @if($item->thumb_color == 2)
+                            <i class="fa-solid fa-mobile-screen-button proj-icon"></i>
+                            @elseif($item->thumb_color == 3)
+                            <i class="fa-solid fa-database proj-icon"></i>
+                            @else
+                            <i class="fa-solid fa-code proj-icon"></i>
+                            @endif
+                        </div>
+                        @endif
+                        @if($item->isBerbayar())
+                        <div class="proj-paid-badge"><i class="fa-solid fa-lock"></i> Premium</div>
                         @endif
                     </div>
                     <div class="proj-body">
@@ -965,15 +1000,26 @@
                         </div>
                         <div class="proj-title">{{ $item->title }}</div>
                         <div class="proj-desc">{{ $item->description }}</div>
-                        <div class="proj-links">
-                            @if($item->demo_url)
-                            <a href="{{ $item->demo_url }}" target="_blank" rel="noopener noreferrer" class="proj-link">&#8594; Live Demo</a>
-                            @endif
+                        <div class="proj-footer">
                             @if($item->isBerbayar())
-                            <span class="proj-link" style="background:rgba(16,110,73,0.12);color:var(--primary);cursor:default;pointer-events:none;">🔒 Berbayar – {{ $item->hargaFormatted() }}</span>
-                            @elseif($item->github_url)
-                            <a href="{{ $item->github_url }}" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i> GitHub</a>
+                            <span class="proj-price"><i class="fa-solid fa-tag"></i> {{ $item->hargaFormatted() }}</span>
                             @endif
+                            <div class="proj-links">
+                                @if($item->demo_url)
+                                <a href="{{ $item->demo_url }}" target="_blank" rel="noopener noreferrer" class="proj-link proj-link-demo" onclick="event.stopPropagation()">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo
+                                </a>
+                                @endif
+                                @if($item->isBerbayar())
+                                <span class="proj-link proj-link-buy">
+                                    <i class="fa-solid fa-cart-shopping"></i> Beli
+                                </span>
+                                @elseif($item->github_url)
+                                <a href="{{ $item->github_url }}" target="_blank" rel="noopener noreferrer" class="proj-link proj-link-git" onclick="event.stopPropagation()">
+                                    <i class="fa-brands fa-github"></i> GitHub
+                                </a>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
