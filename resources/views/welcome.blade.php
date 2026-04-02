@@ -336,6 +336,31 @@
         .j-right { display:flex; flex-direction:column; align-items:flex-end; gap:0.6rem; }
         .j-year { font-size:0.72rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:3px; }
 
+        /* ─── HKI ─── */
+        #hki { background:linear-gradient(160deg,var(--bg2) 0%,var(--bg) 100%); }
+        .hki-list { display:flex; flex-direction:column; gap:1.25rem; }
+        .hki-card { background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:1.5rem 1.75rem;
+            display:grid; grid-template-columns:1fr auto; gap:1.25rem; align-items:start;
+            transition:all 0.35s; position:relative; overflow:hidden; cursor:pointer; }
+        .hki-card::after { content:''; position:absolute; left:0; top:0; bottom:0; width:4px;
+            background:linear-gradient(180deg,var(--accent),var(--primary));
+            opacity:0; transition:opacity 0.35s; }
+        .hki-card:hover { border-color:var(--accent); box-shadow:0 12px 40px rgba(13,148,136,0.12); transform:translateX(4px); }
+        .hki-card:hover::after { opacity:1; }
+        .hki-title { font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:0.3rem; line-height:1.45; }
+        .hki-meta { font-size:0.93rem; color:var(--muted); margin-bottom:0.5rem; }
+        .hki-nomor { font-size:0.8rem; color:var(--faint); font-family:monospace; }
+        .hki-desc { font-size:0.95rem; color:var(--faint); line-height:1.7; margin-top:0.5rem; }
+        .hki-jenis-badge { padding:0.3rem 0.85rem; border-radius:20px; font-size:0.72rem; font-weight:700;
+            background:rgba(13,148,136,0.10); color:var(--accent); border:1.5px solid rgba(13,148,136,0.22);
+            text-transform:uppercase; letter-spacing:1px; white-space:nowrap; }
+        .hki-link-btn { display:inline-flex; align-items:center; gap:0.4rem; margin-top:0.75rem;
+            padding:0.4rem 1rem; border-radius:20px; font-size:0.78rem; font-weight:700;
+            background:linear-gradient(135deg,var(--accent),var(--primary)); color:#fff; text-decoration:none; transition:all 0.3s; }
+        .hki-link-btn:hover { transform:translateY(-1px); box-shadow:0 4px 14px rgba(13,148,136,0.30); }
+        .hki-right { display:flex; flex-direction:column; align-items:flex-end; gap:0.6rem; }
+        .hki-year { font-size:0.72rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:3px; }
+
         /* ─── PROJEK ─── */
         #projek { background:linear-gradient(160deg,var(--bg2) 0%,var(--bg) 100%); }
         .proj-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:2rem; }
@@ -637,6 +662,7 @@
                 <li><a href="#pengalaman">Pengalaman</a></li>
                 <li><a href="#prestasi">Prestasi</a></li>
                 <li><a href="#jurnal">Jurnal</a></li>
+                <li><a href="#hki">HKI</a></li>
                 <li><a href="#projek">Projek</a></li>
             </ul>
             <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -800,6 +826,10 @@
                         <div class="stat-item">
                             <div class="stat-number">{{ $totalJurnal }}</div>
                             <div class="stat-label">Jurnal</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">{{ $totalHki }}</div>
+                            <div class="stat-label">HKI</div>
                         </div>
                     </div>
 
@@ -994,6 +1024,53 @@
         </div>
     </section>
 
+    <!-- ═══ HKI ═══ -->
+    <section id="hki">
+        <div class="corak-bg"></div>
+        <div class="corak-border corak-border-top"></div>
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Kekayaan Intelektual</span>
+                <h2 class="section-title">HKI <span>&amp; Paten</span></h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="hki-list">
+                @forelse($hki as $item)
+                <div class="hki-card reveal"
+                     onclick="openDetailModal(this)"
+                     data-type="hki"
+                     data-title="{{ $item->title }}"
+                     data-authors="{{ $item->authors ?? '' }}"
+                     data-jenis="{{ $item->jenis_hki ?? '' }}"
+                     data-nomor="{{ $item->nomor_pencatatan ?? '' }}"
+                     data-year="{{ $item->year }}"
+                     data-description="{{ $item->description ?? '' }}"
+                     data-url="{{ $item->url ?? '' }}">
+                    <div class="j-body">
+                        <div class="hki-title">{{ $item->title }}</div>
+                        <div class="hki-meta">{{ $item->authors }}</div>
+                        @if($item->nomor_pencatatan)
+                        <div class="hki-nomor"><i class="fa-solid fa-hashtag" style="opacity:0.5;font-size:0.75em;"></i> {{ $item->nomor_pencatatan }}</div>
+                        @endif
+                        @if($item->description)
+                        <div class="hki-desc">{{ Str::limit($item->description, 150) }}</div>
+                        @endif
+                        @if($item->url)
+                        <a href="{{ $item->url }}" target="_blank" rel="noopener noreferrer" class="hki-link-btn" onclick="event.stopPropagation()">&#128279; Lihat Sertifikat</a>
+                        @endif
+                    </div>
+                    <div class="hki-right">
+                        <span class="hki-year">{{ $item->year }}</span>
+                        <span class="hki-jenis-badge">{{ $item->jenis_hki }}</span>
+                    </div>
+                </div>
+                @empty
+                <p style="color:var(--faint);font-size:0.9rem;text-align:center;padding:2rem 0;">Belum ada data HKI.</p>
+                @endforelse
+            </div>
+        </div>
+    </section>
+
     <!-- ═══ PROJEK ═══ -->
     <section id="projek">
         <div class="corak-bg"></div>
@@ -1117,6 +1194,7 @@
                         <li><a href="#pengalaman">Pengalaman</a></li>
                         <li><a href="#prestasi">Prestasi</a></li>
                         <li><a href="#jurnal">Jurnal</a></li>
+                        <li><a href="#hki">HKI</a></li>
                         <li><a href="#projek">Projek</a></li>
                     </ul>
                 </div>
@@ -1217,6 +1295,16 @@
                 if (el.dataset.indexed) bHtml += '<div class="detail-row"><span class="detail-label">Indeks</span><span class="detail-value">' + escHtml(el.dataset.indexed) + '</span></div>';
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
                 if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary">🔗 Buka Jurnal</a></div>';
+
+            } else if (type === 'hki') {
+                hHtml = '<div class="detail-type-badge">📜 HKI &amp; Paten</div>'
+                      + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
+                bHtml = '<div class="detail-row"><span class="detail-label">Pemegang Hak</span><span class="detail-value">' + escHtml(el.dataset.authors) + '</span></div>'
+                      + '<div class="detail-row"><span class="detail-label">Jenis</span><span class="detail-value"><span class="td-badge">' + escHtml(el.dataset.jenis) + '</span></span></div>'
+                      + '<div class="detail-row"><span class="detail-label">Tahun</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
+                if (el.dataset.nomor) bHtml += '<div class="detail-row"><span class="detail-label">No. Pencatatan</span><span class="detail-value" style="font-family:monospace;">' + escHtml(el.dataset.nomor) + '</span></div>';
+                if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
+                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary">🔗 Lihat Sertifikat</a></div>';
 
             } else if (type === 'projek') {
                 var tags = [];

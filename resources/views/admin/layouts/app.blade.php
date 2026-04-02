@@ -333,6 +333,10 @@
                class="{{ request()->routeIs('admin.jurnal.*') ? 'active' : '' }}">
                 <span class="nav-icon"><i class="fa-solid fa-file-lines"></i></span> Jurnal
             </a>
+            <a href="{{ route('admin.hki.index') }}"
+               class="{{ request()->routeIs('admin.hki.*') ? 'active' : '' }}">
+                <span class="nav-icon"><i class="fa-solid fa-certificate"></i></span> HKI
+            </a>
             <a href="{{ route('admin.projek.index') }}"
                class="{{ request()->routeIs('admin.projek.*') ? 'active' : '' }}">
                 <span class="nav-icon"><i class="fa-solid fa-laptop-code"></i></span> Projek

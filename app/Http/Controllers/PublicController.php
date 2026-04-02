@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Prestasi;
 use App\Models\Projek;
 use App\Models\Jurnal;
+use App\Models\Hki;
 use App\Models\Profil;
 use App\Models\Sosmed;
 use App\Models\Pengalaman;
@@ -18,6 +19,7 @@ class PublicController extends Controller
         $prestasiNonAkademik = Prestasi::where('kategori', 'non_akademik')->orderBy('urutan')->orderBy('year', 'desc')->get();
         $projek              = Projek::orderBy('urutan')->get();
         $jurnal              = Jurnal::orderBy('urutan')->orderBy('year', 'desc')->get();
+        $hki                 = Hki::orderBy('urutan')->orderBy('year', 'desc')->get();
         $profil              = Profil::first();
         $sosmed              = Sosmed::orderBy('urutan')->get();
         $pengalaman          = Pengalaman::orderBy('urutan')->orderByDesc('tahun_mulai')->get();
@@ -25,11 +27,12 @@ class PublicController extends Controller
         $totalProjek   = Projek::count();
         $totalJurnal   = Jurnal::count();
         $totalPrestasi = Prestasi::count();
+        $totalHki      = Hki::count();
 
         return view('welcome', compact(
-            'prestasiAkademik', 'prestasiNonAkademik', 'projek', 'jurnal',
+            'prestasiAkademik', 'prestasiNonAkademik', 'projek', 'jurnal', 'hki',
             'profil', 'sosmed', 'pengalaman',
-            'totalProjek', 'totalJurnal', 'totalPrestasi'
+            'totalProjek', 'totalJurnal', 'totalPrestasi', 'totalHki'
         ));
     }
 
