@@ -472,6 +472,72 @@
             .btn { font-size:0.85rem; padding:0.75rem 1.5rem; }
             .about-stats { grid-template-columns:repeat(2,1fr); }
         }
+
+        /* ─── DETAIL MODAL ─── */
+        .detail-overlay {
+            position:fixed;inset:0;z-index:9000;
+            background:rgba(15,31,21,0.72);backdrop-filter:blur(8px);
+            display:flex;align-items:center;justify-content:center;padding:1.5rem;
+            opacity:0;pointer-events:none;transition:opacity 0.3s;
+        }
+        .detail-overlay.open { opacity:1;pointer-events:all; }
+        .detail-modal {
+            background:var(--surface);border-radius:24px;
+            max-width:640px;width:100%;max-height:88vh;overflow-y:auto;
+            box-shadow:0 32px 80px rgba(0,0,0,0.28);
+            transform:translateY(28px) scale(0.97);transition:transform 0.35s cubic-bezier(.4,0,.2,1);
+            position:relative;
+        }
+        .detail-overlay.open .detail-modal { transform:translateY(0) scale(1); }
+        .detail-modal::-webkit-scrollbar { width:5px; }
+        .detail-modal::-webkit-scrollbar-thumb { background:var(--border);border-radius:5px; }
+        .detail-close {
+            position:absolute;top:1.1rem;right:1.1rem;
+            width:36px;height:36px;border-radius:10px;border:none;
+            background:var(--bg2);color:var(--muted);font-size:1.1rem;
+            cursor:pointer;display:flex;align-items:center;justify-content:center;
+            transition:all 0.25s;z-index:10;
+        }
+        .detail-close:hover { background:rgba(220,38,38,0.10);color:#dc2626; }
+        .detail-header {
+            padding:2rem 2.25rem 1.35rem;
+            border-bottom:1.5px solid var(--border);
+            background:linear-gradient(135deg,rgba(244,240,232,0.5),rgba(235,244,238,0.7));
+        }
+        .detail-type-badge {
+            display:inline-flex;align-items:center;gap:0.35rem;
+            padding:0.28rem 0.85rem;border-radius:20px;font-size:0.72rem;font-weight:700;
+            background:rgba(45,106,79,0.10);color:var(--primary);
+            border:1.5px solid rgba(45,106,79,0.22);
+            text-transform:uppercase;letter-spacing:1px;margin-bottom:0.85rem;
+        }
+        .detail-title { font-size:1.25rem;font-weight:800;color:var(--text);line-height:1.38; }
+        .detail-subtitle { font-size:0.95rem;color:var(--primary2);font-weight:700;margin-top:0.45rem; }
+        .detail-body { padding:1.6rem 2.25rem 2rem; }
+        .detail-foto {
+            width:100%;max-height:240px;object-fit:contain;
+            border-radius:14px;border:1.5px solid var(--border);
+            margin-bottom:1.35rem;background:var(--bg);padding:8px;display:block;
+        }
+        .detail-foto-cover { object-fit:cover!important;max-height:220px; }
+        .detail-row { display:flex;gap:0.6rem;align-items:baseline;margin-bottom:0.7rem;flex-wrap:wrap; }
+        .detail-label { font-size:0.75rem;font-weight:800;color:var(--faint);text-transform:uppercase;letter-spacing:1.5px;min-width:88px;flex-shrink:0; }
+        .detail-value { font-size:0.93rem;color:var(--text);font-weight:500;flex:1; }
+        .detail-desc { font-size:0.97rem;color:var(--muted);line-height:1.85;margin-top:0.85rem;white-space:pre-line; }
+        .detail-tags { display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.65rem; }
+        .detail-tag { padding:0.25rem 0.8rem;border-radius:20px;font-size:0.78rem;font-weight:700;background:rgba(45,106,79,0.08);color:var(--primary);border:1.5px solid rgba(45,106,79,0.18); }
+        .detail-links { display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.35rem;padding-top:1.25rem;border-top:1.5px solid var(--border); }
+        .detail-link-btn { padding:0.6rem 1.4rem;border-radius:12px;font-size:0.88rem;font-weight:700;text-decoration:none;transition:all 0.25s;display:inline-flex;align-items:center;gap:0.4rem; }
+        .detail-link-primary { background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;box-shadow:0 4px 14px rgba(45,106,79,0.25); }
+        .detail-link-primary:hover { transform:translateY(-2px);box-shadow:0 8px 20px rgba(45,106,79,0.35); }
+        .detail-link-secondary { background:var(--bg2);color:var(--muted);border:1.5px solid var(--border); }
+        .detail-link-secondary:hover { border-color:var(--primary);color:var(--primary);transform:translateY(-1px); }
+        .peng-card,.p-card,.j-card,.proj-card { cursor:pointer; }
+        @media (max-width:600px) {
+            .detail-header { padding:1.5rem 1.5rem 1rem; }
+            .detail-body { padding:1.25rem 1.5rem 1.5rem; }
+            .detail-title { font-size:1.08rem; }
+        }
     </style>
 </head>
 <body>
@@ -696,7 +762,16 @@
                 @endphp
                 <div class="peng-item reveal">
                     <div class="peng-dot"></div>
-                    <div class="peng-card">
+                    <div class="peng-card"
+                         onclick="openDetailModal(this)"
+                         data-type="pengalaman"
+                         data-nama="{{ $item->nama_organisasi }}"
+                         data-peran="{{ $item->peran }}"
+                         data-jenis-label="{{ $jenis_label[$item->jenis] ?? $item->jenis }}"
+                         data-jenis-class="{{ $jenis_class[$item->jenis] ?? '' }}"
+                         data-periode="{{ $item->tahun_mulai }} – {{ $item->tahun_selesai ?? 'Sekarang' }}"
+                         data-deskripsi="{{ $item->deskripsi ?? '' }}"
+                         data-sertifikat="{{ $item->foto_sertifikat ? Storage::url($item->foto_sertifikat) : '' }}">
                         <div class="peng-head">
                             <div class="peng-org">{{ $item->nama_organisasi }}</div>
                             <div class="peng-meta">
@@ -741,7 +816,14 @@
             <div class="ptab-panel active" id="tab-akademik">
                 <div class="prestasi-grid">
                     @forelse($prestasiAkademik as $item)
-                    <div class="p-card reveal">
+                    <div class="p-card reveal"
+                         onclick="openDetailModal(this)"
+                         data-type="prestasi"
+                         data-title="{{ $item->title }}"
+                         data-year="{{ $item->year }}"
+                         data-description="{{ $item->description ?? '' }}"
+                         data-badge="{{ $item->badge ?? '' }}"
+                         data-foto="{{ $item->foto ? Storage::url($item->foto) : '' }}">
                         @if($item->foto)
                         <img class="p-foto" src="{{ Storage::url($item->foto) }}" alt="{{ $item->title }}">
                         @endif
@@ -760,7 +842,14 @@
             <div class="ptab-panel" id="tab-non_akademik">
                 <div class="prestasi-grid">
                     @forelse($prestasiNonAkademik as $item)
-                    <div class="p-card reveal">
+                    <div class="p-card reveal"
+                         onclick="openDetailModal(this)"
+                         data-type="prestasi"
+                         data-title="{{ $item->title }}"
+                         data-year="{{ $item->year }}"
+                         data-description="{{ $item->description ?? '' }}"
+                         data-badge="{{ $item->badge ?? '' }}"
+                         data-foto="{{ $item->foto ? Storage::url($item->foto) : '' }}">
                         @if($item->foto)
                         <img class="p-foto" src="{{ Storage::url($item->foto) }}" alt="{{ $item->title }}">
                         @endif
@@ -789,7 +878,16 @@
             </div>
             <div class="jurnal-list">
                 @forelse($jurnal as $item)
-                <div class="j-card reveal">
+                <div class="j-card reveal"
+                     onclick="openDetailModal(this)"
+                     data-type="jurnal"
+                     data-title="{{ $item->title }}"
+                     data-authors="{{ $item->authors ?? '' }}"
+                     data-journal="{{ $item->journal_name ?? '' }}"
+                     data-year="{{ $item->year }}"
+                     data-indexed="{{ $item->indexed_by ?? '' }}"
+                     data-description="{{ $item->description ?? '' }}"
+                     data-url="{{ $item->url ?? '' }}">
                     <div class="j-body">
                         <div class="j-title">{{ $item->title }}</div>
                         <div class="j-meta">{{ $item->authors }} &bull; <span>{{ $item->journal_name }}</span></div>
@@ -824,7 +922,15 @@
             </div>
             <div class="proj-grid">
                 @forelse($projek as $item)
-                <div class="proj-card reveal">
+                <div class="proj-card reveal"
+                     onclick="openDetailModal(this)"
+                     data-type="projek"
+                     data-title="{{ $item->title }}"
+                     data-description="{{ $item->description ?? '' }}"
+                     data-tags="{{ json_encode($item->tags ?? []) }}"
+                     data-gambar="{{ $item->gambar ? Storage::url($item->gambar) : '' }}"
+                     data-demo="{{ $item->demo_url ?? '' }}"
+                     data-github="{{ $item->github_url ?? '' }}">
                     <div class="proj-thumb proj-thumb-{{ $item->thumb_color }}">
                         @if($item->gambar)
                         <img src="{{ Storage::url($item->gambar) }}" alt="{{ $item->title }}">
@@ -942,7 +1048,86 @@
                 document.getElementById('navLinks').classList.remove('open');
             });
         });
+
+        /* ── DETAIL MODAL ── */
+        function openDetailModal(el) {
+            const type = el.dataset.type;
+            const header = document.getElementById('detailHeader');
+            const body   = document.getElementById('detailBody');
+            let hHtml = '', bHtml = '';
+
+            if (type === 'pengalaman') {
+                hHtml = '<div class="detail-type-badge">🏢 Pengalaman & Organisasi</div>'
+                      + '<div class="detail-title">' + escHtml(el.dataset.nama) + '</div>'
+                      + '<div class="detail-subtitle">📌 ' + escHtml(el.dataset.peran) + '</div>';
+                if (el.dataset.sertifikat) bHtml += '<img class="detail-foto" src="' + el.dataset.sertifikat + '" alt="Sertifikat">';
+                bHtml += '<div class="detail-row"><span class="detail-label">Periode</span><span class="detail-value">' + escHtml(el.dataset.periode) + '</span></div>'
+                       + '<div class="detail-row"><span class="detail-label">Jenis</span><span class="detail-value"><span class="peng-jenis ' + el.dataset.jenisClass + '">' + escHtml(el.dataset.jenisLabel) + '</span></span></div>';
+                if (el.dataset.deskripsi) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.deskripsi) + '</div>';
+
+            } else if (type === 'prestasi') {
+                hHtml = '<div class="detail-type-badge">🏆 Prestasi</div>'
+                      + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
+                if (el.dataset.foto) bHtml += '<img class="detail-foto detail-foto-cover" src="' + el.dataset.foto + '" alt="Foto Prestasi">';
+                bHtml += '<div class="detail-row"><span class="detail-label">Tahun</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
+                if (el.dataset.badge) bHtml += '<div class="detail-row"><span class="detail-label">Kategori</span><span class="detail-value"><span class="td-badge">' + escHtml(el.dataset.badge) + '</span></span></div>';
+                if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
+
+            } else if (type === 'jurnal') {
+                hHtml = '<div class="detail-type-badge">📄 Jurnal & Artikel</div>'
+                      + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
+                bHtml = '<div class="detail-row"><span class="detail-label">Penulis</span><span class="detail-value">' + escHtml(el.dataset.authors) + '</span></div>'
+                      + '<div class="detail-row"><span class="detail-label">Jurnal</span><span class="detail-value">' + escHtml(el.dataset.journal) + '</span></div>'
+                      + '<div class="detail-row"><span class="detail-label">Tahun</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
+                if (el.dataset.indexed) bHtml += '<div class="detail-row"><span class="detail-label">Indeks</span><span class="detail-value">' + escHtml(el.dataset.indexed) + '</span></div>';
+                if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
+                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary">🔗 Buka Jurnal</a></div>';
+
+            } else if (type === 'projek') {
+                var tags = [];
+                try { tags = JSON.parse(el.dataset.tags || '[]'); } catch(e) {}
+                hHtml = '<div class="detail-type-badge">💻 Projek</div>'
+                      + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
+                if (el.dataset.gambar) bHtml += '<img class="detail-foto detail-foto-cover" src="' + el.dataset.gambar + '" alt="Gambar Projek">';
+                if (tags.length) bHtml += '<div class="detail-tags">' + tags.map(function(t){ return '<span class="detail-tag">' + escHtml(t) + '</span>'; }).join('') + '</div>';
+                if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
+                if (el.dataset.demo || el.dataset.github) {
+                    bHtml += '<div class="detail-links">';
+                    if (el.dataset.demo)   bHtml += '<a href="' + el.dataset.demo   + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary">&#8594; Live Demo</a>';
+                    if (el.dataset.github) bHtml += '<a href="' + el.dataset.github + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-secondary">&#9961; GitHub</a>';
+                    bHtml += '</div>';
+                }
+            }
+
+            header.innerHTML = hHtml;
+            body.innerHTML   = bHtml;
+            document.getElementById('detailOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDetailModal(e) {
+            if (e.target === document.getElementById('detailOverlay')) closeDetailModalBtn();
+        }
+        function closeDetailModalBtn() {
+            document.getElementById('detailOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function escHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeDetailModalBtn();
+        });
     </script>
+
+    <!-- ═══ DETAIL MODAL ═══ -->
+    <div class="detail-overlay" id="detailOverlay" onclick="closeDetailModal(event)">
+        <div class="detail-modal" id="detailModal">
+            <button class="detail-close" onclick="closeDetailModalBtn()">✕</button>
+            <div class="detail-header" id="detailHeader"></div>
+            <div class="detail-body" id="detailBody"></div>
+        </div>
+    </div>
 
     @if($profil?->no_whatsapp)
     <!-- ═══ FLOATING WHATSAPP BUTTON ═══ -->
