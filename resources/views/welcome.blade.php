@@ -738,7 +738,7 @@
                         </div>
                         <div class="about-card">
                             <div class="card-label">Lokasi</div>
-                            <div class="card-value">{{ $profil?->lokasi ?? 'Indonesia' }} &#127470;&#127465;</div>
+                            <div class="card-value">{{ $profil?->lokasi ?? 'Indonesia' }}</div>
                         </div>
                         <div class="about-card">
                             <div class="card-label">No. Telpon</div>

@@ -20,9 +20,9 @@
                         @error('nama') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="status">Status</label>
+                        <label for="status">Email</label>
                         <input type="text" id="status" name="status" class="form-control"
-                               value="{{ old('status', $profil->status) }}" placeholder="Tersedia / Full-time / Lainnya">
+                               value="{{ old('status', $profil->status) }}" placeholder="email@contoh.com">
                     </div>
                     <div class="form-group">
                         <label for="lokasi">Lokasi</label>
@@ -30,9 +30,9 @@
                                value="{{ old('lokasi', $profil->lokasi) }}" placeholder="Indonesia">
                     </div>
                     <div class="form-group">
-                        <label for="bahasa">Bahasa</label>
+                        <label for="bahasa">No. Telepon</label>
                         <input type="text" id="bahasa" name="bahasa" class="form-control"
-                               value="{{ old('bahasa', $profil->bahasa) }}" placeholder="ID / EN">
+                               value="{{ old('bahasa', $profil->bahasa) }}" placeholder="+62 812 xxxx xxxx">
                     </div>
                     <div class="form-group full">
                         <label for="bio1">Bio Paragraf 1</label>
