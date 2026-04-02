@@ -695,7 +695,7 @@
                     <h1 class="fade-up d2">
                         <span class="name">Saya Anugrah</span>
                     </h1>
-                    <p class="hero-desc fade-up d3" style="text-align:justify;">Mahasiswa Teknologi Informasi yang berfokus pada pengembangan aplikasi dan sistem. Berpengalaman membangun proyek desktop, web, dan mobile dengan berbagai teknologi modern, serta memiliki minat tinggi dalam pengembangan software dan kolaborasi tim.</p>
+                    <p class="hero-desc fade-up d3" style="text-align:justify;">{{ $profil?->deskripsi_home ?? 'Mahasiswa Teknologi Informasi yang berfokus pada pengembangan aplikasi dan sistem. Berpengalaman membangun proyek desktop, web, dan mobile dengan berbagai teknologi modern, serta memiliki minat tinggi dalam pengembangan software dan kolaborasi tim.' }}</p>
                     <div class="btn-group fade-up d4">
                         <a href="#projek" class="btn btn-primary">&#128640; Lihat Projek</a>
                         <a href="#tentang" class="btn btn-outline">&#128100; Tentang Saya</a>
@@ -824,12 +824,8 @@
                             <div class="stat-label">Prestasi</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">{{ $totalJurnal }}</div>
-                            <div class="stat-label">Jurnal</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">{{ $totalHki }}</div>
-                            <div class="stat-label">HKI</div>
+                            <div class="stat-number">{{ $totalJurnal + $totalHki }}</div>
+                            <div class="stat-label">Publikasi</div>
                         </div>
                     </div>
 
