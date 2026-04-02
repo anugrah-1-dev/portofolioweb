@@ -4,8 +4,8 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h2>📄 Semua Jurnal &amp; Artikel</h2>
-        <a href="{{ route('admin.jurnal.create') }}" class="btn btn-primary">+ Tambah Jurnal</a>
+        <h2><i class="fa-solid fa-file-lines" style="color:var(--accent);font-size:0.95rem;"></i> Semua Jurnal &amp; Artikel</h2>
+        <a href="{{ route('admin.jurnal.create') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Tambah Jurnal</a>
     </div>
     <div style="overflow-x:auto;">
         <table>
@@ -34,7 +34,7 @@
                     <td><span class="td-badge">{{ $item->indexed_by }}</span></td>
                     <td>
                         @if($item->url)
-                        <a href="{{ $item->url }}" target="_blank" style="color:var(--accent);font-size:0.82rem;font-weight:700;text-decoration:none;">🔗 Buka</a>
+                        <a href="{{ $item->url }}" target="_blank" style="color:var(--accent);font-size:0.82rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Buka</a>
                         @else
                         <span style="color:var(--faint);font-size:0.82rem;">—</span>
                         @endif
@@ -42,11 +42,11 @@
                     <td><span style="font-size:0.88rem;color:var(--faint);">{{ $item->urutan }}</span></td>
                     <td>
                         <div class="td-actions">
-                            <a href="{{ route('admin.jurnal.edit', $item) }}" class="btn-sm btn-edit">✏️ Edit</a>
+                            <a href="{{ route('admin.jurnal.edit', $item) }}" class="btn-sm btn-edit"><i class="fa-solid fa-pen"></i> Edit</a>
                             <form method="POST" action="{{ route('admin.jurnal.destroy', $item) }}"
                                   onsubmit="return confirm('Hapus jurnal ini?')">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="btn-sm btn-del">🗑️</button>
+                                <button type="submit" class="btn-sm btn-del"><i class="fa-solid fa-trash"></i></button>
                             </form>
                         </div>
                     </td>
@@ -55,7 +55,7 @@
                 <tr>
                     <td colspan="8">
                         <div class="empty-state">
-                            <div class="empty-icon">📄</div>
+                            <div class="empty-icon"><i class="fa-solid fa-file-lines"></i></div>
                             <p>Belum ada data jurnal. <a href="{{ route('admin.jurnal.create') }}" style="color:var(--primary);font-weight:700;">Tambah sekarang</a></p>
                         </div>
                     </td>

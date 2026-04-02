@@ -5,7 +5,11 @@
 <div style="max-width:720px;">
     <div class="card">
         <div class="card-header">
-            <h2>{{ $item ? '✏️ Edit Prestasi' : '➕ Tambah Prestasi' }}</h2>
+            <h2>
+                @if($item)<i class="fa-solid fa-pen"></i> Edit Prestasi
+                @else<i class="fa-solid fa-plus"></i> Tambah Prestasi
+                @endif
+            </h2>
         </div>
         <div class="card-body">
             <form method="POST" enctype="multipart/form-data"
@@ -48,8 +52,8 @@
                     <div class="form-group">
                         <label for="kategori">Jenis Prestasi</label>
                         <select id="kategori" name="kategori" class="form-control {{ $errors->has('kategori') ? 'is-invalid' : '' }}">
-                            <option value="akademik" {{ old('kategori', $item?->kategori) === 'akademik' ? 'selected' : '' }}>🎓 Prestasi Akademik</option>
-                            <option value="non_akademik" {{ old('kategori', $item?->kategori) === 'non_akademik' ? 'selected' : '' }}>🏆 Prestasi Non-Akademik</option>
+                            <option value="akademik" {{ old('kategori', $item?->kategori) === 'akademik' ? 'selected' : '' }}>Prestasi Akademik</option>
+                            <option value="non_akademik" {{ old('kategori', $item?->kategori) === 'non_akademik' ? 'selected' : '' }}>Prestasi Non-Akademik</option>
                         </select>
                         @error('kategori') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
@@ -66,7 +70,7 @@
                             <div style="margin-top:0.5rem;display:flex;align-items:center;gap:0.5rem;">
                                 <input type="checkbox" name="hapus_foto" id="hapus_foto" value="1">
                                 <label for="hapus_foto" style="font-size:0.82rem;color:var(--danger);font-weight:600;cursor:pointer;">
-                                    🗑️ Hapus foto ini
+                                    <i class="fa-solid fa-trash"></i> Hapus foto ini
                                 </label>
                             </div>
                         </div>
@@ -79,7 +83,7 @@
                              ondragleave="this.style.borderColor='var(--border)'"
                              ondrop="handleDrop(event)">
                             <div id="upload-placeholder">
-                                <div style="font-size:2rem;margin-bottom:0.5rem;">📷</div>
+                                <div style="font-size:2rem;margin-bottom:0.5rem;"><i class="fa-regular fa-image" style="color:var(--faint);"></i></div>
                                 <div style="font-size:0.88rem;color:var(--muted);font-weight:600;">Klik atau drag & drop foto di sini</div>
                                 <div style="font-size:0.78rem;color:var(--faint);margin-top:0.3rem;">JPG, PNG, WebP • Maks 2MB</div>
                             </div>
@@ -101,7 +105,7 @@
 
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">
-                        {{ $item ? '💾 Simpan Perubahan' : '✅ Tambah Prestasi' }}
+                        {!! $item ? '<i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan' : '<i class="fa-solid fa-plus"></i> Tambah Prestasi' !!}
                     </button>
                     <a href="{{ route('admin.prestasi.index') }}" class="btn btn-secondary">Batal</a>
                 </div>

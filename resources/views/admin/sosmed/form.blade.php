@@ -5,7 +5,11 @@
 <div style="max-width:560px;">
     <div class="card">
         <div class="card-header">
-            <h2>{{ $item ? '✏️ Edit Sosial Media' : '➕ Tambah Sosial Media' }}</h2>
+            <h2>
+                @if($item)<i class="fa-solid fa-pen"></i> Edit Sosial Media
+                @else<i class="fa-solid fa-plus"></i> Tambah Sosial Media
+                @endif
+            </h2>
         </div>
         <div class="card-body">
             <form method="POST"
@@ -18,14 +22,14 @@
                         <label for="platform">Platform</label>
                         <select id="platform" name="platform" class="form-control {{ $errors->has('platform') ? 'is-invalid' : '' }}">
                             @foreach([
-                                'instagram' => '📸 Instagram',
-                                'tiktok'    => '🎵 TikTok',
-                                'facebook'  => '📘 Facebook',
-                                'twitter'   => '🐦 Twitter / X',
-                                'youtube'   => '📺 YouTube',
-                                'linkedin'  => '💼 LinkedIn',
-                                'github'    => '🐙 GitHub',
-                                'whatsapp'  => '💬 WhatsApp',
+                                'instagram' => 'Instagram',
+                                'tiktok'    => 'TikTok',
+                                'facebook'  => 'Facebook',
+                                'twitter'   => 'Twitter / X',
+                                'youtube'   => 'YouTube',
+                                'linkedin'  => 'LinkedIn',
+                                'github'    => 'GitHub',
+                                'whatsapp'  => 'WhatsApp',
                             ] as $val => $label)
                             <option value="{{ $val }}" {{ old('platform', $item?->platform) === $val ? 'selected' : '' }}>
                                 {{ $label }}
@@ -57,7 +61,7 @@
 
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">
-                        {{ $item ? '💾 Simpan Perubahan' : '✅ Tambah' }}
+                        {!! $item ? '<i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan' : '<i class="fa-solid fa-plus"></i> Tambah' !!}
                     </button>
                     <a href="{{ route('admin.sosmed.index') }}" class="btn btn-secondary">Batal</a>
                 </div>

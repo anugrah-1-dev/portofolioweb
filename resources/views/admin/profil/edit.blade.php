@@ -5,7 +5,7 @@
 <div style="max-width:720px;">
     <div class="card">
         <div class="card-header">
-            <h2>👤 Edit Profil Tentang Saya</h2>
+            <h2><i class="fa-solid fa-user"></i> Edit Profil Tentang Saya</h2>
         </div>
         <div class="card-body">
             <form method="POST" action="{{ route('admin.profil.update') }}" enctype="multipart/form-data">
@@ -95,7 +95,7 @@
                         @if($profil->cv_file)
                         <div style="margin-bottom:0.75rem;padding:0.75rem 1rem;background:rgba(45,106,79,0.08);border-radius:10px;border:1.5px solid rgba(45,106,79,0.2);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
                             <span style="font-size:0.9rem;color:var(--text);font-weight:600;">
-                                📄 {{ basename($profil->cv_file) }}
+                                <i class="fa-solid fa-file-pdf" style="color:var(--danger);"></i> {{ basename($profil->cv_file) }}
                             </span>
                             <div style="display:flex;gap:0.75rem;align-items:center;">
                                 <a href="{{ Storage::url($profil->cv_file) }}" target="_blank"
@@ -113,14 +113,14 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">💾 Simpan Profil</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Simpan Profil</button>
                 </div>
             </form>
         </div>
     </div>
 
     <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:rgba(13,148,136,0.08);border-radius:12px;border:1.5px solid rgba(13,148,136,0.2);font-size:0.85rem;color:var(--muted);">
-        💡 <strong>Tips:</strong> Untuk mengelola ikon sosial media (Instagram, TikTok, Facebook), buka menu
+        <i class="fa-solid fa-lightbulb" style="color:#f59e0b;"></i> <strong>Tips:</strong> Untuk mengelola ikon sosial media (Instagram, TikTok, Facebook), buka menu
         <a href="{{ route('admin.sosmed.index') }}" style="color:var(--accent);font-weight:700;">Sosial Media</a> di sidebar.
     </div>
 </div>

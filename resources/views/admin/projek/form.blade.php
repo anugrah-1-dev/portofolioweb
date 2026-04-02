@@ -5,7 +5,11 @@
 <div style="max-width:720px;">
     <div class="card">
         <div class="card-header">
-            <h2>{{ $item ? '✏️ Edit Projek' : '➕ Tambah Projek' }}</h2>
+            <h2>
+                @if($item)<i class="fa-solid fa-pen"></i> Edit Projek
+                @else<i class="fa-solid fa-plus"></i> Tambah Projek
+                @endif
+            </h2>
         </div>
         <div class="card-body">
             <form method="POST" enctype="multipart/form-data"
@@ -17,9 +21,9 @@
                     <div class="form-group">
                         <label for="thumb_color">Warna Latar (jika tanpa gambar)</label>
                         <select id="thumb_color" name="thumb_color" class="form-control">
-                            <option value="1" {{ old('thumb_color', $item?->thumb_color) == 1 ? 'selected' : '' }}>🌿 Hijau Muda</option>
-                            <option value="2" {{ old('thumb_color', $item?->thumb_color) == 2 ? 'selected' : '' }}>🩵 Teal Muda</option>
-                            <option value="3" {{ old('thumb_color', $item?->thumb_color) == 3 ? 'selected' : '' }}>💙 Biru-Hijau</option>
+                            <option value="1" {{ old('thumb_color', $item?->thumb_color) == 1 ? 'selected' : '' }}>Hijau Muda</option>
+                            <option value="2" {{ old('thumb_color', $item?->thumb_color) == 2 ? 'selected' : '' }}>Teal Muda</option>
+                            <option value="3" {{ old('thumb_color', $item?->thumb_color) == 3 ? 'selected' : '' }}>Biru-Hijau</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -59,7 +63,7 @@
                             <div style="margin-top:0.5rem;display:flex;align-items:center;gap:0.5rem;">
                                 <input type="checkbox" name="hapus_gambar" id="hapus_gambar" value="1">
                                 <label for="hapus_gambar" style="font-size:0.82rem;color:var(--danger);font-weight:600;cursor:pointer;">
-                                    🗑️ Hapus gambar ini
+                                    <i class="fa-solid fa-trash"></i> Hapus gambar ini
                                 </label>
                             </div>
                         </div>
@@ -71,7 +75,7 @@
                              ondragleave="this.style.borderColor='var(--border)'"
                              ondrop="handleDrop(event)">
                             <div id="upload-placeholder">
-                                <div style="font-size:2rem;margin-bottom:0.5rem;">🖼️</div>
+                                <div style="font-size:2rem;margin-bottom:0.5rem;"><i class="fa-regular fa-image" style="color:var(--faint);"></i></div>
                                 <div style="font-size:0.88rem;color:var(--muted);font-weight:600;">Klik atau drag & drop gambar di sini</div>
                                 <div style="font-size:0.78rem;color:var(--faint);margin-top:0.3rem;">JPG, PNG, WebP • Maks 2MB</div>
                             </div>
@@ -104,13 +108,13 @@
                                 <input type="radio" name="tipe_akses" value="gratis"
                                        onchange="toggleHarga(this)"
                                        {{ old('tipe_akses', $item?->tipe_akses ?? 'gratis') === 'gratis' ? 'checked' : '' }}>
-                                🆓 Gratis
+                                <i class="fa-solid fa-unlock"></i> Gratis
                             </label>
                             <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-weight:600;">
                                 <input type="radio" name="tipe_akses" value="berbayar"
                                        onchange="toggleHarga(this)"
                                        {{ old('tipe_akses', $item?->tipe_akses) === 'berbayar' ? 'checked' : '' }}>
-                                💳 Berbayar (via Midtrans)
+                                <i class="fa-solid fa-credit-card"></i> Berbayar (via Midtrans)
                             </label>
                         </div>
                         <span class="form-hint">Jika berbayar, pengunjung harus membayar untuk mendapatkan link GitHub.</span>
@@ -131,7 +135,7 @@
 
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">
-                        {{ $item ? '💾 Simpan Perubahan' : '✅ Tambah Projek' }}
+                        {!! $item ? '<i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan' : '<i class="fa-solid fa-plus"></i> Tambah Projek' !!}
                     </button>
                     <a href="{{ route('admin.projek.index') }}" class="btn btn-secondary">Batal</a>
                 </div>

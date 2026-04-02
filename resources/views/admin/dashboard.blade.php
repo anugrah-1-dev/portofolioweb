@@ -5,7 +5,9 @@
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-bottom:2rem;">
     <div class="card" style="border-top:3px solid var(--primary);">
         <div class="card-body" style="display:flex;align-items:center;gap:1.25rem;">
-            <div style="font-size:2.5rem;">🏆</div>
+            <div style="width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--primary2));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="fa-solid fa-trophy" style="font-size:1.4rem;color:#fff;"></i>
+            </div>
             <div>
                 <div style="font-size:2rem;font-weight:900;color:var(--primary);">{{ $totalPrestasi }}</div>
                 <div style="font-size:0.8rem;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:1px;">Total Prestasi</div>
@@ -14,7 +16,9 @@
     </div>
     <div class="card" style="border-top:3px solid var(--accent);">
         <div class="card-body" style="display:flex;align-items:center;gap:1.25rem;">
-            <div style="font-size:2.5rem;">💻</div>
+            <div style="width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#0f766e);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="fa-solid fa-laptop-code" style="font-size:1.4rem;color:#fff;"></i>
+            </div>
             <div>
                 <div style="font-size:2rem;font-weight:900;color:var(--accent);">{{ $totalProjek }}</div>
                 <div style="font-size:0.8rem;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:1px;">Total Projek</div>
@@ -23,7 +27,9 @@
     </div>
     <a href="{{ url('/') }}" target="_blank" class="card" style="border-top:3px solid #8aab90;text-decoration:none;">
         <div class="card-body" style="display:flex;align-items:center;gap:1.25rem;">
-            <div style="font-size:2.5rem;">🌿</div>
+            <div style="width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,#52b788,#40916c);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:1.3rem;color:#fff;"></i>
+            </div>
             <div>
                 <div style="font-size:2rem;font-weight:900;color:var(--muted);">Live</div>
                 <div style="font-size:0.8rem;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:1px;">Lihat Portfolio</div>
@@ -36,7 +42,7 @@
     <!-- Recent Prestasi -->
     <div class="card">
         <div class="card-header">
-            <h2>🏆 Prestasi Terbaru</h2>
+            <h2><i class="fa-solid fa-trophy" style="color:var(--gold);font-size:0.95rem;"></i> Prestasi Terbaru</h2>
             <a href="{{ route('admin.prestasi.index') }}" class="btn btn-secondary" style="padding:0.4rem 0.9rem;font-size:0.78rem;">Lihat Semua</a>
         </div>
         <div style="padding:0.5rem 0;">
@@ -57,7 +63,7 @@
     <!-- Recent Projek -->
     <div class="card">
         <div class="card-header">
-            <h2>💻 Projek Terbaru</h2>
+            <h2><i class="fa-solid fa-laptop-code" style="color:var(--accent);font-size:0.95rem;"></i> Projek Terbaru</h2>
             <a href="{{ route('admin.projek.index') }}" class="btn btn-secondary" style="padding:0.4rem 0.9rem;font-size:0.78rem;">Lihat Semua</a>
         </div>
         <div style="padding:0.5rem 0;">

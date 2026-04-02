@@ -12,7 +12,11 @@
 <div class="jurnal-form-wrap">
     <div class="card">
         <div class="card-header">
-            <h2>{{ $item ? '✏️ Edit Jurnal' : '➕ Tambah Jurnal' }}</h2>
+            <h2>
+                @if($item)<i class="fa-solid fa-pen"></i> Edit Jurnal
+                @else<i class="fa-solid fa-plus"></i> Tambah Jurnal
+                @endif
+            </h2>
         </div>
         <div class="card-body">
             <form method="POST"
@@ -77,7 +81,7 @@
 
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">
-                        {{ $item ? '💾 Simpan Perubahan' : '✅ Tambah Jurnal' }}
+                        {!! $item ? '<i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan' : '<i class="fa-solid fa-plus"></i> Tambah Jurnal' !!}
                     </button>
                     <a href="{{ route('admin.jurnal.index') }}" class="btn btn-secondary">Batal</a>
                 </div>

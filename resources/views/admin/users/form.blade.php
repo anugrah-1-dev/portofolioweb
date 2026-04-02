@@ -5,7 +5,11 @@
 <div style="max-width:560px;">
     <div class="card">
         <div class="card-header">
-            <h2>{{ $item ? '✏️ Edit User' : '➕ Tambah User' }}</h2>
+            <h2>
+                @if($item)<i class="fa-solid fa-pen"></i> Edit User
+                @else<i class="fa-solid fa-plus"></i> Tambah User
+                @endif
+            </h2>
             <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">← Kembali</a>
         </div>
         <div class="card-body">
@@ -55,7 +59,7 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">💾 {{ $item ? 'Update User' : 'Simpan User' }}</button>
+                    <button type="submit" class="btn btn-primary">{!! $item ? '<i class="fa-solid fa-floppy-disk"></i> Update User' : '<i class="fa-solid fa-plus"></i> Simpan User' !!}</button>
                     <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Batal</a>
                 </div>
             </form>

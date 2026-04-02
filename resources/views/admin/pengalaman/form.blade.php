@@ -7,7 +7,11 @@
 <div style="max-width:680px;">
     <div class="card">
         <div class="card-header">
-            <h2>{{ $item ? '✏️ Edit Pengalaman' : '➕ Tambah Pengalaman' }}</h2>
+            <h2>
+                @if($item)<i class="fa-solid fa-pen"></i> Edit Pengalaman
+                @else<i class="fa-solid fa-plus"></i> Tambah Pengalaman
+                @endif
+            </h2>
             <a href="{{ route('admin.pengalaman.index') }}" class="btn btn-secondary">← Kembali</a>
         </div>
         <div class="card-body">
@@ -36,7 +40,7 @@
                     <div class="form-group">
                         <label for="jenis">Jenis <span style="color:var(--danger)">*</span></label>
                         <select id="jenis" name="jenis" class="form-control {{ $errors->has('jenis') ? 'is-invalid' : '' }}">
-                            @foreach(['organisasi' => '🏛️ Organisasi', 'kepanitiaan' => '📋 Kepanitiaan', 'komunitas' => '👥 Komunitas', 'magang' => '💼 Magang', 'volunteer' => '🤝 Volunteer', 'lainnya' => '📌 Lainnya'] as $val => $label)
+                            @foreach(['organisasi' => 'Organisasi', 'kepanitiaan' => 'Kepanitiaan', 'komunitas' => 'Komunitas', 'magang' => 'Magang', 'volunteer' => 'Volunteer', 'lainnya' => 'Lainnya'] as $val => $label)
                             <option value="{{ $val }}" {{ old('jenis', $item?->jenis) === $val ? 'selected' : '' }}>{{ $label }}</option>
                             @endforeach
                         </select>
@@ -99,7 +103,7 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">💾 {{ $item ? 'Update Pengalaman' : 'Simpan Pengalaman' }}</button>
+                    <button type="submit" class="btn btn-primary">{!! $item ? '<i class="fa-solid fa-floppy-disk"></i> Update Pengalaman' : '<i class="fa-solid fa-plus"></i> Simpan Pengalaman' !!}</button>
                     <a href="{{ route('admin.pengalaman.index') }}" class="btn btn-secondary">Batal</a>
                 </div>
             </form>

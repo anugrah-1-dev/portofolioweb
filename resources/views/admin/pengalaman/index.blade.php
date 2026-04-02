@@ -6,8 +6,8 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h2>🏢 Semua Pengalaman & Organisasi</h2>
-        <a href="{{ route('admin.pengalaman.create') }}" class="btn btn-primary">+ Tambah Pengalaman</a>
+        <h2><i class="fa-solid fa-building" style="color:var(--primary2);font-size:0.95rem;"></i> Semua Pengalaman &amp; Organisasi</h2>
+        <a href="{{ route('admin.pengalaman.create') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Tambah Pengalaman</a>
     </div>
     <div style="overflow-x:auto;">
         <table>
@@ -34,12 +34,12 @@
                         <span class="td-badge">
                             @php
                                 $jenis_map = [
-                                    'organisasi'  => '🏛️ Organisasi',
-                                    'kepanitiaan' => '📋 Kepanitiaan',
-                                    'komunitas'   => '👥 Komunitas',
-                                    'magang'      => '💼 Magang',
-                                    'volunteer'   => '🤝 Volunteer',
-                                    'lainnya'     => '📌 Lainnya',
+                            'organisasi'  => '<i class="fa-solid fa-building-columns"></i> Organisasi',
+                                    'kepanitiaan' => '<i class="fa-solid fa-clipboard-list"></i> Kepanitiaan',
+                                    'komunitas'   => '<i class="fa-solid fa-people-group"></i> Komunitas',
+                                    'magang'      => '<i class="fa-solid fa-briefcase"></i> Magang',
+                                    'volunteer'   => '<i class="fa-solid fa-handshake-angle"></i> Volunteer',
+                                    'lainnya'     => '<i class="fa-solid fa-ellipsis"></i> Lainnya',
                                 ];
                                 echo $jenis_map[$item->jenis] ?? $item->jenis;
                             @endphp
@@ -59,11 +59,11 @@
                     <td><span style="font-size:0.88rem;color:var(--faint);">{{ $item->urutan }}</span></td>
                     <td>
                         <div class="td-actions">
-                            <a href="{{ route('admin.pengalaman.edit', $item) }}" class="btn-sm btn-edit">✏️ Edit</a>
+                            <a href="{{ route('admin.pengalaman.edit', $item) }}" class="btn-sm btn-edit"><i class="fa-solid fa-pen"></i> Edit</a>
                             <form method="POST" action="{{ route('admin.pengalaman.destroy', $item) }}"
                                   onsubmit="return confirm('Hapus pengalaman ini?')">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="btn-sm btn-del">🗑️</button>
+                                <button type="submit" class="btn-sm btn-del"><i class="fa-solid fa-trash"></i></button>
                             </form>
                         </div>
                     </td>
@@ -72,7 +72,7 @@
                 <tr>
                     <td colspan="7">
                         <div class="empty-state">
-                            <div class="empty-icon">🏢</div>
+                            <div class="empty-icon"><i class="fa-solid fa-building"></i></div>
                             <p>Belum ada data pengalaman. <a href="{{ route('admin.pengalaman.create') }}" style="color:var(--primary);font-weight:700;">Tambah sekarang</a></p>
                         </div>
                     </td>

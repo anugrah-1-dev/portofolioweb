@@ -4,8 +4,8 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h2>🏆 Semua Prestasi</h2>
-        <a href="{{ route('admin.prestasi.create') }}" class="btn btn-primary">+ Tambah Prestasi</a>
+        <h2><i class="fa-solid fa-trophy" style="color:var(--gold);font-size:0.95rem;"></i> Semua Prestasi</h2>
+        <a href="{{ route('admin.prestasi.create') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Tambah Prestasi</a>
     </div>
     <div style="overflow-x:auto;">
         <table>
@@ -30,17 +30,17 @@
                     </td>
                     <td><span style="font-size:0.88rem;font-weight:700;color:var(--muted);">{{ $item->year }}</span></td>
                     <td><span class="td-badge" style="{{ $item->kategori === 'akademik' ? 'background:rgba(13,148,136,0.1);color:var(--accent);border-color:rgba(13,148,136,0.3)' : '' }}">
-                        {{ $item->kategori === 'akademik' ? '🎓 Akademik' : '🏆 Non-Akademik' }}
+                        {{ $item->kategori === 'akademik' ? '<i class="fa-solid fa-graduation-cap"></i> Akademik' : '<i class="fa-solid fa-trophy"></i> Non-Akademik' }}
                     </span></td>
                     <td><span class="td-badge">{{ $item->badge }}</span></td>
                     <td><span style="font-size:0.88rem;color:var(--faint);">{{ $item->urutan }}</span></td>
                     <td>
                         <div class="td-actions">
-                            <a href="{{ route('admin.prestasi.edit', $item) }}" class="btn-sm btn-edit">✏️ Edit</a>
+                            <a href="{{ route('admin.prestasi.edit', $item) }}" class="btn-sm btn-edit"><i class="fa-solid fa-pen"></i> Edit</a>
                             <form method="POST" action="{{ route('admin.prestasi.destroy', $item) }}"
                                   onsubmit="return confirm('Hapus prestasi ini?')">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="btn-sm btn-del">🗑️</button>
+                                <button type="submit" class="btn-sm btn-del"><i class="fa-solid fa-trash"></i></button>
                             </form>
                         </div>
                     </td>
@@ -49,7 +49,7 @@
                 <tr>
                     <td colspan="6">
                         <div class="empty-state">
-                            <div class="empty-icon">🏆</div>
+                            <div class="empty-icon"><i class="fa-solid fa-trophy"></i></div>
                             <p>Belum ada data prestasi. <a href="{{ route('admin.prestasi.create') }}" style="color:var(--primary);font-weight:700;">Tambah sekarang</a></p>
                         </div>
                     </td>

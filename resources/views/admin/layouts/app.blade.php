@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
             --primary:  #2d6a4f;
@@ -93,7 +94,7 @@
             content:''; position:absolute; right:0; top:25%; bottom:25%;
             width:3px; background:#5eead4; border-radius:3px 0 0 3px;
         }
-        .sidebar-nav .nav-icon { font-size:1.15rem; width:24px; text-align:center; flex-shrink:0; }
+        .nav-icon { font-size:1rem; width:24px; text-align:center; flex-shrink:0; color:inherit; }
 
         /* Footer */
         .sidebar-footer {
@@ -246,7 +247,7 @@
 
         /* ── EMPTY STATE ── */
         .empty-state { text-align:center; padding:4rem 2rem; color:var(--faint); }
-        .empty-state .empty-icon { font-size:3.5rem; margin-bottom:1.25rem; }
+        .empty-state .empty-icon { font-size:2.8rem; margin-bottom:1.25rem; color:var(--faint); }
         .empty-state p { font-size:0.95rem; }
 
         /* ── TRANSITIONS ── */
@@ -310,44 +311,44 @@
             <div class="nav-section">Menu</div>
             <a href="{{ route('admin.dashboard') }}"
                class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                <span class="nav-icon">🏠</span> Dashboard
+                <span class="nav-icon"><i class="fa-solid fa-gauge"></i></span> Dashboard
             </a>
             <a href="{{ route('admin.profil.edit') }}"
                class="{{ request()->routeIs('admin.profil.*') ? 'active' : '' }}">
-                <span class="nav-icon">👤</span> Tentang Saya
+                <span class="nav-icon"><i class="fa-solid fa-user"></i></span> Tentang Saya
             </a>
             <a href="{{ route('admin.pengalaman.index') }}"
                class="{{ request()->routeIs('admin.pengalaman.*') ? 'active' : '' }}">
-                <span class="nav-icon">🏢</span> Pengalaman
+                <span class="nav-icon"><i class="fa-solid fa-building"></i></span> Pengalaman
             </a>
             <a href="{{ route('admin.sosmed.index') }}"
                class="{{ request()->routeIs('admin.sosmed.*') ? 'active' : '' }}">
-                <span class="nav-icon">📱</span> Sosial Media
+                <span class="nav-icon"><i class="fa-solid fa-share-nodes"></i></span> Sosial Media
             </a>
             <a href="{{ route('admin.prestasi.index') }}"
                class="{{ request()->routeIs('admin.prestasi.*') ? 'active' : '' }}">
-                <span class="nav-icon">🏆</span> Prestasi
+                <span class="nav-icon"><i class="fa-solid fa-trophy"></i></span> Prestasi
             </a>
             <a href="{{ route('admin.jurnal.index') }}"
                class="{{ request()->routeIs('admin.jurnal.*') ? 'active' : '' }}">
-                <span class="nav-icon">📄</span> Jurnal
+                <span class="nav-icon"><i class="fa-solid fa-file-lines"></i></span> Jurnal
             </a>
             <a href="{{ route('admin.projek.index') }}"
                class="{{ request()->routeIs('admin.projek.*') ? 'active' : '' }}">
-                <span class="nav-icon">💻</span> Projek
+                <span class="nav-icon"><i class="fa-solid fa-laptop-code"></i></span> Projek
             </a>
             <div class="nav-section" style="margin-top:1rem">Lainnya</div>
             <a href="{{ route('admin.users.index') }}"
                class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                <span class="nav-icon">👥</span> Manajemen User
+                <span class="nav-icon"><i class="fa-solid fa-users"></i></span> Manajemen User
             </a>
             <a href="{{ url('/') }}" target="_blank" rel="noopener noreferrer">
-                <span class="nav-icon">🌿</span> Lihat Portfolio
+                <span class="nav-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></span> Lihat Portfolio
             </a>
         </nav>
         <div class="sidebar-footer">
             <div class="user-info">
-                <div class="user-avatar">👤</div>
+                <div class="user-avatar"><i class="fa-solid fa-user" style="color:#fff;font-size:0.95rem;"></i></div>
                 <div>
                     <div class="user-name">{{ auth()->user()->name }}</div>
                     <div class="user-role">Administrator</div>
@@ -355,7 +356,7 @@
             </div>
             <form method="POST" action="{{ route('admin.logout') }}">
                 @csrf
-                <button type="submit" class="btn-logout">🚪 Keluar</button>
+                <button type="submit" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
             </form>
         </div>
     </aside>
@@ -375,16 +376,16 @@
                 </div>
             </div>
             <div class="topbar-right">
-                <a href="{{ url('/') }}" target="_blank" rel="noopener noreferrer" class="view-site-btn">🌿 Lihat Site</a>
+                <a href="{{ url('/') }}" target="_blank" rel="noopener noreferrer" class="view-site-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat Site</a>
             </div>
         </div>
 
         <div class="content">
             @if(session('success'))
-                <div class="alert alert-success">✅ {{ session('success') }}</div>
+                <div class="alert alert-success"><i class="fa-solid fa-circle-check"></i> {{ session('success') }}</div>
             @endif
             @if(session('error'))
-                <div class="alert alert-error">❌ {{ session('error') }}</div>
+                <div class="alert alert-error"><i class="fa-solid fa-circle-xmark"></i> {{ session('error') }}</div>
             @endif
 
             @yield('content')

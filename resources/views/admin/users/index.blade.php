@@ -4,8 +4,8 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h2>👥 Daftar User Login</h2>
-        <a href="{{ route('admin.users.create') }}" class="btn btn-primary">+ Tambah User</a>
+        <h2><i class="fa-solid fa-users" style="color:var(--primary2);font-size:0.95rem;"></i> Daftar User Login</h2>
+        <a href="{{ route('admin.users.create') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Tambah User</a>
     </div>
     <div style="overflow-x:auto;">
         <table>
@@ -30,12 +30,12 @@
                     <td><span style="font-size:0.85rem;color:var(--faint);">{{ $user->created_at->format('d M Y, H:i') }}</span></td>
                     <td>
                         <div class="td-actions">
-                            <a href="{{ route('admin.users.edit', $user) }}" class="btn-sm btn-edit">✏️ Edit</a>
+                            <a href="{{ route('admin.users.edit', $user) }}" class="btn-sm btn-edit"><i class="fa-solid fa-pen"></i> Edit</a>
                             @if($user->id !== auth()->id())
                             <form method="POST" action="{{ route('admin.users.destroy', $user) }}"
                                   onsubmit="return confirm('Hapus user {{ $user->name }}?')">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="btn-sm btn-del">🗑️</button>
+                                <button type="submit" class="btn-sm btn-del"><i class="fa-solid fa-trash"></i></button>
                             </form>
                             @endif
                         </div>
@@ -45,7 +45,7 @@
                 <tr>
                     <td colspan="4">
                         <div class="empty-state">
-                            <div class="empty-icon">👥</div>
+                            <div class="empty-icon"><i class="fa-solid fa-users"></i></div>
                             <p>Belum ada user. <a href="{{ route('admin.users.create') }}" style="color:var(--primary);font-weight:700;">Tambah sekarang</a></p>
                         </div>
                     </td>

@@ -6,6 +6,7 @@
     <title>Admin Login – Portofolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
             --primary: #2d6a4f; --primary2: #40916c; --accent: #0d9488;
@@ -78,11 +79,11 @@
                 <div class="logo-text">ANUGRAH TEJO MALIKI</div>
                 <div class="logo-sub">Admin Panel</div>
             </div>
-            <h2>Selamat Datang 👋</h2>
+            <h2>Selamat Datang <i class="fa-solid fa-hand-wave" style="color:#f59e0b;"></i></h2>
             <p class="subtitle">Masuk untuk mengelola konten portfolio.</p>
 
             @if($errors->any())
-                <div class="alert-error">❌ {{ $errors->first() }}</div>
+                <div class="alert-error"><i class="fa-solid fa-circle-xmark"></i> {{ $errors->first() }}</div>
             @endif
 
             <form method="POST" action="{{ route('admin.login.post') }}">
@@ -102,7 +103,7 @@
                     <input type="checkbox" id="remember" name="remember">
                     <label for="remember">Ingat saya</label>
                 </div>
-                <button type="submit" class="btn-login">🌿 Masuk ke Admin</button>
+                <button type="submit" class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> Masuk ke Admin</button>
             </form>
             <div class="back-link">
                 <a href="{{ url('/') }}">← Kembali ke Portfolio</a>
