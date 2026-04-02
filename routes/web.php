@@ -21,6 +21,7 @@ Route::get('/cv', [PublicController::class, 'downloadCv'])->name('cv.download');
 // ── Payment ──
 Route::post('/projek/{id}/beli', [PaymentController::class, 'beli'])->name('projek.beli');
 Route::get('/projek/order/{token}', [PaymentController::class, 'sukses'])->name('projek.sukses');
+Route::get('/projek/order/{token}/download', [PaymentController::class, 'download'])->name('projek.download');
 Route::post('/projek/order/{token}/batal', [PaymentController::class, 'batal'])->name('projek.batal');
 Route::post('/webhook/midtrans', [PaymentController::class, 'webhook'])->name('webhook.midtrans');
 

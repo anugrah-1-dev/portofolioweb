@@ -166,7 +166,7 @@
                                 <i class="fa-solid fa-credit-card"></i> Berbayar (via Midtrans)
                             </label>
                         </div>
-                        <span class="form-hint">Jika berbayar, pengunjung harus membayar untuk mendapatkan link GitHub.</span>
+                        <span class="form-hint">Jika berbayar, pengunjung harus membayar untuk dapat mendownload file ZIP source code.</span>
                     </div>
                     <div class="form-group full" id="harga-group"
                          style="{{ (old('tipe_akses', $item?->tipe_akses ?? 'gratis') === 'berbayar') ? '' : 'display:none;' }}">
@@ -179,6 +179,46 @@
                         </div>
                         <span class="form-hint">Minimum Rp 1.000. Contoh: 50000 = Rp 50.000</span>
                         @error('harga') <div class="invalid-feedback" style="display:block">{{ $message }}</div> @enderror
+
+                        {{-- ZIP FILE SOURCE CODE --}}
+                        <label style="margin-top:1.25rem;display:flex;align-items:center;gap:0.5rem;">
+                            <i class="fa-solid fa-file-zipper" style="color:var(--accent);"></i>
+                            File ZIP Source Code
+                            <span style="font-weight:400;color:var(--faint);font-size:0.8rem;">(maks 100MB, format .zip)</span>
+                        </label>
+
+                        @if($item?->zip_file)
+                        <div id="current-zip" style="display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;background:rgba(13,148,136,0.08);border:1.5px solid rgba(13,148,136,0.25);border-radius:10px;margin-top:0.5rem;">
+                            <i class="fa-solid fa-file-zipper" style="font-size:1.5rem;color:var(--accent);flex-shrink:0;"></i>
+                            <div style="flex:1;min-width:0;">
+                                <div style="font-weight:700;font-size:0.87rem;color:var(--fg);word-break:break-all;">{{ basename($item->zip_file) }}</div>
+                                <div style="font-size:0.75rem;color:var(--muted);margin-top:2px;">File ZIP tersimpan di server</div>
+                            </div>
+                            <label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;font-size:0.8rem;color:var(--danger);font-weight:700;flex-shrink:0;">
+                                <input type="checkbox" name="hapus_zip" value="1" id="hapus_zip">
+                                <i class="fa-solid fa-trash"></i> Hapus
+                            </label>
+                        </div>
+                        @endif
+
+                        <div id="zip-upload-area"
+                             onclick="document.getElementById('zip_file_input').click()"
+                             ondragover="event.preventDefault();this.style.borderColor='var(--primary)'"
+                             ondragleave="this.style.borderColor='var(--border)'"
+                             ondrop="handleZipDrop(event)"
+                             style="border:2px dashed var(--border);border-radius:12px;padding:1.25rem;text-align:center;cursor:pointer;transition:border-color 0.3s;background:var(--bg);margin-top:0.6rem;">
+                            <div id="zip-placeholder">
+                                <div style="font-size:1.8rem;margin-bottom:0.4rem;color:var(--faint);"><i class="fa-solid fa-file-zipper"></i></div>
+                                <div style="font-size:0.85rem;color:var(--muted);font-weight:600;">Klik atau drag & drop file ZIP di sini</div>
+                                <div style="font-size:0.75rem;color:var(--faint);margin-top:0.25rem;">Format .zip • Maks 100MB</div>
+                            </div>
+                            <div id="zip-selected" style="display:none;align-items:center;gap:0.6rem;justify-content:center;">
+                                <i class="fa-solid fa-file-zipper" style="font-size:1.5rem;color:var(--accent);"></i>
+                                <span id="zip-filename" style="font-weight:700;font-size:0.88rem;color:var(--fg);word-break:break-all;"></span>
+                            </div>
+                        </div>
+                        <input type="file" id="zip_file_input" name="zip_file" accept=".zip" style="display:none;" onchange="previewZip(this)">
+                        @error('zip_file') <div class="invalid-feedback" style="display:block">{{ $message }}</div> @enderror
                     </div>
                 </div>
 
@@ -264,6 +304,26 @@ function toggleHapusGaleri(btn) {
     item.style.border = cb.checked ? '2px solid rgba(220,38,38,0.9)' : '2px solid var(--border)';
     btn.style.background = cb.checked ? 'rgba(220,38,38,1)' : 'rgba(220,38,38,0.85)';
     btn.title = cb.checked ? 'Batal hapus' : 'Tandai untuk dihapus';
+}
+function previewZip(input) {
+    if (input.files && input.files[0]) {
+        document.getElementById('zip-placeholder').style.display = 'none';
+        const sel = document.getElementById('zip-selected');
+        sel.style.display = 'flex';
+        document.getElementById('zip-filename').textContent = input.files[0].name;
+    }
+}
+function handleZipDrop(event) {
+    event.preventDefault();
+    document.getElementById('zip-upload-area').style.borderColor = 'var(--border)';
+    const file = event.dataTransfer.files[0];
+    if (file && file.name.endsWith('.zip')) {
+        const input = document.getElementById('zip_file_input');
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        input.files = dt.files;
+        previewZip(input);
+    }
 }
 </script>
 @endsection

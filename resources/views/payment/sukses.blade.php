@@ -119,8 +119,30 @@
             transition: background 0.25s;
             word-break: break-all;
         }
-        .github-link:hover { background: var(--accent); }
-        .status-badge { display:inline-flex;align-items:center;gap:0.4rem;padding:0.25rem 0.8rem;border-radius:20px;font-size:0.72rem;font-weight:700;margin-bottom:0.65rem; }
+        .github-link:hover { background: var(--accent); }        .download-box {
+            background: rgba(13,148,136,0.08);
+            border: 1.5px solid rgba(13,148,136,0.3);
+            border-radius: 14px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .download-box p { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
+        .download-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            padding: 0.85rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.25s;
+            box-shadow: 0 4px 18px rgba(45,106,79,0.3);
+        }
+        .download-link:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(45,106,79,0.5); }        .status-badge { display:inline-flex;align-items:center;gap:0.4rem;padding:0.25rem 0.8rem;border-radius:20px;font-size:0.72rem;font-weight:700;margin-bottom:0.65rem; }
         .status-paid    { background:rgba(34,197,94,0.12);color:var(--success);border:1px solid rgba(34,197,94,0.25); }
         .status-pending { background:rgba(245,158,11,0.12);color:var(--warning);border:1px solid rgba(245,158,11,0.25); }
         .status-expired { background:rgba(239,68,68,0.12);color:var(--danger);border:1px solid rgba(239,68,68,0.25); }
@@ -158,7 +180,15 @@
         </div>
     </div>
 
-    @if($projek->github_url)
+    @if($projek->zip_file)
+    <div class="download-box">
+        <p><i class="fa-solid fa-circle-info" style="color:var(--accent);"></i> Download source code projek di bawah. Link download ini hanya untuk kamu.</p>
+        <a href="{{ route('projek.download', $order->token) }}" class="download-link">
+            <i class="fa-solid fa-file-zipper" style="font-size:1.1rem;"></i>
+            Download Source Code (.zip)
+        </a>
+    </div>
+    @elseif($projek->github_url)
     <div class="github-box">
         <p><i class="fa-solid fa-triangle-exclamation" style="color:var(--warning);"></i> Simpan link ini — halaman ini tidak bisa diakses ulang.</p>
         <a href="{{ $projek->github_url }}" target="_blank" rel="noopener noreferrer" class="github-link">
@@ -215,7 +245,7 @@
             </button>
         </form>
     </div>
-    <p class="refresh-note"><i class="fa-solid fa-circle-info"></i> Link GitHub tersedia otomatis setelah pembayaran dikonfirmasi.</p>
+    <p class="refresh-note"><i class="fa-solid fa-circle-info"></i> Link download tersedia otomatis setelah pembayaran dikonfirmasi.</p>
 
     @elseif($order->status === 'cancelled')
     {{-- ── CANCELLED ── --}}

@@ -6,6 +6,7 @@ use App\Models\Projek;
 use App\Models\ProjekOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PaymentController extends Controller
@@ -97,6 +98,24 @@ class PaymentController extends Controller
         $projek = $order->projek;
 
         return view('payment.sukses', compact('order', 'projek'));
+    }
+
+    public function download($token)
+    {
+        $order = ProjekOrder::where('token', $token)->firstOrFail();
+
+        if ($order->status !== 'paid') {
+            abort(403, 'Akses ditolak. Pembayaran belum dikonfirmasi.');
+        }
+
+        $projek = $order->projek;
+
+        if (!$projek->zip_file || !Storage::disk('local')->exists($projek->zip_file)) {
+            abort(404, 'File ZIP belum tersedia. Hubungi penjual.');
+        }
+
+        $filename = Str::slug($projek->title) . '.zip';
+        return Storage::disk('local')->download($projek->zip_file, $filename);
     }
 
     public function batal(Request $request, $token)

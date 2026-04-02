@@ -11,7 +11,7 @@ class Projek extends Model
 
     protected $fillable = [
         'title', 'description', 'tags', 'thumb_color', 'gambar', 'galeri',
-        'demo_url', 'github_url', 'tipe_akses', 'harga', 'urutan',
+        'demo_url', 'github_url', 'zip_file', 'tipe_akses', 'harga', 'urutan',
     ];
 
     protected $casts = ['tags' => 'array', 'galeri' => 'array'];

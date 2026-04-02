@@ -30,6 +30,7 @@ class ProjekController extends Controller
             'gambar'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'galeri_baru'   => 'nullable|array|max:10',
             'galeri_baru.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
+            'zip_file'      => 'nullable|file|mimes:zip|max:102400',
             'demo_url'      => 'nullable|url|max:255',
             'github_url'    => 'nullable|url|max:255',
             'tipe_akses'    => 'required|in:gratis,berbayar',
@@ -49,6 +50,11 @@ class ProjekController extends Controller
             }
         }
 
+        $zipPath = null;
+        if ($request->hasFile('zip_file')) {
+            $zipPath = $request->file('zip_file')->store('projek-zips', 'local');
+        }
+
         Projek::create([
             'title'       => $data['title'],
             'description' => $data['description'],
@@ -56,6 +62,7 @@ class ProjekController extends Controller
             'thumb_color' => $data['thumb_color'],
             'gambar'      => $gambar,
             'galeri'      => count($galeri) ? $galeri : null,
+            'zip_file'    => $zipPath,
             'demo_url'    => $data['demo_url'] ?? null,
             'github_url'  => $data['github_url'] ?? null,
             'tipe_akses'  => $data['tipe_akses'],
@@ -82,6 +89,8 @@ class ProjekController extends Controller
             'galeri_baru'   => 'nullable|array|max:10',
             'galeri_baru.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
             'hapus_galeri'  => 'nullable|array',
+            'zip_file'      => 'nullable|file|mimes:zip|max:102400',
+            'hapus_zip'     => 'nullable|boolean',
             'demo_url'      => 'nullable|url|max:255',
             'github_url'    => 'nullable|url|max:255',
             'tipe_akses'    => 'required|in:gratis,berbayar',
@@ -113,6 +122,16 @@ class ProjekController extends Controller
             }
         }
 
+        // Handle ZIP file
+        $zipPath = $projek->zip_file;
+        if ($request->hasFile('zip_file')) {
+            if ($projek->zip_file) Storage::disk('local')->delete($projek->zip_file);
+            $zipPath = $request->file('zip_file')->store('projek-zips', 'local');
+        } elseif ($request->boolean('hapus_zip')) {
+            if ($projek->zip_file) Storage::disk('local')->delete($projek->zip_file);
+            $zipPath = null;
+        }
+
         $projek->update([
             'title'       => $data['title'],
             'description' => $data['description'],
@@ -120,6 +139,7 @@ class ProjekController extends Controller
             'thumb_color' => $data['thumb_color'],
             'gambar'      => $gambarPath,
             'galeri'      => count($currentGaleri) ? array_values($currentGaleri) : null,
+            'zip_file'    => $zipPath,
             'demo_url'    => $data['demo_url'] ?? null,
             'github_url'  => $data['github_url'] ?? null,
             'tipe_akses'  => $data['tipe_akses'],
@@ -136,6 +156,7 @@ class ProjekController extends Controller
         foreach ($projek->galeri ?? [] as $g) {
             Storage::disk('public')->delete($g);
         }
+        if ($projek->zip_file) Storage::disk('local')->delete($projek->zip_file);
         $projek->delete();
         return redirect()->route('admin.projek.index')->with('success', 'Projek berhasil dihapus!');
     }
