@@ -5,6 +5,10 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\SecurityHeaders;
 
+// Delete stale route cache unconditionally so it's never served stale after git pull.
+// Route loading from web.php has negligible overhead for a portfolio-sized app.
+@unlink(__DIR__ . '/cache/routes-v7.php');
+
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
