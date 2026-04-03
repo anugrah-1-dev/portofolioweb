@@ -53,6 +53,11 @@
         .form-check { display:flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem; }
         .form-check input { accent-color:var(--primary); width:16px; height:16px; cursor:pointer; }
         .form-check label { font-size:0.84rem; color:var(--muted); margin:0; cursor:pointer; }
+        .input-pw-wrap { position:relative; display:flex; align-items:center; }
+        .input-pw-wrap .form-control { padding-right:2.8rem; }
+        .pw-toggle { position:absolute; right:0.85rem; background:none; border:none; cursor:pointer;
+            color:var(--faint); font-size:1rem; padding:0; line-height:1; transition:color 0.2s; }
+        .pw-toggle:hover { color:var(--primary); }
         .btn-login {
             width:100%; padding:0.9rem;
             background:linear-gradient(135deg,var(--primary),var(--primary2));
@@ -97,9 +102,14 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password"
-                           class="form-control" placeholder="••••••••"
-                           autocomplete="current-password" required>
+                    <div class="input-pw-wrap">
+                        <input type="password" id="password" name="password"
+                               class="form-control" placeholder="••••••••"
+                               autocomplete="current-password" required>
+                        <button type="button" class="pw-toggle" onclick="togglePw('password','pwIcon1')" tabindex="-1" aria-label="Tampilkan/sembunyikan password">
+                            <i id="pwIcon1" class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="form-check">
                     <input type="checkbox" id="remember" name="remember">
@@ -112,5 +122,18 @@
             </div>
         </div>
     </div>
+    <script>
+    function togglePw(inputId, iconId) {
+        var inp = document.getElementById(inputId);
+        var ico = document.getElementById(iconId);
+        if (inp.type === 'password') {
+            inp.type = 'text';
+            ico.classList.replace('fa-eye','fa-eye-slash');
+        } else {
+            inp.type = 'password';
+            ico.classList.replace('fa-eye-slash','fa-eye');
+        }
+    }
+    </script>
 </body>
 </html>

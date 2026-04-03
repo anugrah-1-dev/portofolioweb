@@ -234,6 +234,11 @@
         .form-hint { font-size:0.78rem; color:var(--faint); }
         .form-actions { display:flex; gap:1rem; margin-top:1.75rem; padding-top:1.75rem; border-top:1.5px solid var(--border); }
         .invalid-feedback { font-size:0.82rem; color:#dc2626; margin-top:3px; font-weight:600; }
+        .input-pw-wrap { position:relative; display:flex; align-items:center; }
+        .input-pw-wrap .form-control { padding-right:2.8rem; }
+        .pw-toggle { position:absolute; right:0.85rem; background:none; border:none; cursor:pointer;
+            color:var(--faint); font-size:1rem; padding:0; line-height:1; transition:color 0.2s; }
+        .pw-toggle:hover { color:var(--primary); }
 
         /* ── PAGINATION ── */
         .pagination { display:flex; gap:0.5rem; align-items:center; }

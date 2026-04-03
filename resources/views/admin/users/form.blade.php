@@ -44,17 +44,27 @@
                             <span style="font-weight:400;color:var(--faint)">(kosongkan jika tidak ingin mengubah)</span>
                             @endif
                         </label>
-                        <input type="password" id="password" name="password"
-                               class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
-                               placeholder="Minimal 8 karakter" autocomplete="new-password">
+                        <div class="input-pw-wrap">
+                            <input type="password" id="password" name="password"
+                                   class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
+                                   placeholder="Minimal 8 karakter" autocomplete="new-password">
+                            <button type="button" class="pw-toggle" onclick="togglePw('password','pwIcon1')" tabindex="-1" aria-label="Tampilkan/sembunyikan password">
+                                <i id="pwIcon1" class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
                         @error('password') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
                     <div class="form-group full">
                         <label for="password_confirmation">Konfirmasi Password @if(!$item)<span style="color:var(--danger)">*</span>@endif</label>
-                        <input type="password" id="password_confirmation" name="password_confirmation"
-                               class="form-control"
-                               placeholder="Ulangi password" autocomplete="new-password">
+                        <div class="input-pw-wrap">
+                            <input type="password" id="password_confirmation" name="password_confirmation"
+                                   class="form-control"
+                                   placeholder="Ulangi password" autocomplete="new-password">
+                            <button type="button" class="pw-toggle" onclick="togglePw('password_confirmation','pwIcon2')" tabindex="-1" aria-label="Tampilkan/sembunyikan konfirmasi password">
+                                <i id="pwIcon2" class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -66,4 +76,19 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+function togglePw(inputId, iconId) {
+    var inp = document.getElementById(inputId);
+    var ico = document.getElementById(iconId);
+    if (inp.type === 'password') {
+        inp.type = 'text';
+        ico.classList.replace('fa-eye','fa-eye-slash');
+    } else {
+        inp.type = 'password';
+        ico.classList.replace('fa-eye-slash','fa-eye');
+    }
+}
+</script>
+@endpush
 @endsection
