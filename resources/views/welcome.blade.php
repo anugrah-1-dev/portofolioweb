@@ -251,14 +251,14 @@
         #pengalaman { background:var(--bg); }
         .peng-timeline { position:relative; padding-left:2.5rem; }
         .peng-timeline::before {
-            content:''; position:absolute; left:0.6rem; top:0; bottom:0; width:4px;
+            content:''; position:absolute; left:0.75rem; top:0; bottom:0; width:4px;
             background:var(--primary);
             border-radius:2px;
         }
         .peng-item { position:relative; margin-bottom:2rem; }
         .peng-item:last-child { margin-bottom:0; }
         .peng-dot {
-            position:absolute; left:-2.15rem; top:1.1rem;
+            position:absolute; left:-2.1875rem; top:1.1rem;
             width:18px; height:18px; border-radius:50%;
             background:linear-gradient(135deg,var(--primary),var(--accent));
             border:3px solid var(--bg); box-shadow:0 0 0 2px var(--primary2);
@@ -517,6 +517,7 @@
             .footer-brand { grid-column:auto; }
             .footer-bottom { justify-content:center; text-align:center; flex-direction:column; }
             .peng-timeline { padding-left:2rem; }
+            .peng-timeline .peng-dot { left:-1.6875rem; }
             .peng-head { flex-direction:column; align-items:flex-start; gap:0.5rem; }
             .j-card { grid-template-columns:1fr; gap:0.75rem; }
             .j-right { flex-direction:row; align-items:center; flex-wrap:wrap; gap:0.5rem; }
@@ -541,6 +542,7 @@
             .prestasi-grid { grid-template-columns:1fr; }
             .footer-grid { grid-template-columns:1fr; gap:1.5rem; }
             .peng-timeline { padding-left:1.75rem; }
+            .peng-timeline .peng-dot { left:-1.4375rem; }
             .peng-card { padding:1.1rem 1.25rem; }
             .tech-tags { grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); }
             .section-header { margin-bottom:2.5rem; }
