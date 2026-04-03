@@ -353,7 +353,8 @@
         .hki-desc { font-size:0.95rem; color:var(--faint); line-height:1.7; margin-top:0.5rem; }
         .hki-jenis-badge { padding:0.3rem 0.85rem; border-radius:20px; font-size:0.72rem; font-weight:700;
             background:rgba(13,148,136,0.10); color:var(--accent); border:1.5px solid rgba(13,148,136,0.22);
-            text-transform:uppercase; letter-spacing:1px; white-space:nowrap; }
+            text-transform:uppercase; letter-spacing:1px; white-space:nowrap;
+            display:inline-flex; align-items:center; gap:0.35rem; }
         .hki-link-btn { display:inline-flex; align-items:center; gap:0.4rem; margin-top:0.75rem;
             padding:0.4rem 1rem; border-radius:20px; font-size:0.78rem; font-weight:700;
             background:linear-gradient(135deg,var(--accent),var(--primary)); color:#fff; text-decoration:none; transition:all 0.3s; }
@@ -1046,18 +1047,27 @@
                         <div class="hki-title">{{ $item->title }}</div>
                         <div class="hki-meta">{{ $item->authors }}</div>
                         @if($item->nomor_pencatatan)
-                        <div class="hki-nomor"><i class="fa-solid fa-hashtag" style="opacity:0.5;font-size:0.75em;"></i> {{ $item->nomor_pencatatan }}</div>
+                        <div class="hki-nomor"><i class="fa-solid fa-fingerprint" style="opacity:0.5;font-size:0.75em;"></i> {{ $item->nomor_pencatatan }}</div>
                         @endif
                         @if($item->description)
                         <div class="hki-desc">{{ Str::limit($item->description, 150) }}</div>
                         @endif
                         @if($item->sertifikat_file)
-                        <a href="{{ Storage::url($item->sertifikat_file) }}" target="_blank" rel="noopener noreferrer" class="hki-link-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-file-arrow-down"></i> Lihat Sertifikat</a>
+                        <a href="{{ Storage::url($item->sertifikat_file) }}" target="_blank" rel="noopener noreferrer" class="hki-link-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-scroll"></i> Lihat Sertifikat</a>
                         @endif
                     </div>
                     <div class="hki-right">
                         <span class="hki-year">{{ $item->year }}</span>
-                        <span class="hki-jenis-badge">{{ $item->jenis_hki }}</span>
+                        <span class="hki-jenis-badge">
+                            @php
+                                $jenis = strtolower($item->jenis_hki ?? '');
+                                $jenisIcon = str_contains($jenis, 'paten') ? 'fa-lightbulb'
+                                    : (str_contains($jenis, 'merek') ? 'fa-tag'
+                                    : (str_contains($jenis, 'desain') ? 'fa-pen-ruler'
+                                    : 'fa-copyright'));
+                            @endphp
+                            <i class="fa-solid {{ $jenisIcon }}"></i> {{ $item->jenis_hki }}
+                        </span>
                     </div>
                 </div>
                 @empty
