@@ -296,20 +296,25 @@
         .ptab-btn:hover:not(.active) { border-color:var(--primary2); color:var(--primary); }
         .ptab-panel { display:none; }
         .ptab-panel.active { display:block; }
-        .prestasi-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:1.5rem; }
-        .p-card { background:var(--surface); border:1.5px solid var(--border); border-radius:20px; padding:2rem; transition:all 0.35s; position:relative; overflow:hidden; }
+        .prestasi-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:1.5rem; align-items:start; }
+        .p-card { background:var(--surface); border:1.5px solid var(--border); border-radius:20px; padding:0; transition:all 0.35s; position:relative; overflow:hidden; display:flex; flex-direction:column; }
         .p-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px;
-            background:var(--primary);
-            opacity:0; transition:opacity 0.35s; }
-        .p-card:hover { transform:translateY(-8px); border-color:var(--primary2); box-shadow:0 20px 50px rgba(45,106,79,0.15); }
+            background:linear-gradient(90deg,var(--primary),var(--accent));
+            opacity:0; transition:opacity 0.35s; z-index:1; }
+        .p-card:hover { transform:translateY(-6px); border-color:var(--primary2); box-shadow:0 20px 50px rgba(20,94,56,0.15); }
         .p-card:hover::before { opacity:1; }
         .p-icon { font-size:2.5rem; margin-bottom:1.25rem; }
-        .p-foto { width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:1.25rem; display:block; }
-        .p-year { font-size:0.72rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:3px; margin-bottom:0.6rem; }
-        .p-title { font-size:1.25rem; font-weight:700; color:var(--text); margin-bottom:0.75rem; line-height:1.45; }
-        .p-desc { font-size:1rem; color:var(--muted); line-height:1.75; }
-        .p-badge { display:inline-block; margin-top:1.25rem; padding:0.3rem 0.9rem; border-radius:20px; font-size:0.72rem; font-weight:700;
-            background:rgba(45,106,79,0.10); color:var(--primary); border:1.5px solid rgba(45,106,79,0.22); text-transform:uppercase; letter-spacing:1px; }
+        .p-foto { width:100%; height:190px; object-fit:cover; border-radius:0; display:block; flex-shrink:0; }
+        .p-card-body { padding:1.5rem 1.75rem; display:flex; flex-direction:column; flex:1; }
+        .p-header { display:flex; justify-content:space-between; align-items:center; gap:0.75rem; margin-bottom:0.5rem; flex-wrap:wrap; }
+        .p-year { font-size:0.7rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:3px; }
+        .p-title { font-size:1.1rem; font-weight:800; color:var(--text); margin-bottom:0.6rem; line-height:1.45; }
+        .p-desc { font-size:0.93rem; color:var(--muted); line-height:1.72; flex:1;
+            display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+        .p-footer { margin-top:1.1rem; padding-top:0.85rem; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:0.5rem; flex-wrap:wrap; }
+        .p-badge { display:inline-flex; align-items:center; gap:0.3rem; padding:0.28rem 0.85rem; border-radius:20px; font-size:0.7rem; font-weight:700;
+            background:rgba(20,94,56,0.10); color:var(--primary); border:1.5px solid rgba(20,94,56,0.22); text-transform:uppercase; letter-spacing:1px; }
+        .p-more { font-size:0.78rem; color:var(--accent); font-weight:600; display:flex; align-items:center; gap:0.25rem; }
 
         /* ─── JURNAL ─── */
         #jurnal { background:var(--bg); }
@@ -939,10 +944,15 @@
                         @if($item->foto)
                         <img class="p-foto" src="{{ Storage::url($item->foto) }}" alt="{{ $item->title }}">
                         @endif
-                        <div class="p-year">{{ $item->year }}</div>
-                        <div class="p-title">{{ $item->title }}</div>
-                        <div class="p-desc">{{ $item->description }}</div>
-                        <span class="p-badge">{{ $item->badge }}</span>
+                        <div class="p-card-body">
+                            <div class="p-year"><i class="fa-solid fa-calendar-days" style="margin-right:0.3rem;"></i>{{ $item->year }}</div>
+                            <div class="p-title">{{ $item->title }}</div>
+                            <div class="p-desc">{{ $item->description }}</div>
+                            <div class="p-footer">
+                                <span class="p-badge"><i class="fa-solid fa-trophy"></i> {{ $item->badge }}</span>
+                                <span class="p-more"><i class="fa-solid fa-circle-info"></i> Detail</span>
+                            </div>
+                        </div>
                     </div>
                     @empty
                     <p style="color:var(--faint);font-size:0.9rem;">Belum ada data prestasi akademik.</p>
@@ -965,10 +975,15 @@
                         @if($item->foto)
                         <img class="p-foto" src="{{ Storage::url($item->foto) }}" alt="{{ $item->title }}">
                         @endif
-                        <div class="p-year">{{ $item->year }}</div>
-                        <div class="p-title">{{ $item->title }}</div>
-                        <div class="p-desc">{{ $item->description }}</div>
-                        <span class="p-badge">{{ $item->badge }}</span>
+                        <div class="p-card-body">
+                            <div class="p-year"><i class="fa-solid fa-calendar-days" style="margin-right:0.3rem;"></i>{{ $item->year }}</div>
+                            <div class="p-title">{{ $item->title }}</div>
+                            <div class="p-desc">{{ $item->description }}</div>
+                            <div class="p-footer">
+                                <span class="p-badge"><i class="fa-solid fa-trophy"></i> {{ $item->badge }}</span>
+                                <span class="p-more"><i class="fa-solid fa-circle-info"></i> Detail</span>
+                            </div>
+                        </div>
                     </div>
                     @empty
                     <p style="color:var(--faint);font-size:0.9rem;">Belum ada data prestasi non-akademik.</p>
