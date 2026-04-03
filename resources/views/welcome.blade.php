@@ -24,22 +24,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <style>
         :root {
-            --bg:        #f4f0e8;
-            --bg2:       #ebf4ee;
+            --bg:        #f0faf4;
+            --bg2:       #dff2e8;
             --surface:   #ffffff;
-            --border:    #c9dfc9;
-            --primary:   #2d6a4f;
-            --primary2:  #40916c;
-            --accent:    #0d9488;
-            --accentlt:  #5eead4;
-            --text:      #1a2e20;
-            --muted:     #52735c;
-            --faint:     #8aab90;
+            --border:    #95ceaa;
+            --primary:   #145e38;
+            --primary2:  #1a8a50;
+            --accent:    #0aaa88;
+            --accentlt:  #34d9b0;
+            --text:      #09200f;
+            --muted:     #2e5e40;
+            --faint:     #5e8c6d;
 
             /* Corak / Batik accent */
-            --batik1: #b5883e;
-            --batik2: #8a5c1e;
-            --batik3: #d4a843;
+            --batik1: #c9810f;
+            --batik2: #96580e;
+            --batik3: #e8a520;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior:smooth; }
@@ -73,8 +73,8 @@
         /* ─── NAVBAR ─── */
         nav {
             position:fixed; top:0; left:0; right:0; z-index:1000;
-            background:rgba(244,240,232,0.92); backdrop-filter:blur(20px);
-            border-bottom:1px solid rgba(45,106,79,0.12);
+            background:rgba(240,250,244,0.92); backdrop-filter:blur(20px);
+            border-bottom:1px solid rgba(20,94,56,0.15);
             transition:all 0.3s;
         }
         .nav-corak {
@@ -121,9 +121,9 @@
         /* ─── HOME ─── */
         #home {
             background:
-                radial-gradient(ellipse at 10% 40%, rgba(45,106,79,0.10) 0%, transparent 55%),
-                radial-gradient(ellipse at 85% 20%, rgba(13,148,136,0.08) 0%, transparent 55%),
-                radial-gradient(ellipse at 50% 90%, rgba(64,145,108,0.07) 0%, transparent 50%),
+                radial-gradient(ellipse at 10% 40%, rgba(20,94,56,0.13) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 20%, rgba(10,170,136,0.10) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 90%, rgba(26,138,80,0.09) 0%, transparent 50%),
                 var(--bg);
         }
         .home-dots {
@@ -137,8 +137,8 @@
         .home-decor .shape-2 { width:200px; height:200px; background:var(--accent); bottom:10%; left:-40px; animation:floatShape 10s ease-in-out infinite 2s; }
         .home-decor .shape-3 { width:120px; height:120px; background:var(--primary2); top:55%; right:12%; border-radius:20px; transform:rotate(45deg); animation:floatShape 8s ease-in-out infinite 4s; }
         .home-orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.10; pointer-events:none; z-index:0; }
-        .home-orb-1 { width:400px; height:400px; background:#0d9488; top:-100px; left:-100px; }
-        .home-orb-2 { width:300px; height:300px; background:#2d6a4f; bottom:-50px; right:-80px; }
+        .home-orb-1 { width:400px; height:400px; background:#0aaa88; top:-100px; left:-100px; }
+        .home-orb-2 { width:300px; height:300px; background:#145e38; bottom:-50px; right:-80px; }
         .home-wave { position:absolute; bottom:0; left:0; width:100%; z-index:0; }
         .home-wave svg { display:block; width:100%; height:auto; }
 
@@ -152,10 +152,10 @@
         .hero-desc { font-size:1.1rem; color:var(--muted); line-height:1.85; margin-bottom:2.5rem; max-width:480px; }
         .btn-group { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:3rem; }
         .btn { padding:0.85rem 2rem; border-radius:50px; font-weight:700; font-size:0.93rem; text-decoration:none; transition:all 0.3s; cursor:pointer; border:none; display:inline-flex; align-items:center; gap:0.4rem; font-family:inherit; }
-        .btn-primary { background:linear-gradient(135deg,var(--primary),var(--primary2)); color:#fff; box-shadow:0 6px 20px rgba(45,106,79,0.30); }
-        .btn-primary:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(45,106,79,0.45); }
-        .btn-outline { background:transparent; color:var(--primary); border:2px solid rgba(45,106,79,0.4); }
-        .btn-outline:hover { background:rgba(45,106,79,0.08); border-color:var(--primary); transform:translateY(-3px); }
+        .btn-primary { background:linear-gradient(135deg,var(--primary),var(--primary2)); color:#fff; box-shadow:0 6px 20px rgba(20,94,56,0.35); }
+        .btn-primary:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(20,94,56,0.50); }
+        .btn-outline { background:transparent; color:var(--primary); border:2px solid rgba(20,94,56,0.45); }
+        .btn-outline:hover { background:rgba(20,94,56,0.09); border-color:var(--primary); transform:translateY(-3px); }
         .btn-whatsapp { background:linear-gradient(135deg,#25d366,#128c7e); color:#fff; box-shadow:0 6px 20px rgba(37,211,102,0.30); }
         .btn-whatsapp:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(37,211,102,0.45); }
         .hero-stats { display:flex; gap:2.5rem; }
@@ -167,7 +167,7 @@
         .avatar-bg-pattern { position:absolute; width:380px; height:380px; top:50%; left:50%; border:2px dashed rgba(45,106,79,0.12); border-radius:24px; transform:translate(-50%,-50%) rotate(8deg); }
         .avatar-bg-pattern-2 { position:absolute; width:400px; height:400px; top:50%; left:50%; border:2px dashed rgba(13,148,136,0.08); border-radius:28px; transform:translate(-50%,-50%) rotate(-5deg); }
         .avatar-wrap { position:relative; width:340px; height:340px; }
-        .avatar-ring { position:absolute; inset:-6px; border-radius:22px; background:linear-gradient(135deg,#2d6a4f,#b5883e,#0d9488); box-shadow:0 20px 60px rgba(45,106,79,0.25); }
+        .avatar-ring { position:absolute; inset:-6px; border-radius:22px; background:linear-gradient(135deg,#145e38,#c9810f,#0aaa88); box-shadow:0 20px 60px rgba(20,94,56,0.30); }
         .avatar-core { position:absolute; inset:4px; border-radius:18px; background:#fff; display:flex; align-items:center; justify-content:center; font-size:6rem; overflow:hidden; }
         .avatar-core img { display:block; width:100%; height:100%; object-fit:cover; }
         .float-tag { position:absolute; background:rgba(255,255,255,0.94); backdrop-filter:blur(10px); border:1.5px solid rgba(45,106,79,0.25); border-radius:12px; padding:0.55rem 1.1rem; font-size:0.8rem; font-weight:700; color:var(--primary); white-space:nowrap; }
@@ -185,8 +185,8 @@
         /* ─── TENTANG ─── */
         #tentang { background:linear-gradient(160deg,var(--bg) 0%,var(--bg2) 100%); }
         .tentang-orb { position:absolute; border-radius:50%; filter:blur(90px); opacity:0.07; pointer-events:none; z-index:0; }
-        .tentang-orb-1 { width:350px; height:350px; background:#0d9488; top:10%; right:-80px; }
-        .tentang-orb-2 { width:250px; height:250px; background:#2d6a4f; bottom:5%; left:-60px; }
+        .tentang-orb-1 { width:350px; height:350px; background:#0aaa88; top:10%; right:-80px; }
+        .tentang-orb-2 { width:250px; height:250px; background:#145e38; bottom:5%; left:-60px; }
         #tentang .container { position:relative; z-index:1; }
         .about-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:5rem; align-items:start; }
         .about-info { position:relative; padding-left:1.5rem; }
