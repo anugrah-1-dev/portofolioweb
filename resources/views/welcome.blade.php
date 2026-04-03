@@ -600,11 +600,10 @@
         .detail-subtitle { font-size:0.95rem;color:var(--primary2);font-weight:700;margin-top:0.45rem; }
         .detail-body { padding:1.6rem 2.25rem 2rem; }
         .detail-foto {
-            width:100%;max-height:240px;object-fit:contain;
+            width:100%;max-height:360px;object-fit:contain;
             border-radius:14px;border:1.5px solid var(--border);
             margin-bottom:1.35rem;background:var(--bg);padding:8px;display:block;
         }
-        .detail-foto-cover { object-fit:cover!important;max-height:220px; }
         .detail-row { display:flex;gap:0.6rem;align-items:baseline;margin-bottom:0.7rem;flex-wrap:wrap; }
         .detail-label { font-size:0.75rem;font-weight:800;color:var(--faint);text-transform:uppercase;letter-spacing:1.5px;min-width:88px;flex-shrink:0; }
         .detail-value { font-size:0.93rem;color:var(--text);font-weight:500;flex:1; }
@@ -1289,7 +1288,7 @@
             } else if (type === 'prestasi') {
                 hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-trophy"></i> Prestasi</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
-                if (el.dataset.foto) bHtml += '<img class="detail-foto detail-foto-cover" src="' + el.dataset.foto + '" alt="Foto Prestasi">';
+                if (el.dataset.foto) bHtml += '<img class="detail-foto" src="' + el.dataset.foto + '" alt="Foto Prestasi">';
                 bHtml += '<div class="detail-row"><span class="detail-label">Tahun</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
                 if (el.dataset.badge) bHtml += '<div class="detail-row"><span class="detail-label">Kategori</span><span class="detail-value"><span class="td-badge">' + escHtml(el.dataset.badge) + '</span></span></div>';
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
