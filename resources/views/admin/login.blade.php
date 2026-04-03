@@ -92,12 +92,14 @@
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email"
                            class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                           value="{{ old('email') }}" placeholder="admin@admin.com" required autofocus>
+                           value="{{ old('email') }}" placeholder="admin@admin.com"
+                           autocomplete="email" required autofocus>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password"
-                           class="form-control" placeholder="••••••••" required>
+                           class="form-control" placeholder="••••••••"
+                           autocomplete="current-password" required>
                 </div>
                 <div class="form-check">
                     <input type="checkbox" id="remember" name="remember">
