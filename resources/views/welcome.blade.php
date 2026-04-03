@@ -623,6 +623,13 @@
         .detail-link-secondary:hover { border-color:var(--primary);color:var(--primary);transform:translateY(-1px); }
         .detail-link-buy { background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff!important;box-shadow:0 4px 18px rgba(45,106,79,0.35);flex:1;justify-content:center;font-size:0.92rem;border:none; }
         .detail-link-buy:hover { transform:translateY(-2px);box-shadow:0 8px 28px rgba(45,106,79,0.55); }
+        .detail-img-wrap { position:relative;margin-bottom:1.35rem; }
+        .detail-img-wrap .detail-foto { margin-bottom:0; }
+        .detail-dl-btn { display:flex;align-items:center;justify-content:center;gap:0.45rem;
+            width:100%;padding:0.5rem;margin-top:0.5rem;border-radius:10px;font-size:0.82rem;font-weight:700;
+            background:var(--bg2);color:var(--primary);border:1.5px solid var(--border);
+            text-decoration:none;transition:all 0.25s; }
+        .detail-dl-btn:hover { background:var(--primary);color:#fff;border-color:var(--primary);transform:translateY(-1px); }
         .detail-price-tag { display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.9rem;border-radius:20px;background:rgba(13,148,136,0.12);border:1.5px solid rgba(13,148,136,0.28);color:var(--accent);font-size:0.9rem;font-weight:800;margin-top:0.55rem; }
         /* Payment form modal */
         .beli-field-label { font-size:0.77rem;font-weight:700;color:var(--muted);display:block;margin-bottom:0.4rem;letter-spacing:0.3px;text-transform:uppercase; }
@@ -1295,7 +1302,7 @@
                 hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-briefcase"></i> Pengalaman & Organisasi</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.nama) + '</div>'
                       + '<div class="detail-subtitle">📌 ' + escHtml(el.dataset.peran) + '</div>';
-                if (el.dataset.sertifikat) bHtml += '<img class="detail-foto" src="' + el.dataset.sertifikat + '" alt="Sertifikat">';
+                if (el.dataset.sertifikat) bHtml += '<div class="detail-img-wrap"><img class="detail-foto" src="' + el.dataset.sertifikat + '" alt="Sertifikat"><a class="detail-dl-btn" href="' + el.dataset.sertifikat + '" download="sertifikat.jpg"><i class="fa-solid fa-download"></i> Unduh Gambar</a></div>';
                 bHtml += '<div class="detail-row"><span class="detail-label">Periode</span><span class="detail-value">' + escHtml(el.dataset.periode) + '</span></div>'
                        + '<div class="detail-row"><span class="detail-label">Jenis</span><span class="detail-value"><span class="peng-jenis ' + el.dataset.jenisClass + '">' + escHtml(el.dataset.jenisLabel) + '</span></span></div>';
                 if (el.dataset.deskripsi) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.deskripsi) + '</div>';
@@ -1303,7 +1310,7 @@
             } else if (type === 'prestasi') {
                 hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-trophy"></i> Prestasi</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
-                if (el.dataset.foto) bHtml += '<img class="detail-foto" src="' + el.dataset.foto + '" alt="Foto Prestasi">';
+                if (el.dataset.foto) bHtml += '<div class="detail-img-wrap"><img class="detail-foto" src="' + el.dataset.foto + '" alt="Foto Prestasi"><a class="detail-dl-btn" href="' + el.dataset.foto + '" download="prestasi.jpg"><i class="fa-solid fa-download"></i> Unduh Gambar</a></div>';
                 bHtml += '<div class="detail-row"><span class="detail-label">Tahun</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
                 if (el.dataset.badge) bHtml += '<div class="detail-row"><span class="detail-label">Kategori</span><span class="detail-value"><span class="td-badge">' + escHtml(el.dataset.badge) + '</span></span></div>';
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
