@@ -606,7 +606,7 @@
         .detail-row { display:flex;gap:0.6rem;align-items:baseline;margin-bottom:0.7rem;flex-wrap:wrap; }
         .detail-label { font-size:0.75rem;font-weight:800;color:var(--faint);text-transform:uppercase;letter-spacing:1.5px;min-width:88px;flex-shrink:0; }
         .detail-value { font-size:0.93rem;color:var(--text);font-weight:500;flex:1; }
-        .detail-desc { font-size:0.97rem;color:var(--muted);line-height:1.85;margin-top:0.85rem;white-space:pre-line; }
+        .detail-desc { font-size:0.97rem;color:var(--muted);line-height:1.85;margin-top:0.85rem;white-space:pre-line;text-align:justify; }
         .detail-tags { display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.65rem; }
         .detail-tag { padding:0.25rem 0.8rem;border-radius:20px;font-size:0.78rem;font-weight:700;background:rgba(45,106,79,0.08);color:var(--primary);border:1.5px solid rgba(45,106,79,0.18); }
         .detail-links { display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.35rem;padding-top:1.25rem;border-top:1.5px solid var(--border); }
