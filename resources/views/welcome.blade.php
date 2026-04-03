@@ -258,7 +258,7 @@
         .peng-item { position:relative; margin-bottom:2rem; }
         .peng-item:last-child { margin-bottom:0; }
         .peng-dot {
-            position:absolute; left:-2.1875rem; top:1.1rem;
+            position:absolute; left:-2.1875rem; top:50%; transform:translateY(-50%);
             width:18px; height:18px; border-radius:50%;
             background:linear-gradient(135deg,var(--primary),var(--accent));
             border:3px solid var(--bg); box-shadow:0 0 0 2px var(--primary2);
