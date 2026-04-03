@@ -1276,7 +1276,7 @@
             let hHtml = '', bHtml = '';
 
             if (type === 'pengalaman') {
-                hHtml = '<div class="detail-type-badge">🏢 Pengalaman & Organisasi</div>'
+                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-briefcase"></i> Pengalaman & Organisasi</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.nama) + '</div>'
                       + '<div class="detail-subtitle">📌 ' + escHtml(el.dataset.peran) + '</div>';
                 if (el.dataset.sertifikat) bHtml += '<img class="detail-foto" src="' + el.dataset.sertifikat + '" alt="Sertifikat">';
@@ -1285,7 +1285,7 @@
                 if (el.dataset.deskripsi) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.deskripsi) + '</div>';
 
             } else if (type === 'prestasi') {
-                hHtml = '<div class="detail-type-badge">🏆 Prestasi</div>'
+                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-trophy"></i> Prestasi</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
                 if (el.dataset.foto) bHtml += '<img class="detail-foto detail-foto-cover" src="' + el.dataset.foto + '" alt="Foto Prestasi">';
                 bHtml += '<div class="detail-row"><span class="detail-label">Tahun</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
@@ -1293,24 +1293,24 @@
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
 
             } else if (type === 'jurnal') {
-                hHtml = '<div class="detail-type-badge">📄 Jurnal & Artikel</div>'
+                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-newspaper"></i> Jurnal & Artikel</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
                 bHtml = '<div class="detail-row"><span class="detail-label">Penulis</span><span class="detail-value">' + escHtml(el.dataset.authors) + '</span></div>'
                       + '<div class="detail-row"><span class="detail-label">Jurnal</span><span class="detail-value">' + escHtml(el.dataset.journal) + '</span></div>'
                       + '<div class="detail-row"><span class="detail-label">Tahun</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
                 if (el.dataset.indexed) bHtml += '<div class="detail-row"><span class="detail-label">Indeks</span><span class="detail-value">' + escHtml(el.dataset.indexed) + '</span></div>';
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
-                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary">🔗 Buka Jurnal</a></div>';
+                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Jurnal</a></div>';
 
             } else if (type === 'hki') {
-                hHtml = '<div class="detail-type-badge">📜 HKI &amp; Paten</div>'
+                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-certificate"></i> HKI &amp; Paten</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
                 bHtml = '<div class="detail-row"><span class="detail-label">Pemegang Hak</span><span class="detail-value">' + escHtml(el.dataset.authors) + '</span></div>'
                       + '<div class="detail-row"><span class="detail-label">Jenis</span><span class="detail-value"><span class="td-badge">' + escHtml(el.dataset.jenis) + '</span></span></div>'
                       + '<div class="detail-row"><span class="detail-label">Tahun</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
                 if (el.dataset.nomor) bHtml += '<div class="detail-row"><span class="detail-label">No. Pencatatan</span><span class="detail-value" style="font-family:monospace;">' + escHtml(el.dataset.nomor) + '</span></div>';
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
-                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary">� Lihat Sertifikat</a></div>';
+                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary"><i class="fa-solid fa-scroll"></i> Lihat Sertifikat</a></div>';
 
             } else if (type === 'projek') {
                 var tags = [];
