@@ -185,9 +185,9 @@
 
         /* ─── TENTANG ─── */
         #tentang { background:#edfff5; }
-        .tentang-orb { position:absolute; border-radius:50%; filter:blur(75px); opacity:0.22; --op:0.22; pointer-events:none; z-index:0; animation:orbPulse 9s ease-in-out infinite; }
-        .tentang-orb-1 { width:380px; height:380px; background:#2d8a5e; top:8%; right:-80px; }
-        .tentang-orb-2 { width:280px; height:280px; background:#0aaa88; bottom:5%; left:-60px; }
+        .tentang-orb { position:absolute; border-radius:50%; filter:blur(90px); opacity:0.30; --op:0.30; pointer-events:none; z-index:0; animation:orbPulse 9s ease-in-out infinite; }
+        .tentang-orb-1 { width:420px; height:420px; background:#a8dfc7; top:8%; right:-80px; }
+        .tentang-orb-2 { width:300px; height:300px; background:#b2e6d4; bottom:5%; left:-60px; }
         #tentang .container { position:relative; z-index:1; }
         .about-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:5rem; align-items:start; }
         .about-info { position:relative; padding-left:1.5rem; }
@@ -1062,8 +1062,8 @@
 
     <!-- ═══ PENGALAMAN ═══ -->
     <section id="pengalaman">
-        <div class="sec-glow" style="--op:0.09;width:360px;height:360px;background:#1a7a50;opacity:0.09;top:-90px;right:-60px;"></div>
-        <div class="sec-glow" style="--op:0.10;width:290px;height:290px;background:#0aaa88;opacity:0.10;bottom:8%;left:-50px;"></div>
+        <div class="sec-glow" style="--op:0.30;width:400px;height:400px;background:#a5d8c0;opacity:0.30;top:-90px;right:-60px;"></div>
+        <div class="sec-glow" style="--op:0.25;width:320px;height:320px;background:#b8e2ce;opacity:0.25;bottom:8%;left:-50px;"></div>
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Contribution History</span>
@@ -1134,8 +1134,8 @@
 
     <!-- ═══ PRESTASI ═══ -->
     <section id="prestasi">
-        <div class="sec-glow" style="--op:0.09;width:380px;height:380px;background:#20aa72;opacity:0.09;top:-100px;right:-70px;"></div>
-        <div class="sec-glow" style="--op:0.08;width:280px;height:280px;background:#16c77d;opacity:0.08;bottom:10%;left:-55px;"></div>
+        <div class="sec-glow" style="--op:0.28;width:400px;height:400px;background:#b0e2cc;opacity:0.28;top:-100px;right:-70px;"></div>
+        <div class="sec-glow" style="--op:0.22;width:300px;height:300px;background:#a8dfc4;opacity:0.22;bottom:10%;left:-55px;"></div>
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Achievements</span>
@@ -1221,8 +1221,8 @@
 
     <!-- ═══ JURNAL ═══ -->
     <section id="jurnal">
-        <div class="sec-glow" style="--op:0.10;width:340px;height:340px;background:#0f7a50;opacity:0.10;top:-90px;left:-50px;"></div>
-        <div class="sec-glow" style="--op:0.09;width:280px;height:280px;background:#0aaa88;opacity:0.09;bottom:12%;right:-40px;"></div>
+        <div class="sec-glow" style="--op:0.30;width:360px;height:360px;background:#a5dcc4;opacity:0.30;top:-90px;left:-50px;"></div>
+        <div class="sec-glow" style="--op:0.25;width:300px;height:300px;background:#b2e8d2;opacity:0.25;bottom:12%;right:-40px;"></div>
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Scientific Publications</span>
@@ -1271,8 +1271,8 @@
 
     <!-- ═══ HKI ═══ -->
     <section id="hki">
-        <div class="sec-glow" style="--op:0.10;width:360px;height:360px;background:#0d9e8b;opacity:0.10;top:-80px;right:-60px;"></div>
-        <div class="sec-glow" style="--op:0.08;width:300px;height:300px;background:#22d3c8;opacity:0.08;bottom:8%;left:-55px;"></div>
+        <div class="sec-glow" style="--op:0.28;width:380px;height:380px;background:#a8e0d0;opacity:0.28;top:-80px;right:-60px;"></div>
+        <div class="sec-glow" style="--op:0.22;width:310px;height:310px;background:#b5e8da;opacity:0.22;bottom:8%;left:-55px;"></div>
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Intellectual Property</span>
@@ -1333,8 +1333,8 @@
 
     <!-- ═══ PROJEK ═══ -->
     <section id="projek">
-        <div class="sec-glow" style="--op:0.09;width:380px;height:380px;background:#145e38;opacity:0.09;top:-100px;right:-70px;"></div>
-        <div class="sec-glow" style="--op:0.08;width:300px;height:300px;background:#2d8a5e;opacity:0.08;bottom:10%;left:-50px;"></div>
+        <div class="sec-glow" style="--op:0.28;width:400px;height:400px;background:#a8d8bc;opacity:0.28;top:-100px;right:-70px;"></div>
+        <div class="sec-glow" style="--op:0.22;width:310px;height:310px;background:#bce5cc;opacity:0.22;bottom:10%;left:-50px;"></div>
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">My Work</span>
