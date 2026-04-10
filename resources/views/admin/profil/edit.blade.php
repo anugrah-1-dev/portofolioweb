@@ -78,6 +78,25 @@
                         <span class="form-hint">Format: JPG, PNG, WEBP. Maks: 2MB. Foto akan tampil di bagian Home.</span>
                     </div>
 
+                    {{-- Foto Profil 2 (Badge Card) --}}
+                    <div class="form-group full">
+                        <label for="foto2">Foto Profil 2 (Badge Card Home)</label>
+                        @if($profil->foto2)
+                        <div style="margin-bottom:0.75rem;">
+                            <img src="{{ Storage::url($profil->foto2) }}" alt="Foto Badge"
+                                 style="width:120px;height:120px;object-fit:cover;border-radius:50%;border:3px solid var(--border);">
+                            <div style="margin-top:0.5rem;">
+                                <label style="font-size:0.85rem;color:var(--muted);cursor:pointer;">
+                                    <input type="checkbox" name="hapus_foto2" value="1"> Hapus foto 2
+                                </label>
+                            </div>
+                        </div>
+                        @endif
+                        <input type="file" id="foto2" name="foto2" class="form-control" accept="image/*">
+                        @error('foto2') <div class="invalid-feedback" style="display:block">{{ $message }}</div> @enderror
+                        <span class="form-hint">Format: JPG, PNG, WEBP. Maks: 2MB. Foto yang tampil di kartu badge Home. Jika kosong, otomatis pakai Foto Profil.</span>
+                    </div>
+
                     {{-- Kata Penyemangat --}}
                     <div class="form-group full">
                         <label for="kata_penyemangat_raw">Kata Penyemangat (Floating Tags Home)</label>

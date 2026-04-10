@@ -40,6 +40,7 @@ class ProfilController extends Controller
             'bahasa'               => 'nullable|string|max:100',
             'keahlian_raw'         => 'nullable|string',
             'foto'                 => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'foto2'                => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'kata_penyemangat_raw' => 'nullable|string',
             'no_whatsapp'          => 'nullable|string|max:20',
             'cv_file'              => 'nullable|file|mimes:pdf,doc,docx|max:5120',
@@ -74,6 +75,22 @@ class ProfilController extends Controller
                 Storage::disk('public')->delete($profil->foto);
             }
             $updateData['foto'] = null;
+        }
+
+        // Handle foto2 upload
+        if ($request->hasFile('foto2')) {
+            if ($profil->foto2) {
+                Storage::disk('public')->delete($profil->foto2);
+            }
+            $updateData['foto2'] = $request->file('foto2')->store('profil', 'public');
+        }
+
+        // Handle foto2 removal
+        if ($request->boolean('hapus_foto2')) {
+            if ($profil->foto2) {
+                Storage::disk('public')->delete($profil->foto2);
+            }
+            $updateData['foto2'] = null;
         }
 
         // Handle CV upload

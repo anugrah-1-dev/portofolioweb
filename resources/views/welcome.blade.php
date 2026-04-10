@@ -121,22 +121,30 @@
         /* ─── HOME ─── */
         #home {
             background:
-                radial-gradient(ellipse at 10% 40%, rgba(20,94,56,0.13) 0%, transparent 55%),
-                radial-gradient(ellipse at 85% 20%, rgba(10,170,136,0.10) 0%, transparent 55%),
-                radial-gradient(ellipse at 50% 90%, rgba(26,138,80,0.09) 0%, transparent 50%),
-                var(--bg);
+                radial-gradient(ellipse at 10% 40%, rgba(10,170,136,0.25) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 20%, rgba(10,170,136,0.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 90%, rgba(26,138,80,0.20) 0%, transparent 50%),
+                linear-gradient(160deg,#071a0e 0%,#0b1f13 60%,#091a0f 100%);
         }
+        /* ── Hero dark-bg text overrides ── */
+        #home .greeting { color:#d4a84b !important; }
+        #home .hero-desc { color:rgba(210,242,222,0.78) !important; }
+        #home .hero-role-badge { background:rgba(94,234,212,0.10); color:#5eead4; border-color:rgba(94,234,212,0.22); }
+        #home .hero-role-dot { background:rgba(255,255,255,0.25); }
+        #home .hero-quick-stats { border-top-color:rgba(255,255,255,0.08); }
+        #home .hero-qs-label { color:rgba(255,255,255,0.40); }
+        #home .hero-qs-divider { background:rgba(255,255,255,0.09); }
         .home-dots {
             position:absolute; inset:0; pointer-events:none; z-index:0;
-            background-image:radial-gradient(circle, rgba(45,106,79,0.07) 1.8px, transparent 1.8px);
+            background-image:radial-gradient(circle, rgba(94,234,212,0.10) 1.8px, transparent 1.8px);
             background-size:36px 36px;
         }
         .home-decor { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
-        .home-decor .shape { position:absolute; border-radius:50%; opacity:0.07; }
-        .home-decor .shape-1 { width:350px; height:350px; background:var(--primary); top:-80px; right:-60px; animation:floatShape 12s ease-in-out infinite; }
-        .home-decor .shape-2 { width:200px; height:200px; background:var(--accent); bottom:10%; left:-40px; animation:floatShape 10s ease-in-out infinite 2s; }
-        .home-decor .shape-3 { width:120px; height:120px; background:var(--primary2); top:55%; right:12%; border-radius:20px; transform:rotate(45deg); animation:floatShape 8s ease-in-out infinite 4s; }
-        .home-orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.10; pointer-events:none; z-index:0; }
+        .home-decor .shape { position:absolute; border-radius:50%; opacity:0.10; }
+        .home-decor .shape-1 { width:350px; height:350px; background:var(--accent); top:-80px; right:-60px; animation:floatShape 12s ease-in-out infinite; }
+        .home-decor .shape-2 { width:200px; height:200px; background:var(--primary); bottom:10%; left:-40px; animation:floatShape 10s ease-in-out infinite 2s; }
+        .home-decor .shape-3 { width:120px; height:120px; background:var(--accentlt); top:55%; right:12%; border-radius:20px; transform:rotate(45deg); animation:floatShape 8s ease-in-out infinite 4s; }
+        .home-orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.20; pointer-events:none; z-index:0; }
         .home-orb-1 { width:400px; height:400px; background:#0aaa88; top:-100px; left:-100px; }
         .home-orb-2 { width:300px; height:300px; background:#145e38; bottom:-50px; right:-80px; }
         .home-wave { position:absolute; bottom:0; left:0; width:100%; z-index:0; }
@@ -870,8 +878,8 @@
         </div>
         <div class="home-wave">
             <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,60 C360,100 720,20 1080,60 C1260,80 1380,40 1440,50 L1440,100 L0,100Z" fill="rgba(235,244,238,0.6)"/>
-                <path d="M0,75 C300,95 600,55 900,75 C1100,85 1300,65 1440,70 L1440,100 L0,100Z" fill="rgba(235,244,238,0.4)"/>
+                <path d="M0,60 C360,100 720,20 1080,60 C1260,80 1380,40 1440,50 L1440,100 L0,100Z" fill="#f0faf4"/>
+                <path d="M0,75 C300,95 600,55 900,75 C1100,85 1300,65 1440,70 L1440,100 L0,100Z" fill="rgba(240,250,244,0.75)"/>
             </svg>
         </div>
         <div class="container">
@@ -963,7 +971,9 @@
                     <!-- Second photo card badge -->
                     <div class="hero-photo-badge">
                         <div class="hpb-img">
-                            @if($profil?->foto)
+                            @if($profil?->foto2)
+                            <img src="{{ Storage::url($profil->foto2) }}" alt="{{ $profil->nama }}">
+                            @elseif($profil?->foto)
                             <img src="{{ Storage::url($profil->foto) }}" alt="{{ $profil->nama }}">
                             @else
                             &#128104;&#8205;&#128187;
