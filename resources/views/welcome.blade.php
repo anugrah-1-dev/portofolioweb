@@ -45,12 +45,12 @@
         html { scroll-behavior:smooth; }
         body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; font-size:17px; }
 
-        /* ─── CORAK / BATIK PATTERN SVG (reusable bg) ─── */
+        /* ─── CORAK / BATIK PATTERN SVG (reusable bg) — kawung motif ─── */
         .corak-bg {
-            position:absolute; inset:0; pointer-events:none; z-index:0; opacity:0.032;
+            position:absolute; inset:0; pointer-events:none; z-index:0; opacity:0.060;
             background-image:
-                url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232d6a4f' fill-opacity='1'%3E%3Cpath d='M32 0 L40 16 L32 8 L24 16z'/%3E%3Cpath d='M0 32 L16 40 L8 32 L16 24z'/%3E%3Cpath d='M64 32 L48 24 L56 32 L48 40z'/%3E%3Cpath d='M32 64 L24 48 L32 56 L40 48z'/%3E%3Ccircle cx='32' cy='32' r='3'/%3E%3Ccircle cx='8' cy='8' r='1.5'/%3E%3Ccircle cx='56' cy='8' r='1.5'/%3E%3Ccircle cx='8' cy='56' r='1.5'/%3E%3Ccircle cx='56' cy='56' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            background-size:64px 64px;
+                url("data:image/svg+xml,%3Csvg width='90' height='90' viewBox='0 0 90 90' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cellipse cx='45' cy='23' rx='13' ry='20' stroke='%232d6a4f' stroke-width='1.3'/%3E%3Cellipse cx='45' cy='67' rx='13' ry='20' stroke='%232d6a4f' stroke-width='1.3'/%3E%3Cellipse cx='23' cy='45' rx='20' ry='13' stroke='%232d6a4f' stroke-width='1.3'/%3E%3Cellipse cx='67' cy='45' rx='20' ry='13' stroke='%232d6a4f' stroke-width='1.3'/%3E%3Ccircle cx='45' cy='45' r='5' stroke='%23c9810f' stroke-width='1.6'/%3E%3Crect x='5' y='5' width='7' height='7' transform='rotate(45 8.5 8.5)' fill='%23c9810f' fill-opacity='0.85'/%3E%3Crect x='78' y='5' width='7' height='7' transform='rotate(45 81.5 8.5)' fill='%23c9810f' fill-opacity='0.85'/%3E%3Crect x='5' y='78' width='7' height='7' transform='rotate(45 8.5 81.5)' fill='%23c9810f' fill-opacity='0.85'/%3E%3Crect x='78' y='78' width='7' height='7' transform='rotate(45 81.5 81.5)' fill='%23c9810f' fill-opacity='0.85'/%3E%3C/g%3E%3C/svg%3E");
+            background-size:90px 90px;
         }
         .corak-border {
             position:absolute; left:0; right:0; height:3px; z-index:2;
@@ -109,6 +109,7 @@
         .container { max-width:1100px; width:100%; margin:0 auto; }
         .section-header { text-align:center; margin-bottom:4rem; position:relative; }
         .section-label { font-size:0.75rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:5px; margin-bottom:1rem; display:block; }
+        .section-label::before, .section-label::after { content:'◆'; display:inline-block; margin:0 0.6rem; font-size:0.5rem; vertical-align:middle; opacity:0.80; }
         .section-title { font-size:clamp(2rem,4vw,2.8rem); font-weight:800; color:var(--text); line-height:1.2; }
         .section-title span { background:linear-gradient(135deg,var(--primary),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 
@@ -116,10 +117,28 @@
         .section-divider {
             width:80px; height:4px; margin:1.5rem auto 0; border-radius:4px;
             background: linear-gradient(90deg, #9a6c08, #d4a84b, #9a6c08);
+            position:relative;
         }
+        .section-divider::before, .section-divider::after {
+            content:''; position:absolute; top:50%; transform:translateY(-50%);
+            width:7px; height:7px; background:#d4a84b;
+            clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+        }
+        .section-divider::before { right:calc(100% + 8px); }
+        .section-divider::after  { left:calc(100% + 8px); }
         /* Section wave separators */
         .sec-wave-end { position:absolute; bottom:0; left:0; width:100%; z-index:2; line-height:0; pointer-events:none; }
         .sec-wave-end svg { display:block; width:100%; height:auto; }
+
+        /* ─── BATIK CORNER ORNAMENTS ─── */
+        .batik-sec-corner { position:absolute; pointer-events:none; z-index:2; width:130px; height:130px; opacity:0.22; }
+        .batik-sec-tl { top:0; left:0; }
+        .batik-sec-tr { top:0; right:0; transform:scaleX(-1); }
+        /* Ambient section glow orbs */
+        .sec-glow { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0; animation:orbPulse 10s ease-in-out infinite; }
+        /* Orb pulse keyframe */
+        @keyframes orbPulse { 0%,100% { opacity:var(--op,0.09); } 50% { opacity:calc(var(--op,0.09) * 1.4); } }
+        @media(max-width:767px) { .batik-sec-corner { width:72px; height:72px; opacity:0.16; } }
 
         /* ─── HOME ─── */
         #home {
@@ -198,7 +217,7 @@
 
         /* ─── TENTANG ─── */
         #tentang { background:#cce8d6; }
-        .tentang-orb { position:absolute; border-radius:50%; filter:blur(75px); opacity:0.22; pointer-events:none; z-index:0; }
+        .tentang-orb { position:absolute; border-radius:50%; filter:blur(75px); opacity:0.22; --op:0.22; pointer-events:none; z-index:0; animation:orbPulse 9s ease-in-out infinite; }
         .tentang-orb-1 { width:380px; height:380px; background:#0aaa88; top:8%; right:-80px; }
         .tentang-orb-2 { width:280px; height:280px; background:#145e38; bottom:5%; left:-60px; }
         #tentang .container { position:relative; z-index:1; }
@@ -999,10 +1018,16 @@
         </div>
     </section>
 
+    @php
+        $batikCorner = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none"><path d="M0,118 Q0,0 118,0" stroke="#145e38" stroke-width="3" opacity="0.9"/><path d="M0,93 Q7,7 93,0" stroke="#c9810f" stroke-width="2.5" opacity="0.85"/><path d="M0,65 Q17,17 65,0" stroke="#0aaa88" stroke-width="2" opacity="0.7"/><path d="M0,38 Q27,27 38,0" stroke="#c9810f" stroke-width="1.5" opacity="0.55"/><polygon points="5,0 11,5 5,11 0,5" fill="#c9810f" fill-opacity="0.9"/><circle cx="42" cy="4" r="2.2" fill="#c9810f" opacity="0.7"/><circle cx="80" cy="4" r="2" fill="#145e38" opacity="0.6"/><circle cx="4" cy="42" r="2.2" fill="#c9810f" opacity="0.7"/><circle cx="4" cy="80" r="2" fill="#145e38" opacity="0.6"/><circle cx="26" cy="5" r="1.8" fill="#0aaa88" opacity="0.65"/><circle cx="5" cy="26" r="1.8" fill="#0aaa88" opacity="0.65"/><circle cx="57" cy="5" r="1.8" fill="#0aaa88" opacity="0.6"/><circle cx="5" cy="57" r="1.8" fill="#0aaa88" opacity="0.6"/><circle cx="14" cy="7" r="1.5" fill="#145e38" opacity="0.55"/><circle cx="7" cy="14" r="1.5" fill="#145e38" opacity="0.55"/></svg>';
+    @endphp
     <!-- ═══ TENTANG ═══ -->
     <section id="tentang">
+        <div class="corak-bg"></div>
         <div class="tentang-orb tentang-orb-1"></div>
         <div class="tentang-orb tentang-orb-2"></div>
+        <div class="batik-sec-corner batik-sec-tl">{!! $batikCorner !!}</div>
+        <div class="batik-sec-corner batik-sec-tr">{!! $batikCorner !!}</div>
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">Who I Am</span>
@@ -1098,6 +1123,10 @@
     <!-- ═══ PENGALAMAN ═══ -->
     <section id="pengalaman">
         <div class="corak-bg"></div>
+        <div class="batik-sec-corner batik-sec-tl">{!! $batikCorner !!}</div>
+        <div class="batik-sec-corner batik-sec-tr">{!! $batikCorner !!}</div>
+        <div class="sec-glow" style="--op:0.08;width:360px;height:360px;background:#d4a84b;opacity:0.08;top:-90px;right:-60px;"></div>
+        <div class="sec-glow" style="--op:0.10;width:290px;height:290px;background:#0aaa88;opacity:0.10;bottom:8%;left:-50px;"></div>
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Contribution History</span>
@@ -1169,7 +1198,11 @@
     <!-- ═══ PRESTASI ═══ -->
     <section id="prestasi">
         <div class="corak-bg"></div>
-        <div class="container">
+        <div class="batik-sec-corner batik-sec-tl">{!! $batikCorner !!}</div>
+        <div class="batik-sec-corner batik-sec-tr">{!! $batikCorner !!}</div>
+        <div class="sec-glow" style="--op:0.09;width:380px;height:380px;background:#0aaa88;opacity:0.09;top:-100px;right:-70px;"></div>
+        <div class="sec-glow" style="--op:0.07;width:280px;height:280px;background:#e8a520;opacity:0.07;bottom:10%;left:-55px;"></div>
+        <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Achievements</span>
                 <h2 class="section-title">My <span>Achievements</span></h2>
@@ -1255,7 +1288,11 @@
     <!-- ═══ JURNAL ═══ -->
     <section id="jurnal">
         <div class="corak-bg"></div>
-        <div class="container">
+        <div class="batik-sec-corner batik-sec-tl">{!! $batikCorner !!}</div>
+        <div class="batik-sec-corner batik-sec-tr">{!! $batikCorner !!}</div>
+        <div class="sec-glow" style="--op:0.10;width:340px;height:340px;background:#145e38;opacity:0.10;top:-90px;left:-50px;"></div>
+        <div class="sec-glow" style="--op:0.09;width:280px;height:280px;background:#0aaa88;opacity:0.09;bottom:12%;right:-40px;"></div>
+        <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Scientific Publications</span>
                 <h2 class="section-title">Journal <span>&amp; Articles</span></h2>
@@ -1304,7 +1341,11 @@
     <!-- ═══ HKI ═══ -->
     <section id="hki">
         <div class="corak-bg"></div>
-        <div class="container">
+        <div class="batik-sec-corner batik-sec-tl">{!! $batikCorner !!}</div>
+        <div class="batik-sec-corner batik-sec-tr">{!! $batikCorner !!}</div>
+        <div class="sec-glow" style="--op:0.09;width:360px;height:360px;background:#d4a84b;opacity:0.09;top:-80px;right:-60px;"></div>
+        <div class="sec-glow" style="--op:0.10;width:300px;height:300px;background:#145e38;opacity:0.10;bottom:8%;left:-55px;"></div>
+        <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Intellectual Property</span>
                 <h2 class="section-title">IPR <span>&amp; Patents</span></h2>
@@ -1365,7 +1406,11 @@
     <!-- ═══ PROJEK ═══ -->
     <section id="projek">
         <div class="corak-bg"></div>
-        <div class="container">
+        <div class="batik-sec-corner batik-sec-tl">{!! $batikCorner !!}</div>
+        <div class="batik-sec-corner batik-sec-tr">{!! $batikCorner !!}</div>
+        <div class="sec-glow" style="--op:0.08;width:380px;height:380px;background:#0aaa88;opacity:0.08;top:-100px;right:-70px;"></div>
+        <div class="sec-glow" style="--op:0.07;width:300px;height:300px;background:#d4a84b;opacity:0.07;bottom:10%;left:-50px;"></div>
+        <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">My Work</span>
                 <h2 class="section-title">Latest <span>Projects</span></h2>
