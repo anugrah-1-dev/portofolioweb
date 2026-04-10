@@ -197,7 +197,7 @@
         .batik-corner-br { bottom:-10px; right:-10px; transform:rotate(180deg); }
 
         /* ─── TENTANG ─── */
-        #tentang { background:linear-gradient(160deg,#e4f5ea 0%,#cce8d6 50%,#e0f2e8 100%); }
+        #tentang { background:#cce8d6; }
         .tentang-orb { position:absolute; border-radius:50%; filter:blur(75px); opacity:0.22; pointer-events:none; z-index:0; }
         .tentang-orb-1 { width:380px; height:380px; background:#0aaa88; top:8%; right:-80px; }
         .tentang-orb-2 { width:280px; height:280px; background:#145e38; bottom:5%; left:-60px; }
@@ -884,8 +884,8 @@
         </div>
         <div class="home-wave">
             <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,60 C360,100 720,20 1080,60 C1260,80 1380,40 1440,50 L1440,100 L0,100Z" fill="#e4f5ea"/>
-                <path d="M0,75 C300,95 600,55 900,75 C1100,85 1300,65 1440,70 L1440,100 L0,100Z" fill="rgba(228,245,234,0.80)"/>
+                <path d="M0,40 C360,90 720,10 1080,50 C1260,70 1380,30 1440,40 L1440,100 L0,100Z" fill="#cce8d6"/>
+                <path d="M0,65 C300,95 600,45 900,65 C1100,78 1300,55 1440,62 L1440,100 L0,100Z" fill="#cce8d6"/>
             </svg>
         </div>
         <div class="container">
