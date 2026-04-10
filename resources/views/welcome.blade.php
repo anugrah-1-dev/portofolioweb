@@ -106,8 +106,8 @@
         .sec-wave-end { position:absolute; bottom:0; left:0; width:100%; z-index:2; line-height:0; pointer-events:none; }
         .sec-wave-end svg { display:block; width:100%; height:auto; }
 
-        /* Close sub-pixel rendering gap at section/wave seam */
-        #tentang,#pengalaman,#prestasi,#jurnal,#hki,#projek { margin-top:-2px; }
+        /* Keep natural section seam; wave fill is matched to next section color */
+        #tentang,#pengalaman,#prestasi,#jurnal,#hki,#projek { margin-top:0; }
         /* Ambient section glow orbs — hidden, gradients handled in bg */
         .sec-glow { display:none; }
         /* Orb pulse keyframe */
@@ -184,7 +184,7 @@
 
 
         /* ─── TENTANG ─── */
-        #tentang { background: radial-gradient(ellipse at 85% 20%, rgba(160,220,195,0.38) 0%, transparent 55%), radial-gradient(ellipse at 12% 80%, rgba(148,215,185,0.28) 0%, transparent 50%), #edfff5; }
+        #tentang { background:#edfff5; }
         .tentang-orb { display:none; }
         .tentang-orb-1, .tentang-orb-2 { display:none; }
         #tentang .container { position:relative; z-index:1; }
@@ -248,7 +248,7 @@
         .sosmed-whatsapp  { background:#25d366; }
 
         /* ─── PENGALAMAN ─── */
-        #pengalaman { background: radial-gradient(ellipse at 88% 15%, rgba(155,218,185,0.35) 0%, transparent 52%), radial-gradient(ellipse at 10% 82%, rgba(145,210,178,0.26) 0%, transparent 48%), #e8f7ee; }
+        #pengalaman { background:#e3f1e7; }
         .peng-timeline { position:relative; padding-left:2.5rem; }
         .peng-timeline::before {
             content:''; position:absolute; left:0.75rem; top:0; bottom:0; width:4px;
@@ -288,7 +288,7 @@
         .peng-desc { font-size:1rem; color:var(--muted); line-height:1.75; }
 
         /* ─── PRESTASI ─── */
-        #prestasi { background: radial-gradient(ellipse at 82% 18%, rgba(148,222,185,0.32) 0%, transparent 50%), radial-gradient(ellipse at 14% 78%, rgba(140,215,178,0.24) 0%, transparent 46%), #f0fdf5; }
+        #prestasi { background:#f2fbf3; }
         .prestasi-tabs { display:flex; gap:0.75rem; margin-bottom:2.5rem; flex-wrap:wrap; }
         .ptab-btn { padding:0.55rem 1.4rem; border-radius:30px; border:2px solid var(--border); background:var(--surface);
             color:var(--muted); font-size:0.88rem; font-weight:700; cursor:pointer; transition:all 0.3s; }
@@ -317,7 +317,7 @@
         .p-more { font-size:0.78rem; color:var(--accent); font-weight:600; display:flex; align-items:center; gap:0.25rem; }
 
         /* ─── JURNAL ─── */
-        #jurnal { background: radial-gradient(ellipse at 15% 20%, rgba(145,215,180,0.34) 0%, transparent 52%), radial-gradient(ellipse at 86% 80%, rgba(155,220,188,0.26) 0%, transparent 48%), #e5f8ee; }
+        #jurnal { background:#dcefe3; }
         .jurnal-list { display:flex; flex-direction:column; gap:1.25rem; }
         .j-card { background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:1.5rem 1.75rem;
             display:grid; grid-template-columns:1fr auto; gap:1.25rem; align-items:start;
@@ -342,7 +342,7 @@
         .j-year { font-size:0.72rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:3px; }
 
         /* ─── HKI ─── */
-        #hki { background: radial-gradient(ellipse at 85% 18%, rgba(150,225,205,0.33) 0%, transparent 50%), radial-gradient(ellipse at 12% 80%, rgba(140,218,195,0.25) 0%, transparent 46%), #edfaf6; }
+        #hki { background:#e4f6ef; }
         .hki-list { display:flex; flex-direction:column; gap:1.25rem; }
         .hki-card { background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:1.5rem 1.75rem;
             display:grid; grid-template-columns:1fr auto; gap:1.25rem; align-items:start;
@@ -368,7 +368,7 @@
         .hki-year { font-size:0.72rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:3px; }
 
         /* ─── PROJEK ─── */
-        #projek { background: radial-gradient(ellipse at 83% 20%, rgba(148,215,180,0.32) 0%, transparent 52%), radial-gradient(ellipse at 13% 80%, rgba(158,222,188,0.24) 0%, transparent 48%), #ebf5ee; }
+        #projek { background:#eaf2e8; }
         .proj-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:2rem; }
         .proj-card { background:var(--surface); border:1.5px solid var(--border); border-radius:20px; overflow:hidden; transition:all 0.4s; cursor:pointer; position:relative; }
         .proj-card:hover { transform:translateY(-8px); border-color:var(--primary2); box-shadow:0 28px 60px rgba(45,106,79,0.28); }
@@ -1053,8 +1053,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,80 L0,80Z" fill="#e8f7ee"/>
-                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,80 L0,80Z" fill="#e8f7ee"/>
+                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,80 L0,80Z" fill="#e3f1e7"/>
+                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,80 L0,80Z" fill="#e3f1e7"/>
             </svg>
         </div>
     </section>
@@ -1125,8 +1125,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,32 C240,80 600,5 900,45 C1100,65 1280,20 1440,38 L1440,80 L0,80Z" fill="#f0fdf5"/>
-                <path d="M0,52 C360,72 720,30 1080,54 C1260,64 1380,40 1440,50 L1440,80 L0,80Z" fill="#f0fdf5"/>
+                <path d="M0,32 C240,80 600,5 900,45 C1100,65 1280,20 1440,38 L1440,80 L0,80Z" fill="#f2fbf3"/>
+                <path d="M0,52 C360,72 720,30 1080,54 C1260,64 1380,40 1440,50 L1440,80 L0,80Z" fill="#f2fbf3"/>
             </svg>
         </div>
     </section>
@@ -1212,8 +1212,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,35 C360,80 720,5 1080,38 C1260,52 1380,22 1440,30 L1440,80 L0,80Z" fill="#e5f8ee"/>
-                <path d="M0,55 C300,74 600,36 900,56 C1100,68 1300,44 1440,52 L1440,80 L0,80Z" fill="#e5f8ee"/>
+                <path d="M0,35 C360,80 720,5 1080,38 C1260,52 1380,22 1440,30 L1440,80 L0,80Z" fill="#dcefe3"/>
+                <path d="M0,55 C300,74 600,36 900,56 C1100,68 1300,44 1440,52 L1440,80 L0,80Z" fill="#dcefe3"/>
             </svg>
         </div>
     </section>
@@ -1262,8 +1262,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,30 C240,80 600,5 900,42 C1100,62 1280,22 1440,36 L1440,80 L0,80Z" fill="#edfaf6"/>
-                <path d="M0,52 C360,70 720,32 1080,52 C1260,62 1380,40 1440,48 L1440,80 L0,80Z" fill="#edfaf6"/>
+                <path d="M0,30 C240,80 600,5 900,42 C1100,62 1280,22 1440,36 L1440,80 L0,80Z" fill="#e4f6ef"/>
+                <path d="M0,52 C360,70 720,32 1080,52 C1260,62 1380,40 1440,48 L1440,80 L0,80Z" fill="#e4f6ef"/>
             </svg>
         </div>
     </section>
@@ -1324,8 +1324,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,33 C360,80 720,5 1080,38 C1260,54 1380,22 1440,32 L1440,80 L0,80Z" fill="#ebf5ee"/>
-                <path d="M0,54 C300,73 600,34 900,55 C1100,67 1300,44 1440,52 L1440,80 L0,80Z" fill="#ebf5ee"/>
+                <path d="M0,33 C360,80 720,5 1080,38 C1260,54 1380,22 1440,32 L1440,80 L0,80Z" fill="#eaf2e8"/>
+                <path d="M0,54 C300,73 600,34 900,55 C1100,67 1300,44 1440,52 L1440,80 L0,80Z" fill="#eaf2e8"/>
             </svg>
         </div>
     </section>
@@ -1436,8 +1436,8 @@
         <div class="footer-corak"></div>
         <div class="footer-wave">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,0 L0,0Z" fill="#ebf5ee"/>
-                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,0 L0,0Z" fill="#ebf5ee"/>
+                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,0 L0,0Z" fill="#eaf2e8"/>
+                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,0 L0,0Z" fill="#eaf2e8"/>
             </svg>
         </div>
         <div class="footer-content">
