@@ -59,7 +59,7 @@ class PrestasiController extends Controller
             'description' => 'required|string|max:5000',
             'badge'       => 'required|string|max:100',
             'kategori'    => 'required|in:akademik,non_akademik',
-            'foto'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'foto'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'hapus_foto'  => 'nullable|boolean',
             'urutan'      => 'nullable|integer',
         ]);
