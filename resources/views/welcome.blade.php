@@ -477,8 +477,8 @@
         .footer-corak { height:3px;
             background:var(--primary);
         }
-        .footer-wave { width:100%; line-height:0; }
-        .footer-wave svg { display:block; width:100%; height:60px; }
+        .footer-wave { width:100%; line-height:0; margin-top:-2px; }
+        .footer-wave svg { display:block; width:100%; height:80px; }
         .footer-content { padding:3rem 2rem 1.5rem; max-width:1100px; margin:0 auto; }
         .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:3rem; margin-bottom:2.5rem; }
         .footer-brand .footer-logo { font-size:1.5rem; font-weight:900; letter-spacing:-1px; background:linear-gradient(135deg,#5eead4,#40916c); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:0.75rem; }
@@ -1514,8 +1514,9 @@
     <div class="footer">
         <div class="footer-corak"></div>
         <div class="footer-wave">
-            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,30 C240,55 480,5 720,30 C960,55 1200,5 1440,30 L1440,60 L0,60Z" fill="#1a2e20"/>
+            <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,0 L0,0Z" fill="#f0faf4"/>
+                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,0 L0,0Z" fill="#f0faf4"/>
             </svg>
         </div>
         <div class="footer-content">
