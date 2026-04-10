@@ -216,7 +216,7 @@
         .batik-corner-br { bottom:-10px; right:-10px; transform:rotate(180deg); }
 
         /* ─── TENTANG ─── */
-        #tentang { background:#b5ddc8; }       /* A — medium mint */
+        #tentang { background:#cce8d6; }
         .tentang-orb { position:absolute; border-radius:50%; filter:blur(75px); opacity:0.22; --op:0.22; pointer-events:none; z-index:0; animation:orbPulse 9s ease-in-out infinite; }
         .tentang-orb-1 { width:380px; height:380px; background:#0aaa88; top:8%; right:-80px; }
         .tentang-orb-2 { width:280px; height:280px; background:#145e38; bottom:5%; left:-60px; }
@@ -281,7 +281,7 @@
         .sosmed-whatsapp  { background:#25d366; }
 
         /* ─── PENGALAMAN ─── */
-        #pengalaman { background:#f0faf4; }    /* B — light */
+        #pengalaman { background:#f0faf4; }
         .peng-timeline { position:relative; padding-left:2.5rem; }
         .peng-timeline::before {
             content:''; position:absolute; left:0.75rem; top:0; bottom:0; width:4px;
@@ -321,7 +321,7 @@
         .peng-desc { font-size:1rem; color:var(--muted); line-height:1.75; }
 
         /* ─── PRESTASI ─── */
-        #prestasi { background:#b5ddc8; }       /* A — medium mint */
+        #prestasi { background:#dff2e8; }
         .prestasi-tabs { display:flex; gap:0.75rem; margin-bottom:2.5rem; flex-wrap:wrap; }
         .ptab-btn { padding:0.55rem 1.4rem; border-radius:30px; border:2px solid var(--border); background:var(--surface);
             color:var(--muted); font-size:0.88rem; font-weight:700; cursor:pointer; transition:all 0.3s; }
@@ -350,7 +350,7 @@
         .p-more { font-size:0.78rem; color:var(--accent); font-weight:600; display:flex; align-items:center; gap:0.25rem; }
 
         /* ─── JURNAL ─── */
-        #jurnal { background:#f0faf4; }         /* B — light */
+        #jurnal { background:#f0faf4; }
         .jurnal-list { display:flex; flex-direction:column; gap:1.25rem; }
         .j-card { background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:1.5rem 1.75rem;
             display:grid; grid-template-columns:1fr auto; gap:1.25rem; align-items:start;
@@ -375,7 +375,7 @@
         .j-year { font-size:0.72rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:3px; }
 
         /* ─── HKI ─── */
-        #hki { background:#b5ddc8; }           /* A — medium mint */
+        #hki { background:#dff2e8; }
         .hki-list { display:flex; flex-direction:column; gap:1.25rem; }
         .hki-card { background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:1.5rem 1.75rem;
             display:grid; grid-template-columns:1fr auto; gap:1.25rem; align-items:start;
@@ -401,7 +401,7 @@
         .hki-year { font-size:0.72rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:3px; }
 
         /* ─── PROJEK ─── */
-        #projek { background:#f0faf4; }         /* B — light */
+        #projek { background:#f0faf4; }
         .proj-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:2rem; }
         .proj-card { background:var(--surface); border:1.5px solid var(--border); border-radius:20px; overflow:hidden; transition:all 0.4s; cursor:pointer; position:relative; }
         .proj-card:hover { transform:translateY(-8px); border-color:var(--primary2); box-shadow:0 28px 60px rgba(45,106,79,0.28); }
@@ -903,8 +903,8 @@
         </div>
         <div class="home-wave">
             <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,40 C360,90 720,10 1080,50 C1260,70 1380,30 1440,40 L1440,100 L0,100Z" fill="#b5ddc8"/>
-                <path d="M0,65 C300,95 600,45 900,65 C1100,78 1300,55 1440,62 L1440,100 L0,100Z" fill="#8ec9ad"/>
+                <path d="M0,40 C360,90 720,10 1080,50 C1260,70 1380,30 1440,40 L1440,100 L0,100Z" fill="#5abf8e"/>
+                <path d="M0,65 C300,95 600,45 900,65 C1100,78 1300,55 1440,62 L1440,100 L0,100Z" fill="#cce8d6"/>
             </svg>
         </div>
         <div class="container">
@@ -1114,8 +1114,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,80 L0,80Z" fill="#f0faf4"/>
-                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,80 L0,80Z" fill="#d0ecdc"/>
+                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,80 L0,80Z" fill="#3d9e72"/>
+                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,80 L0,80Z" fill="#f0faf4"/>
             </svg>
         </div>
     </section>
@@ -1189,8 +1189,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,32 C240,80 600,5 900,45 C1100,65 1280,20 1440,38 L1440,80 L0,80Z" fill="#b5ddc8"/>
-                <path d="M0,52 C360,72 720,30 1080,54 C1260,64 1380,40 1440,50 L1440,80 L0,80Z" fill="#8ec9ad"/>
+                <path d="M0,32 C240,80 600,5 900,45 C1100,65 1280,20 1440,38 L1440,80 L0,80Z" fill="#8abda2"/>
+                <path d="M0,52 C360,72 720,30 1080,54 C1260,64 1380,40 1440,50 L1440,80 L0,80Z" fill="#dff2e8"/>
             </svg>
         </div>
     </section>
@@ -1279,8 +1279,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,35 C360,80 720,5 1080,38 C1260,52 1380,22 1440,30 L1440,80 L0,80Z" fill="#f0faf4"/>
-                <path d="M0,55 C300,74 600,36 900,56 C1100,68 1300,44 1440,52 L1440,80 L0,80Z" fill="#d0ecdc"/>
+                <path d="M0,35 C360,80 720,5 1080,38 C1260,52 1380,22 1440,30 L1440,80 L0,80Z" fill="#4dae84"/>
+                <path d="M0,55 C300,74 600,36 900,56 C1100,68 1300,44 1440,52 L1440,80 L0,80Z" fill="#f0faf4"/>
             </svg>
         </div>
     </section>
@@ -1332,8 +1332,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,30 C240,80 600,5 900,42 C1100,62 1280,22 1440,36 L1440,80 L0,80Z" fill="#b5ddc8"/>
-                <path d="M0,52 C360,70 720,32 1080,52 C1260,62 1380,40 1440,48 L1440,80 L0,80Z" fill="#8ec9ad"/>
+                <path d="M0,30 C240,80 600,5 900,42 C1100,62 1280,22 1440,36 L1440,80 L0,80Z" fill="#8abda2"/>
+                <path d="M0,52 C360,70 720,32 1080,52 C1260,62 1380,40 1440,48 L1440,80 L0,80Z" fill="#dff2e8"/>
             </svg>
         </div>
     </section>
@@ -1397,8 +1397,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,33 C360,80 720,5 1080,38 C1260,54 1380,22 1440,32 L1440,80 L0,80Z" fill="#f0faf4"/>
-                <path d="M0,54 C300,73 600,34 900,55 C1100,67 1300,44 1440,52 L1440,80 L0,80Z" fill="#d0ecdc"/>
+                <path d="M0,33 C360,80 720,5 1080,38 C1260,54 1380,22 1440,32 L1440,80 L0,80Z" fill="#4dae84"/>
+                <path d="M0,54 C300,73 600,34 900,55 C1100,67 1300,44 1440,52 L1440,80 L0,80Z" fill="#f0faf4"/>
             </svg>
         </div>
     </section>
