@@ -45,30 +45,6 @@
         html { scroll-behavior:smooth; }
         body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; font-size:17px; }
 
-        /* ─── BATIK KAWUNG — motif keraton Jawa (UNESCO) ─── */
-        .corak-bg {
-            position:absolute; inset:0; pointer-events:none; z-index:0; opacity:0.075;
-            background-image:
-                url("data:image/svg+xml,%3Csvg width='90' height='90' viewBox='0 0 90 90' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cellipse cx='45' cy='24' rx='12' ry='21' stroke='%232d6a4f' stroke-width='1.4'/%3E%3Cellipse cx='45' cy='66' rx='12' ry='21' stroke='%232d6a4f' stroke-width='1.4'/%3E%3Cellipse cx='24' cy='45' rx='21' ry='12' stroke='%232d6a4f' stroke-width='1.4'/%3E%3Cellipse cx='66' cy='45' rx='21' ry='12' stroke='%232d6a4f' stroke-width='1.4'/%3E%3Ccircle cx='45' cy='45' r='4' stroke='%23c9810f' stroke-width='1.5'/%3E%3Ccircle cx='45' cy='45' r='1.5' fill='%23c9810f'/%3E%3Cellipse cx='0' cy='45' rx='21' ry='12' stroke='%232d6a4f' stroke-width='1.4' opacity='0.55'/%3E%3Cellipse cx='90' cy='45' rx='21' ry='12' stroke='%232d6a4f' stroke-width='1.4' opacity='0.55'/%3E%3Cellipse cx='45' cy='0' rx='12' ry='21' stroke='%232d6a4f' stroke-width='1.4' opacity='0.55'/%3E%3Cellipse cx='45' cy='90' rx='12' ry='21' stroke='%232d6a4f' stroke-width='1.4' opacity='0.55'/%3E%3Cpolygon points='9,9 13,6 17,9 13,12' fill='%23c9810f' opacity='0.9'/%3E%3Cpolygon points='73,9 77,6 81,9 77,12' fill='%23c9810f' opacity='0.9'/%3E%3Cpolygon points='9,78 13,75 17,78 13,81' fill='%23c9810f' opacity='0.9'/%3E%3Cpolygon points='73,78 77,75 81,78 77,81' fill='%23c9810f' opacity='0.9'/%3E%3Ccircle cx='13' cy='9' r='1.2' fill='%232d6a4f' opacity='0.7'/%3E%3Ccircle cx='77' cy='9' r='1.2' fill='%232d6a4f' opacity='0.7'/%3E%3Ccircle cx='13' cy='81' r='1.2' fill='%232d6a4f' opacity='0.7'/%3E%3Ccircle cx='77' cy='81' r='1.2' fill='%232d6a4f' opacity='0.7'/%3E%3C/g%3E%3C/svg%3E");
-            background-size:90px 90px;
-        }
-        .corak-border {
-            position:absolute; left:0; right:0; height:3px; z-index:2;
-            background:var(--primary);
-        }
-        .corak-border-top { top:0; }
-        .corak-border-bottom { bottom:0; }
-        .corak-side {
-            position:absolute; top:0; bottom:0; width:5px; z-index:2;
-            background:repeating-linear-gradient(180deg,
-                var(--primary) 0px, var(--primary) 18px,
-                var(--batik1) 18px, var(--batik1) 28px,
-                var(--accent) 28px, var(--accent) 46px,
-                var(--batik3) 46px, var(--batik3) 56px
-            );
-        }
-        .corak-side-left { left:0; }
-        .corak-side-right { right:0; }
 
         /* ─── NAVBAR ─── */
         nav {
@@ -130,17 +106,12 @@
         .sec-wave-end { position:absolute; bottom:0; left:0; width:100%; z-index:2; line-height:0; pointer-events:none; }
         .sec-wave-end svg { display:block; width:100%; height:auto; }
 
-        /* ─── BATIK CORNER ORNAMENTS ─── */
-        .batik-sec-corner { position:absolute; pointer-events:none; z-index:3; width:130px; height:130px; opacity:0.22; }
-        .batik-sec-tl { top:20px; left:0; }
-        .batik-sec-tr { top:20px; right:0; transform:scaleX(-1); }
         /* Close sub-pixel rendering gap at section/wave seam */
         #tentang,#pengalaman,#prestasi,#jurnal,#hki,#projek { margin-top:-2px; }
         /* Ambient section glow orbs */
         .sec-glow { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0; animation:orbPulse 10s ease-in-out infinite; }
         /* Orb pulse keyframe */
         @keyframes orbPulse { 0%,100% { opacity:var(--op,0.09); } 50% { opacity:calc(var(--op,0.09) * 1.4); } }
-        @media(max-width:767px) { .batik-sec-corner { width:72px; height:72px; opacity:0.16; } }
 
         /* ─── HOME ─── */
         #home {
@@ -210,12 +181,7 @@
         .float-tag-2 { bottom:30px; left:-50px; animation:floatAnim 3s ease-in-out infinite 1.5s; }
         .float-tag-3 { top:45%; right:-60px; animation:floatAnim 3s ease-in-out infinite 0.8s; }
 
-        /* Batik corner motif on avatar */
-        .batik-corner { position:absolute; width:50px; height:50px; opacity:0.55; }
-        .batik-corner-tl { top:-10px; left:-10px; transform:rotate(0deg); }
-        .batik-corner-tr { top:-10px; right:-10px; transform:rotate(90deg); }
-        .batik-corner-bl { bottom:-10px; left:-10px; transform:rotate(270deg); }
-        .batik-corner-br { bottom:-10px; right:-10px; transform:rotate(180deg); }
+
 
         /* ─── TENTANG ─── */
         #tentang { background:#cce8d6; }
@@ -847,7 +813,6 @@
 
     <!-- ═══ HOME ═══ -->
     <section id="home">
-        <div class="corak-bg"></div>
         <div class="home-dots"></div>
         <div class="home-orb home-orb-1"></div>
         <div class="home-orb home-orb-2"></div>
@@ -967,27 +932,7 @@
                             &#128104;&#8205;&#128187;
                             @endif
                         </div>
-                        <!-- Batik corner decorations -->
-                        <svg class="batik-corner batik-corner-tl" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 0 L50 0 L0 50Z" fill="rgba(45,106,79,0.18)"/>
-                            <path d="M0 0 L24 0 L0 24Z" fill="rgba(181,136,62,0.25)"/>
-                            <circle cx="8" cy="8" r="3" fill="rgba(13,148,136,0.35)"/>
-                        </svg>
-                        <svg class="batik-corner batik-corner-tr" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 0 L50 0 L0 50Z" fill="rgba(45,106,79,0.18)"/>
-                            <path d="M0 0 L24 0 L0 24Z" fill="rgba(181,136,62,0.25)"/>
-                            <circle cx="8" cy="8" r="3" fill="rgba(13,148,136,0.35)"/>
-                        </svg>
-                        <svg class="batik-corner batik-corner-bl" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 0 L50 0 L0 50Z" fill="rgba(45,106,79,0.18)"/>
-                            <path d="M0 0 L24 0 L0 24Z" fill="rgba(181,136,62,0.25)"/>
-                            <circle cx="8" cy="8" r="3" fill="rgba(13,148,136,0.35)"/>
-                        </svg>
-                        <svg class="batik-corner batik-corner-br" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 0 L50 0 L0 50Z" fill="rgba(45,106,79,0.18)"/>
-                            <path d="M0 0 L24 0 L0 24Z" fill="rgba(181,136,62,0.25)"/>
-                            <circle cx="8" cy="8" r="3" fill="rgba(13,148,136,0.35)"/>
-                        </svg>
+
                     </div>
                     @php $tags = $profil?->kata_penyemangat ?? []; @endphp
                     @if(isset($tags[0]))<div class="float-tag float-tag-1">⭐ {{ $tags[0] }}</div>@endif
@@ -1018,17 +963,11 @@
         </div>
     </section>
 
-    @php
-        /* Batik Parang — motif diagonal S-curve keris keraton Yogyakarta */
-        $batikCorner = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none"><path d="M0,118 Q0,0 118,0" stroke="#145e38" stroke-width="2.5" opacity="0.9"/><path d="M0,90 Q10,10 90,0" stroke="#2d6a4f" stroke-width="2" opacity="0.75"/><path d="M0,62 Q18,18 62,0" stroke="#0aaa88" stroke-width="1.6" opacity="0.6"/><path d="M2,74 C10,62 22,57 28,43 C34,29 29,18 38,9 C42,5 48,2 54,1" stroke="#c9810f" stroke-width="2.2" stroke-linecap="round" opacity="0.95"/><path d="M2,50 C8,41 18,38 23,26 C28,14 24,7 31,2 C33,1 36,0 40,0" stroke="#c9810f" stroke-width="1.9" stroke-linecap="round" opacity="0.85"/><path d="M2,26 C6,20 13,18 16,11 C19,4 17,2 21,0" stroke="#c9810f" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/><circle cx="11" cy="11" r="2" fill="#0aaa88" opacity="0.75"/><circle cx="23" cy="6" r="1.5" fill="#0aaa88" opacity="0.65"/><circle cx="6" cy="23" r="1.5" fill="#0aaa88" opacity="0.65"/><circle cx="38" cy="16" r="1.7" fill="#c9810f" opacity="0.7"/><circle cx="16" cy="38" r="1.7" fill="#c9810f" opacity="0.7"/><circle cx="50" cy="8" r="1.4" fill="#145e38" opacity="0.6"/><circle cx="8" cy="50" r="1.4" fill="#145e38" opacity="0.6"/><circle cx="30" cy="30" r="1.5" fill="#0aaa88" opacity="0.55"/><circle cx="60" cy="11" r="1.2" fill="#c9810f" opacity="0.5"/><circle cx="11" cy="60" r="1.2" fill="#c9810f" opacity="0.5"/><polygon points="0,0 14,0 0,14" fill="#c9810f" fill-opacity="0.15"/><polygon points="0,0 6,0 0,6" fill="#c9810f" fill-opacity="0.65"/><path d="M42,42 C46,37 52,39 50,46 C48,53 41,51 43,44" stroke="#0aaa88" stroke-width="1.3" opacity="0.65"/></svg>';
-    @endphp
+
     <!-- ═══ TENTANG ═══ -->
     <section id="tentang">
-        <div class="corak-bg"></div>
         <div class="tentang-orb tentang-orb-1"></div>
         <div class="tentang-orb tentang-orb-2"></div>
-        <div class="batik-sec-corner batik-sec-tl">{!! $batikCorner !!}</div>
-        <div class="batik-sec-corner batik-sec-tr">{!! $batikCorner !!}</div>
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">Who I Am</span>
@@ -1123,9 +1062,6 @@
 
     <!-- ═══ PENGALAMAN ═══ -->
     <section id="pengalaman">
-        <div class="corak-bg"></div>
-        <div class="batik-sec-corner batik-sec-tl">{!! $batikCorner !!}</div>
-        <div class="batik-sec-corner batik-sec-tr">{!! $batikCorner !!}</div>
         <div class="sec-glow" style="--op:0.08;width:360px;height:360px;background:#d4a84b;opacity:0.08;top:-90px;right:-60px;"></div>
         <div class="sec-glow" style="--op:0.10;width:290px;height:290px;background:#0aaa88;opacity:0.10;bottom:8%;left:-50px;"></div>
         <div class="container" style="position:relative;z-index:1;">
@@ -1198,9 +1134,6 @@
 
     <!-- ═══ PRESTASI ═══ -->
     <section id="prestasi">
-        <div class="corak-bg"></div>
-        <div class="batik-sec-corner batik-sec-tl">{!! $batikCorner !!}</div>
-        <div class="batik-sec-corner batik-sec-tr">{!! $batikCorner !!}</div>
         <div class="sec-glow" style="--op:0.09;width:380px;height:380px;background:#0aaa88;opacity:0.09;top:-100px;right:-70px;"></div>
         <div class="sec-glow" style="--op:0.07;width:280px;height:280px;background:#e8a520;opacity:0.07;bottom:10%;left:-55px;"></div>
         <div class="container" style="position:relative;z-index:1;">
@@ -1288,9 +1221,6 @@
 
     <!-- ═══ JURNAL ═══ -->
     <section id="jurnal">
-        <div class="corak-bg"></div>
-        <div class="batik-sec-corner batik-sec-tl">{!! $batikCorner !!}</div>
-        <div class="batik-sec-corner batik-sec-tr">{!! $batikCorner !!}</div>
         <div class="sec-glow" style="--op:0.10;width:340px;height:340px;background:#145e38;opacity:0.10;top:-90px;left:-50px;"></div>
         <div class="sec-glow" style="--op:0.09;width:280px;height:280px;background:#0aaa88;opacity:0.09;bottom:12%;right:-40px;"></div>
         <div class="container" style="position:relative;z-index:1;">
@@ -1341,9 +1271,6 @@
 
     <!-- ═══ HKI ═══ -->
     <section id="hki">
-        <div class="corak-bg"></div>
-        <div class="batik-sec-corner batik-sec-tl">{!! $batikCorner !!}</div>
-        <div class="batik-sec-corner batik-sec-tr">{!! $batikCorner !!}</div>
         <div class="sec-glow" style="--op:0.09;width:360px;height:360px;background:#d4a84b;opacity:0.09;top:-80px;right:-60px;"></div>
         <div class="sec-glow" style="--op:0.10;width:300px;height:300px;background:#145e38;opacity:0.10;bottom:8%;left:-55px;"></div>
         <div class="container" style="position:relative;z-index:1;">
@@ -1406,9 +1333,6 @@
 
     <!-- ═══ PROJEK ═══ -->
     <section id="projek">
-        <div class="corak-bg"></div>
-        <div class="batik-sec-corner batik-sec-tl">{!! $batikCorner !!}</div>
-        <div class="batik-sec-corner batik-sec-tr">{!! $batikCorner !!}</div>
         <div class="sec-glow" style="--op:0.08;width:380px;height:380px;background:#0aaa88;opacity:0.08;top:-100px;right:-70px;"></div>
         <div class="sec-glow" style="--op:0.07;width:300px;height:300px;background:#d4a84b;opacity:0.07;bottom:10%;left:-50px;"></div>
         <div class="container" style="position:relative;z-index:1;">
