@@ -647,6 +647,98 @@
             .detail-body { padding:1.25rem 1.5rem 1.5rem; }
             .detail-title { font-size:1.08rem; }
         }
+
+        /* ─── 3D EFFECTS ─── */
+        /* Glare overlay for tilt cards */
+        .tilt-glare {
+            position:absolute; inset:0; border-radius:inherit;
+            background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.13) 0%, transparent 62%);
+            pointer-events:none; z-index:20; opacity:0; transition:opacity 0.4s;
+        }
+        /* Hero 3D geometric elements */
+        .hero-3d-wrap {
+            position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+        }
+        .geo-3d { position:absolute; }
+        .geo-cube {
+            width:50px; height:50px;
+            transform-style:preserve-3d;
+            animation:geoCubeRotate 22s linear infinite;
+        }
+        .geo-cube .face {
+            position:absolute; width:100%; height:100%;
+            border:1.5px solid rgba(45,106,79,0.30);
+            background:rgba(45,106,79,0.04); border-radius:3px;
+        }
+        .geo-cube.teal .face { border-color:rgba(13,148,136,0.32); background:rgba(13,148,136,0.04); }
+        .geo-cube.gold .face { border-color:rgba(181,136,62,0.35); background:rgba(181,136,62,0.04); }
+        .face-f  { transform:translateZ(25px); }
+        .face-b  { transform:rotateY(180deg) translateZ(25px); }
+        .face-r  { transform:rotateY(90deg) translateZ(25px); }
+        .face-l  { transform:rotateY(-90deg) translateZ(25px); }
+        .face-t  { transform:rotateX(90deg) translateZ(25px); }
+        .face-bo { transform:rotateX(-90deg) translateZ(25px); }
+        .geo-ring {
+            width:72px; height:72px; border-radius:50%;
+            border:2px solid rgba(13,148,136,0.20);
+            border-top-color:rgba(13,148,136,0.55);
+            transform-style:preserve-3d;
+            animation:geoRingRotate 14s linear infinite;
+        }
+        .geo-ring-inner {
+            position:absolute; inset:14px; border-radius:50%;
+            border:1.5px solid rgba(45,106,79,0.22);
+            border-bottom-color:rgba(45,106,79,0.50);
+            animation:geoRingRotate 9s linear infinite reverse;
+        }
+        .geo-dot {
+            width:9px; height:9px; border-radius:50%;
+            background:rgba(181,136,62,0.65);
+            box-shadow:0 0 14px rgba(181,136,62,0.45);
+            animation:geoDotPulse 3.5s ease-in-out infinite;
+        }
+        .geo-diamond {
+            width:24px; height:24px;
+            background:rgba(13,148,136,0.10);
+            border:1.5px solid rgba(13,148,136,0.30);
+            transform:rotate(45deg);
+            animation:geoDiamondFloat 7s ease-in-out infinite;
+        }
+        .geo-line {
+            width:90px; height:1.5px;
+            background:linear-gradient(90deg, transparent, rgba(45,106,79,0.35), transparent);
+            animation:geoLineAnim 9s ease-in-out infinite;
+        }
+        @keyframes geoCubeRotate {
+            from { transform:rotateX(18deg) rotateY(0deg); }
+            to   { transform:rotateX(18deg) rotateY(360deg); }
+        }
+        @keyframes geoRingRotate {
+            from { transform:rotateX(68deg) rotateZ(0deg); }
+            to   { transform:rotateX(68deg) rotateZ(360deg); }
+        }
+        @keyframes geoDotPulse {
+            0%,100% { transform:scale(1); opacity:0.65; }
+            50%     { transform:scale(2.2); opacity:1; }
+        }
+        @keyframes geoDiamondFloat {
+            0%,100% { transform:rotate(45deg) translateY(0px); opacity:0.7; }
+            50%     { transform:rotate(65deg) translateY(-14px); opacity:1; }
+        }
+        @keyframes geoLineAnim {
+            0%,100% { transform:scaleX(1) translateY(0); opacity:0.5; }
+            50%     { transform:scaleX(0.6) translateY(-10px); opacity:0.85; }
+        }
+        /* Avatar 3D perspective */
+        .hero-visual { perspective:1000px; perspective-origin:center 40%; }
+        .avatar-wrap  { transition:transform 0.18s ease; transform-style:preserve-3d; }
+        /* Card hover: let JS handle transform on desktop */
+        @media (hover:hover) {
+            .js-tilt-ready:hover { transform:none !important; }
+        }
+        @media (max-width:768px) {
+            .hero-3d-wrap { display:none; }
+        }
     </style>
 </head>
 <body>
@@ -695,6 +787,51 @@
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
             <div class="shape shape-3"></div>
+        </div>
+        <!-- 3D Geometric Decorations -->
+        <div class="hero-3d-wrap" aria-hidden="true">
+            <!-- Rotating cube – top right -->
+            <div class="geo-3d" style="top:12%; right:7%; transform:scale(1.3);">
+                <div class="geo-cube green">
+                    <div class="face face-f"></div><div class="face face-b"></div>
+                    <div class="face face-r"></div><div class="face face-l"></div>
+                    <div class="face face-t"></div><div class="face face-bo"></div>
+                </div>
+            </div>
+            <!-- Rotating cube – bottom left, teal, slower reverse -->
+            <div class="geo-3d" style="bottom:22%; left:5%; transform:scale(0.75);">
+                <div class="geo-cube teal" style="animation-duration:17s; animation-direction:reverse;">
+                    <div class="face face-f"></div><div class="face face-b"></div>
+                    <div class="face face-r"></div><div class="face face-l"></div>
+                    <div class="face face-t"></div><div class="face face-bo"></div>
+                </div>
+            </div>
+            <!-- Rotating cube – bottom right, gold, slow -->
+            <div class="geo-3d" style="bottom:8%; right:18%; transform:scale(0.9);">
+                <div class="geo-cube gold" style="animation-duration:28s;">
+                    <div class="face face-f"></div><div class="face face-b"></div>
+                    <div class="face face-r"></div><div class="face face-l"></div>
+                    <div class="face face-t"></div><div class="face face-bo"></div>
+                </div>
+            </div>
+            <!-- Spinning ring – left centre -->
+            <div class="geo-3d" style="top:45%; left:2.5%;">
+                <div class="geo-ring"><div class="geo-ring-inner"></div></div>
+            </div>
+            <!-- Spinning ring – top centre, smaller -->
+            <div class="geo-3d" style="top:8%; left:42%; transform:scale(0.65);">
+                <div class="geo-ring" style="animation-duration:10s; animation-direction:reverse;"><div class="geo-ring-inner"></div></div>
+            </div>
+            <!-- Pulsing dots -->
+            <div class="geo-3d" style="top:28%; left:18%;"><div class="geo-dot"></div></div>
+            <div class="geo-3d" style="top:70%; right:6%;"><div class="geo-dot" style="animation-delay:1.2s; background:rgba(45,106,79,0.70); box-shadow:0 0 14px rgba(45,106,79,0.45);"></div></div>
+            <div class="geo-3d" style="top:55%; right:28%;"><div class="geo-dot" style="animation-delay:2.1s; width:6px; height:6px;"></div></div>
+            <!-- Diamond shapes -->
+            <div class="geo-3d" style="top:22%; right:22%;"><div class="geo-diamond"></div></div>
+            <div class="geo-3d" style="bottom:30%; left:22%;"><div class="geo-diamond" style="animation-delay:3s; animation-direction:reverse;"></div></div>
+            <!-- Floating lines -->
+            <div class="geo-3d" style="top:60%; left:10%;"><div class="geo-line"></div></div>
+            <div class="geo-3d" style="top:35%; right:3%;"><div class="geo-line" style="animation-delay:2s; width:55px;"></div></div>
         </div>
         <div class="home-wave">
             <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -1439,10 +1576,96 @@
                 slider.addEventListener('mouseleave', startTimer);
             });
         }
-        window.addEventListener('load', initSliders);
+        window.addEventListener('load', function() {
+            initSliders();
+            initTilt();
+            initHeroParallax();
+        });
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') { closeDetailModalBtn(); closeBeliModalBtn(); }
         });
+
+        /* ── 3D TILT ON CARDS (desktop only) ── */
+        function initTilt() {
+            if (window.matchMedia('(hover:none)').matches) return; // skip touch
+            var selectors = '.proj-card, .p-card, .peng-card, .about-card, .j-card, .hki-card';
+            document.querySelectorAll(selectors).forEach(function(card) {
+                card.classList.add('js-tilt-ready');
+                // inject glare div
+                var glare = document.createElement('div');
+                glare.className = 'tilt-glare';
+                card.appendChild(glare);
+
+                card.addEventListener('mousemove', function(e) {
+                    var rect = card.getBoundingClientRect();
+                    var x = e.clientX - rect.left;
+                    var y = e.clientY - rect.top;
+                    var cx = rect.width / 2;
+                    var cy = rect.height / 2;
+                    var rotX = ((y - cy) / cy) * -7;
+                    var rotY = ((x - cx) / cx) * 7;
+                    var mxPct = (x / rect.width * 100).toFixed(1) + '%';
+                    var myPct = (y / rect.height * 100).toFixed(1) + '%';
+                    card.style.transform = 'perspective(750px) rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) scale3d(1.025,1.025,1.025) translateY(-5px)';
+                    card.style.transition = 'transform 0.08s ease, box-shadow 0.3s';
+                    glare.style.setProperty('--mx', mxPct);
+                    glare.style.setProperty('--my', myPct);
+                    glare.style.opacity = '1';
+                });
+                card.addEventListener('mouseleave', function() {
+                    card.style.transform = '';
+                    card.style.transition = 'transform 0.45s ease, box-shadow 0.45s';
+                    glare.style.opacity = '0';
+                    // brief timeout then clear inline so CSS transition takes over properly
+                    setTimeout(function() { card.style.transition = ''; }, 450);
+                });
+            });
+        }
+
+        /* ── HERO AVATAR MOUSE PARALLAX ── */
+        function initHeroParallax() {
+            if (window.matchMedia('(hover:none)').matches) return;
+            var hero = document.getElementById('home');
+            if (!hero) return;
+            var avatarWrap     = hero.querySelector('.avatar-wrap');
+            var shapes         = hero.querySelectorAll('.shape');
+            var orbs           = hero.querySelectorAll('.home-orb');
+            var geo3ds         = hero.querySelectorAll('.geo-3d');
+
+            hero.addEventListener('mousemove', function(e) {
+                var rect = hero.getBoundingClientRect();
+                var x = (e.clientX - rect.left) / rect.width - 0.5;   // -0.5 … 0.5
+                var y = (e.clientY - rect.top)  / rect.height - 0.5;
+                if (avatarWrap) {
+                    avatarWrap.style.transform =
+                        'perspective(900px) rotateY(' + (x * 14) + 'deg) rotateX(' + (-y * 9) + 'deg)';
+                }
+                shapes.forEach(function(s, i) {
+                    var f = (i + 1) * 10;
+                    s.style.transform = 'translateY(0) translate(' + (x * f) + 'px, ' + (y * f) + 'px)';
+                });
+                orbs.forEach(function(o, i) {
+                    var f = (i + 1) * 18;
+                    o.style.transform = 'translate(' + (x * f) + 'px, ' + (y * f) + 'px)';
+                });
+                geo3ds.forEach(function(g, i) {
+                    var f = ((i % 4) + 1) * 5;
+                    var sign = (i % 2 === 0) ? 1 : -1;
+                    g.style.transform = (g.style.transform || '').replace(/translate3d\([^)]+\)/g, '')
+                        + ' translate(' + (x * f * sign) + 'px, ' + (y * f * sign) + 'px)';
+                });
+            });
+            hero.addEventListener('mouseleave', function() {
+                if (avatarWrap) avatarWrap.style.transform = '';
+                shapes.forEach(function(s) { s.style.transform = ''; });
+                orbs.forEach(function(o) { o.style.transform = ''; });
+                geo3ds.forEach(function(g) {
+                    // restore only the original scale transform if any
+                    var orig = g.getAttribute('style') ? g.getAttribute('style').match(/scale\([^)]+\)/) : null;
+                    g.style.transform = orig ? orig[0] : '';
+                });
+            });
+        }
 
         /* ── PAYMENT MODAL ── */
         function openBeliModal(projekId, title, harga) {
