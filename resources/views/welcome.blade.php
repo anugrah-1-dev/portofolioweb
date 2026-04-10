@@ -474,9 +474,7 @@
 
         /* ─── FOOTER ─── */
         .footer { background:linear-gradient(160deg,#1a2e20 0%,#0f1f15 100%); color:rgba(255,255,255,0.7); position:relative; overflow:hidden; }
-        .footer-corak { height:3px;
-            background:var(--primary);
-        }
+        .footer-corak { display:none; }
         .footer-wave { width:100%; line-height:0; margin-top:-2px; }
         .footer-wave svg { display:block; width:100%; height:80px; }
         .footer-content { padding:3rem 2rem 1.5rem; max-width:1100px; margin:0 auto; }
