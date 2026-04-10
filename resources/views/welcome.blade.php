@@ -108,8 +108,8 @@
 
         /* Close sub-pixel rendering gap at section/wave seam */
         #tentang,#pengalaman,#prestasi,#jurnal,#hki,#projek { margin-top:-2px; }
-        /* Ambient section glow orbs */
-        .sec-glow { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0; animation:orbPulse 10s ease-in-out infinite; }
+        /* Ambient section glow orbs — hidden, gradients handled in bg */
+        .sec-glow { display:none; }
         /* Orb pulse keyframe */
         @keyframes orbPulse { 0%,100% { opacity:var(--op,0.09); } 50% { opacity:calc(var(--op,0.09) * 1.4); } }
 
@@ -184,10 +184,9 @@
 
 
         /* ─── TENTANG ─── */
-        #tentang { background:#edfff5; }
-        .tentang-orb { position:absolute; border-radius:50%; filter:blur(90px); opacity:0.30; --op:0.30; pointer-events:none; z-index:0; animation:orbPulse 9s ease-in-out infinite; }
-        .tentang-orb-1 { width:420px; height:420px; background:#a8dfc7; top:8%; right:-80px; }
-        .tentang-orb-2 { width:300px; height:300px; background:#b2e6d4; bottom:5%; left:-60px; }
+        #tentang { background: radial-gradient(ellipse at 85% 20%, rgba(160,220,195,0.38) 0%, transparent 55%), radial-gradient(ellipse at 12% 80%, rgba(148,215,185,0.28) 0%, transparent 50%), #edfff5; }
+        .tentang-orb { display:none; }
+        .tentang-orb-1, .tentang-orb-2 { display:none; }
         #tentang .container { position:relative; z-index:1; }
         .about-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:5rem; align-items:start; }
         .about-info { position:relative; padding-left:1.5rem; }
@@ -249,7 +248,7 @@
         .sosmed-whatsapp  { background:#25d366; }
 
         /* ─── PENGALAMAN ─── */
-        #pengalaman { background:#e8f7ee; }
+        #pengalaman { background: radial-gradient(ellipse at 88% 15%, rgba(155,218,185,0.35) 0%, transparent 52%), radial-gradient(ellipse at 10% 82%, rgba(145,210,178,0.26) 0%, transparent 48%), #e8f7ee; }
         .peng-timeline { position:relative; padding-left:2.5rem; }
         .peng-timeline::before {
             content:''; position:absolute; left:0.75rem; top:0; bottom:0; width:4px;
@@ -289,7 +288,7 @@
         .peng-desc { font-size:1rem; color:var(--muted); line-height:1.75; }
 
         /* ─── PRESTASI ─── */
-        #prestasi { background:#f0fdf5; }
+        #prestasi { background: radial-gradient(ellipse at 82% 18%, rgba(148,222,185,0.32) 0%, transparent 50%), radial-gradient(ellipse at 14% 78%, rgba(140,215,178,0.24) 0%, transparent 46%), #f0fdf5; }
         .prestasi-tabs { display:flex; gap:0.75rem; margin-bottom:2.5rem; flex-wrap:wrap; }
         .ptab-btn { padding:0.55rem 1.4rem; border-radius:30px; border:2px solid var(--border); background:var(--surface);
             color:var(--muted); font-size:0.88rem; font-weight:700; cursor:pointer; transition:all 0.3s; }
@@ -318,7 +317,7 @@
         .p-more { font-size:0.78rem; color:var(--accent); font-weight:600; display:flex; align-items:center; gap:0.25rem; }
 
         /* ─── JURNAL ─── */
-        #jurnal { background:#e5f8ee; }
+        #jurnal { background: radial-gradient(ellipse at 15% 20%, rgba(145,215,180,0.34) 0%, transparent 52%), radial-gradient(ellipse at 86% 80%, rgba(155,220,188,0.26) 0%, transparent 48%), #e5f8ee; }
         .jurnal-list { display:flex; flex-direction:column; gap:1.25rem; }
         .j-card { background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:1.5rem 1.75rem;
             display:grid; grid-template-columns:1fr auto; gap:1.25rem; align-items:start;
@@ -343,7 +342,7 @@
         .j-year { font-size:0.72rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:3px; }
 
         /* ─── HKI ─── */
-        #hki { background:#edfaf6; }
+        #hki { background: radial-gradient(ellipse at 85% 18%, rgba(150,225,205,0.33) 0%, transparent 50%), radial-gradient(ellipse at 12% 80%, rgba(140,218,195,0.25) 0%, transparent 46%), #edfaf6; }
         .hki-list { display:flex; flex-direction:column; gap:1.25rem; }
         .hki-card { background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:1.5rem 1.75rem;
             display:grid; grid-template-columns:1fr auto; gap:1.25rem; align-items:start;
@@ -369,7 +368,7 @@
         .hki-year { font-size:0.72rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:3px; }
 
         /* ─── PROJEK ─── */
-        #projek { background:#ebf5ee; }
+        #projek { background: radial-gradient(ellipse at 83% 20%, rgba(148,215,180,0.32) 0%, transparent 52%), radial-gradient(ellipse at 13% 80%, rgba(158,222,188,0.24) 0%, transparent 48%), #ebf5ee; }
         .proj-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:2rem; }
         .proj-card { background:var(--surface); border:1.5px solid var(--border); border-radius:20px; overflow:hidden; transition:all 0.4s; cursor:pointer; position:relative; }
         .proj-card:hover { transform:translateY(-8px); border-color:var(--primary2); box-shadow:0 28px 60px rgba(45,106,79,0.28); }
