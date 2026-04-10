@@ -249,7 +249,7 @@
         .sosmed-whatsapp  { background:#25d366; }
 
         /* ─── PENGALAMAN ─── */
-        #pengalaman { background:#eef2fb; }
+        #pengalaman { background:#e8f7ee; }
         .peng-timeline { position:relative; padding-left:2.5rem; }
         .peng-timeline::before {
             content:''; position:absolute; left:0.75rem; top:0; bottom:0; width:4px;
@@ -289,7 +289,7 @@
         .peng-desc { font-size:1rem; color:var(--muted); line-height:1.75; }
 
         /* ─── PRESTASI ─── */
-        #prestasi { background:#fff8ec; }
+        #prestasi { background:#f0fdf5; }
         .prestasi-tabs { display:flex; gap:0.75rem; margin-bottom:2.5rem; flex-wrap:wrap; }
         .ptab-btn { padding:0.55rem 1.4rem; border-radius:30px; border:2px solid var(--border); background:var(--surface);
             color:var(--muted); font-size:0.88rem; font-weight:700; cursor:pointer; transition:all 0.3s; }
@@ -318,7 +318,7 @@
         .p-more { font-size:0.78rem; color:var(--accent); font-weight:600; display:flex; align-items:center; gap:0.25rem; }
 
         /* ─── JURNAL ─── */
-        #jurnal { background:#f4f0fb; }
+        #jurnal { background:#e5f8ee; }
         .jurnal-list { display:flex; flex-direction:column; gap:1.25rem; }
         .j-card { background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:1.5rem 1.75rem;
             display:grid; grid-template-columns:1fr auto; gap:1.25rem; align-items:start;
@@ -343,7 +343,7 @@
         .j-year { font-size:0.72rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:3px; }
 
         /* ─── HKI ─── */
-        #hki { background:#edfaf7; }
+        #hki { background:#edfaf6; }
         .hki-list { display:flex; flex-direction:column; gap:1.25rem; }
         .hki-card { background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:1.5rem 1.75rem;
             display:grid; grid-template-columns:1fr auto; gap:1.25rem; align-items:start;
@@ -369,7 +369,7 @@
         .hki-year { font-size:0.72rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:3px; }
 
         /* ─── PROJEK ─── */
-        #projek { background:#f0f4f8; }
+        #projek { background:#ebf5ee; }
         .proj-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:2rem; }
         .proj-card { background:var(--surface); border:1.5px solid var(--border); border-radius:20px; overflow:hidden; transition:all 0.4s; cursor:pointer; position:relative; }
         .proj-card:hover { transform:translateY(-8px); border-color:var(--primary2); box-shadow:0 28px 60px rgba(45,106,79,0.28); }
@@ -1054,16 +1054,16 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,80 L0,80Z" fill="#eef2fb"/>
-                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,80 L0,80Z" fill="#eef2fb"/>
+                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,80 L0,80Z" fill="#e8f7ee"/>
+                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,80 L0,80Z" fill="#e8f7ee"/>
             </svg>
         </div>
     </section>
 
     <!-- ═══ PENGALAMAN ═══ -->
     <section id="pengalaman">
-        <div class="sec-glow" style="--op:0.09;width:360px;height:360px;background:#3b6cbf;opacity:0.09;top:-90px;right:-60px;"></div>
-        <div class="sec-glow" style="--op:0.08;width:290px;height:290px;background:#6c8dd4;opacity:0.08;bottom:8%;left:-50px;"></div>
+        <div class="sec-glow" style="--op:0.09;width:360px;height:360px;background:#1a7a50;opacity:0.09;top:-90px;right:-60px;"></div>
+        <div class="sec-glow" style="--op:0.10;width:290px;height:290px;background:#0aaa88;opacity:0.10;bottom:8%;left:-50px;"></div>
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Contribution History</span>
@@ -1126,16 +1126,16 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,32 C240,80 600,5 900,45 C1100,65 1280,20 1440,38 L1440,80 L0,80Z" fill="#fff8ec"/>
-                <path d="M0,52 C360,72 720,30 1080,54 C1260,64 1380,40 1440,50 L1440,80 L0,80Z" fill="#fff8ec"/>
+                <path d="M0,32 C240,80 600,5 900,45 C1100,65 1280,20 1440,38 L1440,80 L0,80Z" fill="#f0fdf5"/>
+                <path d="M0,52 C360,72 720,30 1080,54 C1260,64 1380,40 1440,50 L1440,80 L0,80Z" fill="#f0fdf5"/>
             </svg>
         </div>
     </section>
 
     <!-- ═══ PRESTASI ═══ -->
     <section id="prestasi">
-        <div class="sec-glow" style="--op:0.10;width:380px;height:380px;background:#e8a520;opacity:0.10;top:-100px;right:-70px;"></div>
-        <div class="sec-glow" style="--op:0.08;width:280px;height:280px;background:#f5c842;opacity:0.08;bottom:10%;left:-55px;"></div>
+        <div class="sec-glow" style="--op:0.09;width:380px;height:380px;background:#20aa72;opacity:0.09;top:-100px;right:-70px;"></div>
+        <div class="sec-glow" style="--op:0.08;width:280px;height:280px;background:#16c77d;opacity:0.08;bottom:10%;left:-55px;"></div>
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Achievements</span>
@@ -1213,16 +1213,16 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,35 C360,80 720,5 1080,38 C1260,52 1380,22 1440,30 L1440,80 L0,80Z" fill="#f4f0fb"/>
-                <path d="M0,55 C300,74 600,36 900,56 C1100,68 1300,44 1440,52 L1440,80 L0,80Z" fill="#f4f0fb"/>
+                <path d="M0,35 C360,80 720,5 1080,38 C1260,52 1380,22 1440,30 L1440,80 L0,80Z" fill="#e5f8ee"/>
+                <path d="M0,55 C300,74 600,36 900,56 C1100,68 1300,44 1440,52 L1440,80 L0,80Z" fill="#e5f8ee"/>
             </svg>
         </div>
     </section>
 
     <!-- ═══ JURNAL ═══ -->
     <section id="jurnal">
-        <div class="sec-glow" style="--op:0.10;width:340px;height:340px;background:#6b48c8;opacity:0.10;top:-90px;left:-50px;"></div>
-        <div class="sec-glow" style="--op:0.08;width:280px;height:280px;background:#9b72e8;opacity:0.08;bottom:12%;right:-40px;"></div>
+        <div class="sec-glow" style="--op:0.10;width:340px;height:340px;background:#0f7a50;opacity:0.10;top:-90px;left:-50px;"></div>
+        <div class="sec-glow" style="--op:0.09;width:280px;height:280px;background:#0aaa88;opacity:0.09;bottom:12%;right:-40px;"></div>
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Scientific Publications</span>
@@ -1263,8 +1263,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,30 C240,80 600,5 900,42 C1100,62 1280,22 1440,36 L1440,80 L0,80Z" fill="#edfaf7"/>
-                <path d="M0,52 C360,70 720,32 1080,52 C1260,62 1380,40 1440,48 L1440,80 L0,80Z" fill="#edfaf7"/>
+                <path d="M0,30 C240,80 600,5 900,42 C1100,62 1280,22 1440,36 L1440,80 L0,80Z" fill="#edfaf6"/>
+                <path d="M0,52 C360,70 720,32 1080,52 C1260,62 1380,40 1440,48 L1440,80 L0,80Z" fill="#edfaf6"/>
             </svg>
         </div>
     </section>
@@ -1325,16 +1325,16 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,33 C360,80 720,5 1080,38 C1260,54 1380,22 1440,32 L1440,80 L0,80Z" fill="#f0f4f8"/>
-                <path d="M0,54 C300,73 600,34 900,55 C1100,67 1300,44 1440,52 L1440,80 L0,80Z" fill="#f0f4f8"/>
+                <path d="M0,33 C360,80 720,5 1080,38 C1260,54 1380,22 1440,32 L1440,80 L0,80Z" fill="#ebf5ee"/>
+                <path d="M0,54 C300,73 600,34 900,55 C1100,67 1300,44 1440,52 L1440,80 L0,80Z" fill="#ebf5ee"/>
             </svg>
         </div>
     </section>
 
     <!-- ═══ PROJEK ═══ -->
     <section id="projek">
-        <div class="sec-glow" style="--op:0.09;width:380px;height:380px;background:#2563eb;opacity:0.09;top:-100px;right:-70px;"></div>
-        <div class="sec-glow" style="--op:0.07;width:300px;height:300px;background:#60a5fa;opacity:0.07;bottom:10%;left:-50px;"></div>
+        <div class="sec-glow" style="--op:0.09;width:380px;height:380px;background:#145e38;opacity:0.09;top:-100px;right:-70px;"></div>
+        <div class="sec-glow" style="--op:0.08;width:300px;height:300px;background:#2d8a5e;opacity:0.08;bottom:10%;left:-50px;"></div>
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">My Work</span>
@@ -1437,8 +1437,8 @@
         <div class="footer-corak"></div>
         <div class="footer-wave">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,0 L0,0Z" fill="#f0f4f8"/>
-                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,0 L0,0Z" fill="#f0f4f8"/>
+                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,0 L0,0Z" fill="#ebf5ee"/>
+                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,0 L0,0Z" fill="#ebf5ee"/>
             </svg>
         </div>
         <div class="footer-content">
