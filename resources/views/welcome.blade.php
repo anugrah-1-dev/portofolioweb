@@ -731,7 +731,14 @@
         }
         /* Avatar 3D perspective */
         .hero-visual { perspective:1000px; perspective-origin:center 40%; }
-        .avatar-wrap  { transition:transform 0.18s ease; transform-style:preserve-3d; }
+        .avatar-wrap  { transition:transform 0.18s ease; transform-style:preserve-3d; animation:heroAvatarRock 9s ease-in-out infinite; }
+        @keyframes heroAvatarRock {
+            0%   { transform:perspective(900px) rotateY(-9deg) rotateX(4deg); }
+            25%  { transform:perspective(900px) rotateY(9deg) rotateX(-4deg); }
+            50%  { transform:perspective(900px) rotateY(6deg) rotateX(6deg); }
+            75%  { transform:perspective(900px) rotateY(-7deg) rotateX(-5deg); }
+            100% { transform:perspective(900px) rotateY(-9deg) rotateX(4deg); }
+        }
         /* Card hover: let JS handle transform on desktop */
         @media (hover:hover) {
             .js-tilt-ready:hover { transform:none !important; }
@@ -1637,6 +1644,7 @@
                 var x = (e.clientX - rect.left) / rect.width - 0.5;   // -0.5 … 0.5
                 var y = (e.clientY - rect.top)  / rect.height - 0.5;
                 if (avatarWrap) {
+                    avatarWrap.style.animationPlayState = 'paused';
                     avatarWrap.style.transform =
                         'perspective(900px) rotateY(' + (x * 14) + 'deg) rotateX(' + (-y * 9) + 'deg)';
                 }
@@ -1656,7 +1664,10 @@
                 });
             });
             hero.addEventListener('mouseleave', function() {
-                if (avatarWrap) avatarWrap.style.transform = '';
+                if (avatarWrap) {
+                    avatarWrap.style.transform = '';
+                    avatarWrap.style.animationPlayState = 'running';
+                }
                 shapes.forEach(function(s) { s.style.transform = ''; });
                 orbs.forEach(function(o) { o.style.transform = ''; });
                 geo3ds.forEach(function(g) {
