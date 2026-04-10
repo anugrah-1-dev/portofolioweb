@@ -731,20 +731,48 @@
         }
         /* Avatar 3D perspective */
         .hero-visual { perspective:1000px; perspective-origin:center 40%; }
-        .avatar-wrap  { transition:transform 0.18s ease; transform-style:preserve-3d; animation:heroAvatarRock 9s ease-in-out infinite; }
-        @keyframes heroAvatarRock {
-            0%   { transform:perspective(900px) rotateY(-9deg) rotateX(4deg); }
-            25%  { transform:perspective(900px) rotateY(9deg) rotateX(-4deg); }
-            50%  { transform:perspective(900px) rotateY(6deg) rotateX(6deg); }
-            75%  { transform:perspective(900px) rotateY(-7deg) rotateX(-5deg); }
-            100% { transform:perspective(900px) rotateY(-9deg) rotateX(4deg); }
-        }
+        .avatar-wrap  { transform-style:preserve-3d; }
         /* Card hover: let JS handle transform on desktop */
         @media (hover:hover) {
             .js-tilt-ready:hover { transform:none !important; }
         }
         @media (max-width:768px) {
             .hero-3d-wrap { display:none; }
+        }
+
+        /* ─── HERO ENHANCEMENTS ─── */
+        .hero-text h1 .name { background:linear-gradient(135deg,#e2faf0 0%,#5eead4 50%,#40916c 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; color:transparent; }
+        .hero-role { display:flex; align-items:center; gap:0.6rem; margin-bottom:1.5rem; flex-wrap:wrap; }
+        .hero-role-badge { display:inline-flex; align-items:center; gap:0.4rem; padding:0.3rem 0.85rem; border-radius:20px; font-size:0.8rem; font-weight:700; background:rgba(45,106,79,0.12); color:var(--primary); border:1.5px solid rgba(45,106,79,0.28); }
+        .hero-role-dot { width:5px; height:5px; border-radius:50%; background:var(--faint); display:inline-block; margin:0 0.1rem; }
+        .hero-quick-stats { display:flex; align-items:center; gap:1.75rem; margin-top:1.75rem; flex-wrap:wrap; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.07); }
+        .hero-qs-item { display:flex; flex-direction:column; }
+        .hero-qs-num { font-size:1.65rem; font-weight:900; background:linear-gradient(135deg,var(--primary),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1; }
+        .hero-qs-label { font-size:0.68rem; font-weight:700; color:var(--faint); text-transform:uppercase; letter-spacing:1.5px; margin-top:4px; }
+        .hero-qs-divider { width:1px; height:36px; background:rgba(255,255,255,0.1); align-self:center; }
+        /* Orbit rings around avatar */
+        .avatar-orbit { position:absolute; inset:-30px; border-radius:50%; border:1.5px dashed rgba(45,106,79,0.22); animation:geoRingRotate 24s linear infinite; pointer-events:none; z-index:0; }
+        .avatar-orbit-2 { position:absolute; inset:-52px; border-radius:50%; border:1.5px dashed rgba(13,148,136,0.13); animation:geoRingRotate 38s linear infinite reverse; pointer-events:none; z-index:0; }
+        .avatar-orbit-dot { position:absolute; width:9px; height:9px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--accent)); box-shadow:0 0 14px rgba(45,106,79,0.7); z-index:1; }
+        .avatar-orbit-dot-1 { top:0; left:50%; transform:translate(-50%,-50%); }
+        .avatar-orbit-dot-2 { bottom:0; left:50%; transform:translate(-50%,50%); }
+        .avatar-orbit-dot-3 { top:50%; right:0; transform:translate(50%,-50%); background:linear-gradient(135deg,var(--accent),rgba(181,136,62,0.9)); }
+        /* Second photo – profile badge card */
+        .hero-photo-badge { position:absolute; bottom:-22px; left:-75px; display:flex; align-items:center; gap:0.7rem; background:rgba(8,20,12,0.88); backdrop-filter:blur(18px); border:1.5px solid rgba(45,106,79,0.42); border-radius:18px; padding:0.7rem 1.15rem 0.7rem 0.7rem; box-shadow:0 8px 36px rgba(0,0,0,0.45); z-index:12; animation:floatAnim 4.5s ease-in-out infinite 0.5s; white-space:nowrap; }
+        .hpb-img { width:48px; height:48px; border-radius:12px; flex-shrink:0; background:rgba(45,106,79,0.15); display:flex; align-items:center; justify-content:center; font-size:1.5rem; overflow:hidden; border:2px solid rgba(45,106,79,0.55); }
+        .hpb-img img { width:100%; height:100%; object-fit:cover; display:block; }
+        .hpb-name { font-size:0.84rem; font-weight:800; color:#e2faf0; display:block; line-height:1.3; }
+        .hpb-role { font-size:0.7rem; color:var(--accent); font-weight:600; display:block; }
+        .hpb-status { display:flex; align-items:center; gap:0.3rem; margin-top:0.2rem; }
+        .hpb-dot { width:7px; height:7px; border-radius:50%; background:#22c55e; animation:geoDotPulse 2s ease-in-out infinite; box-shadow:0 0 6px rgba(34,197,94,0.7); flex-shrink:0; }
+        .hpb-status-txt { font-size:0.65rem; color:rgba(255,255,255,0.45); }
+        @media (max-width:900px) {
+            .hero-photo-badge { left:-10px; bottom:-65px; }
+            .hero-quick-stats { gap:1rem; }
+        }
+        @media (max-width:480px) {
+            .hero-photo-badge { display:none; }
+            .hero-quick-stats { gap:0.8rem; }
         }
     </style>
 </head>
@@ -853,6 +881,11 @@
                     <h1 class="fade-up d2">
                         <span class="name">Anugrah</span>
                     </h1>
+                    <div class="hero-role fade-up d2">
+                        <span class="hero-role-badge"><i class="fa-solid fa-code"></i> Full-Stack Developer</span>
+                        <span class="hero-role-dot"></span>
+                        <span class="hero-role-badge"><i class="fa-solid fa-graduation-cap"></i> IT Student</span>
+                    </div>
                     <p class="hero-desc fade-up d3" style="text-align:justify;">{{ $profil?->deskripsi_home ?? 'Information Technology student focused on application and system development. Experienced in building desktop, web, and mobile projects with various modern technologies, with a strong interest in software development and team collaboration.' }}</p>
                     <div class="btn-group fade-up d4">
                         <a href="#projek" class="btn btn-primary">&#128640; View Projects</a>
@@ -861,11 +894,38 @@
                         <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $profil->no_whatsapp) }}?text={{ urlencode('Hello, I am interested in discussing further.') }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Contact Me</a>
                         @endif
                     </div>
+                    <div class="hero-quick-stats fade-up d5">
+                        <div class="hero-qs-item">
+                            <span class="hero-qs-num">{{ $totalProjek }}+</span>
+                            <span class="hero-qs-label">Projects</span>
+                        </div>
+                        <div class="hero-qs-divider"></div>
+                        <div class="hero-qs-item">
+                            <span class="hero-qs-num">{{ $pengalaman->count() }}+</span>
+                            <span class="hero-qs-label">Experiences</span>
+                        </div>
+                        <div class="hero-qs-divider"></div>
+                        <div class="hero-qs-item">
+                            <span class="hero-qs-num">{{ $totalPrestasi }}+</span>
+                            <span class="hero-qs-label">Awards</span>
+                        </div>
+                        <div class="hero-qs-divider"></div>
+                        <div class="hero-qs-item">
+                            <span class="hero-qs-num">{{ $totalJurnal + $totalHki }}+</span>
+                            <span class="hero-qs-label">Publications</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="hero-visual fade-up d3">
                     <div class="avatar-bg-pattern"></div>
                     <div class="avatar-bg-pattern-2"></div>
                     <div class="avatar-wrap">
+                        <div class="avatar-orbit">
+                            <span class="avatar-orbit-dot avatar-orbit-dot-1"></span>
+                            <span class="avatar-orbit-dot avatar-orbit-dot-2"></span>
+                            <span class="avatar-orbit-dot avatar-orbit-dot-3"></span>
+                        </div>
+                        <div class="avatar-orbit-2"></div>
                         <div class="avatar-ring"></div>
                         <div class="avatar-core">
                             @if($profil?->foto)
@@ -900,6 +960,24 @@
                     @if(isset($tags[0]))<div class="float-tag float-tag-1">⭐ {{ $tags[0] }}</div>@endif
                     @if(isset($tags[1]))<div class="float-tag float-tag-2">🔥 {{ $tags[1] }}</div>@endif
                     @if(isset($tags[2]))<div class="float-tag float-tag-3">💪 {{ $tags[2] }}</div>@endif
+                    <!-- Second photo card badge -->
+                    <div class="hero-photo-badge">
+                        <div class="hpb-img">
+                            @if($profil?->foto)
+                            <img src="{{ Storage::url($profil->foto) }}" alt="{{ $profil->nama }}">
+                            @else
+                            &#128104;&#8205;&#128187;
+                            @endif
+                        </div>
+                        <div>
+                            <span class="hpb-name">{{ $profil?->nama ?? 'Anugrah' }}</span>
+                            <span class="hpb-role">{{ $profil?->keahlian[0] ?? 'IT Developer' }}</span>
+                            <div class="hpb-status">
+                                <span class="hpb-dot"></span>
+                                <span class="hpb-status-txt">Available for work</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1643,11 +1721,6 @@
                 var rect = hero.getBoundingClientRect();
                 var x = (e.clientX - rect.left) / rect.width - 0.5;   // -0.5 … 0.5
                 var y = (e.clientY - rect.top)  / rect.height - 0.5;
-                if (avatarWrap) {
-                    avatarWrap.style.animationPlayState = 'paused';
-                    avatarWrap.style.transform =
-                        'perspective(900px) rotateY(' + (x * 14) + 'deg) rotateX(' + (-y * 9) + 'deg)';
-                }
                 shapes.forEach(function(s, i) {
                     var f = (i + 1) * 10;
                     s.style.transform = 'translateY(0) translate(' + (x * f) + 'px, ' + (y * f) + 'px)';
@@ -1664,10 +1737,6 @@
                 });
             });
             hero.addEventListener('mouseleave', function() {
-                if (avatarWrap) {
-                    avatarWrap.style.transform = '';
-                    avatarWrap.style.animationPlayState = 'running';
-                }
                 shapes.forEach(function(s) { s.style.transform = ''; });
                 orbs.forEach(function(o) { o.style.transform = ''; });
                 geo3ds.forEach(function(g) {
