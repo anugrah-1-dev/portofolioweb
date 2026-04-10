@@ -184,10 +184,10 @@
 
 
         /* ─── TENTANG ─── */
-        #tentang { background:#fef9f0; }
+        #tentang { background:#edfff5; }
         .tentang-orb { position:absolute; border-radius:50%; filter:blur(75px); opacity:0.22; --op:0.22; pointer-events:none; z-index:0; animation:orbPulse 9s ease-in-out infinite; }
-        .tentang-orb-1 { width:380px; height:380px; background:#c9810f; top:8%; right:-80px; }
-        .tentang-orb-2 { width:280px; height:280px; background:#d4a84b; bottom:5%; left:-60px; }
+        .tentang-orb-1 { width:380px; height:380px; background:#2d8a5e; top:8%; right:-80px; }
+        .tentang-orb-2 { width:280px; height:280px; background:#0aaa88; bottom:5%; left:-60px; }
         #tentang .container { position:relative; z-index:1; }
         .about-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:5rem; align-items:start; }
         .about-info { position:relative; padding-left:1.5rem; }
@@ -868,8 +868,8 @@
         </div>
         <div class="home-wave">
             <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,40 C360,90 720,10 1080,50 C1260,70 1380,30 1440,40 L1440,100 L0,100Z" fill="#fef9f0"/>
-                <path d="M0,65 C300,95 600,45 900,65 C1100,78 1300,55 1440,62 L1440,100 L0,100Z" fill="#fef9f0"/>
+                <path d="M0,40 C360,90 720,10 1080,50 C1260,70 1380,30 1440,40 L1440,100 L0,100Z" fill="#edfff5"/>
+                <path d="M0,65 C300,95 600,45 900,65 C1100,78 1300,55 1440,62 L1440,100 L0,100Z" fill="#edfff5"/>
             </svg>
         </div>
         <div class="container">
