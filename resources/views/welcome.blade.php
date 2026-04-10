@@ -903,7 +903,7 @@
         </div>
         <div class="home-wave">
             <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,40 C360,90 720,10 1080,50 C1260,70 1380,30 1440,40 L1440,100 L0,100Z" fill="#b8d4c2"/>
+                <path d="M0,40 C360,90 720,10 1080,50 C1260,70 1380,30 1440,40 L1440,100 L0,100Z" fill="#cce8d6"/>
                 <path d="M0,65 C300,95 600,45 900,65 C1100,78 1300,55 1440,62 L1440,100 L0,100Z" fill="#cce8d6"/>
             </svg>
         </div>
@@ -1114,7 +1114,7 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,80 L0,80Z" fill="#dde8e2"/>
+                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,80 L0,80Z" fill="#f0faf4"/>
                 <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,80 L0,80Z" fill="#f0faf4"/>
             </svg>
         </div>
@@ -1189,7 +1189,7 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,32 C240,80 600,5 900,45 C1100,65 1280,20 1440,38 L1440,80 L0,80Z" fill="#c8ddd4"/>
+                <path d="M0,32 C240,80 600,5 900,45 C1100,65 1280,20 1440,38 L1440,80 L0,80Z" fill="#dff2e8"/>
                 <path d="M0,52 C360,72 720,30 1080,54 C1260,64 1380,40 1440,50 L1440,80 L0,80Z" fill="#dff2e8"/>
             </svg>
         </div>
@@ -1279,7 +1279,7 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,35 C360,80 720,5 1080,38 C1260,52 1380,22 1440,30 L1440,80 L0,80Z" fill="#dde8e2"/>
+                <path d="M0,35 C360,80 720,5 1080,38 C1260,52 1380,22 1440,30 L1440,80 L0,80Z" fill="#f0faf4"/>
                 <path d="M0,55 C300,74 600,36 900,56 C1100,68 1300,44 1440,52 L1440,80 L0,80Z" fill="#f0faf4"/>
             </svg>
         </div>
@@ -1332,7 +1332,7 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,30 C240,80 600,5 900,42 C1100,62 1280,22 1440,36 L1440,80 L0,80Z" fill="#c8ddd4"/>
+                <path d="M0,30 C240,80 600,5 900,42 C1100,62 1280,22 1440,36 L1440,80 L0,80Z" fill="#dff2e8"/>
                 <path d="M0,52 C360,70 720,32 1080,52 C1260,62 1380,40 1440,48 L1440,80 L0,80Z" fill="#dff2e8"/>
             </svg>
         </div>
@@ -1397,7 +1397,7 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,33 C360,80 720,5 1080,38 C1260,54 1380,22 1440,32 L1440,80 L0,80Z" fill="#dde8e2"/>
+                <path d="M0,33 C360,80 720,5 1080,38 C1260,54 1380,22 1440,32 L1440,80 L0,80Z" fill="#f0faf4"/>
                 <path d="M0,54 C300,73 600,34 900,55 C1100,67 1300,44 1440,52 L1440,80 L0,80Z" fill="#f0faf4"/>
             </svg>
         </div>
