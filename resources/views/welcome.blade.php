@@ -131,9 +131,11 @@
         .sec-wave-end svg { display:block; width:100%; height:auto; }
 
         /* ─── BATIK CORNER ORNAMENTS ─── */
-        .batik-sec-corner { position:absolute; pointer-events:none; z-index:2; width:130px; height:130px; opacity:0.22; }
-        .batik-sec-tl { top:0; left:0; }
-        .batik-sec-tr { top:0; right:0; transform:scaleX(-1); }
+        .batik-sec-corner { position:absolute; pointer-events:none; z-index:3; width:130px; height:130px; opacity:0.22; }
+        .batik-sec-tl { top:20px; left:0; }
+        .batik-sec-tr { top:20px; right:0; transform:scaleX(-1); }
+        /* Close sub-pixel rendering gap at section/wave seam */
+        #tentang,#pengalaman,#prestasi,#jurnal,#hki,#projek { margin-top:-2px; }
         /* Ambient section glow orbs */
         .sec-glow { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0; animation:orbPulse 10s ease-in-out infinite; }
         /* Orb pulse keyframe */
