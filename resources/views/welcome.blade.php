@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Portofolio Saya</title>
-    <meta name="description" content="Portofolio {{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Mahasiswa Teknologi Informasi yang berfokus pada pengembangan web dan aplikasi modern. Lihat projek, pengalaman, dan prestasi.">
-    <meta name="keywords" content="{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }}, portofolio, web developer, laravel, programmer, teknologi informasi, Jawa Timur">
+    <title>{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – My Portfolio</title>
+    <meta name="description" content="Portfolio of {{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Information Technology student focused on web and application development. Explore my projects, experiences, and achievements.">
+    <meta name="keywords" content="{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }}, portfolio, web developer, laravel, programmer, information technology">
     <meta name="author" content="{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://anugrahtejomaliki.my.id/public/">
@@ -13,8 +13,8 @@
     {{-- Open Graph --}}
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://anugrahtejomaliki.my.id/public/">
-    <meta property="og:title" content="{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Portofolio Saya">
-    <meta property="og:description" content="Portofolio {{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Mahasiswa Teknologi Informasi yang berfokus pada pengembangan web dan aplikasi modern.">
+    <meta property="og:title" content="{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – My Portfolio">
+    <meta property="og:description" content="Portfolio of {{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Information Technology student focused on web and application development.">
     @if($profil?->foto)<meta property="og:image" content="{{ Storage::url($profil->foto) }}">@endif
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.ico">
@@ -764,12 +764,12 @@
             <div class="logo">ANUGRAH TEJO MALIKI</div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#tentang">Tentang</a></li>
-                <li><a href="#pengalaman">Pengalaman</a></li>
-                <li><a href="#prestasi">Prestasi</a></li>
-                <li><a href="#jurnal">Jurnal</a></li>
-                <li><a href="#hki">HKI</a></li>
-                <li><a href="#projek">Projek</a></li>
+                <li><a href="#tentang">About</a></li>
+                <li><a href="#pengalaman">Experience</a></li>
+                <li><a href="#prestasi">Achievements</a></li>
+                <li><a href="#jurnal">Journal</a></li>
+                <li><a href="#hki">IPR</a></li>
+                <li><a href="#projek">Projects</a></li>
             </ul>
             <div class="hamburger" id="hamburger" onclick="toggleMenu()">
                 <span></span><span></span><span></span>
@@ -842,16 +842,16 @@
         <div class="container">
             <div class="hero">
                 <div class="hero-text">
-                    <span class="greeting fade-up d1">Halo, Perkenalkan</span>
+                    <span class="greeting fade-up d1">Hello, I'm</span>
                     <h1 class="fade-up d2">
-                        <span class="name">Saya Anugrah</span>
+                        <span class="name">Anugrah</span>
                     </h1>
-                    <p class="hero-desc fade-up d3" style="text-align:justify;">{{ $profil?->deskripsi_home ?? 'Mahasiswa Teknologi Informasi yang berfokus pada pengembangan aplikasi dan sistem. Berpengalaman membangun proyek desktop, web, dan mobile dengan berbagai teknologi modern, serta memiliki minat tinggi dalam pengembangan software dan kolaborasi tim.' }}</p>
+                    <p class="hero-desc fade-up d3" style="text-align:justify;">{{ $profil?->deskripsi_home ?? 'Information Technology student focused on application and system development. Experienced in building desktop, web, and mobile projects with various modern technologies, with a strong interest in software development and team collaboration.' }}</p>
                     <div class="btn-group fade-up d4">
-                        <a href="#projek" class="btn btn-primary">&#128640; Lihat Projek</a>
-                        <a href="#tentang" class="btn btn-outline">&#128100; Tentang Saya</a>
+                        <a href="#projek" class="btn btn-primary">&#128640; View Projects</a>
+                        <a href="#tentang" class="btn btn-outline">&#128100; About Me</a>
                         @if($profil?->no_whatsapp)
-                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $profil->no_whatsapp) }}?text={{ urlencode('Halo, saya tertarik untuk berdiskusi lebih lanjut.') }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Hubungi Saya</a>
+                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $profil->no_whatsapp) }}?text={{ urlencode('Hello, I am interested in discussing further.') }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Contact Me</a>
                         @endif
                     </div>
                 </div>
@@ -906,31 +906,31 @@
         <div class="tentang-orb tentang-orb-2"></div>
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Siapa Saya</span>
-                <h2 class="section-title">Tentang <span>Saya</span></h2>
+                <span class="section-label">Who I Am</span>
+                <h2 class="section-title">About <span>Me</span></h2>
                 <div class="section-divider"></div>
             </div>
             <div class="about-grid">
                 <div class="about-info reveal">
-                    <p>{{ $profil?->bio1 ?? 'Saya adalah seorang Web Developer yang penuh semangat dalam menciptakan solusi digital yang inovatif dan berdampak.' }}</p>
+                    <p>{{ $profil?->bio1 ?? 'I am a passionate Web Developer dedicated to creating innovative and impactful digital solutions.' }}</p>
                     @if($profil?->bio2)
                     <p>{{ $profil->bio2 }}</p>
                     @endif
                     <div class="about-cards">
                         <div class="about-card">
-                            <div class="card-label">Nama</div>
+                            <div class="card-label">Name</div>
                             <div class="card-value">{{ $profil?->nama ?? 'Anugrah' }}</div>
                         </div>
                         <div class="about-card">
                             <div class="card-label">Email</div>
-                            <div class="card-value">{{ $profil?->status ?? 'email@contoh.com' }}</div>
+                            <div class="card-value">{{ $profil?->status ?? 'email@example.com' }}</div>
                         </div>
                         <div class="about-card">
-                            <div class="card-label">Lokasi</div>
+                            <div class="card-label">Location</div>
                             <div class="card-value">{{ $profil?->lokasi ?? 'Indonesia' }}</div>
                         </div>
                         <div class="about-card">
-                            <div class="card-label">No. Telpon</div>
+                            <div class="card-label">Phone No.</div>
                             <div class="card-value">{{ $profil?->bahasa ?? '+62 812 xxxx xxxx' }}</div>
                         </div>
                     </div>
@@ -946,7 +946,7 @@
                     @endif
                 </div>
                 <div class="skills-wrap reveal">
-                    <h3>Keahlian Teknis</h3>
+                    <h3>Technical Skills</h3>
                     <div class="tech-tags">
                         @forelse($profil?->keahlian ?? [] as $skill)
                         <span class="tech-tag">{{ $skill }}</span>
@@ -964,19 +964,19 @@
                     <div class="about-stats">
                         <div class="stat-item">
                             <div class="stat-number">{{ $totalProjek }}</div>
-                            <div class="stat-label">Projek</div>
+                            <div class="stat-label">Projects</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">{{ $pengalaman->count() }}</div>
-                            <div class="stat-label">Organisasi</div>
+                            <div class="stat-label">Orgs</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">{{ $totalPrestasi }}</div>
-                            <div class="stat-label">Prestasi</div>
+                            <div class="stat-label">Awards</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">{{ $totalJurnal + $totalHki }}</div>
-                            <div class="stat-label">Publikasi</div>
+                            <div class="stat-label">Publications</div>
                         </div>
                     </div>
 
@@ -996,8 +996,8 @@
         <div class="corak-border corak-border-top"></div>
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
-                <span class="section-label">Riwayat Kontribusi</span>
-                <h2 class="section-title">Pengalaman <span>Organisasi</span></h2>
+                <span class="section-label">Contribution History</span>
+                <h2 class="section-title">Organization <span>Experience</span></h2>
                 <div class="section-divider"></div>
             </div>
             @if($pengalaman->isNotEmpty())
@@ -1013,12 +1013,12 @@
                         'lainnya'     => 'peng-jenis-lainnya',
                     ];
                     $jenis_label = [
-                        'organisasi'  => '🏛️ Organisasi',
-                        'kepanitiaan' => '📋 Kepanitiaan',
-                        'komunitas'   => '👥 Komunitas',
-                        'magang'      => '💼 Magang',
+                        'organisasi'  => '🏛️ Organization',
+                        'kepanitiaan' => '📋 Committee',
+                        'komunitas'   => '👥 Community',
+                        'magang'      => '💼 Internship',
                         'volunteer'   => '🤝 Volunteer',
-                        'lainnya'     => '📌 Lainnya',
+                        'lainnya'     => '📌 Other',
                     ];
                 @endphp
                 <div class="peng-item reveal">
@@ -1030,13 +1030,13 @@
                          data-peran="{{ $item->peran }}"
                          data-jenis-label="{{ $jenis_label[$item->jenis] ?? $item->jenis }}"
                          data-jenis-class="{{ $jenis_class[$item->jenis] ?? '' }}"
-                         data-periode="{{ $item->tahun_mulai }} – {{ $item->tahun_selesai ?? 'Sekarang' }}"
+                         data-periode="{{ $item->tahun_mulai }} – {{ $item->tahun_selesai ?? 'Present' }}"
                          data-deskripsi="{{ $item->deskripsi ?? '' }}"
                          data-sertifikat="{{ $item->foto_sertifikat ? Storage::url($item->foto_sertifikat) : '' }}">
                         <div class="peng-head">
                             <div class="peng-org">{{ $item->nama_organisasi }}</div>
                             <div class="peng-meta">
-                                <span class="peng-periode">{{ $item->tahun_mulai }} – {{ $item->tahun_selesai ?? 'Sekarang' }}</span>
+                                <span class="peng-periode">{{ $item->tahun_mulai }} – {{ $item->tahun_selesai ?? 'Present' }}</span>
                                 <span class="peng-jenis {{ $jenis_class[$item->jenis] ?? '' }}">{{ $jenis_label[$item->jenis] ?? $item->jenis }}</span>
                             </div>
                         </div>
@@ -1050,7 +1050,7 @@
             </div>
             @else
             <div style="text-align:center;padding:3rem 0;color:var(--faint);font-size:1rem;">
-                Belum ada data pengalaman.
+                No experience data available.
             </div>
             @endif
         </div>
@@ -1062,15 +1062,15 @@
         <div class="corak-border corak-border-top"></div>
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Pencapaian</span>
-                <h2 class="section-title">Prestasi <span>Saya</span></h2>
+                <span class="section-label">Achievements</span>
+                <h2 class="section-title">My <span>Achievements</span></h2>
                 <div class="section-divider"></div>
             </div>
 
             {{-- Tab Buttons --}}
             <div class="prestasi-tabs reveal">
-                <button class="ptab-btn active" onclick="switchTab('akademik', this)">🎓 Prestasi Akademik</button>
-                <button class="ptab-btn" onclick="switchTab('non_akademik', this)">🏆 Prestasi Non-Akademik</button>
+                <button class="ptab-btn active" onclick="switchTab('akademik', this)">🎓 Academic Achievements</button>
+                <button class="ptab-btn" onclick="switchTab('non_akademik', this)">🏆 Non-Academic Achievements</button>
             </div>
 
             {{-- Tab: Akademik --}}
@@ -1094,12 +1094,12 @@
                             <div class="p-desc">{{ $item->description }}</div>
                             <div class="p-footer">
                                 <span class="p-badge"><i class="fa-solid fa-trophy"></i> {{ $item->badge }}</span>
-                                <span class="p-more"><i class="fa-solid fa-circle-info"></i> Detail</span>
+                                <span class="p-more"><i class="fa-solid fa-circle-info"></i> Details</span>
                             </div>
                         </div>
                     </div>
                     @empty
-                    <p style="color:var(--faint);font-size:0.9rem;">Belum ada data prestasi akademik.</p>
+                    <p style="color:var(--faint);font-size:0.9rem;">No academic achievement data available.</p>
                     @endforelse
                 </div>
             </div>
@@ -1125,12 +1125,12 @@
                             <div class="p-desc">{{ $item->description }}</div>
                             <div class="p-footer">
                                 <span class="p-badge"><i class="fa-solid fa-trophy"></i> {{ $item->badge }}</span>
-                                <span class="p-more"><i class="fa-solid fa-circle-info"></i> Detail</span>
+                                <span class="p-more"><i class="fa-solid fa-circle-info"></i> Details</span>
                             </div>
                         </div>
                     </div>
                     @empty
-                    <p style="color:var(--faint);font-size:0.9rem;">Belum ada data prestasi non-akademik.</p>
+                    <p style="color:var(--faint);font-size:0.9rem;">No non-academic achievement data available.</p>
                     @endforelse
                 </div>
             </div>
@@ -1143,8 +1143,8 @@
         <div class="corak-border corak-border-top"></div>
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Publikasi Ilmiah</span>
-                <h2 class="section-title">Jurnal <span>&amp; Artikel</span></h2>
+                <span class="section-label">Scientific Publications</span>
+                <h2 class="section-title">Journal <span>&amp; Articles</span></h2>
                 <div class="section-divider"></div>
             </div>
             <div class="jurnal-list">
@@ -1166,7 +1166,7 @@
                         <div class="j-desc">{{ $item->description }}</div>
                         @endif
                         @if($item->url)
-                        <a href="{{ $item->url }}" target="_blank" rel="noopener noreferrer" class="j-link-btn">&#128279; Buka Jurnal</a>
+                        <a href="{{ $item->url }}" target="_blank" rel="noopener noreferrer" class="j-link-btn">&#128279; Open Journal</a>
                         @endif
                     </div>
                     <div class="j-right">
@@ -1175,7 +1175,7 @@
                     </div>
                 </div>
                 @empty
-                <p style="color:var(--faint);font-size:0.9rem;text-align:center;padding:2rem 0;">Belum ada data jurnal.</p>
+                <p style="color:var(--faint);font-size:0.9rem;text-align:center;padding:2rem 0;">No journal data available.</p>
                 @endforelse
             </div>
         </div>
@@ -1187,8 +1187,8 @@
         <div class="corak-border corak-border-top"></div>
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Kekayaan Intelektual</span>
-                <h2 class="section-title">HKI <span>&amp; Paten</span></h2>
+                <span class="section-label">Intellectual Property</span>
+                <h2 class="section-title">IPR <span>&amp; Patents</span></h2>
                 <div class="section-divider"></div>
             </div>
             <div class="hki-list">
@@ -1213,7 +1213,7 @@
                         <div class="hki-desc">{{ Str::limit($item->description, 150) }}</div>
                         @endif
                         @if($item->sertifikat_file)
-                        <a href="{{ Storage::url($item->sertifikat_file) }}" target="_blank" rel="noopener noreferrer" class="hki-link-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-scroll"></i> Lihat Sertifikat</a>
+                        <a href="{{ Storage::url($item->sertifikat_file) }}" target="_blank" rel="noopener noreferrer" class="hki-link-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-scroll"></i> View Certificate</a>
                         @endif
                     </div>
                     <div class="hki-right">
@@ -1231,7 +1231,7 @@
                     </div>
                 </div>
                 @empty
-                <p style="color:var(--faint);font-size:0.9rem;text-align:center;padding:2rem 0;">Belum ada data HKI.</p>
+                <p style="color:var(--faint);font-size:0.9rem;text-align:center;padding:2rem 0;">No IPR data available.</p>
                 @endforelse
             </div>
         </div>
@@ -1243,8 +1243,8 @@
         <div class="corak-border corak-border-top"></div>
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Karya Saya</span>
-                <h2 class="section-title">Projek <span>Terbaru</span></h2>
+                <span class="section-label">My Work</span>
+                <h2 class="section-title">Latest <span>Projects</span></h2>
                 <div class="section-divider"></div>
             </div>
             <div class="proj-grid">
@@ -1320,7 +1320,7 @@
                                 @endif
                                 @if($item->isBerbayar())
                                 <span class="proj-link proj-link-buy">
-                                    <i class="fa-solid fa-cart-shopping"></i> Beli
+                                    <i class="fa-solid fa-cart-shopping"></i> Buy
                                 </span>
                                 @elseif($item->github_url)
                                 <a href="{{ $item->github_url }}" target="_blank" rel="noopener noreferrer" class="proj-link proj-link-git" onclick="event.stopPropagation()">
@@ -1332,7 +1332,7 @@
                     </div>
                 </div>
                 @empty
-                <p style="color:var(--faint);font-size:0.9rem;">Belum ada data projek.</p>
+                <p style="color:var(--faint);font-size:0.9rem;">No project data available.</p>
                 @endforelse
             </div>
         </div>
@@ -1350,22 +1350,22 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="footer-logo">{{ $profil?->nama ?? 'Anugrah' }}</div>
-                    <p class="footer-tagline">Mahasiswa Teknologi Informasi yang berfokus pada pengembangan aplikasi dan sistem dengan berbagai teknologi modern.</p>
+                    <p class="footer-tagline">Information Technology student focused on application and system development with various modern technologies.</p>
                 </div>
                 <div class="footer-nav">
-                    <h4>Navigasi</h4>
+                    <h4>Navigation</h4>
                     <ul>
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#tentang">Tentang</a></li>
-                        <li><a href="#pengalaman">Pengalaman</a></li>
-                        <li><a href="#prestasi">Prestasi</a></li>
-                        <li><a href="#jurnal">Jurnal</a></li>
-                        <li><a href="#hki">HKI</a></li>
-                        <li><a href="#projek">Projek</a></li>
+                        <li><a href="#tentang">About</a></li>
+                        <li><a href="#pengalaman">Experience</a></li>
+                        <li><a href="#prestasi">Achievements</a></li>
+                        <li><a href="#jurnal">Journal</a></li>
+                        <li><a href="#hki">IPR</a></li>
+                        <li><a href="#projek">Projects</a></li>
                     </ul>
                 </div>
                 <div class="footer-social-section">
-                    <h4>Sosial Media</h4>
+                    <h4>Social Media</h4>
                     @if($sosmed->isNotEmpty())
                     <div class="footer-social-links">
                         @foreach($sosmed as $s)
@@ -1383,9 +1383,9 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; {{ date('Y') }} <span>{{ $profil?->nama ?? 'Anugrah' }}</span> &mdash; Dibangun dengan ❤️ &amp; dedikasi penuh</p>
+                <p>&copy; {{ date('Y') }} <span>{{ $profil?->nama ?? 'Anugrah' }}</span> &mdash; Built with ❤️ &amp; full dedication</p>
                 <div class="footer-bottom-links">
-                    <a href="#home">Kembali ke Atas ↑</a>
+                    <a href="#home">Back to Top ↑</a>
                 </div>
             </div>
         </div>
@@ -1436,41 +1436,41 @@
             let hHtml = '', bHtml = '';
 
             if (type === 'pengalaman') {
-                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-briefcase"></i> Pengalaman & Organisasi</div>'
+                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-briefcase"></i> Experience & Organizations</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.nama) + '</div>'
                       + '<div class="detail-subtitle">📌 ' + escHtml(el.dataset.peran) + '</div>';
-                if (el.dataset.sertifikat) bHtml += '<div class="detail-img-wrap"><img class="detail-foto" src="' + el.dataset.sertifikat + '" alt="Sertifikat"><a class="detail-dl-btn" href="' + el.dataset.sertifikat + '" download="sertifikat.jpg"><i class="fa-solid fa-download"></i> Unduh Gambar</a></div>';
-                bHtml += '<div class="detail-row"><span class="detail-label">Periode</span><span class="detail-value">' + escHtml(el.dataset.periode) + '</span></div>'
-                       + '<div class="detail-row"><span class="detail-label">Jenis</span><span class="detail-value"><span class="peng-jenis ' + el.dataset.jenisClass + '">' + escHtml(el.dataset.jenisLabel) + '</span></span></div>';
+                if (el.dataset.sertifikat) bHtml += '<div class="detail-img-wrap"><img class="detail-foto" src="' + el.dataset.sertifikat + '" alt="Certificate"><a class="detail-dl-btn" href="' + el.dataset.sertifikat + '" download="certificate.jpg"><i class="fa-solid fa-download"></i> Download Image</a></div>';
+                bHtml += '<div class="detail-row"><span class="detail-label">Period</span><span class="detail-value">' + escHtml(el.dataset.periode) + '</span></div>'
+                       + '<div class="detail-row"><span class="detail-label">Type</span><span class="detail-value"><span class="peng-jenis ' + el.dataset.jenisClass + '">' + escHtml(el.dataset.jenisLabel) + '</span></span></div>';
                 if (el.dataset.deskripsi) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.deskripsi) + '</div>';
 
             } else if (type === 'prestasi') {
-                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-trophy"></i> Prestasi</div>'
+                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-trophy"></i> Achievement</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
-                if (el.dataset.foto) bHtml += '<div class="detail-img-wrap"><img class="detail-foto" src="' + el.dataset.foto + '" alt="Foto Prestasi"><a class="detail-dl-btn" href="' + el.dataset.foto + '" download="prestasi.jpg"><i class="fa-solid fa-download"></i> Unduh Gambar</a></div>';
-                bHtml += '<div class="detail-row"><span class="detail-label">Tahun</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
-                if (el.dataset.badge) bHtml += '<div class="detail-row"><span class="detail-label">Kategori</span><span class="detail-value"><span class="td-badge">' + escHtml(el.dataset.badge) + '</span></span></div>';
+                if (el.dataset.foto) bHtml += '<div class="detail-img-wrap"><img class="detail-foto" src="' + el.dataset.foto + '" alt="Achievement Photo"><a class="detail-dl-btn" href="' + el.dataset.foto + '" download="achievement.jpg"><i class="fa-solid fa-download"></i> Download Image</a></div>';
+                bHtml += '<div class="detail-row"><span class="detail-label">Year</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
+                if (el.dataset.badge) bHtml += '<div class="detail-row"><span class="detail-label">Category</span><span class="detail-value"><span class="td-badge">' + escHtml(el.dataset.badge) + '</span></span></div>';
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
 
             } else if (type === 'jurnal') {
-                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-newspaper"></i> Jurnal & Artikel</div>'
+                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-newspaper"></i> Journal & Articles</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
-                bHtml = '<div class="detail-row"><span class="detail-label">Penulis</span><span class="detail-value">' + escHtml(el.dataset.authors) + '</span></div>'
-                      + '<div class="detail-row"><span class="detail-label">Jurnal</span><span class="detail-value">' + escHtml(el.dataset.journal) + '</span></div>'
-                      + '<div class="detail-row"><span class="detail-label">Tahun</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
-                if (el.dataset.indexed) bHtml += '<div class="detail-row"><span class="detail-label">Indeks</span><span class="detail-value">' + escHtml(el.dataset.indexed) + '</span></div>';
+                bHtml = '<div class="detail-row"><span class="detail-label">Authors</span><span class="detail-value">' + escHtml(el.dataset.authors) + '</span></div>'
+                      + '<div class="detail-row"><span class="detail-label">Journal</span><span class="detail-value">' + escHtml(el.dataset.journal) + '</span></div>'
+                      + '<div class="detail-row"><span class="detail-label">Year</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
+                if (el.dataset.indexed) bHtml += '<div class="detail-row"><span class="detail-label">Index</span><span class="detail-value">' + escHtml(el.dataset.indexed) + '</span></div>';
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
-                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Jurnal</a></div>';
+                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Journal</a></div>';
 
             } else if (type === 'hki') {
-                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-certificate"></i> HKI &amp; Paten</div>'
+                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-certificate"></i> IPR &amp; Patents</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
-                bHtml = '<div class="detail-row"><span class="detail-label">Pemegang Hak</span><span class="detail-value">' + escHtml(el.dataset.authors) + '</span></div>'
-                      + '<div class="detail-row"><span class="detail-label">Jenis</span><span class="detail-value"><span class="td-badge">' + escHtml(el.dataset.jenis) + '</span></span></div>'
-                      + '<div class="detail-row"><span class="detail-label">Tahun</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
-                if (el.dataset.nomor) bHtml += '<div class="detail-row"><span class="detail-label">No. Pencatatan</span><span class="detail-value" style="font-family:monospace;">' + escHtml(el.dataset.nomor) + '</span></div>';
+                bHtml = '<div class="detail-row"><span class="detail-label">Rights Holder</span><span class="detail-value">' + escHtml(el.dataset.authors) + '</span></div>'
+                      + '<div class="detail-row"><span class="detail-label">Type</span><span class="detail-value"><span class="td-badge">' + escHtml(el.dataset.jenis) + '</span></span></div>'
+                      + '<div class="detail-row"><span class="detail-label">Year</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
+                if (el.dataset.nomor) bHtml += '<div class="detail-row"><span class="detail-label">Registration No.</span><span class="detail-value" style="font-family:monospace;">' + escHtml(el.dataset.nomor) + '</span></div>';
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
-                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary"><i class="fa-solid fa-scroll"></i> Lihat Sertifikat</a></div>';
+                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary"><i class="fa-solid fa-scroll"></i> View Certificate</a></div>';
 
             } else if (type === 'projek') {
                 var tags = [];
@@ -1478,14 +1478,14 @@
                 var imgs = [];
                 try { imgs = JSON.parse(el.dataset.galeri || '[]'); } catch(e) {}
                 var hasBerbayar = el.dataset.berbayar === '1';
-                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-laptop-code"></i> Projek</div>'
+                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-laptop-code"></i> Project</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
                 if (hasBerbayar) hHtml += '<div class="detail-price-tag"><i class="fa-solid fa-tag"></i> ' + escHtml(el.dataset.harga) + '</div>';
                 // Image slider
                 if (imgs.length > 0) {
                     bHtml += '<div class="detail-slider" id="detailSlider" data-index="0">';
                     imgs.forEach(function(src, i) {
-                        bHtml += '<div class="detail-slide' + (i===0?' active':'') + '"><img src="' + src + '" alt="Gambar Projek" loading="lazy"></div>';
+                        bHtml += '<div class="detail-slide' + (i===0?' active':'') + '"><img src="' + src + '" alt="Project Image" loading="lazy"></div>';
                     });
                     if (imgs.length > 1) {
                         bHtml += '<button class="detail-slide-prev" onclick="detailSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>';
@@ -1504,7 +1504,7 @@
                     bHtml += '<div class="detail-links">';
                     if (el.dataset.demo) bHtml += '<a href="' + el.dataset.demo + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>';
                     if (hasBerbayar) {
-                        bHtml += '<button type="button" id="btnBeliAkses" class="detail-link-btn detail-link-buy" style="cursor:pointer;"><i class="fa-solid fa-cart-shopping"></i> Beli Akses Source Code</button>';
+                        bHtml += '<button type="button" id="btnBeliAkses" class="detail-link-btn detail-link-buy" style="cursor:pointer;"><i class="fa-solid fa-cart-shopping"></i> Buy Source Code Access</button>';
                         _beliPending = { id: el.dataset.projekId, title: el.dataset.title, harga: el.dataset.harga };
                     } else if (el.dataset.github) {
                         bHtml += '<a href="' + el.dataset.github + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-secondary"><i class="fa-brands fa-github"></i> GitHub</a>';
@@ -1707,37 +1707,37 @@
                         <i class="fa-solid fa-cart-shopping" style="color:#fff;font-size:1.1rem;"></i>
                     </div>
                     <div>
-                        <div style="font-size:0.68rem;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:1.8px;margin-bottom:0.2rem;">Beli Source Code</div>
+                        <div style="font-size:0.68rem;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:1.8px;margin-bottom:0.2rem;">Buy Source Code</div>
                         <div class="detail-title" id="beliProjekTitle" style="font-size:1rem;line-height:1.3;"></div>
                     </div>
                 </div>
                 <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(13,148,136,0.1);border:1px solid rgba(13,148,136,0.25);border-radius:10px;padding:0.7rem 1.1rem;">
-                    <span style="font-size:0.78rem;color:var(--muted);font-weight:600;"><i class="fa-solid fa-receipt" style="margin-right:0.35rem;"></i>Total Pembayaran</span>
+                    <span style="font-size:0.78rem;color:var(--muted);font-weight:600;"><i class="fa-solid fa-receipt" style="margin-right:0.35rem;"></i>Total Payment</span>
                     <span style="font-size:1.15rem;font-weight:800;color:var(--accent);" id="beliHarga"></span>
                 </div>
             </div>
             <div class="detail-body" style="padding-top:1.25rem;">
                 <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.55;">
-                    Isi data di bawah untuk melanjutkan. Link GitHub tersedia otomatis setelah pembayaran dikonfirmasi.
+                    Fill in the details below to proceed. The GitHub link will be available automatically after payment is confirmed.
                 </p>
                 <form id="beliForm" method="POST" action="">
                     @csrf
-                    <label class="beli-field-label">Nama Lengkap</label>
+                    <label class="beli-field-label">Full Name</label>
                     <div class="beli-field-wrap">
                         <i class="fa-solid fa-user beli-field-icon"></i>
-                        <input type="text" name="nama" id="beliNama" required placeholder="Masukkan nama lengkap...">
+                        <input type="text" name="nama" id="beliNama" required placeholder="Enter your full name...">
                     </div>
-                    <label class="beli-field-label">Email Aktif</label>
+                    <label class="beli-field-label">Active Email</label>
                     <div class="beli-field-wrap" style="margin-bottom:1.5rem;">
                         <i class="fa-solid fa-envelope beli-field-icon"></i>
-                        <input type="email" name="email" id="beliEmail" required placeholder="email@contoh.com">
+                        <input type="email" name="email" id="beliEmail" required placeholder="email@example.com">
                     </div>
                     <button type="submit" class="beli-submit-btn">
-                        <i class="fa-solid fa-credit-card"></i> Lanjutkan Pembayaran
+                        <i class="fa-solid fa-credit-card"></i> Proceed to Payment
                     </button>
                 </form>
                 <div class="beli-pm-row">
-                    <span style="font-size:0.68rem;color:var(--faint);"><i class="fa-solid fa-shield-halved"></i> Aman via Midtrans</span>
+                    <span style="font-size:0.68rem;color:var(--faint);"><i class="fa-solid fa-shield-halved"></i> Secured via Midtrans</span>
                     <span class="beli-pm-badge">QRIS</span>
                     <span class="beli-pm-badge">GoPay</span>
                     <span class="beli-pm-badge">VA Bank</span>
@@ -1823,11 +1823,11 @@
         }
     </style>
     <div class="wa-float">
-        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $profil->no_whatsapp) }}?text={{ urlencode('Halo, saya dari web https://anugrahtejomaliki.my.id/ tertarik untuk berdiskusi lebih lanjut.') }}"
-           target="_blank" rel="noopener noreferrer" aria-label="Chat WhatsApp">
+        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $profil->no_whatsapp) }}?text={{ urlencode('Hello, I found your portfolio at https://anugrahtejomaliki.my.id/ and I am interested in discussing further.') }}"
+           target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
             <i class="fa-brands fa-whatsapp"></i>
         </a>
-        <span class="wa-tooltip">Chat via WhatsApp</span>
+        <span class="wa-tooltip">Chat on WhatsApp</span>
     </div>
     @endif
 </body>
