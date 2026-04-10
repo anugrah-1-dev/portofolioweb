@@ -41,6 +41,9 @@ class ProfilController extends Controller
             'keahlian_raw'         => 'nullable|string',
             'foto'                 => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'foto2'                => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'hero_role1'           => 'nullable|string|max:100',
+            'hero_role2'           => 'nullable|string|max:100',
+            'hero_status'          => 'nullable|string|max:100',
             'kata_penyemangat_raw' => 'nullable|string',
             'no_whatsapp'          => 'nullable|string|max:20',
             'cv_file'              => 'nullable|file|mimes:pdf,doc,docx|max:5120',
@@ -59,6 +62,9 @@ class ProfilController extends Controller
             'keahlian'         => array_values(array_filter(array_map('trim', explode(',', $data['keahlian_raw'] ?? '')))),
             'kata_penyemangat' => array_values(array_filter(array_map('trim', explode(',', $data['kata_penyemangat_raw'] ?? '')))),
             'no_whatsapp'      => $data['no_whatsapp'],
+            'hero_role1'       => $data['hero_role1'] ?? 'Full-Stack Developer',
+            'hero_role2'       => $data['hero_role2'] ?? 'IT Student',
+            'hero_status'      => $data['hero_status'] ?? 'Available for work',
         ];
 
         // Handle foto upload

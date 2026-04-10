@@ -97,6 +97,29 @@
                         <span class="form-hint">Format: JPG, PNG, WEBP. Maks: 2MB. Foto yang tampil di kartu badge Home. Jika kosong, otomatis pakai Foto Profil.</span>
                     </div>
 
+                    {{-- Hero Role & Status --}}
+                    <div class="form-group" style="grid-column:1">
+                        <label for="hero_role1">Role Badge 1 (Hero Home)</label>
+                        <input type="text" id="hero_role1" name="hero_role1" class="form-control"
+                               value="{{ old('hero_role1', $profil->hero_role1 ?? 'Full-Stack Developer') }}"
+                               placeholder="Full-Stack Developer">
+                        <span class="form-hint">Contoh: Full-Stack Developer</span>
+                    </div>
+                    <div class="form-group" style="grid-column:2">
+                        <label for="hero_role2">Role Badge 2 (Hero Home)</label>
+                        <input type="text" id="hero_role2" name="hero_role2" class="form-control"
+                               value="{{ old('hero_role2', $profil->hero_role2 ?? 'IT Student') }}"
+                               placeholder="IT Student">
+                        <span class="form-hint">Contoh: IT Student</span>
+                    </div>
+                    <div class="form-group full">
+                        <label for="hero_status">Status Kerja (Badge Card Home)</label>
+                        <input type="text" id="hero_status" name="hero_status" class="form-control"
+                               value="{{ old('hero_status', $profil->hero_status ?? 'Available for work') }}"
+                               placeholder="Available for work">
+                        <span class="form-hint">Teks yang tampil di kartu badge bawah kanan Home. Contoh: Available for work, Open to collaborate, dll.</span>
+                    </div>
+
                     {{-- Kata Penyemangat --}}
                     <div class="form-group full">
                         <label for="kata_penyemangat_raw">Kata Penyemangat (Floating Tags Home)</label>

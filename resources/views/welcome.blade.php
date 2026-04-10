@@ -112,10 +112,14 @@
         .section-title { font-size:clamp(2rem,4vw,2.8rem); font-weight:800; color:var(--text); line-height:1.2; }
         .section-title span { background:linear-gradient(135deg,var(--primary),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 
-        /* Divider */
+        /* Divider — wave shape */
         .section-divider {
-            width:80px; height:4px; margin:1.5rem auto 0; border-radius:4px;
-            background:var(--primary);
+            width:160px; height:18px; margin:1.25rem auto 0;
+            background: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 18' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='wg' x1='0' x2='1' y1='0' y2='0'%3E%3Cstop offset='0%25' stop-color='%23145e38'/%3E%3Cstop offset='100%25' stop-color='%230aaa88'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,9 C26,0 53,18 80,9 C107,0 133,18 160,9 L160,18 L0,18Z' fill='url(%23wg)'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            border-radius:0;
         }
 
         /* ─── HOME ─── */
@@ -191,33 +195,36 @@
         .batik-corner-br { bottom:-10px; right:-10px; transform:rotate(180deg); }
 
         /* ─── TENTANG ─── */
-        #tentang { background:linear-gradient(160deg,var(--bg) 0%,var(--bg2) 100%); }
-        .tentang-orb { position:absolute; border-radius:50%; filter:blur(90px); opacity:0.07; pointer-events:none; z-index:0; }
+        #tentang { background:linear-gradient(160deg,#eaf5ee 0%,#d4eddc 60%,#e8f7ee 100%); }
+        .tentang-orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.18; pointer-events:none; z-index:0; }
         .tentang-orb-1 { width:350px; height:350px; background:#0aaa88; top:10%; right:-80px; }
         .tentang-orb-2 { width:250px; height:250px; background:#145e38; bottom:5%; left:-60px; }
+        /* About Me wave top border */
+        #tentang .section-wave-top { position:absolute; top:0; left:0; width:100%; z-index:1; line-height:0; }
+        #tentang .section-wave-top svg { display:block; width:100%; height:auto; }
         #tentang .container { position:relative; z-index:1; }
         .about-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:5rem; align-items:start; }
         .about-info { position:relative; padding-left:1.5rem; }
         .about-info::before { content:''; position:absolute; left:0; top:0; width:4px; height:100%;
-            background:var(--primary);
+            background:linear-gradient(180deg,#0aaa88,#145e38,#c9810f);
             border-radius:2px; }
-        .about-info p { color:var(--muted); line-height:1.9; margin-bottom:1.5rem; font-size:1.1rem; text-align:justify; }
+        .about-info p { color:#1a3d28; line-height:1.9; margin-bottom:1.5rem; font-size:1.1rem; text-align:justify; }
         .about-info .accent { color:var(--primary); font-weight:700; }
         .about-cards { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:2rem; align-items:start; }
-        .about-card { background:var(--surface); border:1.5px solid var(--border); border-radius:14px; padding:1.25rem; transition:border-color 0.3s,box-shadow 0.3s; position:relative; overflow:hidden; }
+        .about-card { background:#fff; border:1.5px solid rgba(20,94,56,0.18); border-radius:14px; padding:1.25rem; transition:border-color 0.3s,box-shadow 0.3s; position:relative; overflow:hidden; box-shadow:0 2px 10px rgba(20,94,56,0.07); }
         .about-card::after { content:''; position:absolute; top:0; left:0; right:0; height:3px;
-            background:var(--primary);
+            background:linear-gradient(90deg,var(--primary),var(--accent));
             opacity:0; transition:opacity 0.3s; }
         .about-card:hover::after { opacity:1; }
-        .about-card:hover { border-color:var(--primary2); box-shadow:0 4px 18px rgba(45,106,79,0.12); }
-        .about-card .card-label { font-size:0.82rem; color:var(--faint); text-transform:uppercase; letter-spacing:2px; margin-bottom:0.4rem; font-weight:600; }
-        .about-card .card-value { font-size:1.08rem; font-weight:700; color:var(--text); word-break:break-all; overflow-wrap:anywhere; }
+        .about-card:hover { border-color:var(--primary); box-shadow:0 6px 22px rgba(20,94,56,0.16); transform:translateY(-2px); }
+        .about-card .card-label { font-size:0.82rem; color:#0d7a72; text-transform:uppercase; letter-spacing:2px; margin-bottom:0.4rem; font-weight:700; }
+        .about-card .card-value { font-size:1.08rem; font-weight:700; color:#09200f; word-break:break-all; overflow-wrap:anywhere; }
 
         /* Skills */
         .skills-wrap { position:relative; }
         .skills-wrap h3 { font-size:0.95rem; font-weight:800; color:var(--text); margin-bottom:1.75rem; text-transform:uppercase; letter-spacing:2px; display:flex; align-items:center; gap:0.6rem; }
         .skills-wrap h3::after { content:''; flex:1; height:2px;
-            background:var(--primary);
+            background:linear-gradient(90deg,var(--primary),var(--accent),transparent);
         }
         .tech-tags { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:0.75rem; }
         .tech-tag { padding:0.85rem 1rem; border-radius:12px; font-size:0.97rem; font-weight:700; text-align:center; border:1.5px solid transparent; transition:transform 0.22s,box-shadow 0.22s; cursor:default; position:relative; overflow:hidden; }
@@ -233,10 +240,10 @@
 
         /* Stats & CV */
         .about-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:0.75rem; margin-top:2rem; }
-        .stat-item { background:var(--surface); border:1.5px solid var(--border); border-radius:14px; padding:1rem 0.75rem; text-align:center; transition:border-color 0.3s,box-shadow 0.3s; }
-        .stat-item:hover { border-color:var(--primary2); box-shadow:0 4px 16px rgba(45,106,79,0.1); }
-        .stat-number { font-size:1.6rem; font-weight:900; color:var(--primary); line-height:1; }
-        .stat-label { font-size:0.75rem; font-weight:600; color:var(--faint); text-transform:uppercase; letter-spacing:1.5px; margin-top:0.3rem; }
+        .stat-item { background:#fff; border:1.5px solid rgba(20,94,56,0.18); border-radius:14px; padding:1rem 0.75rem; text-align:center; transition:all 0.3s; box-shadow:0 2px 8px rgba(20,94,56,0.07); }
+        .stat-item:hover { border-color:var(--primary); box-shadow:0 6px 20px rgba(20,94,56,0.16); transform:translateY(-2px); }
+        .stat-number { font-size:1.6rem; font-weight:900; background:linear-gradient(135deg,var(--primary),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1; }
+        .stat-label { font-size:0.75rem; font-weight:600; color:#2e5e40; text-transform:uppercase; letter-spacing:1.5px; margin-top:0.3rem; }
         .btn-cv { display:inline-flex; align-items:center; gap:0.6rem; margin-top:1.25rem; padding:0.8rem 1.75rem;
             background:var(--primary); color:#fff; border-radius:50px; font-weight:700; font-size:0.97rem;
             text-decoration:none; transition:all 0.3s; box-shadow:0 4px 16px rgba(45,106,79,0.25); }
@@ -887,12 +894,12 @@
                 <div class="hero-text">
                     <span class="greeting fade-up d1">Hello, I'm</span>
                     <h1 class="fade-up d2">
-                        <span class="name">Anugrah</span>
+                        <span class="name">{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }}</span>
                     </h1>
                     <div class="hero-role fade-up d2">
-                        <span class="hero-role-badge"><i class="fa-solid fa-code"></i> Full-Stack Developer</span>
+                        <span class="hero-role-badge"><i class="fa-solid fa-code"></i> {{ $profil?->hero_role1 ?? 'Full-Stack Developer' }}</span>
                         <span class="hero-role-dot"></span>
-                        <span class="hero-role-badge"><i class="fa-solid fa-graduation-cap"></i> IT Student</span>
+                        <span class="hero-role-badge"><i class="fa-solid fa-graduation-cap"></i> {{ $profil?->hero_role2 ?? 'IT Student' }}</span>
                     </div>
                     <p class="hero-desc fade-up d3" style="text-align:justify;">{{ $profil?->deskripsi_home ?? 'Information Technology student focused on application and system development. Experienced in building desktop, web, and mobile projects with various modern technologies, with a strong interest in software development and team collaboration.' }}</p>
                     <div class="btn-group fade-up d4">
@@ -984,7 +991,7 @@
                             <span class="hpb-role">{{ $profil?->keahlian[0] ?? 'IT Developer' }}</span>
                             <div class="hpb-status">
                                 <span class="hpb-dot"></span>
-                                <span class="hpb-status-txt">Available for work</span>
+                                <span class="hpb-status-txt">{{ $profil?->hero_status ?? 'Available for work' }}</span>
                             </div>
                         </div>
                     </div>
@@ -996,7 +1003,13 @@
     <!-- ═══ TENTANG ═══ -->
     <section id="tentang">
         <div class="corak-bg"></div>
-        <div class="corak-border corak-border-top"></div>
+        <!-- Wave top border from dark home to light about -->
+        <div class="section-wave-top">
+            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,0 L0,0Z" fill="#071a0e"/>
+                <path d="M0,50 C360,20 720,60 1080,40 C1260,30 1380,50 1440,45 L1440,0 L0,0Z" fill="rgba(7,26,14,0.45)"/>
+            </svg>
+        </div>
         <div class="tentang-orb tentang-orb-1"></div>
         <div class="tentang-orb tentang-orb-2"></div>
         <div class="container">
