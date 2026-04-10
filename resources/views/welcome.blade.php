@@ -167,6 +167,9 @@
         .btn-primary:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(20,94,56,0.50); }
         .btn-outline { background:transparent; color:var(--primary); border:2px solid rgba(20,94,56,0.45); }
         .btn-outline:hover { background:rgba(20,94,56,0.09); border-color:var(--primary); transform:translateY(-3px); }
+        /* Override btn-outline on dark home bg */
+        #home .btn-outline { color:rgba(210,242,222,0.90); border-color:rgba(210,242,222,0.40); background:rgba(255,255,255,0.06); }
+        #home .btn-outline:hover { color:#fff; border-color:rgba(210,242,222,0.80); background:rgba(255,255,255,0.12); transform:translateY(-3px); }
         .btn-whatsapp { background:linear-gradient(135deg,#25d366,#128c7e); color:#fff; box-shadow:0 6px 20px rgba(37,211,102,0.30); }
         .btn-whatsapp:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(37,211,102,0.45); }
         .hero-stats { display:flex; gap:2.5rem; }
@@ -881,8 +884,8 @@
         </div>
         <div class="home-wave">
             <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,60 C360,100 720,20 1080,60 C1260,80 1380,40 1440,50 L1440,100 L0,100Z" fill="#f0faf4"/>
-                <path d="M0,75 C300,95 600,55 900,75 C1100,85 1300,65 1440,70 L1440,100 L0,100Z" fill="rgba(240,250,244,0.75)"/>
+                <path d="M0,60 C360,100 720,20 1080,60 C1260,80 1380,40 1440,50 L1440,100 L0,100Z" fill="#e4f5ea"/>
+                <path d="M0,75 C300,95 600,55 900,75 C1100,85 1300,65 1440,70 L1440,100 L0,100Z" fill="rgba(228,245,234,0.80)"/>
             </svg>
         </div>
         <div class="container">
