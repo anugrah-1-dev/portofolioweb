@@ -112,15 +112,14 @@
         .section-title { font-size:clamp(2rem,4vw,2.8rem); font-weight:800; color:var(--text); line-height:1.2; }
         .section-title span { background:linear-gradient(135deg,var(--primary),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 
-        /* Divider — wave shape */
+        /* Divider — gold emas line */
         .section-divider {
-            width:160px; height:18px; margin:1.25rem auto 0;
-            background: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 18' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='wg' x1='0' x2='1' y1='0' y2='0'%3E%3Cstop offset='0%25' stop-color='%23145e38'/%3E%3Cstop offset='100%25' stop-color='%230aaa88'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,9 C26,0 53,18 80,9 C107,0 133,18 160,9 L160,18 L0,18Z' fill='url(%23wg)'/%3E%3C/svg%3E");
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            border-radius:0;
+            width:80px; height:4px; margin:1.5rem auto 0; border-radius:4px;
+            background: linear-gradient(90deg, #9a6c08, #d4a84b, #9a6c08);
         }
+        /* Section wave separators */
+        .sec-wave-end { position:absolute; bottom:0; left:0; width:100%; z-index:2; line-height:0; pointer-events:none; }
+        .sec-wave-end svg { display:block; width:100%; height:auto; }
 
         /* ─── HOME ─── */
         #home {
@@ -195,30 +194,27 @@
         .batik-corner-br { bottom:-10px; right:-10px; transform:rotate(180deg); }
 
         /* ─── TENTANG ─── */
-        #tentang { background:linear-gradient(160deg,#eaf5ee 0%,#d4eddc 60%,#e8f7ee 100%); }
-        .tentang-orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.18; pointer-events:none; z-index:0; }
-        .tentang-orb-1 { width:350px; height:350px; background:#0aaa88; top:10%; right:-80px; }
-        .tentang-orb-2 { width:250px; height:250px; background:#145e38; bottom:5%; left:-60px; }
-        /* About Me wave top border */
-        #tentang .section-wave-top { position:absolute; top:0; left:0; width:100%; z-index:1; line-height:0; }
-        #tentang .section-wave-top svg { display:block; width:100%; height:auto; }
+        #tentang { background:linear-gradient(160deg,#e4f5ea 0%,#cce8d6 50%,#e0f2e8 100%); }
+        .tentang-orb { position:absolute; border-radius:50%; filter:blur(75px); opacity:0.22; pointer-events:none; z-index:0; }
+        .tentang-orb-1 { width:380px; height:380px; background:#0aaa88; top:8%; right:-80px; }
+        .tentang-orb-2 { width:280px; height:280px; background:#145e38; bottom:5%; left:-60px; }
         #tentang .container { position:relative; z-index:1; }
         .about-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:5rem; align-items:start; }
         .about-info { position:relative; padding-left:1.5rem; }
-        .about-info::before { content:''; position:absolute; left:0; top:0; width:4px; height:100%;
-            background:linear-gradient(180deg,#0aaa88,#145e38,#c9810f);
-            border-radius:2px; }
-        .about-info p { color:#1a3d28; line-height:1.9; margin-bottom:1.5rem; font-size:1.1rem; text-align:justify; }
+        .about-info::before { content:''; position:absolute; left:0; top:0; width:5px; height:100%;
+            background:linear-gradient(180deg,#0aaa88 0%,#145e38 50%,#c9810f 100%);
+            border-radius:3px; box-shadow:0 0 12px rgba(10,170,136,0.35); }
+        .about-info p { color:#0d3320; line-height:1.9; margin-bottom:1.5rem; font-size:1.1rem; text-align:justify; font-weight:450; }
         .about-info .accent { color:var(--primary); font-weight:700; }
         .about-cards { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:2rem; align-items:start; }
-        .about-card { background:#fff; border:1.5px solid rgba(20,94,56,0.18); border-radius:14px; padding:1.25rem; transition:border-color 0.3s,box-shadow 0.3s; position:relative; overflow:hidden; box-shadow:0 2px 10px rgba(20,94,56,0.07); }
+        .about-card { background:#fff; border:2px solid rgba(20,94,56,0.20); border-radius:14px; padding:1.25rem; transition:all 0.3s; position:relative; overflow:hidden; box-shadow:0 3px 14px rgba(20,94,56,0.10); }
         .about-card::after { content:''; position:absolute; top:0; left:0; right:0; height:3px;
-            background:linear-gradient(90deg,var(--primary),var(--accent));
+            background:linear-gradient(90deg,#0aaa88,#145e38,#d4a84b);
             opacity:0; transition:opacity 0.3s; }
         .about-card:hover::after { opacity:1; }
-        .about-card:hover { border-color:var(--primary); box-shadow:0 6px 22px rgba(20,94,56,0.16); transform:translateY(-2px); }
-        .about-card .card-label { font-size:0.82rem; color:#0d7a72; text-transform:uppercase; letter-spacing:2px; margin-bottom:0.4rem; font-weight:700; }
-        .about-card .card-value { font-size:1.08rem; font-weight:700; color:#09200f; word-break:break-all; overflow-wrap:anywhere; }
+        .about-card:hover { border-color:var(--primary); box-shadow:0 8px 28px rgba(20,94,56,0.18); transform:translateY(-3px); }
+        .about-card .card-label { font-size:0.78rem; color:#0a8a7a; text-transform:uppercase; letter-spacing:2px; margin-bottom:0.35rem; font-weight:800; }
+        .about-card .card-value { font-size:1.05rem; font-weight:700; color:#09200f; word-break:break-all; overflow-wrap:anywhere; }
 
         /* Skills */
         .skills-wrap { position:relative; }
@@ -240,10 +236,10 @@
 
         /* Stats & CV */
         .about-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:0.75rem; margin-top:2rem; }
-        .stat-item { background:#fff; border:1.5px solid rgba(20,94,56,0.18); border-radius:14px; padding:1rem 0.75rem; text-align:center; transition:all 0.3s; box-shadow:0 2px 8px rgba(20,94,56,0.07); }
-        .stat-item:hover { border-color:var(--primary); box-shadow:0 6px 20px rgba(20,94,56,0.16); transform:translateY(-2px); }
-        .stat-number { font-size:1.6rem; font-weight:900; background:linear-gradient(135deg,var(--primary),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1; }
-        .stat-label { font-size:0.75rem; font-weight:600; color:#2e5e40; text-transform:uppercase; letter-spacing:1.5px; margin-top:0.3rem; }
+        .stat-item { background:#fff; border:2px solid rgba(20,94,56,0.18); border-radius:14px; padding:1rem 0.75rem; text-align:center; transition:all 0.3s; box-shadow:0 3px 12px rgba(20,94,56,0.10); }
+        .stat-item:hover { border-color:var(--primary); box-shadow:0 8px 24px rgba(20,94,56,0.18); transform:translateY(-3px); }
+        .stat-number { font-size:1.65rem; font-weight:900; background:linear-gradient(135deg,#145e38,#0aaa88); -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1; }
+        .stat-label { font-size:0.75rem; font-weight:700; color:#1a6040; text-transform:uppercase; letter-spacing:1.5px; margin-top:0.3rem; }
         .btn-cv { display:inline-flex; align-items:center; gap:0.6rem; margin-top:1.25rem; padding:0.8rem 1.75rem;
             background:var(--primary); color:#fff; border-radius:50px; font-weight:700; font-size:0.97rem;
             text-decoration:none; transition:all 0.3s; box-shadow:0 4px 16px rgba(45,106,79,0.25); }
@@ -1002,14 +998,6 @@
 
     <!-- ═══ TENTANG ═══ -->
     <section id="tentang">
-        <div class="corak-bg"></div>
-        <!-- Wave top border from dark home to light about -->
-        <div class="section-wave-top">
-            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,0 L0,0Z" fill="#071a0e"/>
-                <path d="M0,50 C360,20 720,60 1080,40 C1260,30 1380,50 1440,45 L1440,0 L0,0Z" fill="rgba(7,26,14,0.45)"/>
-            </svg>
-        </div>
         <div class="tentang-orb tentang-orb-1"></div>
         <div class="tentang-orb tentang-orb-2"></div>
         <div class="container">
@@ -1096,12 +1084,17 @@
                 </div>
             </div>
         </div>
+        <div class="sec-wave-end">
+            <svg viewBox="0 0 1440 70" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,35 C360,70 720,0 1080,35 C1260,52 1380,20 1440,28 L1440,70 L0,70Z" fill="#f0faf4"/>
+                <path d="M0,52 C300,65 600,32 900,52 C1100,62 1300,42 1440,50 L1440,70 L0,70Z" fill="rgba(240,250,244,0.65)"/>
+            </svg>
+        </div>
     </section>
 
     <!-- ═══ PENGALAMAN ═══ -->
     <section id="pengalaman">
         <div class="corak-bg"></div>
-        <div class="corak-border corak-border-top"></div>
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Contribution History</span>
@@ -1162,12 +1155,17 @@
             </div>
             @endif
         </div>
+        <div class="sec-wave-end">
+            <svg viewBox="0 0 1440 70" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,28 C240,70 600,0 900,40 C1100,62 1280,18 1440,35 L1440,70 L0,70Z" fill="#dff2e8"/>
+                <path d="M0,48 C360,65 720,28 1080,50 C1260,60 1380,38 1440,45 L1440,70 L0,70Z" fill="rgba(223,242,232,0.60)"/>
+            </svg>
+        </div>
     </section>
 
     <!-- ═══ PRESTASI ═══ -->
     <section id="prestasi">
         <div class="corak-bg"></div>
-        <div class="corak-border corak-border-top"></div>
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">Achievements</span>
@@ -1243,12 +1241,17 @@
                 </div>
             </div>
         </div>
+        <div class="sec-wave-end">
+            <svg viewBox="0 0 1440 70" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,35 C360,70 720,0 1080,35 C1260,52 1380,20 1440,28 L1440,70 L0,70Z" fill="#f0faf4"/>
+                <path d="M0,52 C300,65 600,32 900,52 C1100,62 1300,42 1440,50 L1440,70 L0,70Z" fill="rgba(240,250,244,0.65)"/>
+            </svg>
+        </div>
     </section>
 
     <!-- ═══ JURNAL ═══ -->
     <section id="jurnal">
         <div class="corak-bg"></div>
-        <div class="corak-border corak-border-top"></div>
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">Scientific Publications</span>
@@ -1287,12 +1290,17 @@
                 @endforelse
             </div>
         </div>
+        <div class="sec-wave-end">
+            <svg viewBox="0 0 1440 70" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,28 C240,70 600,0 900,40 C1100,62 1280,18 1440,35 L1440,70 L0,70Z" fill="#dff2e8"/>
+                <path d="M0,48 C360,65 720,28 1080,50 C1260,60 1380,38 1440,45 L1440,70 L0,70Z" fill="rgba(223,242,232,0.60)"/>
+            </svg>
+        </div>
     </section>
 
     <!-- ═══ HKI ═══ -->
     <section id="hki">
         <div class="corak-bg"></div>
-        <div class="corak-border corak-border-top"></div>
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">Intellectual Property</span>
@@ -1343,12 +1351,17 @@
                 @endforelse
             </div>
         </div>
+        <div class="sec-wave-end">
+            <svg viewBox="0 0 1440 70" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,35 C360,70 720,0 1080,35 C1260,52 1380,20 1440,28 L1440,70 L0,70Z" fill="#dff2e8"/>
+                <path d="M0,52 C300,65 600,32 900,52 C1100,62 1300,42 1440,50 L1440,70 L0,70Z" fill="rgba(223,242,232,0.65)"/>
+            </svg>
+        </div>
     </section>
 
     <!-- ═══ PROJEK ═══ -->
     <section id="projek">
         <div class="corak-bg"></div>
-        <div class="corak-border corak-border-top"></div>
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">My Work</span>
