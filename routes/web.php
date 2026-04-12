@@ -13,18 +13,10 @@ use App\Http\Controllers\Admin\ProfilController as AdminProfil;
 use App\Http\Controllers\Admin\SosmedController as AdminSosmed;
 use App\Http\Controllers\Admin\PengalamanController as AdminPengalaman;
 use App\Http\Controllers\Admin\UserController as AdminUser;
-use App\Http\Controllers\PaymentController;
 
 // ── Public ──
 Route::get('/', [PublicController::class, 'index']);
 Route::get('/cv', [PublicController::class, 'downloadCv'])->name('cv.download');
-
-// ── Payment ──
-Route::post('/projek/{id}/beli', [PaymentController::class, 'beli'])->name('projek.beli');
-Route::get('/projek/order/{token}', [PaymentController::class, 'sukses'])->name('projek.sukses');
-Route::get('/projek/order/{token}/download', [PaymentController::class, 'download'])->name('projek.download');
-Route::post('/projek/order/{token}/batal', [PaymentController::class, 'batal'])->name('projek.batal');
-Route::post('/webhook/midtrans', [PaymentController::class, 'webhook'])->name('webhook.midtrans');
 
 // ── Storage fallback (serves files through Laravel — works without symlink) ──
 Route::get('/storage/{path}', [StorageController::class, 'serve'])

@@ -415,8 +415,6 @@
         .proj-card:hover .proj-icon { color:rgba(255,255,255,0.42); filter:drop-shadow(0 0 32px rgba(255,143,192,0.4)); transform:scale(1.12); }
         /* Geo pattern overlay on thumb */
         .proj-thumb-pattern { position:absolute; inset:0; z-index:0; opacity:0.06; background-image:radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px); background-size:24px 24px; }
-        /* Badge paid */
-        .proj-paid-badge { position:absolute; top:0.85rem; right:0.85rem; z-index:4; background:rgba(10,18,12,0.78); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(239,68,68,0.38); color:#fca5a5; font-size:0.7rem; font-weight:700; padding:0.28rem 0.65rem; border-radius:20px; display:flex; align-items:center; gap:0.3rem; letter-spacing:0.3px; }
         /* Body */
         .proj-body { padding:1.35rem 1.5rem 1.25rem; }
         .proj-tags { display:flex; gap:0.4rem; flex-wrap:wrap; margin-bottom:0.75rem; }
@@ -425,15 +423,12 @@
         .proj-desc { font-size:0.87rem; color:var(--muted); line-height:1.7; margin-bottom:1rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
         /* Footer row */
         .proj-footer { display:flex; align-items:center; justify-content:space-between; gap:0.5rem; border-top:1px solid var(--border); padding-top:0.9rem; flex-wrap:wrap; }
-        .proj-price { font-size:0.78rem; font-weight:800; color:var(--accent); display:inline-flex; align-items:center; gap:0.28rem; }
         .proj-links { display:flex; gap:0.45rem; margin-left:auto; }
         .proj-link { font-size:0.74rem; font-weight:700; text-decoration:none; transition:all 0.25s; display:inline-flex; align-items:center; gap:0.3rem; padding:0.3rem 0.8rem; border-radius:20px; white-space:nowrap; }
         .proj-link-demo { background:rgba(255,143,192,0.18); color:#ffd5e8; border:1px solid rgba(255,181,215,0.35); }
         .proj-link-demo:hover { background:var(--accent); color:#fff; transform:translateY(-1px); }
         .proj-link-git { background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.65); border:1px solid rgba(255,255,255,0.12); }
         .proj-link-git:hover { background:rgba(255,255,255,0.15); color:#fff; transform:translateY(-1px); }
-        .proj-link-buy { background:rgba(255,143,192,0.18); color:#ffd5e8; border:1px solid rgba(255,181,215,0.35); cursor:pointer; }
-        .proj-link-buy:hover { background:var(--primary); color:#fff; transform:translateY(-1px); }
         /* Section icon */
         .section-icon { width:54px; height:54px; border-radius:16px; background:linear-gradient(135deg,var(--primary),var(--accent)); display:flex; align-items:center; justify-content:center; font-size:1.4rem; color:#fff; margin:0 auto 1rem; box-shadow:0 8px 28px rgba(255,111,172,0.35); }
 
@@ -619,8 +614,6 @@
         .detail-link-primary:hover { transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,111,172,0.45); }
         .detail-link-secondary { background:var(--bg2);color:var(--muted);border:1.5px solid var(--border); }
         .detail-link-secondary:hover { border-color:var(--primary);color:var(--primary);transform:translateY(-1px); }
-        .detail-link-buy { background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff!important;box-shadow:0 4px 18px rgba(255,111,172,0.4);flex:1;justify-content:center;font-size:0.92rem;border:none; }
-        .detail-link-buy:hover { transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,111,172,0.6); }
         .detail-img-wrap { position:relative;margin-bottom:1.35rem; }
         .detail-img-wrap .detail-foto { margin-bottom:0; }
         .detail-dl-btn { display:flex;align-items:center;justify-content:center;gap:0.45rem;
@@ -628,17 +621,6 @@
             background:var(--bg2);color:var(--primary);border:1.5px solid var(--border);
             text-decoration:none;transition:all 0.25s; }
         .detail-dl-btn:hover { background:var(--primary);color:#fff;border-color:var(--primary);transform:translateY(-1px); }
-        .detail-price-tag { display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.9rem;border-radius:20px;background:rgba(255,143,192,0.18);border:1.5px solid rgba(255,181,215,0.35);color:#ffd5e8;font-size:0.9rem;font-weight:800;margin-top:0.55rem; }
-        /* Payment form modal */
-        .beli-field-label { font-size:0.77rem;font-weight:700;color:var(--muted);display:block;margin-bottom:0.4rem;letter-spacing:0.3px;text-transform:uppercase; }
-        .beli-field-wrap { position:relative;margin-bottom:1rem; }
-        .beli-field-icon { position:absolute;left:0.9rem;top:50%;transform:translateY(-50%);color:var(--faint);font-size:0.85rem;pointer-events:none; }
-        .beli-field-wrap input { width:100%;padding:0.75rem 1rem 0.75rem 2.5rem;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);color:var(--fg);font-size:0.9rem;font-family:inherit;box-sizing:border-box;outline:none;transition:border-color 0.25s; }
-        .beli-field-wrap input:focus { border-color:var(--primary); }
-        .beli-submit-btn { width:100%;padding:0.95rem;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:0.5rem; }
-        .beli-submit-btn:hover { transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,111,172,0.5); }
-        .beli-pm-row { display:flex;align-items:center;justify-content:center;gap:0.45rem;margin-top:0.85rem;flex-wrap:wrap; }
-        .beli-pm-badge { font-size:0.67rem;font-weight:700;padding:0.18rem 0.55rem;border-radius:6px;background:rgba(255,255,255,0.05);color:var(--faint);border:1px solid rgba(255,255,255,0.1);letter-spacing:0.2px; }
         .peng-card,.p-card,.j-card,.proj-card { cursor:pointer; }
         @media (max-width:600px) {
             .detail-header { padding:1.5rem 1.5rem 1rem; }
@@ -1396,7 +1378,7 @@
             </div>
             <div class="proj-grid">
                 @forelse($projek as $item)
-                <div class="proj-card reveal"
+                 <div class="proj-card reveal"
                      onclick="openDetailModal(this)"
                      data-type="projek"
                      data-title="{{ $item->title }}"
@@ -1404,14 +1386,7 @@
                      data-tags="{{ json_encode($item->tags ?? []) }}"
                      data-galeri="{{ json_encode($item->allImages()) }}"
                      data-demo="{{ $item->demo_url ?? '' }}"
-                     @if($item->isBerbayar())
-                     data-github=""
-                     data-berbayar="1"
-                     data-harga="{{ $item->hargaFormatted() }}"
-                     data-projek-id="{{ $item->id }}"
-                     @else
-                     data-github="{{ $item->github_url ?? '' }}"
-                     @endif>
+                     data-github="{{ $item->github_url ?? '' }}">
                     @php $allImgs = $item->allImages(); @endphp
                     <div class="proj-thumb proj-thumb-{{ $item->thumb_color }}">
                         <div class="proj-thumb-pattern"></div>
@@ -1443,9 +1418,6 @@
                             @endif
                         </div>
                         @endif
-                        @if($item->isBerbayar())
-                        <div class="proj-paid-badge"><i class="fa-solid fa-lock"></i> Premium</div>
-                        @endif
                     </div>
                     <div class="proj-body">
                         <div class="proj-tags">
@@ -1456,20 +1428,13 @@
                         <div class="proj-title">{{ $item->title }}</div>
                         <div class="proj-desc">{{ $item->description }}</div>
                         <div class="proj-footer">
-                            @if($item->isBerbayar())
-                            <span class="proj-price"><i class="fa-solid fa-tag"></i> {{ $item->hargaFormatted() }}</span>
-                            @endif
                             <div class="proj-links">
                                 @if($item->demo_url)
                                 <a href="{{ $item->demo_url }}" target="_blank" rel="noopener noreferrer" class="proj-link proj-link-demo" onclick="event.stopPropagation()">
                                     <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo
                                 </a>
                                 @endif
-                                @if($item->isBerbayar())
-                                <span class="proj-link proj-link-buy">
-                                    <i class="fa-solid fa-cart-shopping"></i> Buy
-                                </span>
-                                @elseif($item->github_url)
+                                @if($item->github_url)
                                 <a href="{{ $item->github_url }}" target="_blank" rel="noopener noreferrer" class="proj-link proj-link-git" onclick="event.stopPropagation()">
                                     <i class="fa-brands fa-github"></i> GitHub
                                 </a>
@@ -1576,7 +1541,6 @@
         });
 
         /* ── DETAIL MODAL ── */
-        var _beliPending = {};
         function openDetailModal(el) {
             const type = el.dataset.type;
             const header = document.getElementById('detailHeader');
@@ -1625,10 +1589,8 @@
                 try { tags = JSON.parse(el.dataset.tags || '[]'); } catch(e) {}
                 var imgs = [];
                 try { imgs = JSON.parse(el.dataset.galeri || '[]'); } catch(e) {}
-                var hasBerbayar = el.dataset.berbayar === '1';
                 hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-laptop-code"></i> Project</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
-                if (hasBerbayar) hHtml += '<div class="detail-price-tag"><i class="fa-solid fa-tag"></i> ' + escHtml(el.dataset.harga) + '</div>';
                 // Image slider
                 if (imgs.length > 0) {
                     bHtml += '<div class="detail-slider" id="detailSlider" data-index="0">';
@@ -1648,13 +1610,10 @@
                 }
                 if (tags.length) bHtml += '<div class="detail-tags">' + tags.map(function(t){ return '<span class="detail-tag">' + escHtml(t) + '</span>'; }).join('') + '</div>';
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
-                if (hasBerbayar || el.dataset.demo || el.dataset.github) {
+                if (el.dataset.demo || el.dataset.github) {
                     bHtml += '<div class="detail-links">';
                     if (el.dataset.demo) bHtml += '<a href="' + el.dataset.demo + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>';
-                    if (hasBerbayar) {
-                        bHtml += '<button type="button" id="btnBeliAkses" class="detail-link-btn detail-link-buy" style="cursor:pointer;"><i class="fa-solid fa-cart-shopping"></i> Buy Source Code Access</button>';
-                        _beliPending = { id: el.dataset.projekId, title: el.dataset.title, harga: el.dataset.harga };
-                    } else if (el.dataset.github) {
+                    if (el.dataset.github) {
                         bHtml += '<a href="' + el.dataset.github + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-secondary"><i class="fa-brands fa-github"></i> GitHub</a>';
                     }
                     bHtml += '</div>';
@@ -1663,13 +1622,6 @@
 
             header.innerHTML = hHtml;
             body.innerHTML   = bHtml;
-            // Wire up "Beli Akses" button if rendered
-            var btnBeli = document.getElementById('btnBeliAkses');
-            if (btnBeli) {
-                btnBeli.addEventListener('click', function() {
-                    openBeliModal(_beliPending.id, _beliPending.title, _beliPending.harga);
-                });
-            }
             // Start detail slider auto-advance
             clearInterval(_detailTimer);
             var ds = document.getElementById('detailSlider');
@@ -1730,7 +1682,7 @@
             initHeroParallax();
         });
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') { closeDetailModalBtn(); closeBeliModalBtn(); }
+            if (e.key === 'Escape') { closeDetailModalBtn(); }
         });
 
         /* ── 3D TILT ON CARDS (desktop only) ── */
@@ -1810,25 +1762,6 @@
             });
         }
 
-        /* ── PAYMENT MODAL ── */
-        function openBeliModal(projekId, title, harga) {
-            closeDetailModalBtn();
-            document.getElementById('beliProjekTitle').textContent = title;
-            document.getElementById('beliHarga').textContent = harga;
-            document.getElementById('beliForm').action = '/projek/' + projekId + '/beli';
-            document.getElementById('beliNama').value = '';
-            document.getElementById('beliEmail').value = '';
-            document.getElementById('beliOverlay').classList.add('open');
-            document.body.style.overflow = 'hidden';
-            setTimeout(function(){ document.getElementById('beliNama').focus(); }, 200);
-        }
-        function closeBeliModal(e) {
-            if (e.target === document.getElementById('beliOverlay')) closeBeliModalBtn();
-        }
-        function closeBeliModalBtn() {
-            document.getElementById('beliOverlay').classList.remove('open');
-            document.body.style.overflow = '';
-        }
     </script>
 
     <!-- ═══ DETAIL MODAL ═══ -->
@@ -1837,57 +1770,6 @@
             <button class="detail-close" onclick="closeDetailModalBtn()">✕</button>
             <div class="detail-header" id="detailHeader"></div>
             <div class="detail-body" id="detailBody"></div>
-        </div>
-    </div>
-
-    <!-- ═══ PAYMENT MODAL ═══ -->
-    <div class="detail-overlay" id="beliOverlay" onclick="closeBeliModal(event)">
-        <div class="detail-modal" id="beliModal" style="max-width:460px;">
-            <button class="detail-close" onclick="closeBeliModalBtn()">✕</button>
-            <div class="detail-header" style="background:linear-gradient(135deg,rgba(10,25,16,0.95),rgba(14,34,22,0.95));">
-                <div style="display:flex;align-items:center;gap:0.85rem;margin-bottom:1rem;">
-                    <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 16px rgba(255,111,172,0.5);">
-                        <i class="fa-solid fa-cart-shopping" style="color:#fff;font-size:1.1rem;"></i>
-                    </div>
-                    <div>
-                        <div style="font-size:0.68rem;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:1.8px;margin-bottom:0.2rem;">Buy Source Code</div>
-                        <div class="detail-title" id="beliProjekTitle" style="font-size:1rem;line-height:1.3;"></div>
-                    </div>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,181,215,0.16);border:1px solid rgba(255,181,215,0.32);border-radius:10px;padding:0.7rem 1.1rem;">
-                    <span style="font-size:0.78rem;color:var(--muted);font-weight:600;"><i class="fa-solid fa-receipt" style="margin-right:0.35rem;"></i>Total Payment</span>
-                    <span style="font-size:1.15rem;font-weight:800;color:var(--accent);" id="beliHarga"></span>
-                </div>
-            </div>
-            <div class="detail-body" style="padding-top:1.25rem;">
-                <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.55;">
-                    Fill in the details below to proceed. The GitHub link will be available automatically after payment is confirmed.
-                </p>
-                <form id="beliForm" method="POST" action="">
-                    @csrf
-                    <label class="beli-field-label">Full Name</label>
-                    <div class="beli-field-wrap">
-                        <i class="fa-solid fa-user beli-field-icon"></i>
-                        <input type="text" name="nama" id="beliNama" required placeholder="Enter your full name...">
-                    </div>
-                    <label class="beli-field-label">Active Email</label>
-                    <div class="beli-field-wrap" style="margin-bottom:1.5rem;">
-                        <i class="fa-solid fa-envelope beli-field-icon"></i>
-                        <input type="email" name="email" id="beliEmail" required placeholder="email@example.com">
-                    </div>
-                    <button type="submit" class="beli-submit-btn">
-                        <i class="fa-solid fa-credit-card"></i> Proceed to Payment
-                    </button>
-                </form>
-                <div class="beli-pm-row">
-                    <span style="font-size:0.68rem;color:var(--faint);"><i class="fa-solid fa-shield-halved"></i> Secured via Midtrans</span>
-                    <span class="beli-pm-badge">QRIS</span>
-                    <span class="beli-pm-badge">GoPay</span>
-                    <span class="beli-pm-badge">VA Bank</span>
-                    <span class="beli-pm-badge">OVO</span>
-                    <span class="beli-pm-badge">Kartu Kredit</span>
-                </div>
-            </div>
         </div>
     </div>
 

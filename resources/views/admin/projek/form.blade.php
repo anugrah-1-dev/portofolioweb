@@ -8,59 +8,6 @@
             <h2>
                 @if($item)<i class="fa-solid fa-pen"></i> Edit Projek
                 @else<i class="fa-solid fa-plus"></i> Tambah Projek
-                @endif
-            </h2>
-        </div>
-        <div class="card-body">
-            <form method="POST" enctype="multipart/form-data"
-                  action="{{ $item ? route('admin.projek.update', $item) : route('admin.projek.store') }}">
-                @csrf
-                @if($item) @method('PUT') @endif
-
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="thumb_color">Warna Latar (jika tanpa gambar)</label>
-                        <select id="thumb_color" name="thumb_color" class="form-control">
-                            <option value="1" {{ old('thumb_color', $item?->thumb_color) == 1 ? 'selected' : '' }}>Hijau Muda</option>
-                            <option value="2" {{ old('thumb_color', $item?->thumb_color) == 2 ? 'selected' : '' }}>Teal Muda</option>
-                            <option value="3" {{ old('thumb_color', $item?->thumb_color) == 3 ? 'selected' : '' }}>Biru-Hijau</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="urutan">Urutan Tampil</label>
-                        <input type="number" id="urutan" name="urutan" class="form-control"
-                               value="{{ old('urutan', $item?->urutan ?? 0) }}" min="0">
-                        <span class="form-hint">Angka lebih kecil tampil lebih dulu.</span>
-                    </div>
-                    <div class="form-group full">
-                        <label for="title">Judul Projek</label>
-                        <input type="text" id="title" name="title" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
-                               value="{{ old('title', $item?->title) }}" placeholder="Nama projek...">
-                        @error('title') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                    </div>
-                    <div class="form-group full">
-                        <label for="description">Deskripsi</label>
-                        <textarea id="description" name="description" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
-                                  placeholder="Jelaskan projek ini...">{{ old('description', $item?->description) }}</textarea>
-                        @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                    </div>
-                    <div class="form-group full">
-                        <label for="tags_raw">Tags Teknologi</label>
-                        <input type="text" id="tags_raw" name="tags_raw" class="form-control"
-                               value="{{ old('tags_raw', $item ? implode(', ', $item->tags ?? []) : '') }}"
-                               placeholder="Laravel, Vue.js, MySQL, Tailwind">
-                        <span class="form-hint">Pisahkan dengan koma.</span>
-                    </div>
-
-                    {{-- GAMBAR COVER --}}
-                    <div class="form-group full">
-                        <label>Gambar Utama / Cover <span style="font-weight:400;color:var(--faint)">(opsional, JPG/PNG/WebP, maks 2MB)</span></label>
-
-                        @if($item?->gambar)
-                        <div id="current-gambar" style="margin-bottom:0.75rem;">
-                            <img src="{{ Storage::url($item->gambar) }}" alt="Gambar Projek"
-                                 style="width:260px;height:160px;object-fit:cover;border-radius:12px;border:2px solid var(--border);">
-                            <div style="margin-top:0.5rem;display:flex;align-items:center;gap:0.5rem;">
                                 <input type="checkbox" name="hapus_gambar" id="hapus_gambar" value="1">
                                 <label for="hapus_gambar" style="font-size:0.82rem;color:var(--danger);font-weight:600;cursor:pointer;">
                                     <i class="fa-solid fa-trash"></i> Hapus gambar ini
@@ -149,28 +96,11 @@
                         @error('github_url') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
-                    {{-- AKSES & HARGA --}}
-                    <div class="form-group full">
-                        <label>Tipe Akses Source Code</label>
-                        <div style="display:flex;gap:1.5rem;margin-top:0.5rem;flex-wrap:wrap;">
-                            <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-weight:600;">
-                                <input type="radio" name="tipe_akses" value="gratis"
-                                       onchange="toggleHarga(this)"
-                                       {{ old('tipe_akses', $item?->tipe_akses ?? 'gratis') === 'gratis' ? 'checked' : '' }}>
-                                <i class="fa-solid fa-unlock"></i> Gratis
-                            </label>
-                            <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-weight:600;">
-                                <input type="radio" name="tipe_akses" value="berbayar"
-                                       onchange="toggleHarga(this)"
-                                       {{ old('tipe_akses', $item?->tipe_akses) === 'berbayar' ? 'checked' : '' }}>
-                                <i class="fa-solid fa-credit-card"></i> Berbayar (via Midtrans)
-                            </label>
-                        </div>
-                        <span class="form-hint">Jika berbayar, pengunjung harus membayar untuk dapat mendownload file ZIP source code.</span>
-                    </div>
-                    <div class="form-group full" id="harga-group"
-                         style="{{ (old('tipe_akses', $item?->tipe_akses ?? 'gratis') === 'berbayar') ? '' : 'display:none;' }}">
-                        <label for="harga">Harga (IDR)</label>
+                    <div class="form-group full" id="harga-group">
+                        <label for="harga">Source Code Premium (opsional)</label>
+                        <span class="form-hint">Isi harga dan upload ZIP jika source code dijual. Jika harga dikosongkan, project tetap tampil sebagai demo/GitHub saja.</span>
+
+                        <label for="harga" style="margin-top:1rem;display:block;">Harga (IDR)</label>
                         <div style="position:relative;">
                             <span style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-weight:700;color:var(--muted);pointer-events:none;">Rp</span>
                             <input type="number" id="harga" name="harga" class="form-control {{ $errors->has('harga') ? 'is-invalid' : '' }}"
@@ -180,11 +110,10 @@
                         <span class="form-hint">Minimum Rp 1.000. Contoh: 50000 = Rp 50.000</span>
                         @error('harga') <div class="invalid-feedback" style="display:block">{{ $message }}</div> @enderror
 
-                        {{-- ZIP FILE SOURCE CODE --}}
                         <label style="margin-top:1.25rem;display:flex;align-items:center;gap:0.5rem;">
                             <i class="fa-solid fa-file-zipper" style="color:var(--accent);"></i>
                             File ZIP Source Code
-                            <span style="font-weight:400;color:var(--faint);font-size:0.8rem;">(maks 100MB, format .zip)</span>
+                            <span style="font-weight:400;color:var(--faint);font-size:0.8rem;">(wajib jika harga diisi, maks 100MB, format .zip)</span>
                         </label>
 
                         @if($item?->zip_file)
@@ -259,10 +188,6 @@ function handleDrop(event) {
         previewGambar(input);
     }
 }
-function toggleHarga(radio) {
-    document.getElementById('harga-group').style.display =
-        radio.value === 'berbayar' ? '' : 'none';
-}
 function previewGaleri(input) {
     const grid = document.getElementById('galeri-preview-grid');
     const files = Array.from(input.files);
@@ -304,26 +229,6 @@ function toggleHapusGaleri(btn) {
     item.style.border = cb.checked ? '2px solid rgba(220,38,38,0.9)' : '2px solid var(--border)';
     btn.style.background = cb.checked ? 'rgba(220,38,38,1)' : 'rgba(220,38,38,0.85)';
     btn.title = cb.checked ? 'Batal hapus' : 'Tandai untuk dihapus';
-}
-function previewZip(input) {
-    if (input.files && input.files[0]) {
-        document.getElementById('zip-placeholder').style.display = 'none';
-        const sel = document.getElementById('zip-selected');
-        sel.style.display = 'flex';
-        document.getElementById('zip-filename').textContent = input.files[0].name;
-    }
-}
-function handleZipDrop(event) {
-    event.preventDefault();
-    document.getElementById('zip-upload-area').style.borderColor = 'var(--border)';
-    const file = event.dataTransfer.files[0];
-    if (file && file.name.endsWith('.zip')) {
-        const input = document.getElementById('zip_file_input');
-        const dt = new DataTransfer();
-        dt.items.add(file);
-        input.files = dt.files;
-        previewZip(input);
-    }
 }
 </script>
 @endsection

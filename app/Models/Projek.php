@@ -11,20 +11,10 @@ class Projek extends Model
 
     protected $fillable = [
         'title', 'description', 'tags', 'thumb_color', 'gambar', 'galeri',
-        'demo_url', 'github_url', 'zip_file', 'tipe_akses', 'harga', 'urutan',
+        'demo_url', 'github_url', 'urutan',
     ];
 
     protected $casts = ['tags' => 'array', 'galeri' => 'array'];
-
-    public function isBerbayar(): bool
-    {
-        return $this->tipe_akses === 'berbayar' && $this->harga > 0;
-    }
-
-    public function hargaFormatted(): string
-    {
-        return 'Rp ' . number_format($this->harga, 0, ',', '.');
-    }
 
     /** Returns all image URLs (gambar first, then galeri) */
     public function allImages(): array
