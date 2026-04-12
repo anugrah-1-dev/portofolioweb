@@ -40,7 +40,7 @@
                     <div class="form-group">
                         <label for="jenis">Jenis <span style="color:var(--danger)">*</span></label>
                         <select id="jenis" name="jenis" class="form-control {{ $errors->has('jenis') ? 'is-invalid' : '' }}">
-                            @foreach(['organisasi' => 'Organisasi', 'kepanitiaan' => 'Kepanitiaan', 'komunitas' => 'Komunitas', 'magang' => 'Magang', 'volunteer' => 'Volunteer', 'lainnya' => 'Lainnya'] as $val => $label)
+                            @foreach(['organisasi' => 'Organisasi', 'kepanitiaan' => 'Kepanitiaan', 'komunitas' => 'Komunitas', 'magang' => 'Magang', 'volunteer' => 'Volunteer', 'work' => 'Work', 'lainnya' => 'Lainnya'] as $val => $label)
                             <option value="{{ $val }}" {{ old('jenis', $item?->jenis) === $val ? 'selected' : '' }}>{{ $label }}</option>
                             @endforeach
                         </select>

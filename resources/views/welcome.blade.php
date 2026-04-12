@@ -1123,6 +1123,7 @@
                         'komunitas'   => 'peng-jenis-komunitas',
                         'magang'      => 'peng-jenis-magang',
                         'volunteer'   => 'peng-jenis-volunteer',
+                        'work'        => 'peng-jenis-magang',
                         'lainnya'     => 'peng-jenis-lainnya',
                     ];
                     $jenis_label = [
@@ -1131,6 +1132,7 @@
                         'komunitas'   => '👥 Community',
                         'magang'      => '💼 Internship',
                         'volunteer'   => '🤝 Volunteer',
+                        'work'        => '💼 Work',
                         'lainnya'     => '📌 Other',
                     ];
                 @endphp
