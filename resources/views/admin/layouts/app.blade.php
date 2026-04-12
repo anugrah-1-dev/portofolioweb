@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin – @yield('title', 'Dashboard') | Portofolio</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="alternate icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/logo.png?v=1">
+    <link rel="shortcut icon" type="image/png" href="/logo.png?v=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -57,9 +57,10 @@
             background:linear-gradient(90deg, transparent, rgba(94,234,212,0.3), transparent);
         }
         .brand-logo {
-            font-size:1.3rem; font-weight:900; letter-spacing:0.5px; line-height:1.3;
-            background:linear-gradient(135deg,#ff6fac 0%,#ffb5d7 50%,#ffd5e8 100%);
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+            display:flex; align-items:center;
+        }
+        .brand-logo img {
+            height:42px; width:auto; display:block;
         }
         .brand-sub {
             font-size:0.78rem; color:rgba(255,255,255,0.4);
@@ -309,7 +310,7 @@
     <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-brand">
-            <div class="brand-logo">ALIFIA SHOFA' NABILAH</div>
+            <div class="brand-logo"><img src="/logo.png?v=1" alt="Logo"></div>
             <div class="brand-sub">Admin Panel</div>
         </div>
         <nav class="sidebar-nav">

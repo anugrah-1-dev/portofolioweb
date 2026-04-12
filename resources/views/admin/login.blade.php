@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Login – Portofolio</title>
+    <link rel="icon" type="image/png" href="/logo.png?v=1">
+    <link rel="shortcut icon" type="image/png" href="/logo.png?v=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -31,11 +33,7 @@
         .login-logo {
             text-align:center; margin-bottom:2rem;
         }
-        .logo-text {
-            font-size:1.5rem; font-weight:900; letter-spacing:0.5px; line-height:1.3;
-            background:linear-gradient(135deg,#ff6fac 0%,#ffb5d7 50%,#ffd5e8 100%);
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-        }
+        .logo-text img { height:52px; width:auto; display:block; margin:0 auto; }
         .logo-sub { font-size:0.82rem; color:var(--faint); font-weight:700; margin-top:6px; text-transform:uppercase; letter-spacing:4px; }
         h2 { font-size:1.4rem; font-weight:800; color:var(--text); margin-bottom:0.35rem; }
         .subtitle { font-size:0.92rem; color:var(--faint); margin-bottom:2rem; }
@@ -81,7 +79,7 @@
     <div class="login-wrap">
         <div class="login-card">
             <div class="login-logo">
-                <div class="logo-text">ALIFIA SHOFA' NABILAH</div>
+                <div class="logo-text"><img src="/logo.png?v=1" alt="Logo"></div>
                 <div class="logo-sub">Admin Panel</div>
             </div>
             <h2>Selamat Datang <i class="fa-solid fa-hand-wave" style="color:#f59e0b;"></i></h2>

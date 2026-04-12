@@ -16,8 +16,8 @@
     <meta property="og:title" content="{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} - My Portfolio">
     <meta property="og:description" content="Portfolio of {{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} - Information Technology student focused on web and application development.">
     @if($profil?->foto)<meta property="og:image" content="{{ Storage::url($profil->foto) }}">@endif
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="alternate icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/logo.png?v=1">
+    <link rel="shortcut icon" type="image/png" href="/logo.png?v=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
@@ -61,14 +61,10 @@
             width:100%; padding:0.9rem 2rem;
             display:flex; justify-content:space-between; align-items:center;
         }
-        .logo { flex-shrink:0; }
+        .logo { flex-shrink:0; display:flex; align-items:center; }
         nav.scrolled .nav-inner { padding:0.65rem 2rem; }
         nav.scrolled { box-shadow:0 4px 24px rgba(255,143,192,0.2); }
-        .logo {
-            font-size:1.5rem; font-weight:900; letter-spacing:-1px;
-            background:linear-gradient(135deg,#ff6fac,#ffb5d7);
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-        }
+        .logo img { height:44px; width:auto; display:block; }
         .nav-links { display:flex; gap:0.35rem; list-style:none; }
         .nav-links a {
             color:var(--muted); text-decoration:none; font-weight:600;
@@ -830,7 +826,7 @@
     <nav id="navbar">
         <div class="nav-corak"></div>
         <div class="nav-inner">
-            <div class="logo">{{ strtoupper($profil?->nama ?? "ALIFIA SHOFA' NABILAH") }}</div>
+            <div class="logo"><img src="/logo.png?v=1" alt="Logo"></div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#tentang">About</a></li>
