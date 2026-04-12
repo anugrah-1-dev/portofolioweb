@@ -33,7 +33,9 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app/private'),
-            'serve' => true,
+            // Keep the private disk off the public `/storage/*` URL so our
+            // portfolio media routes can handle legacy file links.
+            'serve' => false,
             'throw' => false,
             'report' => false,
         ],
@@ -41,7 +43,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL').'/media',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,

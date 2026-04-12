@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://anugerahtedjom.my.id/">
     <meta property="og:title" content="{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} - My Portfolio">
     <meta property="og:description" content="Portfolio of {{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} - Information Technology student focused on web and application development.">
-    @if($profil?->foto)<meta property="og:image" content="{{ Storage::url($profil->foto) }}">@endif
+    @if($profil?->foto)<meta property="og:image" content="{{ \App\Support\MediaUrl::from($profil->foto) }}">@endif
     <link rel="icon" type="image/png" href="/logo.png?v=1">
     <link rel="shortcut icon" type="image/png" href="/logo.png?v=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -837,7 +837,7 @@
         <div class="nav-corak"></div>
         <div class="nav-inner">
             <a href="#home" class="logo" aria-label="Brand">
-                <img src="{{ $profil?->logo ? Storage::url($profil->logo) : '/logo.png?v=1' }}" alt="Logo">
+                <img src="{{ $profil?->logo ? \App\Support\MediaUrl::from($profil->logo) : '/logo.png?v=1' }}" alt="Logo">
                 <span class="logo-name">{{ $profil?->nama ?? "ALIFIA SHOFA' NABILAH" }}</span>
             </a>
             <ul class="nav-links" id="navLinks">
@@ -971,7 +971,7 @@
                         <div class="avatar-ring"></div>
                         <div class="avatar-core">
                             @if($profil?->foto)
-                            <img src="{{ Storage::url($profil->foto) }}" alt="{{ $profil->nama }}" style="width:100%;height:100%;object-fit:cover;">
+                            <img src="{{ \App\Support\MediaUrl::from($profil->foto) }}" alt="{{ $profil->nama }}" style="width:100%;height:100%;object-fit:cover;">
                             @else
                             &#128104;&#8205;&#128187;
                             @endif
@@ -986,9 +986,9 @@
                     <div class="hero-photo-badge">
                         <div class="hpb-img">
                             @if($profil?->foto2)
-                            <img src="{{ Storage::url($profil->foto2) }}" alt="{{ $profil->nama }}">
+                            <img src="{{ \App\Support\MediaUrl::from($profil->foto2) }}" alt="{{ $profil->nama }}">
                             @elseif($profil?->foto)
-                            <img src="{{ Storage::url($profil->foto) }}" alt="{{ $profil->nama }}">
+                            <img src="{{ \App\Support\MediaUrl::from($profil->foto) }}" alt="{{ $profil->nama }}">
                             @else
                             &#128104;&#8205;&#128187;
                             @endif
@@ -1146,7 +1146,7 @@
                          data-jenis-class="{{ $jenis_class[$item->jenis] ?? '' }}"
                          data-periode="{{ $item->tahun_mulai }} – {{ $item->tahun_selesai ?? 'Present' }}"
                          data-deskripsi="{{ $item->deskripsi ?? '' }}"
-                         data-sertifikat="{{ $item->foto_sertifikat ? Storage::url($item->foto_sertifikat) : '' }}">
+                         data-sertifikat="{{ $item->foto_sertifikat ? \App\Support\MediaUrl::from($item->foto_sertifikat) : '' }}">
                         <div class="peng-head">
                             <div class="peng-org">{{ $item->nama_organisasi }}</div>
                             <div class="peng-meta">
@@ -1198,8 +1198,8 @@
                 <div class="prestasi-grid">
                     @forelse($prestasiAkademik as $item)
                     @php
-                        $fotoPrestasi = ($item->foto && Storage::disk('public')->exists($item->foto))
-                            ? Storage::url($item->foto)
+                        $fotoPrestasi = ($item->foto && \App\Support\MediaUrl::exists($item->foto))
+                            ? \App\Support\MediaUrl::from($item->foto)
                             : '';
                     @endphp
                     <div class="p-card reveal"
@@ -1234,8 +1234,8 @@
                 <div class="prestasi-grid">
                     @forelse($prestasiNonAkademik as $item)
                     @php
-                        $fotoPrestasi = ($item->foto && Storage::disk('public')->exists($item->foto))
-                            ? Storage::url($item->foto)
+                        $fotoPrestasi = ($item->foto && \App\Support\MediaUrl::exists($item->foto))
+                            ? \App\Support\MediaUrl::from($item->foto)
                             : '';
                     @endphp
                     <div class="p-card reveal"
@@ -1344,7 +1344,7 @@
                      data-nomor="{{ $item->nomor_pencatatan ?? '' }}"
                      data-year="{{ $item->year }}"
                      data-description="{{ $item->description ?? '' }}"
-                     data-url="{{ $item->sertifikat_file ? Storage::url($item->sertifikat_file) : '' }}">
+                     data-url="{{ $item->sertifikat_file ? \App\Support\MediaUrl::from($item->sertifikat_file) : '' }}">
                     <div class="j-body">
                         <div class="hki-title">{{ $item->title }}</div>
                         <div class="hki-meta">{{ $item->authors }}</div>
@@ -1355,7 +1355,7 @@
                         <div class="hki-desc">{{ Str::limit($item->description, 150) }}</div>
                         @endif
                         @if($item->sertifikat_file)
-                        <a href="{{ Storage::url($item->sertifikat_file) }}" target="_blank" rel="noopener noreferrer" class="hki-link-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-scroll"></i> View Certificate</a>
+                        <a href="{{ \App\Support\MediaUrl::from($item->sertifikat_file) }}" target="_blank" rel="noopener noreferrer" class="hki-link-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-scroll"></i> View Certificate</a>
                         @endif
                     </div>
                     <div class="hki-right">

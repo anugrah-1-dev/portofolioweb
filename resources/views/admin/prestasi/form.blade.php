@@ -65,7 +65,7 @@
                         {{-- Preview foto existing --}}
                         @if($item?->foto)
                         <div id="current-foto" style="margin-bottom:0.75rem;">
-                            <img src="{{ Storage::url($item->foto) }}" alt="Foto Prestasi"
+                            <img src="{{ \App\Support\MediaUrl::from($item->foto) }}" alt="Foto Prestasi"
                                  style="width:200px;height:140px;object-fit:cover;border-radius:12px;border:2px solid var(--border);">
                             <div style="margin-top:0.5rem;display:flex;align-items:center;gap:0.5rem;">
                                 <input type="checkbox" name="hapus_foto" id="hapus_foto" value="1">

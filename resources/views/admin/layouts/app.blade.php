@@ -3,7 +3,7 @@
 @php
     $brandProfil = \App\Models\Profil::first();
     $brandLogo = $brandProfil?->logo
-        ? \Illuminate\Support\Facades\Storage::url($brandProfil->logo)
+        ? \App\Support\MediaUrl::from($brandProfil->logo)
         : '/logo.png?v=1';
     $brandName = $brandProfil?->nama ?? "ALIFIA SHOFA' NABILAH";
 @endphp

@@ -48,8 +48,8 @@
                     <td><span style="font-size:0.88rem;font-weight:700;color:var(--muted);">{{ $item->tahun_mulai }} – {{ $item->tahun_selesai ?? 'Sekarang' }}</span></td>
                     <td>
                         @if($item->foto_sertifikat)
-                        <a href="{{ Storage::url($item->foto_sertifikat) }}" target="_blank" rel="noopener noreferrer">
-                            <img src="{{ Storage::url($item->foto_sertifikat) }}" alt="Sertifikat"
+                        <a href="{{ \App\Support\MediaUrl::from($item->foto_sertifikat) }}" target="_blank" rel="noopener noreferrer">
+                            <img src="{{ \App\Support\MediaUrl::from($item->foto_sertifikat) }}" alt="Sertifikat"
                                  style="width:64px;height:48px;object-fit:cover;border-radius:8px;border:1.5px solid var(--border);display:block;">
                         </a>
                         @else

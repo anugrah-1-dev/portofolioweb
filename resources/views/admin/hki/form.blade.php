@@ -69,7 +69,7 @@
                                 {{ basename($hki->sertifikat_file) }}
                             </span>
                             <div style="display:flex;gap:0.75rem;align-items:center;">
-                                <a href="{{ Storage::url($hki->sertifikat_file) }}" target="_blank"
+                                <a href="{{ \App\Support\MediaUrl::from($hki->sertifikat_file) }}" target="_blank"
                                    style="font-size:0.85rem;color:var(--accent);font-weight:700;text-decoration:none;">&#128279; Lihat File</a>
                                 <label style="font-size:0.85rem;color:#dc2626;cursor:pointer;font-weight:600;">
                                     <input type="checkbox" name="hapus_sertifikat" value="1"> Hapus File

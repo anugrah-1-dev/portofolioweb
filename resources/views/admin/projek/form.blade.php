@@ -47,7 +47,7 @@
                         <div class="galeri-grid" id="galeri-existing" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.75rem;margin-bottom:0.85rem;">
                             @foreach($item->galeri as $gPath)
                             <div class="galeri-item" style="position:relative;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:var(--bg);border:2px solid var(--border);">
-                                <img src="{{ Storage::url($gPath) }}" alt="Gallery"
+                                <img src="{{ \App\Support\MediaUrl::from($gPath) }}" alt="Gallery"
                                      style="width:100%;height:100%;object-fit:cover;display:block;">
                                 <input type="checkbox" name="hapus_galeri[]" value="{{ $gPath }}" class="hapus-galeri-cb" style="display:none;">
                                 <div class="hapus-overlay" style="display:none;position:absolute;inset:0;background:rgba(220,38,38,0.8);align-items:center;justify-content:center;flex-direction:column;color:#fff;gap:5px;pointer-events:none;">

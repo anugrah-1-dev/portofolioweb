@@ -64,7 +64,7 @@
                         <label for="logo">Logo Brand (Navbar)</label>
                         @if($profil->logo)
                         <div style="margin-bottom:0.75rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
-                            <img src="{{ Storage::url($profil->logo) }}" alt="Logo Brand"
+                            <img src="{{ \App\Support\MediaUrl::from($profil->logo) }}" alt="Logo Brand"
                                  style="width:120px;height:120px;object-fit:contain;border-radius:14px;border:2px solid var(--border);background:var(--bg);padding:8px;">
                             <div>
                                 <div style="font-size:0.82rem;color:var(--muted);margin-bottom:0.35rem;">Logo aktif di navbar</div>
@@ -84,7 +84,7 @@
                         <label for="foto">Foto Profil (Home)</label>
                         @if($profil->foto)
                         <div style="margin-bottom:0.75rem;">
-                            <img src="{{ Storage::url($profil->foto) }}" alt="Foto Profil"
+                            <img src="{{ \App\Support\MediaUrl::from($profil->foto) }}" alt="Foto Profil"
                                  style="width:120px;height:120px;object-fit:cover;border-radius:50%;border:3px solid var(--border);">
                             <div style="margin-top:0.5rem;">
                                 <label style="font-size:0.85rem;color:var(--muted);cursor:pointer;">
@@ -103,7 +103,7 @@
                         <label for="foto2">Foto Profil 2 (Badge Card Home)</label>
                         @if($profil->foto2)
                         <div style="margin-bottom:0.75rem;">
-                            <img src="{{ Storage::url($profil->foto2) }}" alt="Foto Badge"
+                            <img src="{{ \App\Support\MediaUrl::from($profil->foto2) }}" alt="Foto Badge"
                                  style="width:120px;height:120px;object-fit:cover;border-radius:50%;border:3px solid var(--border);">
                             <div style="margin-top:0.5rem;">
                                 <label style="font-size:0.85rem;color:var(--muted);cursor:pointer;">
@@ -167,7 +167,7 @@
                                 <i class="fa-solid fa-file-pdf" style="color:var(--danger);"></i> {{ basename($profil->cv_file) }}
                             </span>
                             <div style="display:flex;gap:0.75rem;align-items:center;">
-                                <a href="{{ Storage::url($profil->cv_file) }}" target="_blank"
+                                <a href="{{ \App\Support\MediaUrl::from($profil->cv_file) }}" target="_blank"
                                    style="font-size:0.85rem;color:var(--accent);font-weight:700;text-decoration:none;">&#128279; Lihat File</a>
                                 <label style="font-size:0.85rem;color:#dc2626;cursor:pointer;font-weight:600;">
                                     <input type="checkbox" name="hapus_cv" value="1"> Hapus CV

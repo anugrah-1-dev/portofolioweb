@@ -7,7 +7,11 @@ use App\Http\Middleware\SecurityHeaders;
 
 // Delete stale route cache unconditionally so it's never served stale after git pull.
 // Route loading from web.php has negligible overhead for a portfolio-sized app.
-@unlink(__DIR__ . '/cache/routes-v7.php');
+$routeCache = __DIR__ . '/cache/routes-v7.php';
+
+if (is_file($routeCache)) {
+    @unlink($routeCache);
+}
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(

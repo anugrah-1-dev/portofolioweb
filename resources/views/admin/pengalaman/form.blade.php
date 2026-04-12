@@ -81,7 +81,7 @@
 
                         @if($item?->foto_sertifikat)
                         <div style="margin-bottom:0.85rem;">
-                            <img src="{{ Storage::url($item->foto_sertifikat) }}" alt="Sertifikat"
+                            <img src="{{ \App\Support\MediaUrl::from($item->foto_sertifikat) }}" alt="Sertifikat"
                                  style="max-height:160px;max-width:100%;border-radius:10px;border:1.5px solid var(--border);object-fit:contain;background:#f9f9f9;padding:6px;">
                             <div style="margin-top:0.6rem;display:flex;align-items:center;gap:0.5rem;">
                                 <input type="checkbox" id="hapus_sertifikat" name="hapus_sertifikat" value="1">

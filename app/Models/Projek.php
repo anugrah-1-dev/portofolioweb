@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Support\MediaUrl;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Projek extends Model
 {
@@ -20,9 +20,9 @@ class Projek extends Model
     public function allImages(): array
     {
         $images = [];
-        if ($this->gambar) $images[] = Storage::url($this->gambar);
+        if ($this->gambar) $images[] = MediaUrl::from($this->gambar);
         foreach ($this->galeri ?? [] as $g) {
-            $images[] = Storage::url($g);
+            $images[] = MediaUrl::from($g);
         }
         return $images;
     }
