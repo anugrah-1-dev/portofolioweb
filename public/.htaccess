@@ -18,10 +18,11 @@
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # ALWAYS route /storage/* through Laravel — no conditions
-    # Fixes shared hosting where public/storage is a broken symlink or empty directory
-    RewriteCond %{REQUEST_URI} ^/storage/
-    RewriteRule ^ index.php [L]
+    # Route /storage/* and /media/* through Laravel even if the directory physically exists.
+    # LiteSpeed/Apache may return 404 directly for missing files inside a real directory,
+    # bypassing the catch-all rewrite below. Explicitly force both paths through index.php.
+    RewriteRule ^storage/(.*)$ index.php [L,QSA]
+    RewriteRule ^media/(.*)$ index.php [L,QSA]
 
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
