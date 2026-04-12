@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} – My Portfolio</title>
-    <meta name="description" content="Portfolio of {{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} – Information Technology student focused on web and application development. Explore my projects, experiences, and achievements.">
-    <meta name="keywords" content="{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}, portfolio, web developer, laravel, programmer, information technology">
-    <meta name="author" content="{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}">
+    <title>ALIFIA SHOFA' NABILAH - My Portfolio</title>
+    <meta name="description" content="Portfolio of ALIFIA SHOFA' NABILAH - Information Technology student focused on web and application development. Explore my projects, experiences, and achievements.">
+    <meta name="keywords" content="ALIFIA SHOFA' NABILAH, portfolio, web developer, laravel, programmer, information technology">
+    <meta name="author" content="ALIFIA SHOFA' NABILAH">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://anugerahtedjom.my.id/">
     <meta name="google-site-verification" content="YkMylM-AikW2Z7-lam_Mi7fOEBaGptnr2O3xcRaaSHY">
     {{-- Open Graph --}}
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://anugerahtedjom.my.id/">
-    <meta property="og:title" content="{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} – My Portfolio">
-    <meta property="og:description" content="Portfolio of {{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} – Information Technology student focused on web and application development.">
+    <meta property="og:title" content="ALIFIA SHOFA' NABILAH - My Portfolio">
+    <meta property="og:description" content="Portfolio of ALIFIA SHOFA' NABILAH - Information Technology student focused on web and application development.">
     @if($profil?->foto)<meta property="og:image" content="{{ Storage::url($profil->foto) }}">@endif
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.ico">
@@ -772,6 +772,60 @@
             .hero-photo-badge { display:none; }
             .hero-quick-stats { gap:0.8rem; }
         }
+
+        /* Theme readability overrides (dark + soft pink) */
+        .section-title,
+        .p-title,
+        .peng-org,
+        .j-title,
+        .hki-title,
+        .proj-title,
+        .detail-title,
+        .detail-value { color:#f9f3ff; }
+        .about-info p,
+        .peng-desc,
+        .p-desc,
+        .j-desc,
+        .hki-desc,
+        .proj-desc,
+        .detail-desc,
+        .hero-desc,
+        .footer-brand .footer-tagline { color:#e9d3e5 !important; }
+        .about-card,
+        .stat-item,
+        .p-card,
+        .j-card,
+        .hki-card,
+        .proj-card,
+        .peng-card,
+        .card,
+        .detail-modal { background:#171422; border-color:#4b3a58; }
+        .about-card .card-value,
+        .stat-label,
+        .j-meta,
+        .hki-meta,
+        .hero-qs-label,
+        .td-sub,
+        .footer-bottom p,
+        .footer-bottom-links a { color:#cfafc8 !important; }
+        .section-label,
+        .p-year,
+        .j-year,
+        .hki-year,
+        .greeting,
+        .hero-role-badge,
+        .btn-cv,
+        .proj-price,
+        .p-badge,
+        .j-index-badge,
+        .hki-jenis-badge { color:#ffd5e8 !important; border-color:rgba(255,143,192,0.35); }
+        .btn-primary,
+        .btn-whatsapp,
+        .detail-link-primary,
+        .beli-submit-btn { background:linear-gradient(135deg,#ff6fac,#ff8fc0); box-shadow:0 10px 28px rgba(255,111,172,0.35); }
+        .btn-outline,
+        .detail-link-secondary { color:#ffd5e8; border-color:rgba(255,181,215,0.4); }
+        .footer { background:linear-gradient(160deg,#0b0911 0%,#130d1c 100%); }
     </style>
 </head>
 <body>
@@ -876,7 +930,7 @@
                 <div class="hero-text">
                     <span class="greeting fade-up d1">Hello, I'm</span>
                     <h1 class="fade-up d2">
-                        <span class="name">{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}</span>
+                        <span class="name">ALIFIA SHOFA' NABILAH</span>
                     </h1>
                     <div class="hero-role fade-up d2">
                         <span class="hero-role-badge"><i class="fa-solid fa-code"></i> {{ $profil?->hero_role1 ?? 'Full-Stack Developer' }}</span>
@@ -949,7 +1003,7 @@
                             @endif
                         </div>
                         <div>
-                            <span class="hpb-name">{{ $profil?->nama ?? 'Anugrah' }}</span>
+                            <span class="hpb-name">ALIFIA SHOFA' NABILAH</span>
                             <span class="hpb-role">{{ $profil?->keahlian[0] ?? 'IT Developer' }}</span>
                             <div class="hpb-status">
                                 <span class="hpb-dot"></span>
@@ -982,7 +1036,7 @@
                     <div class="about-cards">
                         <div class="about-card">
                             <div class="card-label">Name</div>
-                            <div class="card-value">{{ $profil?->nama ?? 'Anugrah' }}</div>
+                            <div class="card-value">ALIFIA SHOFA' NABILAH</div>
                         </div>
                         <div class="about-card">
                             <div class="card-label">Email</div>
@@ -1443,7 +1497,7 @@
         <div class="footer-content">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="footer-logo">{{ $profil?->nama ?? 'Anugrah' }}</div>
+                    <div class="footer-logo">ALIFIA SHOFA' NABILAH</div>
                     <p class="footer-tagline">Information Technology student focused on application and system development with various modern technologies.</p>
                 </div>
                 <div class="footer-nav">
@@ -1477,7 +1531,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; {{ date('Y') }} <span>{{ $profil?->nama ?? 'Anugrah' }}</span> &mdash; Built with ❤️ &amp; full dedication</p>
+                <p>&copy; {{ date('Y') }} <span>ALIFIA SHOFA' NABILAH</span> &mdash; Built with ❤️ &amp; full dedication</p>
                 <div class="footer-bottom-links">
                     <a href="#home">Back to Top ↑</a>
                 </div>
