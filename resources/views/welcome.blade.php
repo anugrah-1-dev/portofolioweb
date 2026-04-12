@@ -509,7 +509,7 @@
             .prestasi-grid { grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
         }
         @media (max-width:768px) {
-            .nav-links { display:none; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:rgba(244,240,232,0.98); padding:1.5rem 2rem; border-bottom:1.5px solid var(--border); gap:0.5rem; }
+            .nav-links { display:none; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:rgba(10,8,16,0.98); padding:1.5rem 2rem; border-bottom:1.5px solid rgba(255,143,192,0.22); gap:0.5rem; backdrop-filter:blur(10px); }
             .nav-links a { font-size:1.05rem; padding:0.75rem 1rem; }
             .nav-links.open { display:flex; }
             .hamburger { display:flex; }
