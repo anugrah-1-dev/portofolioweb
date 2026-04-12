@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
+@php
+    $brandProfil = \App\Models\Profil::first();
+    $brandLogo = $brandProfil?->logo
+        ? \Illuminate\Support\Facades\Storage::url($brandProfil->logo)
+        : '/logo.png?v=1';
+    $brandName = $brandProfil?->nama ?? "ALIFIA SHOFA' NABILAH";
+@endphp
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Login – Portofolio</title>
-    <link rel="icon" type="image/png" href="/logo.png?v=1">
-    <link rel="shortcut icon" type="image/png" href="/logo.png?v=1">
+    <link rel="icon" type="image/png" href="{{ $brandLogo }}">
+    <link rel="shortcut icon" type="image/png" href="{{ $brandLogo }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -34,6 +41,13 @@
             text-align:center; margin-bottom:2rem;
         }
         .logo-text img { height:52px; width:auto; display:block; margin:0 auto; }
+        .logo-name {
+            margin-top:0.55rem;
+            font-size:0.95rem;
+            color:#ffd5e8;
+            font-weight:800;
+            letter-spacing:0.2px;
+        }
         .logo-sub { font-size:0.82rem; color:var(--faint); font-weight:700; margin-top:6px; text-transform:uppercase; letter-spacing:4px; }
         h2 { font-size:1.4rem; font-weight:800; color:var(--text); margin-bottom:0.35rem; }
         .subtitle { font-size:0.92rem; color:var(--faint); margin-bottom:2rem; }
@@ -79,7 +93,8 @@
     <div class="login-wrap">
         <div class="login-card">
             <div class="login-logo">
-                <div class="logo-text"><img src="/logo.png?v=1" alt="Logo"></div>
+                <div class="logo-text"><img src="{{ $brandLogo }}" alt="Logo"></div>
+                <div class="logo-name">{{ $brandName }}</div>
                 <div class="logo-sub">Admin Panel</div>
             </div>
             <h2>Selamat Datang <i class="fa-solid fa-hand-wave" style="color:#f59e0b;"></i></h2>

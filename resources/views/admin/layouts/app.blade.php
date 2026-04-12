@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
+@php
+    $brandProfil = \App\Models\Profil::first();
+    $brandLogo = $brandProfil?->logo
+        ? \Illuminate\Support\Facades\Storage::url($brandProfil->logo)
+        : '/logo.png?v=1';
+    $brandName = $brandProfil?->nama ?? "ALIFIA SHOFA' NABILAH";
+@endphp
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin – @yield('title', 'Dashboard') | Portofolio</title>
-    <link rel="icon" type="image/png" href="/logo.png?v=1">
-    <link rel="shortcut icon" type="image/png" href="/logo.png?v=1">
+    <link rel="icon" type="image/png" href="{{ $brandLogo }}">
+    <link rel="shortcut icon" type="image/png" href="{{ $brandLogo }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -58,9 +65,18 @@
         }
         .brand-logo {
             display:flex; align-items:center;
+            gap:0.7rem;
         }
         .brand-logo img {
             height:42px; width:auto; display:block;
+            border-radius:10px;
+        }
+        .brand-name {
+            font-size:0.98rem;
+            font-weight:800;
+            color:#ffd5e8;
+            line-height:1.2;
+            letter-spacing:0.2px;
         }
         .brand-sub {
             font-size:0.78rem; color:rgba(255,255,255,0.4);
@@ -310,7 +326,10 @@
     <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-brand">
-            <div class="brand-logo"><img src="/logo.png?v=1" alt="Logo"></div>
+            <div class="brand-logo">
+                <img src="{{ $brandLogo }}" alt="Logo">
+                <span class="brand-name">{{ $brandName }}</span>
+            </div>
             <div class="brand-sub">Admin Panel</div>
         </div>
         <nav class="sidebar-nav">
