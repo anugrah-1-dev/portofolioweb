@@ -844,7 +844,7 @@
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#tentang">About</a></li>
                 <li><a href="#prestasi">Achievements</a></li>
-                <li><a href="#pengalaman">Experiences</a></li>
+                <li><a href="#pengalaman">Experience</a></li>
                 <li><a href="#jurnal">Licenses</a></li>
                 <li><a href="#projek">Projects</a></li>
             </ul>
@@ -943,7 +943,7 @@
                         <div class="hero-qs-divider"></div>
                         <div class="hero-qs-item">
                             <span class="hero-qs-num">{{ $pengalaman->count() }}+</span>
-                            <span class="hero-qs-label">Experiences</span>
+                            <span class="hero-qs-label">Experience</span>
                         </div>
                         <div class="hero-qs-divider"></div>
                         <div class="hero-qs-item">
@@ -1162,7 +1162,7 @@
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Contribution History</span>
-                <h2 class="section-title">Experiences <span>& Organizations</span></h2>
+                <h2 class="section-title">Experience <span>& Organizations</span></h2>
                 <div class="section-divider"></div>
             </div>
             @if($pengalaman->isNotEmpty())
