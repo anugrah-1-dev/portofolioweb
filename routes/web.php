@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\AuthController as AdminAuth;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\HkiController as AdminHki;
 use App\Http\Controllers\Admin\JurnalController as AdminJurnal;
 use App\Http\Controllers\Admin\PengalamanController as AdminPengalaman;
 use App\Http\Controllers\Admin\PrestasiController as AdminPrestasi;
@@ -38,7 +37,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('prestasi', AdminPrestasi::class)->except(['show']);
         Route::resource('projek', AdminProjek::class)->except(['show']);
         Route::resource('jurnal', AdminJurnal::class)->except(['show']);
-        Route::resource('hki', AdminHki::class)->except(['show']);
         Route::resource('sosmed', AdminSosmed::class)->except(['show']);
         Route::resource('pengalaman', AdminPengalaman::class)->except(['show']);
         Route::resource('users', AdminUser::class)->except(['show']);
