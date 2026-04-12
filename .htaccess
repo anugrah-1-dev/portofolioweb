@@ -1,12 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # CRITICAL: Intercept /storage/* BEFORE the generic /public/ redirect.
-    # LiteSpeed returns 404 if public/storage/ exists as a real directory,
-    # bypassing public/.htaccess entirely. This sends storage requests
-    # straight to Laravel's front controller.
-    RewriteRule ^storage/(.*)$ /public/index.php [L,QSA]
-
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ /public/$1 [L]
 </IfModule>

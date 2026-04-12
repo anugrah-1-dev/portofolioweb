@@ -15,11 +15,9 @@ class PublicController extends Controller
 {
     public function index()
     {
-        $prestasiAkademik    = Prestasi::where('kategori', 'akademik')->orderBy('urutan')->orderBy('year', 'desc')->get();
-        $prestasiNonAkademik = Prestasi::where('kategori', 'non_akademik')->orderBy('urutan')->orderBy('year', 'desc')->get();
+        $prestasi            = Prestasi::orderBy('urutan')->orderBy('year', 'desc')->get();
         $projek              = Projek::orderBy('urutan')->get();
         $jurnal              = Jurnal::orderBy('urutan')->orderBy('year', 'desc')->get();
-        $hki                 = Hki::orderBy('urutan')->orderBy('year', 'desc')->get();
         $profil              = Profil::first();
         $sosmed              = Sosmed::orderBy('urutan')->get();
         $pengalaman          = Pengalaman::orderBy('urutan')->orderByDesc('tahun_mulai')->get();
@@ -27,12 +25,11 @@ class PublicController extends Controller
         $totalProjek   = Projek::count();
         $totalJurnal   = Jurnal::count();
         $totalPrestasi = Prestasi::count();
-        $totalHki      = Hki::count();
 
         return view('welcome', compact(
-            'prestasiAkademik', 'prestasiNonAkademik', 'projek', 'jurnal', 'hki',
+            'prestasi', 'projek', 'jurnal',
             'profil', 'sosmed', 'pengalaman',
-            'totalProjek', 'totalJurnal', 'totalPrestasi', 'totalHki'
+            'totalProjek', 'totalJurnal', 'totalPrestasi'
         ));
     }
 

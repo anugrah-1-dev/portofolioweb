@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', $item ? 'Edit Jurnal' : 'Tambah Jurnal')
+@section('title', $item ? 'Edit Lisensi' : 'Tambah Lisensi')
 
 @push('styles')
 <style>
@@ -13,8 +13,8 @@
     <div class="card">
         <div class="card-header">
             <h2>
-                @if($item)<i class="fa-solid fa-pen"></i> Edit Jurnal
-                @else<i class="fa-solid fa-plus"></i> Tambah Jurnal
+                @if($item)<i class="fa-solid fa-pen"></i> Edit Lisensi
+                @else<i class="fa-solid fa-plus"></i> Tambah Lisensi
                 @endif
             </h2>
         </div>

@@ -1,11 +1,11 @@
 @extends('admin.layouts.app')
-@section('title', 'Manajemen Jurnal')
+@section('title', 'Manajemen Lisensi & Sertifikasi')
 
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h2><i class="fa-solid fa-file-lines" style="color:var(--accent);font-size:0.95rem;"></i> Semua Jurnal &amp; Artikel</h2>
-        <a href="{{ route('admin.jurnal.create') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Tambah Jurnal</a>
+        <h2><i class="fa-solid fa-certificate" style="color:var(--accent);font-size:0.95rem;"></i> Semua Lisensi &amp; Sertifikasi</h2>
+        <a href="{{ route('admin.jurnal.create') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Tambah Lisensi</a>
     </div>
     <div style="overflow-x:auto;">
         <table>

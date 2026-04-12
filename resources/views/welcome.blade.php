@@ -845,8 +845,7 @@
                 <li><a href="#tentang">About</a></li>
                 <li><a href="#pengalaman">Experience</a></li>
                 <li><a href="#prestasi">Achievements</a></li>
-                <li><a href="#jurnal">Journal</a></li>
-                <li><a href="#hki">IPR</a></li>
+                <li><a href="#jurnal">License</a></li>
                 <li><a href="#projek">Projects</a></li>
             </ul>
             <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -930,7 +929,7 @@
                     </div>
                     <p class="hero-desc fade-up d3" style="text-align:justify;">{{ $profil?->deskripsi_home ?? 'Information Technology student focused on application and system development. Experienced in building desktop, web, and mobile projects with various modern technologies, with a strong interest in software development and team collaboration.' }}</p>
                     <div class="btn-group fade-up d4">
-                        <a href="#projek" class="btn btn-primary">&#128640; View Projects</a>
+                        <a href="#prestasi" class="btn btn-primary">&#127942; Prestasi</a>
                         <a href="#tentang" class="btn btn-outline">&#128100; About Me</a>
                         @if($profil?->no_whatsapp)
                         <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $profil->no_whatsapp) }}?text={{ urlencode('Hello, I am interested in discussing further.') }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Contact Me</a>
@@ -953,8 +952,8 @@
                         </div>
                         <div class="hero-qs-divider"></div>
                         <div class="hero-qs-item">
-                            <span class="hero-qs-num">{{ $totalJurnal + $totalHki }}+</span>
-                            <span class="hero-qs-label">Publications</span>
+                            <span class="hero-qs-num">{{ $totalJurnal }}+</span>
+                            <span class="hero-qs-label">Licenses</span>
                         </div>
                     </div>
                 </div>
@@ -1083,8 +1082,8 @@
                             <div class="stat-label">Awards</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">{{ $totalJurnal + $totalHki }}</div>
-                            <div class="stat-label">Publications</div>
+                            <div class="stat-number">{{ $totalJurnal }}</div>
+                            <div class="stat-label">Licenses</div>
                         </div>
                     </div>
 
@@ -1111,7 +1110,7 @@
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Contribution History</span>
-                <h2 class="section-title">Organization <span>Experience</span></h2>
+                <h2 class="section-title">Experience <span>& Organization</span></h2>
                 <div class="section-divider"></div>
             </div>
             @if($pengalaman->isNotEmpty())
@@ -1187,82 +1186,37 @@
                 <div class="section-divider"></div>
             </div>
 
-            {{-- Tab Buttons --}}
-            <div class="prestasi-tabs reveal">
-                <button class="ptab-btn active" onclick="switchTab('akademik', this)">🎓 Academic Achievements</button>
-                <button class="ptab-btn" onclick="switchTab('non_akademik', this)">🏆 Non-Academic Achievements</button>
-            </div>
-
-            {{-- Tab: Akademik --}}
-            <div class="ptab-panel active" id="tab-akademik">
-                <div class="prestasi-grid">
-                    @forelse($prestasiAkademik as $item)
-                    @php
-                        $fotoPrestasi = ($item->foto && \App\Support\MediaUrl::exists($item->foto))
-                            ? \App\Support\MediaUrl::from($item->foto)
-                            : '';
-                    @endphp
-                    <div class="p-card reveal"
-                         onclick="openDetailModal(this)"
-                         data-type="prestasi"
-                         data-title="{{ $item->title }}"
-                         data-year="{{ $item->year }}"
-                         data-description="{{ $item->description ?? '' }}"
-                         data-badge="{{ $item->badge ?? '' }}"
-                         data-foto="{{ $fotoPrestasi }}">
-                        @if($fotoPrestasi)
-                        <img class="p-foto" src="{{ $fotoPrestasi }}" alt="{{ $item->title }}">
-                        @endif
-                        <div class="p-card-body">
-                            <div class="p-year"><i class="fa-solid fa-calendar-days" style="margin-right:0.3rem;"></i>{{ $item->year }}</div>
-                            <div class="p-title">{{ $item->title }}</div>
-                            <div class="p-desc">{{ $item->description }}</div>
-                            <div class="p-footer">
-                                <span class="p-badge"><i class="fa-solid fa-trophy"></i> {{ $item->badge }}</span>
-                                <span class="p-more"><i class="fa-solid fa-circle-info"></i> Details</span>
-                            </div>
+            <div class="prestasi-grid">
+                @forelse($prestasi as $item)
+                @php
+                    $fotoPrestasi = ($item->foto && \App\Support\MediaUrl::exists($item->foto))
+                        ? \App\Support\MediaUrl::from($item->foto)
+                        : '';
+                @endphp
+                <div class="p-card reveal"
+                     onclick="openDetailModal(this)"
+                     data-type="prestasi"
+                     data-title="{{ $item->title }}"
+                     data-year="{{ $item->year }}"
+                     data-description="{{ $item->description ?? '' }}"
+                     data-badge="{{ $item->badge ?? '' }}"
+                     data-foto="{{ $fotoPrestasi }}">
+                    @if($fotoPrestasi)
+                    <img class="p-foto" src="{{ $fotoPrestasi }}" alt="{{ $item->title }}">
+                    @endif
+                    <div class="p-card-body">
+                        <div class="p-year"><i class="fa-solid fa-calendar-days" style="margin-right:0.3rem;"></i>{{ $item->year }}</div>
+                        <div class="p-title">{{ $item->title }}</div>
+                        <div class="p-desc">{{ $item->description }}</div>
+                        <div class="p-footer">
+                            <span class="p-badge"><i class="fa-solid fa-trophy"></i> {{ $item->badge }}</span>
+                            <span class="p-more"><i class="fa-solid fa-circle-info"></i> Details</span>
                         </div>
                     </div>
-                    @empty
-                    <p style="color:var(--faint);font-size:0.9rem;">No academic achievement data available.</p>
-                    @endforelse
                 </div>
-            </div>
-
-            {{-- Tab: Non-Akademik --}}
-            <div class="ptab-panel" id="tab-non_akademik">
-                <div class="prestasi-grid">
-                    @forelse($prestasiNonAkademik as $item)
-                    @php
-                        $fotoPrestasi = ($item->foto && \App\Support\MediaUrl::exists($item->foto))
-                            ? \App\Support\MediaUrl::from($item->foto)
-                            : '';
-                    @endphp
-                    <div class="p-card reveal"
-                         onclick="openDetailModal(this)"
-                         data-type="prestasi"
-                         data-title="{{ $item->title }}"
-                         data-year="{{ $item->year }}"
-                         data-description="{{ $item->description ?? '' }}"
-                         data-badge="{{ $item->badge ?? '' }}"
-                         data-foto="{{ $fotoPrestasi }}">
-                        @if($fotoPrestasi)
-                        <img class="p-foto" src="{{ $fotoPrestasi }}" alt="{{ $item->title }}">
-                        @endif
-                        <div class="p-card-body">
-                            <div class="p-year"><i class="fa-solid fa-calendar-days" style="margin-right:0.3rem;"></i>{{ $item->year }}</div>
-                            <div class="p-title">{{ $item->title }}</div>
-                            <div class="p-desc">{{ $item->description }}</div>
-                            <div class="p-footer">
-                                <span class="p-badge"><i class="fa-solid fa-trophy"></i> {{ $item->badge }}</span>
-                                <span class="p-more"><i class="fa-solid fa-circle-info"></i> Details</span>
-                            </div>
-                        </div>
-                    </div>
-                    @empty
-                    <p style="color:var(--faint);font-size:0.9rem;">No non-academic achievement data available.</p>
-                    @endforelse
-                </div>
+                @empty
+                <p style="color:var(--faint);font-size:0.9rem;">No achievement data available.</p>
+                @endforelse
             </div>
         </div>
         <div class="sec-wave-end">
@@ -1279,8 +1233,8 @@
         <div class="sec-glow" style="--op:0.25;width:300px;height:300px;background:#b2e8d2;opacity:0.25;bottom:12%;right:-40px;"></div>
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
-                <span class="section-label">Scientific Publications</span>
-                <h2 class="section-title">Journal <span>&amp; Articles</span></h2>
+                <span class="section-label">Certifications</span>
+                <h2 class="section-title">License <span>& Certification</span></h2>
                 <div class="section-divider"></div>
             </div>
             <div class="jurnal-list">
@@ -1319,68 +1273,6 @@
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                 <path d="M0,30 C240,80 600,5 900,42 C1100,62 1280,22 1440,36 L1440,80 L0,80Z" fill="#1d152b"/>
                 <path d="M0,52 C360,70 720,32 1080,52 C1260,62 1380,40 1440,48 L1440,80 L0,80Z" fill="#1d152b"/>
-            </svg>
-        </div>
-    </section>
-
-    <!-- ═══ HKI ═══ -->
-    <section id="hki">
-        <div class="sec-glow" style="--op:0.28;width:380px;height:380px;background:#a8e0d0;opacity:0.28;top:-80px;right:-60px;"></div>
-        <div class="sec-glow" style="--op:0.22;width:310px;height:310px;background:#b5e8da;opacity:0.22;bottom:8%;left:-55px;"></div>
-        <div class="container" style="position:relative;z-index:1;">
-            <div class="section-header reveal">
-                <span class="section-label">Intellectual Property</span>
-                <h2 class="section-title">IPR <span>&amp; Patents</span></h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="hki-list">
-                @forelse($hki as $item)
-                <div class="hki-card reveal"
-                     onclick="openDetailModal(this)"
-                     data-type="hki"
-                     data-title="{{ $item->title }}"
-                     data-authors="{{ $item->authors ?? '' }}"
-                     data-jenis="{{ $item->jenis_hki ?? '' }}"
-                     data-nomor="{{ $item->nomor_pencatatan ?? '' }}"
-                     data-year="{{ $item->year }}"
-                     data-description="{{ $item->description ?? '' }}"
-                     data-url="{{ $item->sertifikat_file ? \App\Support\MediaUrl::from($item->sertifikat_file) : '' }}">
-                    <div class="j-body">
-                        <div class="hki-title">{{ $item->title }}</div>
-                        <div class="hki-meta">{{ $item->authors }}</div>
-                        @if($item->nomor_pencatatan)
-                        <div class="hki-nomor"><i class="fa-solid fa-fingerprint" style="opacity:0.5;font-size:0.75em;"></i> {{ $item->nomor_pencatatan }}</div>
-                        @endif
-                        @if($item->description)
-                        <div class="hki-desc">{{ Str::limit($item->description, 150) }}</div>
-                        @endif
-                        @if($item->sertifikat_file)
-                        <a href="{{ \App\Support\MediaUrl::from($item->sertifikat_file) }}" target="_blank" rel="noopener noreferrer" class="hki-link-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-scroll"></i> View Certificate</a>
-                        @endif
-                    </div>
-                    <div class="hki-right">
-                        <span class="hki-year">{{ $item->year }}</span>
-                        <span class="hki-jenis-badge">
-                            @php
-                                $jenis = strtolower($item->jenis_hki ?? '');
-                                $jenisIcon = str_contains($jenis, 'paten') ? 'fa-lightbulb'
-                                    : (str_contains($jenis, 'merek') ? 'fa-tag'
-                                    : (str_contains($jenis, 'desain') ? 'fa-pen-ruler'
-                                    : 'fa-copyright'));
-                            @endphp
-                            <i class="fa-solid {{ $jenisIcon }}"></i> {{ $item->jenis_hki }}
-                        </span>
-                    </div>
-                </div>
-                @empty
-                <p style="color:var(--faint);font-size:0.9rem;text-align:center;padding:2rem 0;">No IPR data available.</p>
-                @endforelse
-            </div>
-        </div>
-        <div class="sec-wave-end">
-            <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,33 C360,80 720,5 1080,38 C1260,54 1380,22 1440,32 L1440,80 L0,80Z" fill="#221833"/>
-                <path d="M0,54 C300,73 600,34 900,55 C1100,67 1300,44 1440,52 L1440,80 L0,80Z" fill="#221833"/>
             </svg>
         </div>
     </section>
@@ -1491,8 +1383,7 @@
                         <li><a href="#tentang">About</a></li>
                         <li><a href="#pengalaman">Experience</a></li>
                         <li><a href="#prestasi">Achievements</a></li>
-                        <li><a href="#jurnal">Journal</a></li>
-                        <li><a href="#hki">IPR</a></li>
+                        <li><a href="#jurnal">License</a></li>
                         <li><a href="#projek">Projects</a></li>
                     </ul>
                 </div>
@@ -1524,12 +1415,6 @@
     </div>
 
     <script>
-        function switchTab(tab, btn) {
-            document.querySelectorAll('.ptab-panel').forEach(function(p) { p.classList.remove('active'); });
-            document.querySelectorAll('.ptab-btn').forEach(function(b) { b.classList.remove('active'); });
-            document.getElementById('tab-' + tab).classList.add('active');
-            btn.classList.add('active');
-        }
         function toggleMenu() {
             document.getElementById('navLinks').classList.toggle('open');
         }
@@ -1584,24 +1469,14 @@
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
 
             } else if (type === 'jurnal') {
-                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-newspaper"></i> Journal & Articles</div>'
+                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-certificate"></i> License & Certification</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
                 bHtml = '<div class="detail-row"><span class="detail-label">Authors</span><span class="detail-value">' + escHtml(el.dataset.authors) + '</span></div>'
                       + '<div class="detail-row"><span class="detail-label">Journal</span><span class="detail-value">' + escHtml(el.dataset.journal) + '</span></div>'
                       + '<div class="detail-row"><span class="detail-label">Year</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
                 if (el.dataset.indexed) bHtml += '<div class="detail-row"><span class="detail-label">Index</span><span class="detail-value">' + escHtml(el.dataset.indexed) + '</span></div>';
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
-                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Journal</a></div>';
-
-            } else if (type === 'hki') {
-                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-certificate"></i> IPR &amp; Patents</div>'
-                      + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
-                bHtml = '<div class="detail-row"><span class="detail-label">Rights Holder</span><span class="detail-value">' + escHtml(el.dataset.authors) + '</span></div>'
-                      + '<div class="detail-row"><span class="detail-label">Type</span><span class="detail-value"><span class="td-badge">' + escHtml(el.dataset.jenis) + '</span></span></div>'
-                      + '<div class="detail-row"><span class="detail-label">Year</span><span class="detail-value">' + escHtml(el.dataset.year) + '</span></div>';
-                if (el.dataset.nomor) bHtml += '<div class="detail-row"><span class="detail-label">Registration No.</span><span class="detail-value" style="font-family:monospace;">' + escHtml(el.dataset.nomor) + '</span></div>';
-                if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
-                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary"><i class="fa-solid fa-scroll"></i> View Certificate</a></div>';
+                if (el.dataset.url) bHtml += '<div class="detail-links"><a href="' + el.dataset.url + '" target="_blank" rel="noopener noreferrer" class="detail-link-btn detail-link-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open</a></div>';
 
             } else if (type === 'projek') {
                 var tags = [];
