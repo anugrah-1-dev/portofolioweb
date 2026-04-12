@@ -1110,7 +1110,7 @@
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Contribution History</span>
-                <h2 class="section-title">Experience <span>& Organization</span></h2>
+                <h2 class="section-title">Experience <span>& Organizations</span></h2>
                 <div class="section-divider"></div>
             </div>
             @if($pengalaman->isNotEmpty())
@@ -1234,7 +1234,7 @@
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Certifications</span>
-                <h2 class="section-title">License <span>& Certification</span></h2>
+                <h2 class="section-title">License <span>& Certifications</span></h2>
                 <div class="section-divider"></div>
             </div>
             <div class="jurnal-list">
@@ -1374,7 +1374,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="footer-logo">{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}</div>
-                    <p class="footer-tagline">Information Technology student focused on application and system development with various modern technologies.</p>
+                    <p class="footer-tagline">{{ $profil?->footer_tagline ?? 'Information Technology student focused on application and system development with various modern technologies.' }}</p>
                 </div>
                 <div class="footer-nav">
                     <h4>Navigation</h4>
@@ -1469,7 +1469,7 @@
                 if (el.dataset.description) bHtml += '<div class="detail-desc">' + escHtml(el.dataset.description) + '</div>';
 
             } else if (type === 'jurnal') {
-                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-certificate"></i> License & Certification</div>'
+                hHtml = '<div class="detail-type-badge"><i class="fa-solid fa-certificate"></i> License & Certifications</div>'
                       + '<div class="detail-title">' + escHtml(el.dataset.title) + '</div>';
                 bHtml = '<div class="detail-row"><span class="detail-label">Authors</span><span class="detail-value">' + escHtml(el.dataset.authors) + '</span></div>'
                       + '<div class="detail-row"><span class="detail-label">Journal</span><span class="detail-value">' + escHtml(el.dataset.journal) + '</span></div>'

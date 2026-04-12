@@ -52,6 +52,13 @@
                         <span class="form-hint">Tampil sebagai paragraf deskripsi di bawah nama pada halaman Home.</span>
                     </div>
                     <div class="form-group full">
+                        <label for="footer_tagline">Footer Tagline</label>
+                        <textarea id="footer_tagline" name="footer_tagline" class="form-control"
+                                  rows="2"
+                                  placeholder="Teks singkat yang tampil di footer...">{{ old('footer_tagline', $profil->footer_tagline) }}</textarea>
+                        <span class="form-hint">Tampil sebagai deskripsi singkat di bagian footer halaman.</span>
+                    </div>
+                    <div class="form-group full">
                         <label for="keahlian_raw">Keahlian Teknis</label>
                         <input type="text" id="keahlian_raw" name="keahlian_raw" class="form-control"
                                value="{{ old('keahlian_raw', implode(', ', $profil->keahlian ?? [])) }}"
