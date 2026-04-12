@@ -39,6 +39,7 @@ class ProfilController extends Controller
             'lokasi'               => 'nullable|string|max:100',
             'bahasa'               => 'nullable|string|max:100',
             'keahlian_raw'         => 'nullable|string',
+            'logo'                 => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:5120',
             'foto'                 => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'foto2'                => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'hero_role1'           => 'nullable|string|max:100',
@@ -66,6 +67,22 @@ class ProfilController extends Controller
             'hero_role2'       => $data['hero_role2'] ?? 'IT Student',
             'hero_status'      => $data['hero_status'] ?? 'Available for work',
         ];
+
+        // Handle logo upload
+        if ($request->hasFile('logo')) {
+            if ($profil->logo) {
+                Storage::disk('public')->delete($profil->logo);
+            }
+            $updateData['logo'] = $request->file('logo')->store('profil', 'public');
+        }
+
+        // Handle logo removal
+        if ($request->boolean('hapus_logo')) {
+            if ($profil->logo) {
+                Storage::disk('public')->delete($profil->logo);
+            }
+            $updateData['logo'] = null;
+        }
 
         // Handle foto upload
         if ($request->hasFile('foto')) {

@@ -61,10 +61,18 @@
             width:100%; padding:0.9rem 2rem;
             display:flex; justify-content:space-between; align-items:center;
         }
-        .logo { flex-shrink:0; display:flex; align-items:center; }
+        .logo { flex-shrink:0; display:flex; align-items:center; gap:0.7rem; text-decoration:none; }
         nav.scrolled .nav-inner { padding:0.65rem 2rem; }
         nav.scrolled { box-shadow:0 4px 24px rgba(255,143,192,0.2); }
-        .logo img { height:44px; width:auto; display:block; }
+        .logo img { height:44px; width:44px; border-radius:12px; object-fit:cover; display:block; background:rgba(255,255,255,0.08); }
+        .logo-name {
+            font-size:1rem; font-weight:800; letter-spacing:0.2px; line-height:1.2;
+            color:var(--accentlt);
+            max-width:240px;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+        }
         .nav-links { display:flex; gap:0.35rem; list-style:none; }
         .nav-links a {
             color:var(--muted); text-decoration:none; font-weight:600;
@@ -520,7 +528,8 @@
         }
         @media (max-width:480px) {
             body { font-size:15px; }
-            .logo { font-size:1.15rem; letter-spacing:-0.5px; }
+            .logo img { height:38px; width:38px; border-radius:10px; }
+            .logo-name { font-size:0.9rem; max-width:150px; }
             .nav-inner { padding:0.75rem 1rem; }
             section { padding:4.5rem 1rem; }
             #home { padding-top:5rem; min-height:100svh; }
@@ -545,7 +554,8 @@
         }
         @media (max-width:360px) {
             .nav-inner { padding:0.65rem 0.85rem; }
-            .logo { font-size:1rem; }
+            .logo img { height:34px; width:34px; border-radius:9px; }
+            .logo-name { font-size:0.82rem; max-width:120px; }
             .hero-stats { gap:1rem; }
             .stat-item .stat-num { font-size:1.7rem; }
             .btn { font-size:0.85rem; padding:0.75rem 1.5rem; }
@@ -826,7 +836,10 @@
     <nav id="navbar">
         <div class="nav-corak"></div>
         <div class="nav-inner">
-            <div class="logo"><img src="/logo.png?v=1" alt="Logo"></div>
+            <a href="#home" class="logo" aria-label="Brand">
+                <img src="{{ $profil?->logo ? Storage::url($profil->logo) : '/logo.png?v=1' }}" alt="Logo">
+                <span class="logo-name">{{ $profil?->nama ?? "ALIFIA SHOFA' NABILAH" }}</span>
+            </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#tentang">About</a></li>

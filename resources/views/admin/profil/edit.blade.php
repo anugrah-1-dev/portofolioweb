@@ -59,6 +59,26 @@
                         <span class="form-hint">Pisahkan dengan koma. Contoh: PHP, Laravel, Vue.js, MySQL</span>
                     </div>
 
+                    {{-- Logo Brand Navbar --}}
+                    <div class="form-group full">
+                        <label for="logo">Logo Brand (Navbar)</label>
+                        @if($profil->logo)
+                        <div style="margin-bottom:0.75rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+                            <img src="{{ Storage::url($profil->logo) }}" alt="Logo Brand"
+                                 style="width:120px;height:120px;object-fit:contain;border-radius:14px;border:2px solid var(--border);background:var(--bg);padding:8px;">
+                            <div>
+                                <div style="font-size:0.82rem;color:var(--muted);margin-bottom:0.35rem;">Logo aktif di navbar</div>
+                                <label style="font-size:0.85rem;color:var(--muted);cursor:pointer;">
+                                    <input type="checkbox" name="hapus_logo" value="1"> Hapus logo
+                                </label>
+                            </div>
+                        </div>
+                        @endif
+                        <input type="file" id="logo" name="logo" class="form-control" accept="image/*">
+                        @error('logo') <div class="invalid-feedback" style="display:block">{{ $message }}</div> @enderror
+                        <span class="form-hint">Format: JPG, PNG, WEBP, SVG. Maks: 5MB. Logo tampil di kiri navbar, di samping nama.</span>
+                    </div>
+
                     {{-- Foto Profil --}}
                     <div class="form-group full">
                         <label for="foto">Foto Profil (Home)</label>
