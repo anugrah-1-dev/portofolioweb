@@ -1241,6 +1241,9 @@
             </div>
             <div class="jurnal-list">
                 @forelse($jurnal as $item)
+                @php
+                    $fileSert = $item->file_sertifikat ? \App\Support\MediaUrl::from($item->file_sertifikat) : '';
+                @endphp
                 <div class="j-card reveal"
                      onclick="openDetailModal(this)"
                      data-type="jurnal"
@@ -1250,20 +1253,25 @@
                      data-year="{{ $item->year }}"
                      data-indexed="{{ $item->indexed_by ?? '' }}"
                      data-description="{{ $item->description ?? '' }}"
-                     data-url="{{ $item->url ?? '' }}">
+                     data-url="{{ $fileSert }}">
                     <div class="j-body">
                         <div class="j-title">{{ $item->title }}</div>
-                        <div class="j-meta">{{ $item->authors }} &bull; <span>{{ $item->journal_name }}</span></div>
+                        <div class="j-meta">
+                            {{ $item->journal_name }}
+                            @if($item->authors) &bull; <span>{{ $item->authors }}</span> @endif
+                        </div>
                         @if($item->description)
                         <div class="j-desc">{{ $item->description }}</div>
                         @endif
-                        @if($item->url)
-                        <a href="{{ $item->url }}" target="_blank" rel="noopener noreferrer" class="j-link-btn">&#128279; Open Journal</a>
+                        @if($fileSert)
+                        <a href="{{ $fileSert }}" target="_blank" rel="noopener noreferrer" class="j-link-btn">&#128196; View Certificate</a>
                         @endif
                     </div>
                     <div class="j-right">
                         <span class="j-year">{{ $item->year }}</span>
+                        @if($item->indexed_by)
                         <span class="j-index-badge">{{ $item->indexed_by }}</span>
+                        @endif
                     </div>
                 </div>
                 @empty

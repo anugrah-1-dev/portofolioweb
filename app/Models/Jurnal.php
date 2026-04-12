@@ -8,5 +8,5 @@ class Jurnal extends Model
 {
     protected $table = 'jurnal';
 
-    protected $fillable = ['icon', 'title', 'authors', 'journal_name', 'year', 'indexed_by', 'url', 'description', 'urutan'];
+    protected $fillable = ['icon', 'title', 'authors', 'journal_name', 'year', 'indexed_by', 'url', 'file_sertifikat', 'description', 'urutan'];
 }
