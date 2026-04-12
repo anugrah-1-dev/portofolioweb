@@ -1,22 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ASN logo">
   <defs>
     <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1b4332"/>
-      <stop offset="100%" stop-color="#0d9488"/>
+      <stop offset="0%" stop-color="#ff6fac"/>
+      <stop offset="100%" stop-color="#ffb5d7"/>
     </linearGradient>
   </defs>
-  <!-- Background rounded square -->
   <rect width="64" height="64" rx="13" fill="url(#g)"/>
-  <!-- Inner border subtle -->
-  <rect x="3" y="3" width="58" height="58" rx="10" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-  <!-- Large A - dominant initial -->
-  <text x="32" y="34" text-anchor="middle" fill="white"
-        font-family="Georgia,'Times New Roman',serif"
-        font-weight="700" font-size="30" letter-spacing="0">A</text>
-  <!-- TM - smaller below, spaced -->
-  <text x="32" y="52" text-anchor="middle" fill="rgba(255,255,255,0.80)"
-        font-family="Georgia,'Times New Roman',serif"
-        font-weight="400" font-size="14" letter-spacing="5">TM</text>
-  <!-- Decorative line between A and TM -->
-  <line x1="16" y1="39" x2="48" y2="39" stroke="rgba(255,255,255,0.30)" stroke-width="0.8"/>
+  <rect x="3" y="3" width="58" height="58" rx="10" fill="none" stroke="rgba(255,255,255,0.20)" stroke-width="1"/>
+  <text x="32" y="39" text-anchor="middle" fill="white"
+        font-family="Plus Jakarta Sans, Arial, sans-serif"
+        font-weight="800" font-size="24" letter-spacing="1">ASN</text>
 </svg>

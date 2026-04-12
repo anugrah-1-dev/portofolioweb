@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ALIFIA SHOFA' NABILAH - My Portfolio</title>
-    <meta name="description" content="Portfolio of ALIFIA SHOFA' NABILAH - Information Technology student focused on web and application development. Explore my projects, experiences, and achievements.">
-    <meta name="keywords" content="ALIFIA SHOFA' NABILAH, portfolio, web developer, laravel, programmer, information technology">
-    <meta name="author" content="ALIFIA SHOFA' NABILAH">
+    <title>{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} - My Portfolio</title>
+    <meta name="description" content="Portfolio of {{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} - Information Technology student focused on web and application development. Explore my projects, experiences, and achievements.">
+    <meta name="keywords" content="{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}, portfolio, web developer, laravel, programmer, information technology">
+    <meta name="author" content="{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://anugerahtedjom.my.id/">
     <meta name="google-site-verification" content="YkMylM-AikW2Z7-lam_Mi7fOEBaGptnr2O3xcRaaSHY">
     {{-- Open Graph --}}
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://anugerahtedjom.my.id/">
-    <meta property="og:title" content="ALIFIA SHOFA' NABILAH - My Portfolio">
-    <meta property="og:description" content="Portfolio of ALIFIA SHOFA' NABILAH - Information Technology student focused on web and application development.">
+    <meta property="og:title" content="{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} - My Portfolio">
+    <meta property="og:description" content="Portfolio of {{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} - Information Technology student focused on web and application development.">
     @if($profil?->foto)<meta property="og:image" content="{{ Storage::url($profil->foto) }}">@endif
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.ico">
@@ -444,20 +444,20 @@
         .footer-wave svg { display:block; width:100%; height:80px; }
         .footer-content { padding:3rem 2rem 1.5rem; max-width:1100px; margin:0 auto; }
         .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:3rem; margin-bottom:2.5rem; }
-        .footer-brand .footer-logo { font-size:1.5rem; font-weight:900; letter-spacing:-1px; background:linear-gradient(135deg,#5eead4,#40916c); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:0.75rem; }
+        .footer-brand .footer-logo { font-size:1.5rem; font-weight:900; letter-spacing:-1px; background:linear-gradient(135deg,#ff8fc0,#ffd5e8); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:0.75rem; }
         .footer-brand .footer-tagline { font-size:0.9rem; line-height:1.7; color:rgba(255,255,255,0.5); max-width:320px; }
         .footer-nav h4, .footer-social-section h4 { font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:3px; color:rgba(255,255,255,0.9); margin-bottom:1.25rem; }
         .footer-nav ul { list-style:none; display:flex; flex-direction:column; gap:0.6rem; }
         .footer-nav a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:0.9rem; font-weight:500; transition:all 0.3s; }
-        .footer-nav a:hover { color:#5eead4; transform:translateX(4px); display:inline-block; }
+        .footer-nav a:hover { color:#ffd5e8; transform:translateX(4px); display:inline-block; }
         .footer-social-links { display:flex; gap:0.65rem; flex-wrap:wrap; }
         .footer-social-link { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.6); text-decoration:none; transition:all 0.3s; border:1px solid rgba(255,255,255,0.06); }
-        .footer-social-link:hover { background:rgba(94,234,212,0.15); color:#5eead4; transform:translateY(-3px); border-color:rgba(94,234,212,0.3); }
+        .footer-social-link:hover { background:rgba(255,143,192,0.2); color:#ffd5e8; transform:translateY(-3px); border-color:rgba(255,181,215,0.4); }
         .footer-bottom { border-top:1px solid rgba(255,255,255,0.08); padding-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; }
         .footer-bottom p { font-size:0.82rem; color:rgba(255,255,255,0.35); }
-        .footer-bottom span { color:#5eead4; font-weight:700; }
+        .footer-bottom span { color:#ffd5e8; font-weight:700; }
         .footer-bottom-links a { font-size:0.82rem; color:rgba(255,255,255,0.35); text-decoration:none; transition:color 0.3s; }
-        .footer-bottom-links a:hover { color:#5eead4; }
+        .footer-bottom-links a:hover { color:#ffd5e8; }
 
         /* ─── ANIMATIONS ─── */
         @keyframes floatAnim { 0%,100% { transform:translateY(0px); } 50% { transform:translateY(-10px); } }
@@ -739,7 +739,7 @@
         }
 
         /* ─── HERO ENHANCEMENTS ─── */
-        .hero-text h1 .name { background:linear-gradient(135deg,#e2faf0 0%,#5eead4 50%,#40916c 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; color:transparent; }
+        .hero-text h1 .name { background:linear-gradient(135deg,#ffd5e8 0%,#ffb5d7 50%,#ff6fac 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; color:transparent; }
         .hero-role { display:flex; align-items:center; gap:0.6rem; margin-bottom:1.5rem; flex-wrap:wrap; }
         .hero-role-badge { display:inline-flex; align-items:center; gap:0.4rem; padding:0.3rem 0.85rem; border-radius:20px; font-size:0.8rem; font-weight:700; background:rgba(45,106,79,0.12); color:var(--primary); border:1.5px solid rgba(45,106,79,0.28); }
         .hero-role-dot { width:5px; height:5px; border-radius:50%; background:var(--faint); display:inline-block; margin:0 0.1rem; }
@@ -762,7 +762,7 @@
         .hpb-name { font-size:0.84rem; font-weight:800; color:#e2faf0; display:block; line-height:1.3; }
         .hpb-role { font-size:0.7rem; color:var(--accent); font-weight:600; display:block; }
         .hpb-status { display:flex; align-items:center; gap:0.3rem; margin-top:0.2rem; }
-        .hpb-dot { width:7px; height:7px; border-radius:50%; background:#22c55e; animation:geoDotPulse 2s ease-in-out infinite; box-shadow:0 0 6px rgba(34,197,94,0.7); flex-shrink:0; }
+        .hpb-dot { width:7px; height:7px; border-radius:50%; background:#ff8fc0; animation:geoDotPulse 2s ease-in-out infinite; box-shadow:0 0 6px rgba(255,143,192,0.75); flex-shrink:0; }
         .hpb-status-txt { font-size:0.65rem; color:rgba(255,255,255,0.45); }
         @media (max-width:900px) {
             .hero-photo-badge { left:-10px; bottom:-65px; }
@@ -848,7 +848,7 @@
     <nav id="navbar">
         <div class="nav-corak"></div>
         <div class="nav-inner">
-            <div class="logo">ALIFIA SHOFA' NABILAH</div>
+            <div class="logo">{{ strtoupper($profil?->nama ?? "ALIFIA SHOFA' NABILAH") }}</div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#tentang">About</a></li>
@@ -930,7 +930,7 @@
                 <div class="hero-text">
                     <span class="greeting fade-up d1">Hello, I'm</span>
                     <h1 class="fade-up d2">
-                        <span class="name">ALIFIA SHOFA' NABILAH</span>
+                        <span class="name">{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}</span>
                     </h1>
                     <div class="hero-role fade-up d2">
                         <span class="hero-role-badge"><i class="fa-solid fa-code"></i> {{ $profil?->hero_role1 ?? 'Full-Stack Developer' }}</span>
@@ -1003,7 +1003,7 @@
                             @endif
                         </div>
                         <div>
-                            <span class="hpb-name">ALIFIA SHOFA' NABILAH</span>
+                            <span class="hpb-name">{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}</span>
                             <span class="hpb-role">{{ $profil?->keahlian[0] ?? 'IT Developer' }}</span>
                             <div class="hpb-status">
                                 <span class="hpb-dot"></span>
@@ -1036,7 +1036,7 @@
                     <div class="about-cards">
                         <div class="about-card">
                             <div class="card-label">Name</div>
-                            <div class="card-value">ALIFIA SHOFA' NABILAH</div>
+                            <div class="card-value">{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}</div>
                         </div>
                         <div class="about-card">
                             <div class="card-label">Email</div>
@@ -1497,7 +1497,7 @@
         <div class="footer-content">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="footer-logo">ALIFIA SHOFA' NABILAH</div>
+                    <div class="footer-logo">{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}</div>
                     <p class="footer-tagline">Information Technology student focused on application and system development with various modern technologies.</p>
                 </div>
                 <div class="footer-nav">
@@ -1531,7 +1531,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; {{ date('Y') }} <span>ALIFIA SHOFA' NABILAH</span> &mdash; Built with ❤️ &amp; full dedication</p>
+                <p>&copy; {{ date('Y') }} <span>{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}</span> &mdash; Built with ❤️ &amp; full dedication</p>
                 <div class="footer-bottom-links">
                     <a href="#home">Back to Top ↑</a>
                 </div>
