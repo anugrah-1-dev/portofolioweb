@@ -1,30 +1,105 @@
-@extends('admin.layouts.app')
+﻿@extends('admin.layouts.app')
 @section('title', $item ? 'Edit Projek' : 'Tambah Projek')
 
 @section('content')
-<div style="max-width:720px;">
+<div style="max-width:760px;">
     <div class="card">
         <div class="card-header">
             <h2>
                 @if($item)<i class="fa-solid fa-pen"></i> Edit Projek
                 @else<i class="fa-solid fa-plus"></i> Tambah Projek
-                                <input type="checkbox" name="hapus_gambar" id="hapus_gambar" value="1">
-                                <label for="hapus_gambar" style="font-size:0.82rem;color:var(--danger);font-weight:600;cursor:pointer;">
+                @endif
+            </h2>
+        </div>
+        <div class="card-body">
+            <form method="POST"
+                  enctype="multipart/form-data"
+                  action="{{ $item ? route('admin.projek.update', $item) : route('admin.projek.store') }}">
+                @csrf
+                @if($item) @method('PUT') @endif
+
+                <div class="form-grid">
+                    {{-- Judul --}}
+                    <div class="form-group full">
+                        <label for="title">Judul Projek</label>
+                        <input type="text" id="title" name="title"
+                               class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
+                               value="{{ old('title', $item?->title) }}"
+                               placeholder="Nama projek...">
+                        @error('title') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    </div>
+
+                    {{-- Deskripsi --}}
+                    <div class="form-group full">
+                        <label for="description">Deskripsi</label>
+                        <textarea id="description" name="description"
+                                  class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
+                                  rows="4"
+                                  placeholder="Penjelasan singkat tentang projek...">{{ old('description', $item?->description) }}</textarea>
+                        @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    </div>
+
+                    {{-- Tags --}}
+                    <div class="form-group full">
+                        <label for="tags_raw">Tags / Teknologi</label>
+                        <input type="text" id="tags_raw" name="tags_raw"
+                               class="form-control {{ $errors->has('tags_raw') ? 'is-invalid' : '' }}"
+                               value="{{ old('tags_raw', $item ? implode(', ', $item->tags ?? []) : '') }}"
+                               placeholder="Laravel, Vue.js, MySQL, ...">
+                        <span class="form-hint">Pisahkan dengan koma. Contoh: Laravel, MySQL, Bootstrap</span>
+                    </div>
+
+                    {{-- Warna Thumbnail --}}
+                    <div class="form-group full">
+                        <label>Warna Thumbnail</label>
+                        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:0.4rem;">
+                            <label style="display:flex;align-items:center;gap:0.5rem;padding:0.55rem 1.1rem;border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="radio" name="thumb_color" value="1" {{ old('thumb_color', $item?->thumb_color ?? 1) == 1 ? 'checked' : '' }}>
+                                <i class="fa-solid fa-code" style="color:#ff6fac;"></i>
+                                <span style="font-size:0.85rem;font-weight:600;">Pink / Web</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:0.5rem;padding:0.55rem 1.1rem;border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="radio" name="thumb_color" value="2" {{ old('thumb_color', $item?->thumb_color ?? 1) == 2 ? 'checked' : '' }}>
+                                <i class="fa-solid fa-mobile-screen-button" style="color:#a78bfa;"></i>
+                                <span style="font-size:0.85rem;font-weight:600;">Purple / Mobile</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:0.5rem;padding:0.55rem 1.1rem;border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="radio" name="thumb_color" value="3" {{ old('thumb_color', $item?->thumb_color ?? 1) == 3 ? 'checked' : '' }}>
+                                <i class="fa-solid fa-database" style="color:#2dd4bf;"></i>
+                                <span style="font-size:0.85rem;font-weight:600;">Teal / Database</span>
+                            </label>
+                        </div>
+                        @error('thumb_color') <div class="invalid-feedback" style="display:block">{{ $message }}</div> @enderror
+                    </div>
+
+                    {{-- GAMBAR UTAMA --}}
+                    <div class="form-group full">
+                        <label><i class="fa-solid fa-image" style="color:var(--accent);"></i> Gambar Utama (Cover)</label>
+
+                        @if($item?->gambar)
+                        <div style="display:flex;align-items:center;gap:0.85rem;padding:0.85rem;background:rgba(255,181,215,0.1);border:1.5px solid rgba(255,181,215,0.3);border-radius:10px;margin-bottom:0.75rem;">
+                            <img src="{{ \App\Support\MediaUrl::from($item->gambar) }}" alt="Cover"
+                                 style="width:80px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+                            <div>
+                                <div style="font-size:0.82rem;color:var(--muted);">Gambar cover saat ini</div>
+                                <label style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.4rem;cursor:pointer;font-size:0.82rem;color:var(--danger);font-weight:600;">
+                                    <input type="checkbox" name="hapus_gambar" id="hapus_gambar" value="1">
                                     <i class="fa-solid fa-trash"></i> Hapus gambar ini
                                 </label>
                             </div>
                         </div>
                         @endif
 
-                        <div id="upload-area" style="border:2px dashed var(--border);border-radius:12px;padding:1.75rem;text-align:center;cursor:pointer;transition:all 0.3s;background:var(--bg);"
+                        <div id="upload-area"
+                             style="border:2px dashed var(--border);border-radius:12px;padding:1.75rem;text-align:center;cursor:pointer;transition:all 0.3s;background:var(--bg);"
                              onclick="document.getElementById('gambar').click()"
                              ondragover="event.preventDefault();this.style.borderColor='var(--primary)'"
                              ondragleave="this.style.borderColor='var(--border)'"
                              ondrop="handleDrop(event)">
                             <div id="upload-placeholder">
                                 <div style="font-size:2rem;margin-bottom:0.5rem;"><i class="fa-regular fa-image" style="color:var(--faint);"></i></div>
-                                <div style="font-size:0.88rem;color:var(--muted);font-weight:600;">Klik atau drag & drop gambar di sini</div>
-                                <div style="font-size:0.78rem;color:var(--faint);margin-top:0.3rem;">JPG, PNG, WebP • Maks 2MB</div>
+                                <div style="font-size:0.88rem;color:var(--muted);font-weight:600;">Klik atau drag &amp; drop gambar di sini</div>
+                                <div style="font-size:0.78rem;color:var(--faint);margin-top:0.3rem;">JPG, PNG, WebP &bull; Maks 5MB</div>
                             </div>
                             <img id="gambar-preview" alt="Preview"
                                  style="display:none;max-width:100%;max-height:200px;border-radius:10px;object-fit:contain;">
@@ -34,28 +109,32 @@
                         @error('gambar') <div class="invalid-feedback" style="display:block">{{ $message }}</div> @enderror
                     </div>
 
-                    {{-- GALERI / SCREENSHOT TAMBAHAN --}}
+                    {{-- GALERI --}}
                     <div class="form-group full">
                         <label style="display:flex;align-items:center;gap:0.5rem;">
                             <i class="fa-solid fa-images" style="color:var(--accent);"></i>
                             Galeri / Screenshot Tambahan
-                            <span style="font-weight:400;color:var(--faint);font-size:0.8rem;">(bisa banyak, maks 10 gambar, tiap maks 2MB)</span>
+                            <span style="font-weight:400;color:var(--faint);font-size:0.8rem;">(maks 10 gambar, tiap maks 5MB)</span>
                         </label>
 
-                        {{-- Existing gallery --}}
                         @if($item?->galeri && count($item->galeri) > 0)
-                        <div class="galeri-grid" id="galeri-existing" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.75rem;margin-bottom:0.85rem;">
+                        <div id="galeri-existing"
+                             style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.75rem;margin-bottom:0.85rem;">
                             @foreach($item->galeri as $gPath)
-                            <div class="galeri-item" style="position:relative;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:var(--bg);border:2px solid var(--border);">
+                            <div class="galeri-item"
+                                 style="position:relative;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:var(--bg);border:2px solid var(--border);">
                                 <img src="{{ \App\Support\MediaUrl::from($gPath) }}" alt="Gallery"
                                      style="width:100%;height:100%;object-fit:cover;display:block;">
-                                <input type="checkbox" name="hapus_galeri[]" value="{{ $gPath }}" class="hapus-galeri-cb" style="display:none;">
-                                <div class="hapus-overlay" style="display:none;position:absolute;inset:0;background:rgba(220,38,38,0.8);align-items:center;justify-content:center;flex-direction:column;color:#fff;gap:5px;pointer-events:none;">
+                                <input type="checkbox" name="hapus_galeri[]" value="{{ $gPath }}"
+                                       class="hapus-galeri-cb" style="display:none;">
+                                <div class="hapus-overlay"
+                                     style="display:none;position:absolute;inset:0;background:rgba(220,38,38,0.8);align-items:center;justify-content:center;flex-direction:column;color:#fff;gap:5px;pointer-events:none;">
                                     <i class="fa-solid fa-trash" style="font-size:1.8rem;"></i>
                                     <span style="font-size:0.78rem;font-weight:700;">Akan Dihapus</span>
-                                    <span style="font-size:0.63rem;opacity:0.85;">Klik tombol merah untuk batal</span>
                                 </div>
-                                <button type="button" onclick="toggleHapusGaleri(this)" style="position:absolute;top:5px;right:5px;background:rgba(220,38,38,0.85);color:#fff;border:none;border-radius:8px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.78rem;z-index:2;" title="Tandai untuk dihapus">
+                                <button type="button" onclick="toggleHapusGaleri(this)"
+                                        style="position:absolute;top:5px;right:5px;background:rgba(220,38,38,0.85);color:#fff;border:none;border-radius:8px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.78rem;z-index:2;"
+                                        title="Tandai untuk dihapus">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </div>
@@ -63,10 +142,9 @@
                         </div>
                         @endif
 
-                        {{-- Preview baru --}}
-                        <div id="galeri-preview-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.75rem;margin-bottom:0.75rem;"></div>
+                        <div id="galeri-preview-grid"
+                             style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.75rem;margin-bottom:0.75rem;"></div>
 
-                        {{-- Upload area --}}
                         <div id="galeri-upload-area"
                              onclick="document.getElementById('galeri_baru').click()"
                              ondragover="event.preventDefault();this.style.borderColor='var(--primary)'"
@@ -74,8 +152,8 @@
                              ondrop="handleGaleriDrop(event)"
                              style="border:2px dashed var(--border);border-radius:12px;padding:1.25rem;text-align:center;cursor:pointer;transition:border-color 0.3s;background:var(--bg);">
                             <div style="font-size:1.6rem;margin-bottom:0.4rem;color:var(--faint);"><i class="fa-solid fa-images"></i></div>
-                            <div style="font-size:0.85rem;color:var(--muted);font-weight:600;">Klik atau drag & drop untuk tambah screenshot</div>
-                            <div style="font-size:0.75rem;color:var(--faint);margin-top:0.25rem;">Bisa pilih banyak sekaligus • JPG, PNG, WebP • Maks 2MB/file</div>
+                            <div style="font-size:0.85rem;color:var(--muted);font-weight:600;">Klik atau drag &amp; drop untuk tambah screenshot</div>
+                            <div style="font-size:0.75rem;color:var(--faint);margin-top:0.25rem;">Bisa pilih banyak sekaligus &bull; JPG, PNG, WebP</div>
                         </div>
                         <input type="file" id="galeri_baru" name="galeri_baru[]" multiple
                                accept="image/jpeg,image/png,image/webp" style="display:none;"
@@ -83,71 +161,30 @@
                         @error('galeri_baru.*') <div class="invalid-feedback" style="display:block">{{ $message }}</div> @enderror
                     </div>
 
+                    {{-- Demo & GitHub --}}
                     <div class="form-group">
-                        <label for="demo_url">URL Demo (opsional)</label>
-                        <input type="url" id="demo_url" name="demo_url" class="form-control {{ $errors->has('demo_url') ? 'is-invalid' : '' }}"
-                               value="{{ old('demo_url', $item?->demo_url) }}" placeholder="https://...">
+                        <label for="demo_url">URL Demo <span style="font-weight:400;color:var(--faint);">(opsional)</span></label>
+                        <input type="url" id="demo_url" name="demo_url"
+                               class="form-control {{ $errors->has('demo_url') ? 'is-invalid' : '' }}"
+                               value="{{ old('demo_url', $item?->demo_url) }}"
+                               placeholder="https://...">
                         @error('demo_url') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="github_url">URL GitHub (opsional)</label>
-                        <input type="url" id="github_url" name="github_url" class="form-control {{ $errors->has('github_url') ? 'is-invalid' : '' }}"
-                               value="{{ old('github_url', $item?->github_url) }}" placeholder="https://github.com/...">
+                        <label for="github_url">URL GitHub <span style="font-weight:400;color:var(--faint);">(opsional)</span></label>
+                        <input type="url" id="github_url" name="github_url"
+                               class="form-control {{ $errors->has('github_url') ? 'is-invalid' : '' }}"
+                               value="{{ old('github_url', $item?->github_url) }}"
+                               placeholder="https://github.com/...">
                         @error('github_url') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
-                    <div class="form-group full" id="harga-group">
-                        <label for="harga">Source Code Premium (opsional)</label>
-                        <span class="form-hint">Isi harga dan upload ZIP jika source code dijual. Jika harga dikosongkan, project tetap tampil sebagai demo/GitHub saja.</span>
-
-                        <label for="harga" style="margin-top:1rem;display:block;">Harga (IDR)</label>
-                        <div style="position:relative;">
-                            <span style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-weight:700;color:var(--muted);pointer-events:none;">Rp</span>
-                            <input type="number" id="harga" name="harga" class="form-control {{ $errors->has('harga') ? 'is-invalid' : '' }}"
-                                   style="padding-left:3rem;"
-                                   value="{{ old('harga', $item?->harga) }}" placeholder="50000" min="1000" step="1000">
-                        </div>
-                        <span class="form-hint">Minimum Rp 1.000. Contoh: 50000 = Rp 50.000</span>
-                        @error('harga') <div class="invalid-feedback" style="display:block">{{ $message }}</div> @enderror
-
-                        <label style="margin-top:1.25rem;display:flex;align-items:center;gap:0.5rem;">
-                            <i class="fa-solid fa-file-zipper" style="color:var(--accent);"></i>
-                            File ZIP Source Code
-                            <span style="font-weight:400;color:var(--faint);font-size:0.8rem;">(wajib jika harga diisi, maks 100MB, format .zip)</span>
-                        </label>
-
-                        @if($item?->zip_file)
-                        <div id="current-zip" style="display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;background:rgba(255,181,215,0.16);border:1.5px solid rgba(255,181,215,0.35);border-radius:10px;margin-top:0.5rem;">
-                            <i class="fa-solid fa-file-zipper" style="font-size:1.5rem;color:var(--accent);flex-shrink:0;"></i>
-                            <div style="flex:1;min-width:0;">
-                                <div style="font-weight:700;font-size:0.87rem;color:var(--fg);word-break:break-all;">{{ basename($item->zip_file) }}</div>
-                                <div style="font-size:0.75rem;color:var(--muted);margin-top:2px;">File ZIP tersimpan di server</div>
-                            </div>
-                            <label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;font-size:0.8rem;color:var(--danger);font-weight:700;flex-shrink:0;">
-                                <input type="checkbox" name="hapus_zip" value="1" id="hapus_zip">
-                                <i class="fa-solid fa-trash"></i> Hapus
-                            </label>
-                        </div>
-                        @endif
-
-                        <div id="zip-upload-area"
-                             onclick="document.getElementById('zip_file_input').click()"
-                             ondragover="event.preventDefault();this.style.borderColor='var(--primary)'"
-                             ondragleave="this.style.borderColor='var(--border)'"
-                             ondrop="handleZipDrop(event)"
-                             style="border:2px dashed var(--border);border-radius:12px;padding:1.25rem;text-align:center;cursor:pointer;transition:border-color 0.3s;background:var(--bg);margin-top:0.6rem;">
-                            <div id="zip-placeholder">
-                                <div style="font-size:1.8rem;margin-bottom:0.4rem;color:var(--faint);"><i class="fa-solid fa-file-zipper"></i></div>
-                                <div style="font-size:0.85rem;color:var(--muted);font-weight:600;">Klik atau drag & drop file ZIP di sini</div>
-                                <div style="font-size:0.75rem;color:var(--faint);margin-top:0.25rem;">Format .zip • Maks 100MB</div>
-                            </div>
-                            <div id="zip-selected" style="display:none;align-items:center;gap:0.6rem;justify-content:center;">
-                                <i class="fa-solid fa-file-zipper" style="font-size:1.5rem;color:var(--accent);"></i>
-                                <span id="zip-filename" style="font-weight:700;font-size:0.88rem;color:var(--fg);word-break:break-all;"></span>
-                            </div>
-                        </div>
-                        <input type="file" id="zip_file_input" name="zip_file" accept=".zip" style="display:none;" onchange="previewZip(this)">
-                        @error('zip_file') <div class="invalid-feedback" style="display:block">{{ $message }}</div> @enderror
+                    {{-- Urutan --}}
+                    <div class="form-group">
+                        <label for="urutan">Urutan Tampil</label>
+                        <input type="number" id="urutan" name="urutan" class="form-control"
+                               value="{{ old('urutan', $item?->urutan ?? 0) }}" min="0">
+                        <span class="form-hint">Angka lebih kecil tampil lebih dulu.</span>
                     </div>
                 </div>
 
@@ -232,4 +269,3 @@ function toggleHapusGaleri(btn) {
 }
 </script>
 @endsection
-
