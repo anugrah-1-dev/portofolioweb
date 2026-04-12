@@ -13,7 +13,7 @@
                 <tr>
                     <th style="width:60px;">Icon</th>
                     <th>Judul &amp; Penulis</th>
-                    <th>Nama Jurnal</th>
+                    <th>Penerbit / Lembaga</th>
                     <th style="width:90px;">Tahun</th>
                     <th style="width:110px;">Indeks</th>
                     <th style="width:80px;">Link</th>
@@ -44,7 +44,7 @@
                         <div class="td-actions">
                             <a href="{{ route('admin.jurnal.edit', $item) }}" class="btn-sm btn-edit"><i class="fa-solid fa-pen"></i> Edit</a>
                             <form method="POST" action="{{ route('admin.jurnal.destroy', $item) }}"
-                                  onsubmit="return confirm('Hapus jurnal ini?')">
+                                  onsubmit="return confirm('Hapus data ini?')">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn-sm btn-del"><i class="fa-solid fa-trash"></i></button>
                             </form>
@@ -55,8 +55,8 @@
                 <tr>
                     <td colspan="8">
                         <div class="empty-state">
-                            <div class="empty-icon"><i class="fa-solid fa-file-lines"></i></div>
-                            <p>Belum ada data jurnal. <a href="{{ route('admin.jurnal.create') }}" style="color:var(--primary);font-weight:700;">Tambah sekarang</a></p>
+                            <div class="empty-icon"><i class="fa-solid fa-certificate"></i></div>
+                            <p>Belum ada data lisensi. <a href="{{ route('admin.jurnal.create') }}" style="color:var(--primary);font-weight:700;">Tambah sekarang</a></p>
                         </div>
                     </td>
                 </tr>

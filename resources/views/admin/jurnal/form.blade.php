@@ -32,9 +32,9 @@
                         @error('year') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="form-group full">
-                        <label for="title">Judul Jurnal / Artikel</label>
+                        <label for="title">Judul Lisensi / Sertifikasi</label>
                         <input type="text" id="title" name="title" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
-                               value="{{ old('title', $item?->title) }}" placeholder="Judul lengkap jurnal atau artikel">
+                               value="{{ old('title', $item?->title) }}" placeholder="Nama lengkap lisensi atau sertifikasi">
                         @error('title') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="form-group full">
@@ -44,9 +44,9 @@
                         @error('authors') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="journal_name">Nama Jurnal / Prosiding</label>
+                        <label for="journal_name">Penerbit / Lembaga Sertifikasi</label>
                         <input type="text" id="journal_name" name="journal_name" class="form-control {{ $errors->has('journal_name') ? 'is-invalid' : '' }}"
-                               value="{{ old('journal_name', $item?->journal_name) }}" placeholder="Jurnal Teknologi Informasi, ...">
+                               value="{{ old('journal_name', $item?->journal_name) }}" placeholder="Google, Microsoft, Cisco, Coursera, ...">
                         @error('journal_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="form-group">
@@ -59,10 +59,10 @@
                         @error('indexed_by') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="form-group full">
-                        <label for="url">Link Jurnal (URL)</label>
+                        <label for="url">Link Sertifikat (URL)</label>
                         <input type="url" id="url" name="url" class="form-control {{ $errors->has('url') ? 'is-invalid' : '' }}"
-                               value="{{ old('url', $item?->url) }}" placeholder="https://sinta.kemdikbud.go.id/...">
-                        <span class="form-hint">Link ke Sinta, Scopus, IEEE, atau portal jurnal lainnya.</span>
+                               value="{{ old('url', $item?->url) }}" placeholder="https://...">
+                        <span class="form-hint">Link verifikasi sertifikat online (opsional).</span>
                         @error('url') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                     <div class="form-group full">
@@ -81,7 +81,7 @@
 
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">
-                        {!! $item ? '<i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan' : '<i class="fa-solid fa-plus"></i> Tambah Jurnal' !!}
+                        {!! $item ? '<i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan' : '<i class="fa-solid fa-plus"></i> Tambah Lisensi' !!}
                     </button>
                     <a href="{{ route('admin.jurnal.index') }}" class="btn btn-secondary">Batal</a>
                 </div>
