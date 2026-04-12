@@ -929,8 +929,8 @@
                     </div>
                     <p class="hero-desc fade-up d3" style="text-align:justify;">{{ $profil?->deskripsi_home ?? 'Information Technology student focused on application and system development. Experienced in building desktop, web, and mobile projects with various modern technologies, with a strong interest in software development and team collaboration.' }}</p>
                     <div class="btn-group fade-up d4">
-                        <a href="#prestasi" class="btn btn-primary">&#127942; Prestasi</a>
-                        <a href="#tentang" class="btn btn-outline">&#128100; About Me</a>
+                        <a href="#tentang" class="btn btn-primary">&#128100; About Me</a>
+                        <a href="#prestasi" class="btn btn-outline">&#127942; Achievements</a>
                         @if($profil?->no_whatsapp)
                         <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $profil->no_whatsapp) }}?text={{ urlencode('Hello, I am interested in discussing further.') }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Contact Me</a>
                         @endif
@@ -1384,7 +1384,7 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="#tentang">About</a></li>
                         <li><a href="#prestasi">Achievements</a></li>
-                        <li><a href="#pengalaman">Experiences</a></li>
+                        <li><a href="#pengalaman">Experience</a></li>
                         <li><a href="#jurnal">Licenses</a></li>
                         <li><a href="#projek">Projects</a></li>
                     </ul>
