@@ -19,6 +19,10 @@ Route::get('/', [PublicController::class, 'index']);
 Route::get('/cv', [PublicController::class, 'downloadCv'])->name('cv.download');
 
 // ── Storage fallback (serves files through Laravel — works without symlink) ──
+Route::get('/media/{path}', [StorageController::class, 'serve'])
+    ->where('path', '.*')
+    ->name('media.serve');
+
 Route::get('/storage/{path}', [StorageController::class, 'serve'])
     ->where('path', '.*')
     ->name('storage.serve');

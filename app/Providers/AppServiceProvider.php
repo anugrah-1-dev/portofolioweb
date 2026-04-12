@@ -19,6 +19,12 @@ class AppServiceProvider extends ServiceProvider
         if (app()->isProduction()) {
             URL::forceScheme('https');
         }
+
+        // Use a Laravel-served media URL so uploaded files work even without storage symlink
+        // and on hosts that expose the app under /public path.
+        if (! app()->runningInConsole()) {
+            config(['filesystems.disks.public.url' => url('media')]);
+        }
     }
 }
 
