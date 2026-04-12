@@ -10,15 +10,15 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --primary: #2d6a4f;
-            --accent:  #0d9488;
-            --fg:      #e8f5e9;
-            --bg:      #0d1f16;
-            --surface: #132a1e;
-            --border:  #1e4030;
-            --muted:   #7cad8f;
-            --faint:   #3d6b55;
-            --success: #22c55e;
+            --primary: #ff6fac;
+            --accent:  #ffb5d7;
+            --fg:      #f9f3ff;
+            --bg:      #0b0911;
+            --surface: #171422;
+            --border:  #4b3a58;
+            --muted:   #cfafc8;
+            --faint:   #9c7f98;
+            --success: #ff8fc0;
             --danger:  #ef4444;
             --warning: #f59e0b;
         }
@@ -52,7 +52,7 @@
             margin: 0 auto 1.5rem;
             position: relative;
         }
-        .icon-paid    { background: rgba(34,197,94,0.12); color: var(--success); box-shadow: 0 0 0 10px rgba(34,197,94,0.06); }
+        .icon-paid    { background: rgba(255,143,192,0.18); color: var(--success); box-shadow: 0 0 0 10px rgba(255,143,192,0.12); }
         .icon-pending { background: rgba(245,158,11,0.12); color: var(--warning); box-shadow: 0 0 0 10px rgba(245,158,11,0.06); }
         .icon-expired { background: rgba(239,68,68,0.12);  color: var(--danger);  box-shadow: 0 0 0 10px rgba(239,68,68,0.06); }
         .icon-cancelled { background: rgba(100,116,139,0.12); color: #94a3b8; box-shadow: 0 0 0 10px rgba(100,116,139,0.06); }
@@ -89,8 +89,8 @@
             transition: all 0.25s;
             width: 100%;
         }
-        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff; box-shadow: 0 4px 18px rgba(45,106,79,0.35); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(45,106,79,0.5); }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff; box-shadow: 0 4px 18px rgba(255,111,172,0.35); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,111,172,0.5); }
         .btn-ghost { background: transparent; border: 1.5px solid var(--border); color: var(--muted); }
         .btn-ghost:hover { border-color: var(--primary); color: var(--fg); }
         .btn-danger { background: transparent; border: 1.5px solid rgba(239,68,68,0.35); color: #fca5a5; }
@@ -98,8 +98,8 @@
         .btn-stack { display: flex; flex-direction: column; gap: 0.6rem; }
 
         .github-box {
-            background: rgba(45,106,79,0.1);
-            border: 1.5px solid rgba(45,106,79,0.3);
+            background: rgba(255,143,192,0.14);
+            border: 1.5px solid rgba(255,181,215,0.35);
             border-radius: 14px;
             padding: 1.25rem 1.5rem;
             margin-bottom: 1.5rem;
@@ -120,8 +120,8 @@
             word-break: break-all;
         }
         .github-link:hover { background: var(--accent); }        .download-box {
-            background: rgba(13,148,136,0.08);
-            border: 1.5px solid rgba(13,148,136,0.3);
+            background: rgba(255,181,215,0.12);
+            border: 1.5px solid rgba(255,181,215,0.35);
             border-radius: 14px;
             padding: 1.25rem 1.5rem;
             margin-bottom: 1.5rem;
@@ -140,10 +140,10 @@
             font-weight: 700;
             font-size: 0.95rem;
             transition: all 0.25s;
-            box-shadow: 0 4px 18px rgba(45,106,79,0.3);
+            box-shadow: 0 4px 18px rgba(255,111,172,0.35);
         }
-        .download-link:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(45,106,79,0.5); }        .status-badge { display:inline-flex;align-items:center;gap:0.4rem;padding:0.25rem 0.8rem;border-radius:20px;font-size:0.72rem;font-weight:700;margin-bottom:0.65rem; }
-        .status-paid    { background:rgba(34,197,94,0.12);color:var(--success);border:1px solid rgba(34,197,94,0.25); }
+        .download-link:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,111,172,0.5); }        .status-badge { display:inline-flex;align-items:center;gap:0.4rem;padding:0.25rem 0.8rem;border-radius:20px;font-size:0.72rem;font-weight:700;margin-bottom:0.65rem; }
+        .status-paid    { background:rgba(255,143,192,0.2);color:var(--success);border:1px solid rgba(255,181,215,0.35); }
         .status-pending { background:rgba(245,158,11,0.12);color:var(--warning);border:1px solid rgba(245,158,11,0.25); }
         .status-expired { background:rgba(239,68,68,0.12);color:var(--danger);border:1px solid rgba(239,68,68,0.25); }
         .status-cancelled { background:rgba(100,116,139,0.12);color:#94a3b8;border:1px solid rgba(100,116,139,0.25); }

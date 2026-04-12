@@ -16,7 +16,7 @@
     </div>
     <div class="card" style="border-top:3px solid var(--accent);">
         <div class="card-body" style="display:flex;align-items:center;gap:1.25rem;">
-            <div style="width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#0f766e);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <div style="width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--primary2));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                 <i class="fa-solid fa-laptop-code" style="font-size:1.4rem;color:#fff;"></i>
             </div>
             <div>
@@ -25,9 +25,9 @@
             </div>
         </div>
     </div>
-    <a href="{{ url('/') }}" target="_blank" class="card" style="border-top:3px solid #8aab90;text-decoration:none;">
+    <a href="{{ url('/') }}" target="_blank" class="card" style="border-top:3px solid #ff8fc0;text-decoration:none;">
         <div class="card-body" style="display:flex;align-items:center;gap:1.25rem;">
-            <div style="width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,#52b788,#40916c);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <div style="width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,#ff6fac,#ff8fc0);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:1.3rem;color:#fff;"></i>
             </div>
             <div>
@@ -47,7 +47,7 @@
         </div>
         <div style="padding:0.5rem 0;">
             @forelse($recentPrestasi as $item)
-            <div style="display:flex;align-items:center;gap:1rem;padding:0.85rem 1.5rem;border-bottom:1px solid rgba(201,223,201,0.4);">
+            <div style="display:flex;align-items:center;gap:1rem;padding:0.85rem 1.5rem;border-bottom:1px solid rgba(255,181,215,0.25);">
                 <span style="font-size:1.5rem;">{{ $item->icon }}</span>
                 <div style="flex:1;min-width:0;">
                     <div style="font-size:0.88rem;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ $item->title }}</div>
@@ -68,7 +68,7 @@
         </div>
         <div style="padding:0.5rem 0;">
             @forelse($recentProjek as $item)
-            <div style="display:flex;align-items:center;gap:1rem;padding:0.85rem 1.5rem;border-bottom:1px solid rgba(201,223,201,0.4);">
+            <div style="display:flex;align-items:center;gap:1rem;padding:0.85rem 1.5rem;border-bottom:1px solid rgba(255,181,215,0.25);">
                 <span style="font-size:1.5rem;">{{ $item->icon }}</span>
                 <div style="flex:1;min-width:0;">
                     <div style="font-size:0.88rem;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ $item->title }}</div>

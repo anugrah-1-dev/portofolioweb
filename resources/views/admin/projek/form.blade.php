@@ -188,7 +188,7 @@
                         </label>
 
                         @if($item?->zip_file)
-                        <div id="current-zip" style="display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;background:rgba(13,148,136,0.08);border:1.5px solid rgba(13,148,136,0.25);border-radius:10px;margin-top:0.5rem;">
+                        <div id="current-zip" style="display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;background:rgba(255,181,215,0.16);border:1.5px solid rgba(255,181,215,0.35);border-radius:10px;margin-top:0.5rem;">
                             <i class="fa-solid fa-file-zipper" style="font-size:1.5rem;color:var(--accent);flex-shrink:0;"></i>
                             <div style="flex:1;min-width:0;">
                                 <div style="font-weight:700;font-size:0.87rem;color:var(--fg);word-break:break-all;">{{ basename($item->zip_file) }}</div>
@@ -276,7 +276,7 @@ function previewGaleri(input) {
             img.src = e.target.result;
             img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
             const badge = document.createElement('div');
-            badge.style.cssText = 'position:absolute;bottom:0;left:0;right:0;background:rgba(13,148,136,0.75);color:#fff;font-size:0.62rem;text-align:center;padding:3px;';
+            badge.style.cssText = 'position:absolute;bottom:0;left:0;right:0;background:rgba(255,143,192,0.85);color:#fff;font-size:0.62rem;text-align:center;padding:3px;';
             badge.textContent = 'Akan diupload';
             wrap.appendChild(img);
             wrap.appendChild(badge);

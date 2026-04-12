@@ -62,7 +62,7 @@
                     <div class="form-group full">
                         <label for="sertifikat_file">File Sertifikat / Dokumen <span class="form-label-optional">(opsional)</span></label>
                         @if($action === 'edit' && $hki->sertifikat_file)
-                        <div style="margin-bottom:0.75rem;padding:0.75rem 1rem;background:rgba(13,148,136,0.08);border-radius:10px;border:1.5px solid rgba(13,148,136,0.2);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+                        <div style="margin-bottom:0.75rem;padding:0.75rem 1rem;background:rgba(255,181,215,0.16);border-radius:10px;border:1.5px solid rgba(255,181,215,0.35);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
                             @php $ext = strtolower(pathinfo($hki->sertifikat_file, PATHINFO_EXTENSION)); @endphp
                             <span style="font-size:0.9rem;color:var(--text);font-weight:600;">
                                 <i class="fa-solid fa-{{ in_array($ext, ['jpg','jpeg','png','webp']) ? 'image' : 'file-pdf' }}" style="color:{{ in_array($ext, ['jpg','jpeg','png','webp']) ? 'var(--accent)' : '#dc2626' }};"></i>

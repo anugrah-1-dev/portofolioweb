@@ -43,7 +43,7 @@
         .sidebar::before {
             content:''; position:absolute; inset:0; pointer-events:none;
             background: radial-gradient(ellipse at 30% 20%, rgba(94,234,212,0.06) 0%, transparent 60%),
-                        radial-gradient(ellipse at 70% 80%, rgba(45,106,79,0.08) 0%, transparent 60%);
+                        radial-gradient(ellipse at 70% 80%, rgba(255,111,172,0.15) 0%, transparent 60%);
         }
 
         /* Brand */
@@ -182,15 +182,15 @@
         tbody td { padding:1.1rem; border-bottom:1px solid rgba(212,229,212,0.6); vertical-align:middle; font-size:0.92rem; }
         tbody tr:last-child td { border-bottom:none; }
         tbody tr { transition:background 0.2s; }
-        tbody tr:hover td { background:rgba(45,106,79,0.03); }
+        tbody tr:hover td { background:rgba(255,143,192,0.1); }
         .td-icon { font-size:1.6rem; }
         .td-title { font-size:0.95rem; font-weight:700; color:var(--text); }
         .td-sub { font-size:0.82rem; color:var(--faint); margin-top:3px; }
         .td-badge {
             display:inline-block; padding:0.25rem 0.85rem; border-radius:20px;
             font-size:0.75rem; font-weight:700;
-            background:rgba(45,106,79,0.08); color:var(--primary);
-            border:1.5px solid rgba(45,106,79,0.18);
+            background:rgba(255,143,192,0.16); color:#ffd5e8;
+            border:1.5px solid rgba(255,181,215,0.35);
         }
         .td-actions { display:flex; gap:0.6rem; align-items:center; }
         .btn-sm {
@@ -198,8 +198,8 @@
             cursor:pointer; text-decoration:none; border:none; transition:all 0.25s; font-family:inherit;
             display:inline-flex; align-items:center; gap:0.35rem;
         }
-        .btn-edit { background:rgba(13,148,136,0.08); color:var(--accent); border:1.5px solid rgba(13,148,136,0.2); }
-        .btn-edit:hover { background:rgba(13,148,136,0.16); transform:translateY(-1px); }
+        .btn-edit { background:rgba(255,181,215,0.16); color:#ffd5e8; border:1.5px solid rgba(255,181,215,0.35); }
+        .btn-edit:hover { background:rgba(255,181,215,0.28); transform:translateY(-1px); }
         .btn-del  { background:rgba(220,38,38,0.06); color:#dc2626; border:1.5px solid rgba(220,38,38,0.15); }
         .btn-del:hover { background:rgba(220,38,38,0.14); transform:translateY(-1px); }
 
@@ -211,9 +211,9 @@
         }
         .btn-primary {
             background:linear-gradient(135deg,var(--primary),var(--primary2));
-            color:#fff; box-shadow:0 4px 16px rgba(45,106,79,0.25);
+            color:#fff; box-shadow:0 4px 16px rgba(255,111,172,0.35);
         }
-        .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(45,106,79,0.35); }
+        .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(255,111,172,0.45); }
         .btn-secondary { background:var(--surface); color:var(--muted); border:1.5px solid var(--border); }
         .btn-secondary:hover { border-color:var(--primary); color:var(--primary); transform:translateY(-1px); }
 
@@ -228,7 +228,7 @@
             font-size:0.95rem; color:var(--text); font-family:inherit;
             transition:border-color 0.25s, box-shadow 0.25s; outline:none; width:100%;
         }
-        .form-control:focus { border-color:var(--primary2); box-shadow:0 0 0 4px rgba(45,106,79,0.08); }
+        .form-control:focus { border-color:var(--primary2); box-shadow:0 0 0 4px rgba(255,111,172,0.16); }
         textarea.form-control { min-height:130px; resize:vertical; }
         select.form-control { cursor:pointer; }
         .form-hint { font-size:0.78rem; color:var(--faint); }
@@ -274,7 +274,7 @@
             background:var(--surface); cursor:pointer; flex-shrink:0;
             transition:all 0.25s; margin-right:0.75rem;
         }
-        .sidebar-toggle:hover { border-color:var(--primary); background:rgba(45,106,79,0.06); }
+        .sidebar-toggle:hover { border-color:var(--primary); background:rgba(255,143,192,0.16); }
         .sidebar-toggle span { display:block; width:18px; height:2px; background:var(--text); border-radius:2px; transition:all 0.3s; }
         .sidebar-toggle-inner { display:flex; flex-direction:column; gap:4px; }
 

@@ -142,7 +142,7 @@
                     <div class="form-group full">
                         <label for="cv_file">File CV <span style="font-weight:400;color:var(--faint)">(PDF/DOC/DOCX, maks 5MB)</span></label>
                         @if($profil->cv_file)
-                        <div style="margin-bottom:0.75rem;padding:0.75rem 1rem;background:rgba(45,106,79,0.08);border-radius:10px;border:1.5px solid rgba(45,106,79,0.2);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+                        <div style="margin-bottom:0.75rem;padding:0.75rem 1rem;background:rgba(255,143,192,0.16);border-radius:10px;border:1.5px solid rgba(255,181,215,0.35);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
                             <span style="font-size:0.9rem;color:var(--text);font-weight:600;">
                                 <i class="fa-solid fa-file-pdf" style="color:var(--danger);"></i> {{ basename($profil->cv_file) }}
                             </span>
@@ -168,7 +168,7 @@
         </div>
     </div>
 
-    <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:rgba(13,148,136,0.08);border-radius:12px;border:1.5px solid rgba(13,148,136,0.2);font-size:0.85rem;color:var(--muted);">
+    <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:rgba(255,181,215,0.16);border-radius:12px;border:1.5px solid rgba(255,181,215,0.35);font-size:0.85rem;color:var(--muted);">
         <i class="fa-solid fa-lightbulb" style="color:#f59e0b;"></i> <strong>Tips:</strong> Untuk mengelola ikon sosial media (Instagram, TikTok, Facebook), buka menu
         <a href="{{ route('admin.sosmed.index') }}" style="color:var(--accent);font-weight:700;">Sosial Media</a> di sidebar.
     </div>

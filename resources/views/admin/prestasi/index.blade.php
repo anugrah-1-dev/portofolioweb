@@ -29,7 +29,7 @@
                         <div class="td-sub">{{ Str::limit($item->description, 70) }}</div>
                     </td>
                     <td><span style="font-size:0.88rem;font-weight:700;color:var(--muted);">{{ $item->year }}</span></td>
-                    <td><span class="td-badge" style="{{ $item->kategori === 'akademik' ? 'background:rgba(13,148,136,0.1);color:var(--accent);border-color:rgba(13,148,136,0.3)' : '' }}">
+                    <td><span class="td-badge" style="{{ $item->kategori === 'akademik' ? 'background:rgba(255,181,215,0.18);color:#ffd5e8;border-color:rgba(255,181,215,0.38)' : '' }}">
                         {{ $item->kategori === 'akademik' ? '<i class="fa-solid fa-graduation-cap"></i> Akademik' : '<i class="fa-solid fa-trophy"></i> Non-Akademik' }}
                     </span></td>
                     <td><span class="td-badge">{{ $item->badge }}</span></td>

@@ -37,7 +37,7 @@
                             @elseif($s->platform === 'youtube') <i class="fa-brands fa-youtube" style="color:#ff0000;"></i>
                             @elseif($s->platform === 'linkedin') <i class="fa-brands fa-linkedin" style="color:#0077b5;"></i>
                             @elseif($s->platform === 'github') <i class="fa-brands fa-github" style="color:#333;"></i>
-                            @elseif($s->platform === 'whatsapp') <i class="fa-brands fa-whatsapp" style="color:#25d366;"></i>
+                            @elseif($s->platform === 'whatsapp') <i class="fa-brands fa-whatsapp" style="color:#ff6fac;"></i>
                             @else <i class="fa-solid fa-globe" style="color:var(--accent);"></i>
                             @endif
                         </span>
