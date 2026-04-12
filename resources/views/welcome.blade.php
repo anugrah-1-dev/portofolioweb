@@ -8,11 +8,11 @@
     <meta name="keywords" content="{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}, portfolio, web developer, laravel, programmer, information technology">
     <meta name="author" content="{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://anugerahtedjom.my.id/">
+    <link rel="canonical" href="https://alifiashofanabilah.my.id/">
     <meta name="google-site-verification" content="YkMylM-AikW2Z7-lam_Mi7fOEBaGptnr2O3xcRaaSHY">
     {{-- Open Graph --}}
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://anugerahtedjom.my.id/">
+    <meta property="og:url" content="https://alifiashofanabilah.my.id/">
     <meta property="og:title" content="{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} - My Portfolio">
     <meta property="og:description" content="Portfolio of {{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} - Information Technology student focused on web and application development.">
     @if($profil?->foto)<meta property="og:image" content="{{ \App\Support\MediaUrl::from($profil->foto) }}">@endif
@@ -1744,7 +1744,7 @@
         }
     </style>
     <div class="wa-float">
-        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $profil->no_whatsapp) }}?text={{ urlencode('Hello, I found your portfolio at https://anugerahtedjom.my.id/ and I am interested in discussing further.') }}"
+        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $profil->no_whatsapp) }}?text={{ urlencode('Hello, I found your portfolio at https://alifiashofanabilah.my.id/ and I am interested in discussing further.') }}"
            target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
             <i class="fa-brands fa-whatsapp"></i>
         </a>

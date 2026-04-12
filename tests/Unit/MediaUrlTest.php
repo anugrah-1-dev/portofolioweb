@@ -20,7 +20,7 @@ class MediaUrlTest extends TestCase
 
     public function test_it_normalizes_full_legacy_storage_urls(): void
     {
-        $legacyUrl = 'https://anugerahtedjom.my.id/storage/profil/test.jpg';
+        $legacyUrl = 'https://alifiashofanabilah.my.id/storage/profil/test.jpg';
 
         $this->assertSame('profil/test.jpg', MediaUrl::path($legacyUrl));
         $this->assertStringEndsWith('/media/profil/test.jpg', MediaUrl::from($legacyUrl));
