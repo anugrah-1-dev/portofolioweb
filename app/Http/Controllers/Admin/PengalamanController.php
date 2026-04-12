@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace App\Http\Controllers\Admin;
 
@@ -29,7 +29,7 @@ class PengalamanController extends Controller
             'foto_sertifikat' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'tahun_mulai'     => 'required|string|max:20',
             'tahun_selesai'   => 'nullable|string|max:20',
-            'jenis'           => 'required|in:organisasi,kepanitiaan,komunitas,magang,volunteer,lainnya',
+            'jenis'           => 'required|in:organisasi,kepanitiaan,komunitas,magang,volunteer,work,lainnya',
             'urutan'          => 'nullable|integer',
         ]);
 
@@ -59,7 +59,7 @@ class PengalamanController extends Controller
             'hapus_sertifikat'=> 'nullable|boolean',
             'tahun_mulai'     => 'required|string|max:20',
             'tahun_selesai'   => 'nullable|string|max:20',
-            'jenis'           => 'required|in:organisasi,kepanitiaan,komunitas,magang,volunteer,lainnya',
+            'jenis'           => 'required|in:organisasi,kepanitiaan,komunitas,magang,volunteer,work,lainnya',
             'urutan'          => 'nullable|integer',
         ]);
 
