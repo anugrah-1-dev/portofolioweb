@@ -54,6 +54,7 @@
                         <select id="kategori" name="kategori" class="form-control {{ $errors->has('kategori') ? 'is-invalid' : '' }}">
                             <option value="akademik" {{ old('kategori', $item?->kategori) === 'akademik' ? 'selected' : '' }}>Prestasi Akademik</option>
                             <option value="non_akademik" {{ old('kategori', $item?->kategori) === 'non_akademik' ? 'selected' : '' }}>Prestasi Non-Akademik</option>
+                            <option value="lainnya" {{ old('kategori', $item?->kategori) === 'lainnya' ? 'selected' : '' }}>Lain-lain</option>
                         </select>
                         @error('kategori') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
