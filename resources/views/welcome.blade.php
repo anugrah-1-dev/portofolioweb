@@ -1197,6 +1197,11 @@
             <div class="ptab-panel active" id="tab-akademik">
                 <div class="prestasi-grid">
                     @forelse($prestasiAkademik as $item)
+                    @php
+                        $fotoPrestasi = ($item->foto && Storage::disk('public')->exists($item->foto))
+                            ? Storage::url($item->foto)
+                            : '';
+                    @endphp
                     <div class="p-card reveal"
                          onclick="openDetailModal(this)"
                          data-type="prestasi"
@@ -1204,9 +1209,9 @@
                          data-year="{{ $item->year }}"
                          data-description="{{ $item->description ?? '' }}"
                          data-badge="{{ $item->badge ?? '' }}"
-                         data-foto="{{ $item->foto ? Storage::url($item->foto) : '' }}">
-                        @if($item->foto)
-                        <img class="p-foto" src="{{ Storage::url($item->foto) }}" alt="{{ $item->title }}">
+                         data-foto="{{ $fotoPrestasi }}">
+                        @if($fotoPrestasi)
+                        <img class="p-foto" src="{{ $fotoPrestasi }}" alt="{{ $item->title }}">
                         @endif
                         <div class="p-card-body">
                             <div class="p-year"><i class="fa-solid fa-calendar-days" style="margin-right:0.3rem;"></i>{{ $item->year }}</div>
@@ -1228,6 +1233,11 @@
             <div class="ptab-panel" id="tab-non_akademik">
                 <div class="prestasi-grid">
                     @forelse($prestasiNonAkademik as $item)
+                    @php
+                        $fotoPrestasi = ($item->foto && Storage::disk('public')->exists($item->foto))
+                            ? Storage::url($item->foto)
+                            : '';
+                    @endphp
                     <div class="p-card reveal"
                          onclick="openDetailModal(this)"
                          data-type="prestasi"
@@ -1235,9 +1245,9 @@
                          data-year="{{ $item->year }}"
                          data-description="{{ $item->description ?? '' }}"
                          data-badge="{{ $item->badge ?? '' }}"
-                         data-foto="{{ $item->foto ? Storage::url($item->foto) : '' }}">
-                        @if($item->foto)
-                        <img class="p-foto" src="{{ Storage::url($item->foto) }}" alt="{{ $item->title }}">
+                         data-foto="{{ $fotoPrestasi }}">
+                        @if($fotoPrestasi)
+                        <img class="p-foto" src="{{ $fotoPrestasi }}" alt="{{ $item->title }}">
                         @endif
                         <div class="p-card-body">
                             <div class="p-year"><i class="fa-solid fa-calendar-days" style="margin-right:0.3rem;"></i>{{ $item->year }}</div>
