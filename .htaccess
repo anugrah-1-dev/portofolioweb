@@ -1,6 +1,11 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # Route storage/media directly to Laravel front controller BEFORE the generic redirect.
+    # This prevents LiteSpeed from returning 404 when public/storage/ exists as a real directory.
+    RewriteRule ^storage/(.*)$ /public/index.php [L,QSA]
+    RewriteRule ^media/(.*)$ /public/index.php [L,QSA]
+
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ /public/$1 [L]
 </IfModule>
