@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="utf-8">
@@ -843,9 +843,9 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#tentang">About</a></li>
-                <li><a href="#pengalaman">Experience</a></li>
                 <li><a href="#prestasi">Achievements</a></li>
-                <li><a href="#jurnal">License</a></li>
+                <li><a href="#pengalaman">Experiences</a></li>
+                <li><a href="#jurnal">Licenses</a></li>
                 <li><a href="#projek">Projects</a></li>
             </ul>
             <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -1103,6 +1103,58 @@
         </div>
     </section>
 
+    <!-- ═══ PRESTASI ═══ -->
+    <section id="prestasi">
+        <div class="sec-glow" style="--op:0.28;width:400px;height:400px;background:#b0e2cc;opacity:0.28;top:-100px;right:-70px;"></div>
+        <div class="sec-glow" style="--op:0.22;width:300px;height:300px;background:#a8dfc4;opacity:0.22;bottom:10%;left:-55px;"></div>
+        <div class="container" style="position:relative;z-index:1;">
+            <div class="section-header reveal">
+                <span class="section-label">Achievements</span>
+                <h2 class="section-title">My <span>Achievements</span></h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="prestasi-grid">
+                @forelse($prestasi as $item)
+                @php
+                    $fotoPrestasi = ($item->foto && \App\Support\MediaUrl::exists($item->foto))
+                        ? \App\Support\MediaUrl::from($item->foto)
+                        : '';
+                @endphp
+                <div class="p-card reveal"
+                     onclick="openDetailModal(this)"
+                     data-type="prestasi"
+                     data-title="{{ $item->title }}"
+                     data-year="{{ $item->year }}"
+                     data-description="{{ $item->description ?? '' }}"
+                     data-badge="{{ $item->badge ?? '' }}"
+                     data-foto="{{ $fotoPrestasi }}">
+                    @if($fotoPrestasi)
+                    <img class="p-foto" src="{{ $fotoPrestasi }}" alt="{{ $item->title }}">
+                    @endif
+                    <div class="p-card-body">
+                        <div class="p-year"><i class="fa-solid fa-calendar-days" style="margin-right:0.3rem;"></i>{{ $item->year }}</div>
+                        <div class="p-title">{{ $item->title }}</div>
+                        <div class="p-desc">{{ $item->description }}</div>
+                        <div class="p-footer">
+                            <span class="p-badge"><i class="fa-solid fa-trophy"></i> {{ $item->badge }}</span>
+                            <span class="p-more"><i class="fa-solid fa-circle-info"></i> Details</span>
+                        </div>
+                    </div>
+                </div>
+                @empty
+                <p style="color:var(--faint);font-size:0.9rem;">No achievement data available.</p>
+                @endforelse
+            </div>
+        </div>
+        <div class="sec-wave-end">
+            <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,35 C360,80 720,5 1080,38 C1260,52 1380,22 1440,30 L1440,80 L0,80Z" fill="#181224"/>
+                <path d="M0,55 C300,74 600,36 900,56 C1100,68 1300,44 1440,52 L1440,80 L0,80Z" fill="#181224"/>
+            </svg>
+        </div>
+    </section>
+
     <!-- ═══ PENGALAMAN ═══ -->
     <section id="pengalaman">
         <div class="sec-glow" style="--op:0.30;width:400px;height:400px;background:#a5d8c0;opacity:0.30;top:-90px;right:-60px;"></div>
@@ -1110,7 +1162,7 @@
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Contribution History</span>
-                <h2 class="section-title">Experience <span>& Organizations</span></h2>
+                <h2 class="section-title">Experiences <span>& Organizations</span></h2>
                 <div class="section-divider"></div>
             </div>
             @if($pengalaman->isNotEmpty())
@@ -1177,58 +1229,6 @@
         </div>
     </section>
 
-    <!-- ═══ PRESTASI ═══ -->
-    <section id="prestasi">
-        <div class="sec-glow" style="--op:0.28;width:400px;height:400px;background:#b0e2cc;opacity:0.28;top:-100px;right:-70px;"></div>
-        <div class="sec-glow" style="--op:0.22;width:300px;height:300px;background:#a8dfc4;opacity:0.22;bottom:10%;left:-55px;"></div>
-        <div class="container" style="position:relative;z-index:1;">
-            <div class="section-header reveal">
-                <span class="section-label">Achievements</span>
-                <h2 class="section-title">My <span>Achievements</span></h2>
-                <div class="section-divider"></div>
-            </div>
-
-            <div class="prestasi-grid">
-                @forelse($prestasi as $item)
-                @php
-                    $fotoPrestasi = ($item->foto && \App\Support\MediaUrl::exists($item->foto))
-                        ? \App\Support\MediaUrl::from($item->foto)
-                        : '';
-                @endphp
-                <div class="p-card reveal"
-                     onclick="openDetailModal(this)"
-                     data-type="prestasi"
-                     data-title="{{ $item->title }}"
-                     data-year="{{ $item->year }}"
-                     data-description="{{ $item->description ?? '' }}"
-                     data-badge="{{ $item->badge ?? '' }}"
-                     data-foto="{{ $fotoPrestasi }}">
-                    @if($fotoPrestasi)
-                    <img class="p-foto" src="{{ $fotoPrestasi }}" alt="{{ $item->title }}">
-                    @endif
-                    <div class="p-card-body">
-                        <div class="p-year"><i class="fa-solid fa-calendar-days" style="margin-right:0.3rem;"></i>{{ $item->year }}</div>
-                        <div class="p-title">{{ $item->title }}</div>
-                        <div class="p-desc">{{ $item->description }}</div>
-                        <div class="p-footer">
-                            <span class="p-badge"><i class="fa-solid fa-trophy"></i> {{ $item->badge }}</span>
-                            <span class="p-more"><i class="fa-solid fa-circle-info"></i> Details</span>
-                        </div>
-                    </div>
-                </div>
-                @empty
-                <p style="color:var(--faint);font-size:0.9rem;">No achievement data available.</p>
-                @endforelse
-            </div>
-        </div>
-        <div class="sec-wave-end">
-            <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,35 C360,80 720,5 1080,38 C1260,52 1380,22 1440,30 L1440,80 L0,80Z" fill="#181224"/>
-                <path d="M0,55 C300,74 600,36 900,56 C1100,68 1300,44 1440,52 L1440,80 L0,80Z" fill="#181224"/>
-            </svg>
-        </div>
-    </section>
-
     <!-- ═══ JURNAL ═══ -->
     <section id="jurnal">
         <div class="sec-glow" style="--op:0.30;width:360px;height:360px;background:#a5dcc4;opacity:0.30;top:-90px;left:-50px;"></div>
@@ -1236,7 +1236,7 @@
         <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="section-label">Certifications</span>
-                <h2 class="section-title">License <span>& Certifications</span></h2>
+                <h2 class="section-title">Licenses <span>& Certifications</span></h2>
                 <div class="section-divider"></div>
             </div>
             <div class="jurnal-list">
@@ -1383,9 +1383,9 @@
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#tentang">About</a></li>
-                        <li><a href="#pengalaman">Experience</a></li>
                         <li><a href="#prestasi">Achievements</a></li>
-                        <li><a href="#jurnal">License</a></li>
+                        <li><a href="#pengalaman">Experiences</a></li>
+                        <li><a href="#jurnal">Licenses</a></li>
                         <li><a href="#projek">Projects</a></li>
                     </ul>
                 </div>
