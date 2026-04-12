@@ -85,7 +85,7 @@ class ProjekController extends Controller
             'description'   => 'required|string|max:5000',
             'tags_raw'      => 'nullable|string',
             'thumb_color'   => 'required|integer|in:1,2,3',
-    z            'gambar'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+            'gambar'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'galeri_baru'   => 'nullable|array|max:10',
             'galeri_baru.*' => 'image|mimes:jpg,jpeg,png,webp|max:5120',
             'hapus_galeri'  => 'nullable|array',
