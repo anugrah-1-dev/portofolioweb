@@ -309,7 +309,7 @@
     <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-brand">
-            <div class="brand-logo">ANUGRAH TEJO MALIKI</div>
+            <div class="brand-logo">ALIFIA SHOFA' NABILAH</div>
             <div class="brand-sub">Admin Panel</div>
         </div>
         <nav class="sidebar-nav">

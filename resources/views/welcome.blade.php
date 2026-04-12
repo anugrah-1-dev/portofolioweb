@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – My Portfolio</title>
-    <meta name="description" content="Portfolio of {{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Information Technology student focused on web and application development. Explore my projects, experiences, and achievements.">
-    <meta name="keywords" content="{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }}, portfolio, web developer, laravel, programmer, information technology">
-    <meta name="author" content="{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }}">
+    <title>{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} – My Portfolio</title>
+    <meta name="description" content="Portfolio of {{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} – Information Technology student focused on web and application development. Explore my projects, experiences, and achievements.">
+    <meta name="keywords" content="{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}, portfolio, web developer, laravel, programmer, information technology">
+    <meta name="author" content="{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://anugerahtedjom.my.id/">
     <meta name="google-site-verification" content="YkMylM-AikW2Z7-lam_Mi7fOEBaGptnr2O3xcRaaSHY">
     {{-- Open Graph --}}
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://anugerahtedjom.my.id/">
-    <meta property="og:title" content="{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – My Portfolio">
-    <meta property="og:description" content="Portfolio of {{ $profil?->nama ?? 'Anugrah Tejo Maliki' }} – Information Technology student focused on web and application development.">
+    <meta property="og:title" content="{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} – My Portfolio">
+    <meta property="og:description" content="Portfolio of {{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }} – Information Technology student focused on web and application development.">
     @if($profil?->foto)<meta property="og:image" content="{{ Storage::url($profil->foto) }}">@endif
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.ico">
@@ -24,22 +24,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <style>
         :root {
-            --bg:        #f0faf4;
-            --bg2:       #dff2e8;
-            --surface:   #ffffff;
-            --border:    #95ceaa;
-            --primary:   #145e38;
-            --primary2:  #1a8a50;
-            --accent:    #0aaa88;
-            --accentlt:  #34d9b0;
-            --text:      #09200f;
-            --muted:     #2e5e40;
-            --faint:     #5e8c6d;
+            --bg:        #07060b;
+            --bg2:       #11101a;
+            --surface:   #171422;
+            --border:    #4b3a58;
+            --primary:   #ff6fac;
+            --primary2:  #ff8fc0;
+            --accent:    #ffb5d7;
+            --accentlt:  #ffd5e8;
+            --text:      #f9f3ff;
+            --muted:     #d8bfd3;
+            --faint:     #b899b3;
 
             /* Corak / Batik accent */
-            --batik1: #c9810f;
-            --batik2: #96580e;
-            --batik3: #e8a520;
+            --batik1: #ff9ec8;
+            --batik2: #f07fb5;
+            --batik3: #ffc2de;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior:smooth; }
@@ -49,8 +49,8 @@
         /* ─── NAVBAR ─── */
         nav {
             position:fixed; top:0; left:0; right:0; z-index:1000;
-            background:rgba(240,250,244,0.92); backdrop-filter:blur(20px);
-            border-bottom:1px solid rgba(20,94,56,0.15);
+            background:rgba(10,8,16,0.92); backdrop-filter:blur(20px);
+            border-bottom:1px solid rgba(255,143,192,0.2);
             transition:all 0.3s;
         }
         .nav-corak {
@@ -66,7 +66,7 @@
         nav.scrolled { box-shadow:0 4px 24px rgba(45,106,79,0.12); }
         .logo {
             font-size:1.5rem; font-weight:900; letter-spacing:-1px;
-            background:linear-gradient(135deg,#2d6a4f,#0d9488);
+            background:linear-gradient(135deg,#ff6fac,#ffb5d7);
             -webkit-background-clip:text; -webkit-text-fill-color:transparent;
         }
         .nav-links { display:flex; gap:0.35rem; list-style:none; }
@@ -92,12 +92,12 @@
         /* Divider — gold emas line */
         .section-divider {
             width:80px; height:4px; margin:1.5rem auto 0; border-radius:4px;
-            background: linear-gradient(90deg, #9a6c08, #d4a84b, #9a6c08);
+            background: linear-gradient(90deg, #ff6fac, #ffd5e8, #ff6fac);
             position:relative;
         }
         .section-divider::before, .section-divider::after {
             content:''; position:absolute; top:50%; transform:translateY(-50%);
-            width:7px; height:7px; background:#d4a84b;
+            width:7px; height:7px; background:#ffd5e8;
             clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
         }
         .section-divider::before { right:calc(100% + 8px); }
@@ -116,15 +116,15 @@
         /* ─── HOME ─── */
         #home {
             background:
-                radial-gradient(ellipse at 10% 40%, rgba(10,170,136,0.25) 0%, transparent 55%),
-                radial-gradient(ellipse at 85% 20%, rgba(10,170,136,0.18) 0%, transparent 55%),
-                radial-gradient(ellipse at 50% 90%, rgba(26,138,80,0.20) 0%, transparent 50%),
-                linear-gradient(160deg,#071a0e 0%,#0b1f13 60%,#091a0f 100%);
+                radial-gradient(ellipse at 10% 40%, rgba(255,111,172,0.24) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 20%, rgba(255,181,215,0.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 90%, rgba(255,143,192,0.18) 0%, transparent 50%),
+                linear-gradient(160deg,#07060b 0%,#0f0b15 60%,#130d1a 100%);
         }
         /* ── Hero dark-bg text overrides ── */
-        #home .greeting { color:#d4a84b !important; }
-        #home .hero-desc { color:rgba(210,242,222,0.78) !important; }
-        #home .hero-role-badge { background:rgba(94,234,212,0.10); color:#5eead4; border-color:rgba(94,234,212,0.22); }
+        #home .greeting { color:#ffb5d7 !important; }
+        #home .hero-desc { color:rgba(247,226,239,0.82) !important; }
+        #home .hero-role-badge { background:rgba(255,111,172,0.12); color:#ffd5e8; border-color:rgba(255,181,215,0.28); }
         #home .hero-role-dot { background:rgba(255,255,255,0.25); }
         #home .hero-quick-stats { border-top-color:rgba(255,255,255,0.08); }
         #home .hero-qs-label { color:rgba(255,255,255,0.40); }
@@ -184,7 +184,7 @@
 
 
         /* ─── TENTANG ─── */
-        #tentang { background:#edfff5; }
+        #tentang { background:#0b0a10; }
         .tentang-orb { display:none; }
         .tentang-orb-1, .tentang-orb-2 { display:none; }
         #tentang .container { position:relative; z-index:1; }
@@ -248,7 +248,7 @@
         .sosmed-whatsapp  { background:#25d366; }
 
         /* ─── PENGALAMAN ─── */
-        #pengalaman { background:#e3f1e7; }
+        #pengalaman { background:#100d16; }
         .peng-timeline { position:relative; padding-left:2.5rem; }
         .peng-timeline::before {
             content:''; position:absolute; left:0.75rem; top:0; bottom:0; width:4px;
@@ -288,7 +288,7 @@
         .peng-desc { font-size:1rem; color:var(--muted); line-height:1.75; }
 
         /* ─── PRESTASI ─── */
-        #prestasi { background:#f2fbf3; }
+        #prestasi { background:#140f1c; }
         .prestasi-tabs { display:flex; gap:0.75rem; margin-bottom:2.5rem; flex-wrap:wrap; }
         .ptab-btn { padding:0.55rem 1.4rem; border-radius:30px; border:2px solid var(--border); background:var(--surface);
             color:var(--muted); font-size:0.88rem; font-weight:700; cursor:pointer; transition:all 0.3s; }
@@ -317,7 +317,7 @@
         .p-more { font-size:0.78rem; color:var(--accent); font-weight:600; display:flex; align-items:center; gap:0.25rem; }
 
         /* ─── JURNAL ─── */
-        #jurnal { background:#dcefe3; }
+        #jurnal { background:#181224; }
         .jurnal-list { display:flex; flex-direction:column; gap:1.25rem; }
         .j-card { background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:1.5rem 1.75rem;
             display:grid; grid-template-columns:1fr auto; gap:1.25rem; align-items:start;
@@ -342,7 +342,7 @@
         .j-year { font-size:0.72rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:3px; }
 
         /* ─── HKI ─── */
-        #hki { background:#e4f6ef; }
+        #hki { background:#1d152b; }
         .hki-list { display:flex; flex-direction:column; gap:1.25rem; }
         .hki-card { background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:1.5rem 1.75rem;
             display:grid; grid-template-columns:1fr auto; gap:1.25rem; align-items:start;
@@ -368,7 +368,7 @@
         .hki-year { font-size:0.72rem; font-weight:700; color:var(--batik1); text-transform:uppercase; letter-spacing:3px; }
 
         /* ─── PROJEK ─── */
-        #projek { background:#eaf2e8; }
+        #projek { background:#221833; }
         .proj-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:2rem; }
         .proj-card { background:var(--surface); border:1.5px solid var(--border); border-radius:20px; overflow:hidden; transition:all 0.4s; cursor:pointer; position:relative; }
         .proj-card:hover { transform:translateY(-8px); border-color:var(--primary2); box-shadow:0 28px 60px rgba(45,106,79,0.28); }
@@ -794,7 +794,7 @@
     <nav id="navbar">
         <div class="nav-corak"></div>
         <div class="nav-inner">
-            <div class="logo">ANUGRAH TEJO MALIKI</div>
+            <div class="logo">ALIFIA SHOFA' NABILAH</div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#tentang">About</a></li>
@@ -867,8 +867,8 @@
         </div>
         <div class="home-wave">
             <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,40 C360,90 720,10 1080,50 C1260,70 1380,30 1440,40 L1440,100 L0,100Z" fill="#edfff5"/>
-                <path d="M0,65 C300,95 600,45 900,65 C1100,78 1300,55 1440,62 L1440,100 L0,100Z" fill="#edfff5"/>
+                <path d="M0,40 C360,90 720,10 1080,50 C1260,70 1380,30 1440,40 L1440,100 L0,100Z" fill="#0b0a10"/>
+                <path d="M0,65 C300,95 600,45 900,65 C1100,78 1300,55 1440,62 L1440,100 L0,100Z" fill="#0b0a10"/>
             </svg>
         </div>
         <div class="container">
@@ -876,7 +876,7 @@
                 <div class="hero-text">
                     <span class="greeting fade-up d1">Hello, I'm</span>
                     <h1 class="fade-up d2">
-                        <span class="name">{{ $profil?->nama ?? 'Anugrah Tejo Maliki' }}</span>
+                        <span class="name">{{ $profil?->nama ?? 'ALIFIA SHOFA\' NABILAH' }}</span>
                     </h1>
                     <div class="hero-role fade-up d2">
                         <span class="hero-role-badge"><i class="fa-solid fa-code"></i> {{ $profil?->hero_role1 ?? 'Full-Stack Developer' }}</span>
@@ -1053,8 +1053,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,80 L0,80Z" fill="#e3f1e7"/>
-                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,80 L0,80Z" fill="#e3f1e7"/>
+                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,80 L0,80Z" fill="#100d16"/>
+                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,80 L0,80Z" fill="#100d16"/>
             </svg>
         </div>
     </section>
@@ -1125,8 +1125,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,32 C240,80 600,5 900,45 C1100,65 1280,20 1440,38 L1440,80 L0,80Z" fill="#f2fbf3"/>
-                <path d="M0,52 C360,72 720,30 1080,54 C1260,64 1380,40 1440,50 L1440,80 L0,80Z" fill="#f2fbf3"/>
+                <path d="M0,32 C240,80 600,5 900,45 C1100,65 1280,20 1440,38 L1440,80 L0,80Z" fill="#140f1c"/>
+                <path d="M0,52 C360,72 720,30 1080,54 C1260,64 1380,40 1440,50 L1440,80 L0,80Z" fill="#140f1c"/>
             </svg>
         </div>
     </section>
@@ -1212,8 +1212,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,35 C360,80 720,5 1080,38 C1260,52 1380,22 1440,30 L1440,80 L0,80Z" fill="#dcefe3"/>
-                <path d="M0,55 C300,74 600,36 900,56 C1100,68 1300,44 1440,52 L1440,80 L0,80Z" fill="#dcefe3"/>
+                <path d="M0,35 C360,80 720,5 1080,38 C1260,52 1380,22 1440,30 L1440,80 L0,80Z" fill="#181224"/>
+                <path d="M0,55 C300,74 600,36 900,56 C1100,68 1300,44 1440,52 L1440,80 L0,80Z" fill="#181224"/>
             </svg>
         </div>
     </section>
@@ -1262,8 +1262,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,30 C240,80 600,5 900,42 C1100,62 1280,22 1440,36 L1440,80 L0,80Z" fill="#e4f6ef"/>
-                <path d="M0,52 C360,70 720,32 1080,52 C1260,62 1380,40 1440,48 L1440,80 L0,80Z" fill="#e4f6ef"/>
+                <path d="M0,30 C240,80 600,5 900,42 C1100,62 1280,22 1440,36 L1440,80 L0,80Z" fill="#1d152b"/>
+                <path d="M0,52 C360,70 720,32 1080,52 C1260,62 1380,40 1440,48 L1440,80 L0,80Z" fill="#1d152b"/>
             </svg>
         </div>
     </section>
@@ -1324,8 +1324,8 @@
         </div>
         <div class="sec-wave-end">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,33 C360,80 720,5 1080,38 C1260,54 1380,22 1440,32 L1440,80 L0,80Z" fill="#eaf2e8"/>
-                <path d="M0,54 C300,73 600,34 900,55 C1100,67 1300,44 1440,52 L1440,80 L0,80Z" fill="#eaf2e8"/>
+                <path d="M0,33 C360,80 720,5 1080,38 C1260,54 1380,22 1440,32 L1440,80 L0,80Z" fill="#221833"/>
+                <path d="M0,54 C300,73 600,34 900,55 C1100,67 1300,44 1440,52 L1440,80 L0,80Z" fill="#221833"/>
             </svg>
         </div>
     </section>
@@ -1436,8 +1436,8 @@
         <div class="footer-corak"></div>
         <div class="footer-wave">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,0 L0,0Z" fill="#eaf2e8"/>
-                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,0 L0,0Z" fill="#eaf2e8"/>
+                <path d="M0,38 C360,80 720,5 1080,42 C1260,58 1380,22 1440,32 L1440,0 L0,0Z" fill="#221833"/>
+                <path d="M0,55 C300,72 600,35 900,58 C1100,68 1300,45 1440,54 L1440,0 L0,0Z" fill="#221833"/>
             </svg>
         </div>
         <div class="footer-content">

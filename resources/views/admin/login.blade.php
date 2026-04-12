@@ -81,7 +81,7 @@
     <div class="login-wrap">
         <div class="login-card">
             <div class="login-logo">
-                <div class="logo-text">ANUGRAH TEJO MALIKI</div>
+                <div class="logo-text">ALIFIA SHOFA' NABILAH</div>
                 <div class="logo-sub">Admin Panel</div>
             </div>
             <h2>Selamat Datang <i class="fa-solid fa-hand-wave" style="color:#f59e0b;"></i></h2>
