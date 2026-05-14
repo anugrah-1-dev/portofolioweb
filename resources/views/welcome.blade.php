@@ -845,7 +845,7 @@
                 <li><a href="#tentang">About</a></li>
                 <li><a href="#prestasi">Achievements</a></li>
                 <li><a href="#pengalaman">Experience</a></li>
-                <li><a href="#jurnal">Licenses</a></li>
+                <li><a href="#licenses">Licenses</a></li>
                 <li><a href="#projek">Projects</a></li>
             </ul>
             <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -1393,7 +1393,7 @@
                         <li><a href="#tentang">About</a></li>
                         <li><a href="#prestasi">Achievements</a></li>
                         <li><a href="#pengalaman">Experience</a></li>
-                        <li><a href="#jurnal">Licenses</a></li>
+                        <li><a href="#licenses">Licenses</a></li>
                         <li><a href="#projek">Projects</a></li>
                     </ul>
                 </div>
